@@ -1,0 +1,540 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213193D1DE0F61500FB1774 /* AppDelegate.swift */; };
+		321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */; };
+		321319431DE0F61500FB1774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321319411DE0F61500FB1774 /* Main.storyboard */; };
+		321319451DE0F61500FB1774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321319441DE0F61500FB1774 /* Assets.xcassets */; };
+		321319481DE0F61500FB1774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321319461DE0F61500FB1774 /* LaunchScreen.storyboard */; };
+		321319531DE0F61500FB1774 /* BlackNectarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321319521DE0F61500FB1774 /* BlackNectarTests.swift */; };
+		3213195E1DE0F61500FB1774 /* BlackNectarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3213194F1DE0F61500FB1774 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 321319321DE0F61500FB1774 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 321319391DE0F61500FB1774;
+			remoteInfo = BlackNectar;
+		};
+		3213195A1DE0F61500FB1774 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 321319321DE0F61500FB1774 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 321319391DE0F61500FB1774;
+			remoteInfo = BlackNectar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3213193A1DE0F61500FB1774 /* BlackNectar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackNectar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3213193D1DE0F61500FB1774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresMapViewController.swift; sourceTree = "<group>"; };
+		321319421DE0F61500FB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		321319441DE0F61500FB1774 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		321319471DE0F61500FB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		321319491DE0F61500FB1774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3213194E1DE0F61500FB1774 /* BlackNectarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlackNectarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		321319521DE0F61500FB1774 /* BlackNectarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackNectarTests.swift; sourceTree = "<group>"; };
+		321319541DE0F61500FB1774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		321319591DE0F61500FB1774 /* BlackNectarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlackNectarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackNectarUITests.swift; sourceTree = "<group>"; };
+		3213195F1DE0F61500FB1774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		321319371DE0F61500FB1774 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3213194B1DE0F61500FB1774 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321319561DE0F61500FB1774 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		321319311DE0F61500FB1774 = {
+			isa = PBXGroup;
+			children = (
+				3213193C1DE0F61500FB1774 /* BlackNectar */,
+				321319511DE0F61500FB1774 /* BlackNectarTests */,
+				3213195C1DE0F61500FB1774 /* BlackNectarUITests */,
+				3213193B1DE0F61500FB1774 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3213193B1DE0F61500FB1774 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3213193A1DE0F61500FB1774 /* BlackNectar.app */,
+				3213194E1DE0F61500FB1774 /* BlackNectarTests.xctest */,
+				321319591DE0F61500FB1774 /* BlackNectarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3213193C1DE0F61500FB1774 /* BlackNectar */ = {
+			isa = PBXGroup;
+			children = (
+				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
+				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
+				321319411DE0F61500FB1774 /* Main.storyboard */,
+				321319441DE0F61500FB1774 /* Assets.xcassets */,
+				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
+				321319491DE0F61500FB1774 /* Info.plist */,
+			);
+			path = BlackNectar;
+			sourceTree = "<group>";
+		};
+		321319511DE0F61500FB1774 /* BlackNectarTests */ = {
+			isa = PBXGroup;
+			children = (
+				321319521DE0F61500FB1774 /* BlackNectarTests.swift */,
+				321319541DE0F61500FB1774 /* Info.plist */,
+			);
+			path = BlackNectarTests;
+			sourceTree = "<group>";
+		};
+		3213195C1DE0F61500FB1774 /* BlackNectarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */,
+				3213195F1DE0F61500FB1774 /* Info.plist */,
+			);
+			path = BlackNectarUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		321319391DE0F61500FB1774 /* BlackNectar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 321319621DE0F61500FB1774 /* Build configuration list for PBXNativeTarget "BlackNectar" */;
+			buildPhases = (
+				321319361DE0F61500FB1774 /* Sources */,
+				321319371DE0F61500FB1774 /* Frameworks */,
+				321319381DE0F61500FB1774 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlackNectar;
+			productName = BlackNectar;
+			productReference = 3213193A1DE0F61500FB1774 /* BlackNectar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3213194D1DE0F61500FB1774 /* BlackNectarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 321319651DE0F61500FB1774 /* Build configuration list for PBXNativeTarget "BlackNectarTests" */;
+			buildPhases = (
+				3213194A1DE0F61500FB1774 /* Sources */,
+				3213194B1DE0F61500FB1774 /* Frameworks */,
+				3213194C1DE0F61500FB1774 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				321319501DE0F61500FB1774 /* PBXTargetDependency */,
+			);
+			name = BlackNectarTests;
+			productName = BlackNectarTests;
+			productReference = 3213194E1DE0F61500FB1774 /* BlackNectarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		321319581DE0F61500FB1774 /* BlackNectarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 321319681DE0F61500FB1774 /* Build configuration list for PBXNativeTarget "BlackNectarUITests" */;
+			buildPhases = (
+				321319551DE0F61500FB1774 /* Sources */,
+				321319561DE0F61500FB1774 /* Frameworks */,
+				321319571DE0F61500FB1774 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3213195B1DE0F61500FB1774 /* PBXTargetDependency */,
+			);
+			name = BlackNectarUITests;
+			productName = BlackNectarUITests;
+			productReference = 321319591DE0F61500FB1774 /* BlackNectarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		321319321DE0F61500FB1774 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Black Whole";
+				TargetAttributes = {
+					321319391DE0F61500FB1774 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 5E82HJH2N5;
+						ProvisioningStyle = Automatic;
+					};
+					3213194D1DE0F61500FB1774 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 268HJM5ELZ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 321319391DE0F61500FB1774;
+					};
+					321319581DE0F61500FB1774 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 268HJM5ELZ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 321319391DE0F61500FB1774;
+					};
+				};
+			};
+			buildConfigurationList = 321319351DE0F61500FB1774 /* Build configuration list for PBXProject "BlackNectar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 321319311DE0F61500FB1774;
+			productRefGroup = 3213193B1DE0F61500FB1774 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				321319391DE0F61500FB1774 /* BlackNectar */,
+				3213194D1DE0F61500FB1774 /* BlackNectarTests */,
+				321319581DE0F61500FB1774 /* BlackNectarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		321319381DE0F61500FB1774 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				321319481DE0F61500FB1774 /* LaunchScreen.storyboard in Resources */,
+				321319451DE0F61500FB1774 /* Assets.xcassets in Resources */,
+				321319431DE0F61500FB1774 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3213194C1DE0F61500FB1774 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321319571DE0F61500FB1774 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		321319361DE0F61500FB1774 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
+				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3213194A1DE0F61500FB1774 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				321319531DE0F61500FB1774 /* BlackNectarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321319551DE0F61500FB1774 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3213195E1DE0F61500FB1774 /* BlackNectarUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		321319501DE0F61500FB1774 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 321319391DE0F61500FB1774 /* BlackNectar */;
+			targetProxy = 3213194F1DE0F61500FB1774 /* PBXContainerItemProxy */;
+		};
+		3213195B1DE0F61500FB1774 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 321319391DE0F61500FB1774 /* BlackNectar */;
+			targetProxy = 3213195A1DE0F61500FB1774 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		321319411DE0F61500FB1774 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				321319421DE0F61500FB1774 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		321319461DE0F61500FB1774 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				321319471DE0F61500FB1774 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		321319601DE0F61500FB1774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		321319611DE0F61500FB1774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		321319631DE0F61500FB1774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5E82HJH2N5;
+				INFOPLIST_FILE = BlackNectar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		321319641DE0F61500FB1774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5E82HJH2N5;
+				INFOPLIST_FILE = BlackNectar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		321319661DE0F61500FB1774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 268HJM5ELZ;
+				INFOPLIST_FILE = BlackNectarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlackNectar.app/BlackNectar";
+			};
+			name = Debug;
+		};
+		321319671DE0F61500FB1774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 268HJM5ELZ;
+				INFOPLIST_FILE = BlackNectarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlackNectar.app/BlackNectar";
+			};
+			name = Release;
+		};
+		321319691DE0F61500FB1774 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 268HJM5ELZ;
+				INFOPLIST_FILE = BlackNectarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = BlackNectar;
+			};
+			name = Debug;
+		};
+		3213196A1DE0F61500FB1774 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 268HJM5ELZ;
+				INFOPLIST_FILE = BlackNectarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = BlackNectar;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		321319351DE0F61500FB1774 /* Build configuration list for PBXProject "BlackNectar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321319601DE0F61500FB1774 /* Debug */,
+				321319611DE0F61500FB1774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		321319621DE0F61500FB1774 /* Build configuration list for PBXNativeTarget "BlackNectar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321319631DE0F61500FB1774 /* Debug */,
+				321319641DE0F61500FB1774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		321319651DE0F61500FB1774 /* Build configuration list for PBXNativeTarget "BlackNectarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321319661DE0F61500FB1774 /* Debug */,
+				321319671DE0F61500FB1774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		321319681DE0F61500FB1774 /* Build configuration list for PBXNativeTarget "BlackNectarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321319691DE0F61500FB1774 /* Debug */,
+				3213196A1DE0F61500FB1774 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 321319321DE0F61500FB1774 /* Project object */;
+}

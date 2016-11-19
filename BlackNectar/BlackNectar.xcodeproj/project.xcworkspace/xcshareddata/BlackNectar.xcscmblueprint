@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "07E990C801AB42C8D7290E6F95AB4F092B5C59F6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "07E990C801AB42C8D7290E6F95AB4F092B5C59F6" : 9223372036854775807,
+    "EB3E639CF5E36BEC9E7909FB1389280A49D3D61F" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "81159DB3-E466-4582-BDB5-A1F54314239C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "07E990C801AB42C8D7290E6F95AB4F092B5C59F6" : "BlackNectar-iOS\/",
+    "EB3E639CF5E36BEC9E7909FB1389280A49D3D61F" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BlackNectar",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BlackNectar\/BlackNectar.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/BlackWholeLabs\/BlackNectar-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "07E990C801AB42C8D7290E6F95AB4F092B5C59F6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cordhernandez\/IOSI_SM_1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EB3E639CF5E36BEC9E7909FB1389280A49D3D61F"
+    }
+  ]
+}

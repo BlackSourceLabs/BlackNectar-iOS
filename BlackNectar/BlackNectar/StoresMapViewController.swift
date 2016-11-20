@@ -23,6 +23,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initializing locationManager, setting the delegate, accuracy, filter and requesting authorization
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -33,8 +34,12 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.delegate = self
         mapView.showsUserLocation = true
         
+        storesApiCall()
+        
     }
     
+    
+    // Updating users location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let userLocation: CLLocation = locations[0]
@@ -59,6 +64,46 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         // Dispose of any resources that can be recreated.
     }
 
+    
+    // API Call 
+    
+    var ebtStores = [StoresInfo]()
+    
+    func storesApiCall() {
+        
+        let storesAPI = "http://blacknectar-api.sirwellington.tech:9100/sample-store"
+        
+        let url = URL(string: storesAPI)!
+        var request = URLRequest.init(url: url)
+        
+        let session = URLSession.shared
+        
+        let dataTask = session.dataTask(with: request) {(data, response, error) -> Void in
+            
+            print("data is : \(data), response is : \(response), error is : \(error)")
+            
+            guard let taskData = data else { return }
+            guard let jsonObject = try? JSONSerialization.jsonObject(with: taskData, options: []) as! NSArray else {return}
+            
+            //guard let array = jsonObject["sample-store"] as? NSArray else {return}
+            
+            
+            for i in jsonObject {
+                
+                let dict = i as? NSDictionary
+                guard let storeDictionary = StoresInfo.fromJson(dictionary: dict!) else { return }
+                
+                self.ebtStores.append(storeDictionary)
+                print("stores: \(self.ebtStores)")
+                
+                
+            }
+            
+        }
+        dataTask.resume()
+        
+    }
+    
 
 }
 

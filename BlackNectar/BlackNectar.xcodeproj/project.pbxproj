@@ -14,6 +14,7 @@
 		321319481DE0F61500FB1774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321319461DE0F61500FB1774 /* LaunchScreen.storyboard */; };
 		321319531DE0F61500FB1774 /* BlackNectarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321319521DE0F61500FB1774 /* BlackNectarTests.swift */; };
 		3213195E1DE0F61500FB1774 /* BlackNectarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */; };
+		3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		321319591DE0F61500FB1774 /* BlackNectarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlackNectarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackNectarUITests.swift; sourceTree = "<group>"; };
 		3213195F1DE0F61500FB1774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresDataStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
 				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
+				3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */,
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
 			);

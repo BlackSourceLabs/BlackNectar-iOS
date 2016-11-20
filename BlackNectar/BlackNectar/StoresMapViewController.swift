@@ -71,7 +71,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     func storesApiCall() {
         
-        let storesAPI = "http://blacknectar-api.sirwellington.tech:9100/sample-store"
+        let storesAPI = "http://blacknectar-api.sirwellington.tech:9100/stores"
         
         let url = URL(string: storesAPI)!
         var request = URLRequest.init(url: url)
@@ -94,13 +94,36 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 guard let storeDictionary = StoresInfo.fromJson(dictionary: dict!) else { return }
                 
                 self.ebtStores.append(storeDictionary)
-                print("stores: \(self.ebtStores)")
+                //print("stores: \(self.ebtStores)")
                 
                 
             }
-            
+            self.populateStoreAnnotations()
         }
         dataTask.resume()
+    
+    }
+    
+    func populateStoreAnnotations() {
+        
+        for i in ebtStores {
+            
+            let storeName = i.storeName
+            let address = i.address.allValues
+            let location = i.location
+            
+            let latitude = location["latitude"]
+            let longitude = location["longitude"]
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate.latitude = latitude as! CLLocationDegrees
+            print ("\(annotation.coordinate.latitude)")
+            annotation.coordinate.longitude = longitude as! CLLocationDegrees
+            print("\(annotation.coordinate.longitude)")
+            
+            annotation.subtitle = "\(storeName)"
+            mapView.addAnnotations([annotation])
+        }
         
     }
     

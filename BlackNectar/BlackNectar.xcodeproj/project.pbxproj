@@ -15,6 +15,7 @@
 		321319531DE0F61500FB1774 /* BlackNectarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321319521DE0F61500FB1774 /* BlackNectarTests.swift */; };
 		3213195E1DE0F61500FB1774 /* BlackNectarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */; };
 		3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */; };
+		3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196D1DE1576900FB1774 /* SearchStores.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackNectarUITests.swift; sourceTree = "<group>"; };
 		3213195F1DE0F61500FB1774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresDataStruct.swift; sourceTree = "<group>"; };
+		3213196D1DE1576900FB1774 /* SearchStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStores.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
 				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
+				3213196D1DE1576900FB1774 /* SearchStores.swift */,
 				3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
@@ -268,6 +271,7 @@
 				3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */,
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
+				3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

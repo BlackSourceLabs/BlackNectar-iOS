@@ -11,14 +11,15 @@ import Foundation
 import MapKit
 import CoreLocation
 
+
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    var locationManager: CLLocationManager!
+    private var locationManager: CLLocationManager!
+    private var stores: [StoresInfo] = []
     
-    var currentLatitude = ""
-    var currentLongitude = ""
+    var currentLocation: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         mapView.delegate = self
         mapView.showsUserLocation = true
-        
-        storesApiCall()
         
     }
     
@@ -51,10 +50,13 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegion(center: location, span: span)
         
-        currentLatitude = "\(location.latitude)"
-        currentLongitude = "\(location.longitude)"
+        currentLocation = location
         
         self.mapView.setRegion(region, animated: true)
+        
+        SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
+            self.stores = stores
+        }
         
         locationManager.stopUpdatingLocation()
     }
@@ -63,63 +65,24 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
-    // API Call 
+    // populating stores as annotations in the mapView
     
-    var ebtStores = [StoresInfo]()
-    
-    func storesApiCall() {
+        func populateStoreAnnotations() {
         
-        let storesAPI = "http://blacknectar-api.sirwellington.tech:9100/stores"
-        
-        let url = URL(string: storesAPI)!
-        var request = URLRequest.init(url: url)
-        
-        let session = URLSession.shared
-        
-        let dataTask = session.dataTask(with: request) {(data, response, error) -> Void in
+        for store in stores {
             
-            print("data is : \(data), response is : \(response), error is : \(error)")
-            
-            guard let taskData = data else { return }
-            guard let jsonObject = try? JSONSerialization.jsonObject(with: taskData, options: []) as! NSArray else {return}
-            
-            //guard let array = jsonObject["sample-store"] as? NSArray else {return}
-            
-            
-            for i in jsonObject {
-                
-                let dict = i as? NSDictionary
-                guard let storeDictionary = StoresInfo.fromJson(dictionary: dict!) else { return }
-                
-                self.ebtStores.append(storeDictionary)
-                //print("stores: \(self.ebtStores)")
-                
-                
-            }
-            self.populateStoreAnnotations()
-        }
-        dataTask.resume()
-    
-    }
-    
-    func populateStoreAnnotations() {
-        
-        for i in ebtStores {
-            
-            let storeName = i.storeName
-            let address = i.address.allValues
-            let location = i.location
+            let storeName = store.storeName
+            let address = store.address.allValues
+            let location = store.location
             
             let latitude = location["latitude"]
             let longitude = location["longitude"]
             
             let annotation = MKPointAnnotation()
+            
             annotation.coordinate.latitude = latitude as! CLLocationDegrees
-            print ("\(annotation.coordinate.latitude)")
             annotation.coordinate.longitude = longitude as! CLLocationDegrees
-            print("\(annotation.coordinate.longitude)")
             
             annotation.subtitle = "\(storeName)"
             mapView.addAnnotations([annotation])
@@ -127,6 +90,5 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-
 }
 

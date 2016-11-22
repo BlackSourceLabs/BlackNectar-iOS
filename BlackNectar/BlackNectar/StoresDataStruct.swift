@@ -34,8 +34,8 @@ struct StoresInfo {
         return StoresInfo(storeName: storeName, location: location, address: address)
         
     }
+
     
-    
-    
-    
+
 }
+

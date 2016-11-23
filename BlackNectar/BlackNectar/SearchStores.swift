@@ -18,8 +18,6 @@ class SearchStores {
     // API Call
     static func searchForStoresLocations(near point: CLLocationCoordinate2D, callback: @escaping Callback) {
         
-        print("point is : \(point)")
-        
         let storesAPI = "http://blacknectar-api.sirwellington.tech:9100/stores?lat=\(point.latitude)&lon=\(point.longitude)"
         
         let url = URL(string: storesAPI)!
@@ -47,7 +45,6 @@ class SearchStores {
         
     }
     
-    
     private static func getStoresFrom(url: URL, callback: @escaping Callback) {
         //Get stores from url
         //When done, pass them to `callback`
@@ -56,8 +53,6 @@ class SearchStores {
         let session = URLSession.shared
         
         let task = session.dataTask(with: request) { data, response, error  in
-            
-            print("data task data is : \(data) & response is : \(response)")
             
             //If I have data, parse the stores from it
             if error != nil {
@@ -75,30 +70,39 @@ class SearchStores {
             //We have contact. Here are the stores
             callback(stores)
             
+            
         }
         
         task.resume()
-        StoresMapViewController().populateStoreAnnotations()
+        
     }
+    
     
     private static func parseStores(from data: Data) -> [StoresInfo] {
         
         var storesArray: [StoresInfo] = []
-    
-        let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) as! NSArray
+        
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
+              let jsonArray = json as? NSArray else {
+            return storesArray
+        }
       
-        for i in jsonObject! {
+        for element in jsonArray {
             
-            let dict = i as? NSDictionary
-            let storeDictionary = StoresInfo.fromJson(dictionary: dict!)
+            guard let object = element as? NSDictionary else {
+                continue
+            }
             
-            storesArray.append(storeDictionary!)
+            guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
+            
+            storesArray.append(store)
             
         }
         
         return storesArray
         
     }
+    
 }
 
 

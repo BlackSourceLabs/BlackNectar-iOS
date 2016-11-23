@@ -15,52 +15,79 @@ import CoreLocation
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    
     private var locationManager: CLLocationManager!
-    private var stores: [StoresInfo] = []
+    private var currentLocation: CLLocationCoordinate2D?
     
-    var currentLocation: CLLocationCoordinate2D?
+    private var stores: [StoresInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initializing locationManager, setting the delegate, accuracy, filter and requesting authorization
+        prepareLocationManager()
+        prepareMapView()
+        
+        requestUserLocation()
+    }
+    
+    private func prepareLocationManager() {
+        
+        // Setting Up Location Manager
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+    }
+    
+    private func prepareMapView() {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
-        
     }
     
+    private func requestUserLocation() {
+        locationManager.startUpdatingLocation()
+    }
     
     // Updating users location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let userLocation: CLLocation = locations[0]
-        let latitude = userLocation.coordinate.latitude
-        let longitude = userLocation.coordinate.longitude
-        let latDelta: CLLocationDegrees = 0.05
-        let longDelta: CLLocationDegrees = 0.05
-        let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
-        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let region = MKCoordinateRegion(center: location, span: span)
+        guard let userLocation: CLLocation = locations.first else {
+            return
+        }
         
-        currentLocation = location
+        defer {
+            locationManager.stopUpdatingLocation()
+        }
         
+        currentLocation = userLocation.coordinate
+        
+        func calculateRegion(for location: CLLocation) -> MKCoordinateRegion {
+            
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            let latDelta: CLLocationDegrees = 0.05
+            let longDelta: CLLocationDegrees = 0.05
+            let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
+            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let region = MKCoordinateRegion(center: location, span: span)
+            
+            return region
+        }
+        
+        let region = calculateRegion(for: userLocation)
         self.mapView.setRegion(region, animated: true)
+        
         
         SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
             self.stores = stores
+            
+            self.populateStoreAnnotations()
         }
         
-        locationManager.stopUpdatingLocation()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,7 +95,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     // populating stores as annotations in the mapView
     
-        func populateStoreAnnotations() {
+    func populateStoreAnnotations() {
         
         for store in stores {
             
@@ -89,6 +116,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
         
     }
+    
+    
     
 }
 

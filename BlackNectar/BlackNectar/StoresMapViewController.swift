@@ -19,13 +19,14 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     private var currentLocation: CLLocationCoordinate2D?
     
     private var stores: [StoresInfo] = []
+    typealias Callback = ([StoresInfo]) -> ()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         prepareLocationManager()
         prepareMapView()
-        
         requestUserLocation()
     }
     
@@ -38,6 +39,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
     }
+    
     
     private func prepareMapView() {
         
@@ -117,7 +119,18 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let stores = self.stores
+    }
     
+    func callStoresData(callback: @escaping Callback) {
+       
+        if currentLocation != nil {
+            SearchStores.searchForStoresLocations(near: currentLocation!, callback: callback)
+            
+        }
+    }
+        
     
 }
 

@@ -18,31 +18,19 @@ class SearchStores {
     // API Call
     static func searchForStoresLocations(near point: CLLocationCoordinate2D, callback: @escaping Callback) {
         
-        let storesAPI = "http://blacknectar-api.sirwellington.tech:9100/stores?lat=\(point.latitude)&lon=\(point.longitude)"
-        
+        let storesAPI = "https://blacknectar-api.sirwellington.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)"
         let url = URL(string: storesAPI)!
         
         getStoresFrom(url: url, callback: callback)
 
     }
 
-    static func searchForStores(withName name: String, callback: Callback) {
+    static func searchForStoresByName(withName name: String, callback: Callback) {
         
         //Make API call to get stores with searchTerm `name`
         let stores = [StoresInfo]()
         
         callback(stores)
-    }
-    
-    static func storesApiCall(near location: CLLocationCoordinate2D, callback: @escaping Callback) {
-        
-        let storesAPI = "http://blacknectar-api.sirwellington.tech:9100/stores?lat=lon=&limit=20"
-        let url = URL(string: storesAPI)!
-        let request = URLRequest.init(url: url)
-        let stores = [StoresInfo]()
-        
-        callback(stores)
-        
     }
     
     private static func getStoresFrom(url: URL, callback: @escaping Callback) {
@@ -51,7 +39,6 @@ class SearchStores {
         
         let request = URLRequest(url: url)
         let session = URLSession.shared
-        
         let task = session.dataTask(with: request) { data, response, error  in
             
             //If I have data, parse the stores from it
@@ -88,13 +75,11 @@ class SearchStores {
         }
       
         for element in jsonArray {
-            
             guard let object = element as? NSDictionary else {
                 continue
             }
             
             guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
-            
             storesArray.append(store)
             
         }

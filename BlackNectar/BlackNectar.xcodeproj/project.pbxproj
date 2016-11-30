@@ -18,6 +18,7 @@
 		3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196D1DE1576900FB1774 /* SearchStores.swift */; };
 		3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */; };
 		3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */; };
+		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		3213196D1DE1576900FB1774 /* SearchStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStores.swift; sourceTree = "<group>"; };
 		3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewController.swift; sourceTree = "<group>"; };
 		3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManager.swift; sourceTree = "<group>"; };
+		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */,
 				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
 				3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */,
+				32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */,
 				3213196D1DE1576900FB1774 /* SearchStores.swift */,
 				3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
@@ -279,6 +282,7 @@
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
 				3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */,
 				3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */,
+				32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,19 +15,28 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     var stores: [StoresInfo] = []
     var currentLocation = UserLocation().prepareForLocation()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UserLocation().prepareForLocation()
+<<<<<<< HEAD
             print("tableview current location is : \(currentLocation)")
         SearchStores.searchForStoresLocations(near: currentLocation) { stores in
             self.stores = stores
             print("TableViewController, stores is : \(self.stores)")
         }
+=======
+>>>>>>> develop
         
+       
     }
+<<<<<<< HEAD
     
     
+=======
+
+>>>>>>> develop
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -50,7 +59,11 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath)
         
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> develop
         return cell
     }
     

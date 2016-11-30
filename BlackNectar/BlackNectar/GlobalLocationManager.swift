@@ -57,8 +57,5 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         let region = calculateRegion(for: userLocation)
     }
     
-    var passCurrentLocation = {() -> (CLLocationCoordinate2D) in
-        self.currentLocation
-        
-    }
+    
 }

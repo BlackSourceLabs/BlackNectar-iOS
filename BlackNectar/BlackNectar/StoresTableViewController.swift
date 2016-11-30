@@ -21,10 +21,10 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         UserLocation().prepareForLocation()
             print("tableview current location is : \(currentLocation)")
         SearchStores.searchForStoresLocations(near: currentLocation) { stores in
-            print("Search for stores, stores is : \(stores)")
             self.stores = stores
+            print("TableViewController, stores is : \(self.stores)")
         }
-        print("stores is \(stores)")
+        
     }
     
     

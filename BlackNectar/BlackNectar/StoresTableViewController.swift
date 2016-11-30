@@ -19,7 +19,7 @@ class StoresTableViewController: UITableViewController {
         super.viewDidLoad()
         
         UserLocation().prepareForLocation()
-        StoresTableViewCell().updateUIToCardView()
+        
        
     }
 

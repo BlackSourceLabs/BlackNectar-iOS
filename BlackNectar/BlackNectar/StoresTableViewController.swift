@@ -51,7 +51,6 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath)
         
         
-        
         return cell
     }
     

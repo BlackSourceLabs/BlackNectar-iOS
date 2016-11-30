@@ -13,10 +13,11 @@ import MapKit
 
 class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
+    var stores: [StoresInfo] = []
     var locationManager: CLLocationManager!
     var currentLocation: CLLocationCoordinate2D?
     
-     func prepareForLocation() {
+     func prepareForLocation() -> CLLocationCoordinate2D {
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -27,6 +28,8 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         currentLocation = locationManager.location?.coordinate
        print("currentlocation equals = \(currentLocation)")
+        
+        return currentLocation!
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -55,6 +58,15 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
             
         }
         let region = calculateRegion(for: userLocation)
+<<<<<<< HEAD
+        
+        SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
+            self.stores = stores
+            
+        }
+
+=======
+>>>>>>> develop
     }
     
     

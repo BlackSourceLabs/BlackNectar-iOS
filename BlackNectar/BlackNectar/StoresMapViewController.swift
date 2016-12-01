@@ -17,6 +17,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     @IBOutlet weak var mapView: MKMapView!
     private var locationManager: CLLocationManager!
     private var currentLocation: CLLocationCoordinate2D?
+    var selectedPin: MKPlacemark? = nil
     
     private var stores: [StoresInfo] = []
     typealias Callback = ([StoresInfo]) -> ()
@@ -115,22 +116,66 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
             annotation.subtitle = "\(storeName)"
             mapView.addAnnotations([annotation])
-        }
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let stores = self.stores
-    }
-    
-    func callStoresData(callback: @escaping Callback) {
-       
-        if currentLocation != nil {
-            SearchStores.searchForStoresLocations(near: currentLocation!, callback: callback)
             
         }
-    }
         
+    }
+    
+//    func convertHexStringToUIColor(hex:String) -> UIColor {
+//        
+//    }
+    
+    func getDirections() {
+        
+        if let selectedPin = selectedPin {
+            let mapItem = MKMapItem(placemark: selectedPin)
+            let launcOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+            mapItem.openInMaps(launchOptions: launcOptions)
+        }
+    }
+    
+    
+}
+
+
+extension StoresMapViewController {
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        
+        selectedPin = placemark
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.title
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city), \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+     let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        pinView?.pinTintColor = UIColor.black
+        pinView?.isSelected = true
+        pinView?.canShowCallout = true
+        let smallSquare = CGSize(width: 30, height: 30)
+        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        button.setBackgroundImage(UIImage(named: "car"), for: .normal)
+        button.addTarget(self, action: #selector(getDirections) , for: .touchUpInside)
+        pinView?.leftCalloutAccessoryView = button
+        
+        
+        return pinView
+    }
     
 }
 

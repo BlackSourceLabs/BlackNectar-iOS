@@ -58,15 +58,14 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
             
         }
         let region = calculateRegion(for: userLocation)
-<<<<<<< HEAD
+
         
         SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
             self.stores = stores
             
         }
 
-=======
->>>>>>> develop
+
     }
     
     

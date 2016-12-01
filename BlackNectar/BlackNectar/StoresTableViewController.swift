@@ -20,23 +20,14 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         super.viewDidLoad()
         
         UserLocation().prepareForLocation()
-<<<<<<< HEAD
-            print("tableview current location is : \(currentLocation)")
         SearchStores.searchForStoresLocations(near: currentLocation) { stores in
             self.stores = stores
             print("TableViewController, stores is : \(self.stores)")
+            self.tableView.reloadData()
         }
-=======
->>>>>>> develop
-        
-       
-    }
-<<<<<<< HEAD
-    
-    
-=======
 
->>>>>>> develop
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,19 +43,20 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return stores.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell
+        let store = stores[indexPath.row]
+        var addressString = ""
+        addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
         
-<<<<<<< HEAD
+        cell?.storeName.text = store.storeName
+        cell?.storeAddress?.text = addressString
+        cell?.updateUIToCardView()
         
-=======
-
->>>>>>> develop
-        return cell
+        return cell!
     }
     
     

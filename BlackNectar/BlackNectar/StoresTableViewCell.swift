@@ -23,7 +23,7 @@ class StoresTableViewCell: UITableViewCell {
      func updateUIToCardView() {
         
         backgroundCardView.backgroundColor = UIColor.white
-        contentView.backgroundColor = UIColor(colorLiteralRed: 240, green: 240, blue: 240, alpha: 1.0)
+        contentView.backgroundColor = UIColor(colorLiteralRed: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         
         backgroundCardView.layer.cornerRadius = 3.0
         backgroundCardView.layer.masksToBounds = false

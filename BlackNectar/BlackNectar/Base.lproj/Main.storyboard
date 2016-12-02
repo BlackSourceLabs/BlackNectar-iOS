@@ -34,9 +34,7 @@
                             <constraint firstAttribute="trailing" secondItem="VMa-3U-as9" secondAttribute="trailing" id="siv-Yt-lK2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="iqF-ZB-A9h">
-                        <barButtonItem key="rightBarButtonItem" title="tableview" id="J8l-94-Wg9"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="iqF-ZB-A9h"/>
                     <connections>
                         <outlet property="mapView" destination="VMa-3U-as9" id="9zW-aD-7Zo"/>
                     </connections>

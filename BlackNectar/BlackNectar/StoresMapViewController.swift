@@ -155,6 +155,7 @@ extension StoresMapViewController {
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -167,6 +168,7 @@ extension StoresMapViewController {
         pinView?.pinTintColor = UIColor.black
         pinView?.isSelected = true
         pinView?.canShowCallout = true
+        
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "car"), for: .normal)

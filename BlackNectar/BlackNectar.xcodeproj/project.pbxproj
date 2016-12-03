@@ -20,6 +20,7 @@
 		3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */; };
 		3242A2751DF0F845001B5BF8 /* SWRevealController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3242A2741DF0F845001B5BF8 /* SWRevealController.framework */; };
 		3242A2761DF0F845001B5BF8 /* SWRevealController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3242A2741DF0F845001B5BF8 /* SWRevealController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		327BACDE1DF12F85000EA25E /* SideMenuFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewController.swift; sourceTree = "<group>"; };
 		3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManager.swift; sourceTree = "<group>"; };
 		3242A2741DF0F845001B5BF8 /* SWRevealController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SWRevealController.framework; sourceTree = "<group>"; };
+		327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuFilterViewController.swift; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
 				3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */,
 				32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */,
+				327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */,
 				3213196D1DE1576900FB1774 /* SearchStores.swift */,
 				3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
@@ -301,6 +304,7 @@
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
 				3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */,
+				327BACDE1DF12F85000EA25E /* SideMenuFilterViewController.swift in Sources */,
 				3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */,
 				32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,

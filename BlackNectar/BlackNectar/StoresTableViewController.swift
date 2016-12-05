@@ -71,6 +71,12 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         var addressString = ""
         addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
         
+        do {
+            let image = try UIImage(data: Data(contentsOf: stores[indexPath.row].storeImage))
+        } catch {
+            print ("error")
+        }
+        
         cell?.storeName.text = store.storeName
         cell?.storeAddress?.text = addressString
         cell?.updateUIToCardView()

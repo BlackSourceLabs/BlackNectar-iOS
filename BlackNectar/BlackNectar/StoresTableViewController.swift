@@ -83,7 +83,6 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
 //MARK: Actions
 extension StoresTableViewController {
     
-    
     @IBAction func onFilterTapped(_ sender: Any) {
         
         if let revealController = self.revealViewController() {

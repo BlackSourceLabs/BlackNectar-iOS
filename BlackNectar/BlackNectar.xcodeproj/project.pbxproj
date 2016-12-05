@@ -128,14 +128,12 @@
 		3213193C1DE0F61500FB1774 /* BlackNectar */ = {
 			isa = PBXGroup;
 			children = (
+				327BAD631DF44BEA000EA25E /* APIDataStructure */,
+				327BAD621DF44BC5000EA25E /* APICall */,
+				327BAD611DF44B8B000EA25E /* MapView */,
+				327BAD601DF44B5A000EA25E /* SideMenus */,
+				327BAD5F1DF44B3F000EA25E /* StoresListTableView */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
-				3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */,
-				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
-				3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */,
-				32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */,
-				327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */,
-				3213196D1DE1576900FB1774 /* SearchStores.swift */,
-				3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
@@ -160,6 +158,48 @@
 				3213195F1DE0F61500FB1774 /* Info.plist */,
 			);
 			path = BlackNectarUITests;
+			sourceTree = "<group>";
+		};
+		327BAD5F1DF44B3F000EA25E /* StoresListTableView */ = {
+			isa = PBXGroup;
+			children = (
+				3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */,
+				32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */,
+			);
+			name = StoresListTableView;
+			sourceTree = "<group>";
+		};
+		327BAD601DF44B5A000EA25E /* SideMenus */ = {
+			isa = PBXGroup;
+			children = (
+				327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */,
+			);
+			name = SideMenus;
+			sourceTree = "<group>";
+		};
+		327BAD611DF44B8B000EA25E /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */,
+				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
+			);
+			name = MapView;
+			sourceTree = "<group>";
+		};
+		327BAD621DF44BC5000EA25E /* APICall */ = {
+			isa = PBXGroup;
+			children = (
+				3213196D1DE1576900FB1774 /* SearchStores.swift */,
+			);
+			name = APICall;
+			sourceTree = "<group>";
+		};
+		327BAD631DF44BEA000EA25E /* APIDataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */,
+			);
+			name = APIDataStructure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

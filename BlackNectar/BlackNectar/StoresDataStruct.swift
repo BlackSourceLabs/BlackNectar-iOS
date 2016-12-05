@@ -16,6 +16,7 @@ struct StoresInfo {
     let storeName: String
     let location: NSDictionary
     let address: NSDictionary
+    let storeImage: String
     
     static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
         

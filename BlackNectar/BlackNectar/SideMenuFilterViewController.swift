@@ -54,12 +54,15 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         if isRestaurant == nil {
             isRestaurant = true
             restaurantButton.layer.backgroundColor = UIColor.orange.cgColor
+                //init(red: 230, green: 187, blue: 63, alpha: 0.5).cgColor
+            
         }else if isRestaurant == true {
             isRestaurant = false
             restaurantButton.layer.backgroundColor = UIColor.darkGray.cgColor
         }else {
             isRestaurant = true
             restaurantButton.layer.backgroundColor = UIColor.orange.cgColor
+            //init(red: 230, green: 187, blue: 63, alpha: 0.5).cgColor
         }
         print("isRestaurant variable set to : \(isRestaurant)")
     }
@@ -69,12 +72,14 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         if isStore == nil {
             isStore = true
             storesButton.layer.backgroundColor = UIColor.orange.cgColor
+            //init(red: 230, green: 197, blue: 101, alpha: 1).cgColor
         }else if isStore == true {
             isStore = false
             storesButton.layer.backgroundColor = UIColor.darkGray.cgColor
         }else {
             isStore = true
             storesButton.layer.backgroundColor = UIColor.orange.cgColor
+            //init(red: 230, green: 197, blue: 101, alpha: 1).cgColor
         }
         print("isStore variable set to : \(isStore)")
     }
@@ -109,7 +114,8 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         restaurantButton.layer.cornerRadius = 10
         storesButton.layer.cornerRadius = 10
         
-        contentViewCell.layer.opacity = 0.5
+        contentViewCell.layer.opacity = 0.75
+        
     }
     
     func getDistanceValue() -> Double {

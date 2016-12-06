@@ -252,7 +252,7 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="X1A-Xi-EyJ">
                                                     <rect key="frame" x="20" y="155" width="220" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="minimumTrackTintColor" red="1" green="0.65745048279999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="minimumTrackTintColor" red="0.900626123" green="0.73430758709999999" blue="0.2481203079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="maximumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <connections>
                                                         <action selector="sliderDidSlide:" destination="dg9-R3-Y9r" eventType="valueChanged" id="zNn-QW-N3W"/>
@@ -268,7 +268,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ynX-1C-t7V">
                                                     <rect key="frame" x="131" y="213" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="onTintColor" red="1" green="0.65745048279999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="onTintColor" red="0.900626123" green="0.73430758709999999" blue="0.2481203079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="openNowSwitchOffOn:" destination="dg9-R3-Y9r" eventType="valueChanged" id="Tk5-ik-ZN3"/>
                                                     </connections>

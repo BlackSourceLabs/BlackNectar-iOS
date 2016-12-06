@@ -12,19 +12,19 @@ import UIKit
 
 class SearchStores {
     
-//    typealias Stores = [StoresInfo]
+    //    typealias Stores = [StoresInfo]
     typealias Callback = ([StoresInfo]) -> ()
     
     // API Call
     static func searchForStoresLocations(near point: CLLocationCoordinate2D, callback: @escaping Callback) {
         
-        let storesAPI = "https://blacknectar-api.sirwellington.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)"
+        let storesAPI = "https://blacknectar-api.sirwellington.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=3000"
         let url = URL(string: storesAPI)!
         
         getStoresFrom(url: url, callback: callback)
-
+        
     }
-
+    
     static func searchForStoresByName(withName name: String, callback: Callback) {
         
         //Make API call to get stores with searchTerm `name`
@@ -71,15 +71,16 @@ class SearchStores {
         
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
               let jsonArray = json as? NSArray else {
-            return storesArray
+              return storesArray
         }
-      
+        
         for element in jsonArray {
             guard let object = element as? NSDictionary else {
-                continue
+            continue
             }
             
             guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
+            
             storesArray.append(store)
             
         }

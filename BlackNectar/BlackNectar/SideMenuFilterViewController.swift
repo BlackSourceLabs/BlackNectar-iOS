@@ -10,20 +10,7 @@ import Foundation
 import UIKit
 import SWRevealController
 
-protocol SideMenuFilterViewControllerDelegate {
-    
-    func onButtonTap(sender: UIButton)
-    
-    /*
-     var radius = distanceFilter
-     SearchStores.searchstoreslocations(userLocation) {
-     https: apicall.call/\(radius)
-     }
-     */
-    
-}
 
-@IBDesignable
 class SideMenuFilterViewController: UITableViewController, SWRevealViewControllerDelegate {
     
     @IBOutlet weak var slider: UISlider!
@@ -36,17 +23,12 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var contentViewCell: UIView!
     
-    
-    var openNowSwitchValue: Bool?
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setButtonAttributes()
-        
     }
     
-    var delegate: SideMenuFilterViewControllerDelegate?
+    var openNowSwitchValue: Bool?
     var distanceFilter: Double?
     var hoursOfOperation: Bool?
     var isRestaurant: Bool?
@@ -58,6 +40,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         
     }
     @IBAction func openNowSwitchOffOn(_ sender: Any) {
+        
         if openNowSwitch.isOn {
             openNowSwitchValue = true
         } else {
@@ -65,8 +48,9 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         }
         print("openNowSwitch was set to : \(openNowSwitchValue)")
     }
-    @IBAction func restaurantPress(_ sender: Any) {
-        
+    
+    @IBAction func restaurantPressed(_ sender: Any) {
+    
         if isRestaurant == nil {
             isRestaurant = true
             restaurantButton.layer.backgroundColor = UIColor.orange.cgColor
@@ -81,7 +65,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     }
     
     @IBAction func storesPressed(_ sender: Any) {
-        
+    
         if isStore == nil {
             isStore = true
             storesButton.layer.backgroundColor = UIColor.orange.cgColor
@@ -94,12 +78,21 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         }
         print("isStore variable set to : \(isStore)")
     }
-    
+
     @IBAction func applyPress(_ sender: Any) {
-        
         
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "applyButtonSegue" {
+//            let destinationVC = segue.destination as! StoresTableViewController
+//            destinationVC.filterDelegate = self
+//            destinationVC.filterDelegate.getDistanceValue()
+//            print("tableview filterdelegate: getDistance value is : \(destinationVC.filterDelegate.getDistanceValue())")
+//            destinationVC.filterDelegate.getOpenNow()
+//            destinationVC.filterDelegate.getRestaurantsOrStores()
+//        }
+//    }
     
     func setButtonAttributes() {
         slider.minimumValue = 2
@@ -118,6 +111,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         
         contentViewCell.layer.opacity = 0.5
     }
+    
     func getDistanceValue() -> Double {
         return distanceFilter!
     }
@@ -129,7 +123,5 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     }
     
     
-    func onButtonTap(sender: UIButton) {
-        delegate?.onButtonTap(sender: sender)
-    }
+    
 }

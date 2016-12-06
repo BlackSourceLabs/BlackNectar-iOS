@@ -242,7 +242,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="661"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-YP-JTy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-YP-JTy">
                                                     <rect key="frame" x="22" y="116" width="70" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -258,7 +258,7 @@
                                                         <action selector="sliderDidSlide:" destination="dg9-R3-Y9r" eventType="valueChanged" id="zNn-QW-N3W"/>
                                                     </connections>
                                                 </slider>
-                                                <label opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Open Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th7-Fu-RW4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Open Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th7-Fu-RW4">
                                                     <rect key="frame" x="22" y="218" width="101" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -281,7 +281,7 @@
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="restaurantPress:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="0Nf-15-2n2"/>
+                                                        <action selector="restaurantPressed:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="Zak-rL-Mb3"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-sf-DZZ">
@@ -297,6 +297,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="applyPress:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="nFn-o1-sUC"/>
+                                                        <segue destination="uUP-V3-9cw" kind="custom" identifier="applyButtonSegue" customClass="SWRevealViewControllerSeguePushController" id="i90-Jf-rKd"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQJ-kN-Uuk">
@@ -317,7 +318,7 @@
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="storesPressed:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="fuK-ZO-tvN"/>
+                                                        <action selector="storesPressed:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="L7O-Vd-0ER"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -373,6 +374,6 @@
         <image name="filter" width="92" height="91"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jFj-Gy-bbR"/>
+        <segue reference="i90-Jf-rKd"/>
     </inferredMetricsTieBreakers>
 </document>

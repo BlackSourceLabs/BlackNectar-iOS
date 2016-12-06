@@ -53,16 +53,15 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     
         if isRestaurant == nil {
             isRestaurant = true
-            restaurantButton.layer.backgroundColor = UIColor.orange.cgColor
-                //init(red: 230, green: 187, blue: 63, alpha: 0.5).cgColor
+            restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
             
         }else if isRestaurant == true {
             isRestaurant = false
             restaurantButton.layer.backgroundColor = UIColor.darkGray.cgColor
         }else {
             isRestaurant = true
-            restaurantButton.layer.backgroundColor = UIColor.orange.cgColor
-            //init(red: 230, green: 187, blue: 63, alpha: 0.5).cgColor
+            restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+            
         }
         print("isRestaurant variable set to : \(isRestaurant)")
     }
@@ -71,15 +70,13 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     
         if isStore == nil {
             isStore = true
-            storesButton.layer.backgroundColor = UIColor.orange.cgColor
-            //init(red: 230, green: 197, blue: 101, alpha: 1).cgColor
+            storesButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
         }else if isStore == true {
             isStore = false
             storesButton.layer.backgroundColor = UIColor.darkGray.cgColor
         }else {
             isStore = true
-            storesButton.layer.backgroundColor = UIColor.orange.cgColor
-            //init(red: 230, green: 197, blue: 101, alpha: 1).cgColor
+            storesButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
         }
         print("isStore variable set to : \(isStore)")
     }

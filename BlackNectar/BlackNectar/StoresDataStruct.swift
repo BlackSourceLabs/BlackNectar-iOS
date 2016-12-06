@@ -16,29 +16,30 @@ struct StoresInfo {
     let storeName: String
     let location: NSDictionary
     let address: NSDictionary
-    let storeImage: String
+    let storeImage: URL
+    
     
     static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
         
         guard let storeName = dictionary ["store_name"] as? String,
-            let storeImageType = dictionary ["main_image_url"] as? String,
-            let storeImage = URL(string: storeImageType),
             let location = dictionary ["location"] as? NSDictionary,
-            let address = dictionary ["address"] as? NSDictionary else {
-                print ("Guard failed on fromJson()")
-                return nil
+            let address = dictionary ["address"] as? NSDictionary,
+            let storeType = dictionary ["main_image_url"] as? String,
+            let storeImage = URL(string: storeType)
+            
+        else {
+            print ("Guard failed on fromJson()")
+            return nil
         }
         
         guard let coordinatesDictionary = dictionary ["location"] as? NSDictionary else { return nil }
-            guard let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees else { return nil }
-            guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
-            let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        guard let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees else { return nil }
+        guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
+        let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
         return StoresInfo(storeName: storeName, location: location, address: address, storeImage: storeImage)
         
     }
-
     
-
 }
 

@@ -22,32 +22,41 @@ protocol SideMenuFilterViewControllerDelegate {
  */
     
 }
-
+@IBDesignable
 class SideMenuFilterViewController: UITableViewController, SWRevealViewControllerDelegate {
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var distanceLabel: UILabel!
-    
     @IBOutlet weak var openNowLabel: UILabel!
-    
     @IBOutlet weak var openNowSwitch: UISwitch!
+    @IBOutlet weak var restaurantButton: UIButton!
+    @IBOutlet weak var storesButton: UIButton!
+    @IBOutlet weak var applyButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var contentViewCell: UIView!
     
-    @IBAction func openNowSwitchOffOn(_ sender: Any) {
-        if openNowSwitch.isOn {
-            openNowSwitchValue = true
-        } else {
-            openNowSwitchValue = false
-        }
-        print("openNowSwitch was set to : \(openNowSwitchValue)")
-    }
     
     var openNowSwitchValue: Bool?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         slider.minimumValue = 0
         slider.maximumValue = 25
+        
+        applyButton.layer.borderWidth = 2
+        cancelButton.layer.borderWidth = 2
+
+        applyButton.layer.cornerRadius = 10
+        cancelButton.layer.cornerRadius = 10
+        restaurantButton.layer.cornerRadius = 10
+        storesButton.layer.cornerRadius = 10
+        
+        contentViewCell.layer.opacity = 0.5
+        tableView.reloadInputViews()
+        
     }
+    
     var delegate: SideMenuFilterViewControllerDelegate?
     public var distanceFilter: Double?
     var hoursOfOperation: Bool?
@@ -58,9 +67,19 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     let sliderValue = slider.value
     print("slider value is : \(sliderValue)")
     }
+    @IBAction func openNowSwitchOffOn(_ sender: Any) {
+        if openNowSwitch.isOn {
+            openNowSwitchValue = true
+        } else {
+            openNowSwitchValue = false
+        }
+        print("openNowSwitch was set to : \(openNowSwitchValue)")
+    }
     
     
     func onButtonTap(sender: UIButton) {
         delegate?.onButtonTap(sender: sender)
     }
+    
+    
 }

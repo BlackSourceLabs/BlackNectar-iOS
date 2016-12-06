@@ -15,13 +15,14 @@ protocol SideMenuFilterViewControllerDelegate {
     func onButtonTap(sender: UIButton)
     
     /*
-   var radius = distanceFilter
-   SearchStores.searchstoreslocations(userLocation) {
+     var radius = distanceFilter
+     SearchStores.searchstoreslocations(userLocation) {
      https: apicall.call/\(radius)
      }
- */
+     */
     
 }
+
 @IBDesignable
 class SideMenuFilterViewController: UITableViewController, SWRevealViewControllerDelegate {
     
@@ -41,31 +42,20 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        slider.minimumValue = 0
-        slider.maximumValue = 25
-        
-        applyButton.layer.borderWidth = 2
-        cancelButton.layer.borderWidth = 2
-
-        applyButton.layer.cornerRadius = 10
-        cancelButton.layer.cornerRadius = 10
-        restaurantButton.layer.cornerRadius = 10
-        storesButton.layer.cornerRadius = 10
-        
-        contentViewCell.layer.opacity = 0.5
-        tableView.reloadInputViews()
+        setButtonAttributes()
         
     }
     
     var delegate: SideMenuFilterViewControllerDelegate?
-    public var distanceFilter: Double?
+    var distanceFilter: Double?
     var hoursOfOperation: Bool?
-    var isResturant: Bool?
+    var isRestaurant: Bool?
     var isStore: Bool?
     
     @IBAction func sliderDidSlide(_ sender: UISlider) {
-    let sliderValue = slider.value
-    print("slider value is : \(sliderValue)")
+        let sliderValue = slider.value
+        print("slider value is : \(sliderValue)")
+        
     }
     @IBAction func openNowSwitchOffOn(_ sender: Any) {
         if openNowSwitch.isOn {
@@ -75,11 +65,71 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         }
         print("openNowSwitch was set to : \(openNowSwitchValue)")
     }
+    @IBAction func restaurantPress(_ sender: Any) {
+        
+        if isRestaurant == nil {
+            isRestaurant = true
+            restaurantButton.layer.backgroundColor = UIColor.orange.cgColor
+        }else if isRestaurant == true {
+            isRestaurant = false
+            restaurantButton.layer.backgroundColor = UIColor.darkGray.cgColor
+        }else {
+            isRestaurant = true
+            restaurantButton.layer.backgroundColor = UIColor.orange.cgColor
+        }
+        print("isRestaurant variable set to : \(isRestaurant)")
+    }
+    
+    @IBAction func storesPressed(_ sender: Any) {
+        
+        if isStore == nil {
+            isStore = true
+            storesButton.layer.backgroundColor = UIColor.orange.cgColor
+        }else if isStore == true {
+            isStore = false
+            storesButton.layer.backgroundColor = UIColor.darkGray.cgColor
+        }else {
+            isStore = true
+            storesButton.layer.backgroundColor = UIColor.orange.cgColor
+        }
+        print("isStore variable set to : \(isStore)")
+    }
+    
+    @IBAction func applyPress(_ sender: Any) {
+        
+        
+    }
+    
+    
+    func setButtonAttributes() {
+        slider.minimumValue = 2
+        slider.maximumValue = 25
+        
+        applyButton.layer.borderColor = UIColor.white.cgColor
+        applyButton.layer.borderWidth = 2
+        applyButton.layer.cornerRadius = 10
+        
+        cancelButton.layer.borderColor = UIColor.white.cgColor
+        cancelButton.layer.borderWidth = 2
+        cancelButton.layer.cornerRadius = 10
+        
+        restaurantButton.layer.cornerRadius = 10
+        storesButton.layer.cornerRadius = 10
+        
+        contentViewCell.layer.opacity = 0.5
+    }
+    func getDistanceValue() -> Double {
+        return distanceFilter!
+    }
+    func getOpenNow() -> Bool {
+        return hoursOfOperation!
+    }
+    func getRestaurantsOrStores() -> (Bool, Bool) {
+        return (isStore!, isRestaurant!)
+    }
     
     
     func onButtonTap(sender: UIButton) {
         delegate?.onButtonTap(sender: sender)
     }
-    
-    
 }

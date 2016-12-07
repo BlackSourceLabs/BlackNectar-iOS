@@ -34,6 +34,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     var isRestaurant: Bool?
     var isStore: Bool?
     
+    
     @IBAction func sliderDidSlide(_ sender: UISlider) {
         let sliderValue = slider.value
         print("slider value is : \(sliderValue)")

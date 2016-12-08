@@ -123,8 +123,6 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
 //            destinationVC.filterDelegate.getRestaurantsOrStores()
 //        }
 //    }
-<<<<<<< HEAD
-
 
     func onButtonTap(sender: UIButton) {
 

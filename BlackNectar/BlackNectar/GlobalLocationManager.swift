@@ -11,8 +11,12 @@ import UIKit
 import CoreLocation
 import MapKit
 
+//TODO: Make this class a Singleton
 class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
+    //THis class should not be storing "Stores" 
+    //It has nothing to do with User's Location
+    //Context is key
     var stores: [StoresInfo] = []
     var locationManager: CLLocationManager!
     var currentLocation: CLLocationCoordinate2D?
@@ -57,9 +61,10 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
             return region
             
         }
+        
         let region = calculateRegion(for: userLocation)
 
-        
+        //Why would a Location Manger fetch stores? makes no sense.
         SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
             self.stores = stores
             

@@ -12,6 +12,7 @@ import SWRevealController
 
 
 
+
 protocol SideMenuFilterViewControllerDelegate {
 
     func onButtonTap(sender: UIButton)
@@ -35,6 +36,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         super.viewDidLoad()
         setButtonAttributes()
     }
+
 
 
     public var distanceFilter: Double?
@@ -79,7 +81,6 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         if isRestaurant == nil {
             isRestaurant = true
             restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
-
         }else if isRestaurant == true {
             isRestaurant = false
             restaurantButton.layer.backgroundColor = UIColor.darkGray.cgColor
@@ -88,7 +89,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
             restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
 
         }
-        print("isRestaurant variable set to : \(isRestaurant)")
+
     }
 
     @IBAction func storesPressed(_ sender: Any) {
@@ -104,12 +105,13 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
             storesButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
         }
         print("isStore variable set to : \(isStore)")
+
     }
 
     @IBAction func applyPress(_ sender: Any) {
 
-
     }
+
 
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "applyButtonSegue" {
@@ -121,6 +123,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
 //            destinationVC.filterDelegate.getRestaurantsOrStores()
 //        }
 //    }
+<<<<<<< HEAD
 
 
     func onButtonTap(sender: UIButton) {
@@ -157,7 +160,6 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     func getRestaurantsOrStores() -> (Bool, Bool) {
         return (isStore!, isRestaurant!)
     }
-
 
 
 }

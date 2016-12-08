@@ -64,7 +64,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dominosPizza" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
+
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
+
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="184"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -215,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xk9-J9-Hjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1114" y="794"/>
+            <point key="canvasLocation" x="-497" y="1564"/>
         </scene>
         <!--Side Menu Filter View Controller-->
         <scene sceneID="9VR-6p-3bc">
@@ -340,7 +342,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccy-C0-P9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2052" y="793.8530734632684"/>
+            <point key="canvasLocation" x="-498" y="787"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C1Q-tl-KBE">
@@ -363,7 +365,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dominosPizza" width="620" height="283"/>
         <image name="filter" width="92" height="91"/>
     </resources>
     <inferredMetricsTieBreakers>

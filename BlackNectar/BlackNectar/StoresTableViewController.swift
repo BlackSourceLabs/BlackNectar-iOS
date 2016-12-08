@@ -11,6 +11,7 @@ import Foundation
 import CoreLocation
 import SWRevealController
 
+//TODO: Integrate with Carthage
 
 class StoresTableViewController: UITableViewController, CLLocationManagerDelegate {
     
@@ -20,36 +21,66 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     var currentLocation = UserLocation().prepareForLocation()
     var filterDelegate = SideMenuFilterViewController()
     
+    let async: OperationQueue = {
+        let operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 10
+        return operationQueue
+    }()
+    private let main = OperationQueue.main
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UserLocation().prepareForLocation()
+        
         SearchStores.searchForStoresLocations(near: currentLocation) { stores in
+            
             self.stores = stores
             print("TableViewController, stores is : \(self.stores)")
-            self.tableView.reloadData()
+            
+            self.main.addOperation {
+                self.tableView.reloadData()
             }
-        
-    }
-
- 
-    
-    fileprivate func configureSlideMenu() {
-        guard let menu = self.revealViewController() else {return}
-        
-        let gesture = menu.panGestureRecognizer()
-        self.view.addGestureRecognizer(gesture!)
-        
-        guard let nav = menu.rearViewController as? UINavigationController else {return}
-        guard let rear = nav.topViewController as? SideMenuFilterViewController else {return}
-//        rear.delegate = self
-        
+            
+        }
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    fileprivate func configureSlideMenu() {
+        
+        guard let menu = self.revealViewController() else { return }
+        
+        let gesture = menu.panGestureRecognizer()
+        self.view.addGestureRecognizer(gesture!)
+        
+        guard let nav = menu.rearViewController as? UINavigationController else { return }
+        guard let rear = nav.topViewController as? SideMenuFilterViewController else { return }
+        
+    }
+    
+    func goLoadImage(into indexPath: IndexPath, withStore: [StoresInfo]) -> UIImage  {
+        
+        let store = withStore[indexPath.row]
+        var image: UIImage?
+        
+        async.addOperation {
+            
+            do {
+                image = try UIImage(data: Data(contentsOf: store.storeImage))
+                print("Are there any images: \(image)")
+            } catch {
+                print("error")
+            }
+           
+        }
+        return image!
+        	
     }
     
     
@@ -66,23 +97,51 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell
-        let store = stores[indexPath.row]
-        var addressString = ""
-        addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
         
-        do {
-            let image = try UIImage(data: Data(contentsOf: stores[indexPath.row].storeImage))
-        } catch {
-            print ("error")
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+            return UITableViewCell()
         }
         
-        cell?.storeName.text = store.storeName
-        cell?.storeAddress?.text = addressString
-        cell?.updateUIToCardView()
         
-        return cell!
+        let store = stores[indexPath.row]
+        var addressString = ""
+        
+        //WTF IS THIS? FUNCTION PLEASE
+        //Call it, combine addresses
+        //PLEASE 🙏🏽
+        addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
+        
+        //Don't load images in the main thread.
+        //Always do this shit async, so it doesn't slow down the table view
+        //TODO: Load the image in another function
+        
+        var imageInCell: UIImage?
+            
+        imageInCell = goLoadImage(into: indexPath, withStore: stores)
+        
+        
+        print("this is the image: \(imageInCell)")
+        cell.storeImage.image = imageInCell
+        cell.storeName.text = store.storeName
+        cell.storeAddress.text = addressString
+        //        cell.updateUIToCardView()
+        
+        return cell
     }
+    
+    
+    
+    //    func loadStores() {
+    //
+    //        async.addOperation {
+    //
+    //            //THINK! How are you supposed to get the stores?
+    //            let getTheStores = StoresTableViewCell()
+    //            print("Operation completed")
+    //        }
+    //
+    //    }
     
 }
 
@@ -94,6 +153,8 @@ extension StoresTableViewController {
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
         }
+        
     }
+    
     
 }

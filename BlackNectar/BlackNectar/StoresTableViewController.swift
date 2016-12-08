@@ -64,23 +64,23 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         
     }
     
-    func goLoadImage(into indexPath: IndexPath, withStore: [StoresInfo]) -> UIImage  {
-        
-        let store = withStore[indexPath.row]
-        var image: UIImage?
+    func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
         async.addOperation {
             
             do {
-                image = try UIImage(data: Data(contentsOf: store.storeImage))
-                print("Are there any images: \(image)")
+                let data = try Data(contentsOf: url)
+                let image = try UIImage(data: data)
+               
+                
+                self.main.addOperation {
+                    cell.storeImage.image = image
+                }
+         
             } catch {
                 print("error")
             }
-           
         }
-        return image!
-        	
     }
     
     
@@ -116,13 +116,10 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         //Always do this shit async, so it doesn't slow down the table view
         //TODO: Load the image in another function
         
-        var imageInCell: UIImage?
-            
-        imageInCell = goLoadImage(into: indexPath, withStore: stores)
         
         
-        print("this is the image: \(imageInCell)")
-        cell.storeImage.image = imageInCell
+        
+        goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
         //        cell.updateUIToCardView()

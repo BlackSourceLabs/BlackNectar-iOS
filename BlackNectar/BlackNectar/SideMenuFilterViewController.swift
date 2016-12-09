@@ -42,7 +42,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     public var distanceFilter: Double?
     var delegate: SideMenuFilterViewControllerDelegate?
     var hoursOfOperation: Bool?
-    var isResturant: Bool?
+    var isRestaurant: Bool?
     var isStore: Bool?
     var openNowSwitchValue: Bool?
 
@@ -69,13 +69,6 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
 
     }
 
-
-
-    @IBAction func sliderDidSlide(_ sender: UISlider) {
-
-        let sliderValue = slider.value
-        print("slider value is : \(sliderValue)")
-    }
     @IBAction func restaurantPressed(_ sender: Any) {
 
         if isRestaurant == nil {

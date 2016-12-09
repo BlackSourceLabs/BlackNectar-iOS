@@ -31,6 +31,7 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         UserLocation().prepareForLocation()
         
         SearchStores.searchForStoresLocations(near: currentLocation) { stores in
@@ -122,6 +123,7 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
+
         //        cell.updateUIToCardView()
         
         return cell

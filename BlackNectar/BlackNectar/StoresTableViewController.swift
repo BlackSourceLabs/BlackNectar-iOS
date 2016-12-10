@@ -15,7 +15,7 @@ import SWRevealController
 
 class StoresTableViewController: UITableViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     
     var stores: [StoresInfo] = []
     var currentLocation = UserLocation().prepareForLocation()
@@ -30,7 +30,6 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         UserLocation().prepareForLocation()
         
@@ -113,47 +112,29 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         //PLEASE 🙏🏽
         addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
         
-        //Don't load images in the main thread.
-        //Always do this shit async, so it doesn't slow down the table view
-        //TODO: Load the image in another function
-        
-        
-        
         
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
 
-        //        cell.updateUIToCardView()
         
         return cell
     }
     
-    
-    
-    //    func loadStores() {
-    //
-    //        async.addOperation {
-    //
-    //            //THINK! How are you supposed to get the stores?
-    //            let getTheStores = StoresTableViewCell()
-    //            print("Operation completed")
-    //        }
-    //
-    //    }
-    
-}
-
-//MARK: Actions
-extension StoresTableViewController {
-    
+   
     @IBAction func onFilterTapped(_ sender: Any) {
-        
+    
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
         }
         
     }
+    
+}
+
+//MARK: Actions
+extension StoresTableViewController {
+   
     
     
 }

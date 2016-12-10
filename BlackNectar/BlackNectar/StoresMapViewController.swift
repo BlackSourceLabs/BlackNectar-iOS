@@ -17,9 +17,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     @IBOutlet weak var mapView: MKMapView!
     private var locationManager: CLLocationManager!
     private var currentLocation: CLLocationCoordinate2D?
+    private var stores: [StoresInfo] = []
     var selectedPin: MKPlacemark? = nil
     
-    private var stores: [StoresInfo] = []
     typealias Callback = ([StoresInfo]) -> ()
     
     
@@ -49,6 +49,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
     
     private func requestUserLocation() {
+        
         locationManager.startUpdatingLocation()
     }
     
@@ -121,9 +122,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-//    func convertHexStringToUIColor(hex:String) -> UIColor {
-//        
-//    }
+    //    func convertHexStringToUIColor(hex:String) -> UIColor {
+    //
+    //    }
     
     func getDirections() {
         
@@ -162,7 +163,7 @@ extension StoresMapViewController {
         if annotation is MKUserLocation {
             return nil
         }
-     let reuseId = "pin"
+        let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView?.pinTintColor = UIColor.black

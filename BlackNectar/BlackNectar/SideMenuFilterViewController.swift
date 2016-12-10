@@ -29,6 +29,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     @IBOutlet weak var restaurantButton: UIButton!
     @IBOutlet weak var storesButton: UIButton!
     @IBOutlet weak var applyButton: UIButton!
+    
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var contentViewCell: UIView!
 
@@ -101,9 +102,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
 
     }
 
-    @IBAction func applyPress(_ sender: Any) {
-
-    }
+    
 
 
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

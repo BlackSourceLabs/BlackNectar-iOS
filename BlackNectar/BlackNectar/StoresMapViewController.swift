@@ -27,12 +27,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         
         prepareMapView()
-        SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
-            self.stores = stores
-            
-            self.populateStoreAnnotations()
-        }
-        
+  
     }
     
     
@@ -41,11 +36,11 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        guard let unwrappedLocation = currentLocation as CLLocationCoordinate2D! else {
+        guard let unwrappedLocation = currentLocation as CLLocationCoordinate2D else {
             print("could not unwrap currentLocation")
             return
         }
-        guard let region = (UserLocation().calculateRegion(for: unwrappedLocation)) as? MKCoordinateRegion else {
+        guard let region = UserLocation.instance.currentRegion else {
             print("could not unwrap region")
             return
         }

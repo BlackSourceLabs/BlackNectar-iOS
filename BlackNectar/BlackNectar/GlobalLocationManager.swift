@@ -11,10 +11,10 @@ import UIKit
 import CoreLocation
 import MapKit
 
+
 class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
     static let instance = UserLocation()
-    
     private override init() {}
     
     var locationManager: CLLocationManager!

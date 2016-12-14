@@ -137,10 +137,10 @@
 				327BAD601DF44B5A000EA25E /* SideMenus */,
 				327BAD5F1DF44B3F000EA25E /* StoresListTableView */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
-				321319441DE0F61500FB1774 /* Assets.xcassets */,
+				321319411DE0F61500FB1774 /* Main.storyboard */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
 				321319491DE0F61500FB1774 /* Info.plist */,
-				321319411DE0F61500FB1774 /* Main.storyboard */,
+				321319441DE0F61500FB1774 /* Assets.xcassets */,
 			);
 			path = BlackNectar;
 			sourceTree = "<group>";

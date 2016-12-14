@@ -15,19 +15,18 @@ import CoreLocation
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    private var currentLocation: CLLocationCoordinate2D?
     private var stores: [StoresInfo] = []
     var selectedPin: MKPlacemark? = nil
-    
+    let userLocationManager = UserLocation.instance
+
     typealias Callback = ([StoresInfo]) -> ()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         prepareMapView()
-  
+
     }
     
     
@@ -37,7 +36,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.showsUserLocation = true
         
         guard let region = UserLocation.instance.currentRegion else {
-            print("could not unwrap region")
+            
             return
         }
 

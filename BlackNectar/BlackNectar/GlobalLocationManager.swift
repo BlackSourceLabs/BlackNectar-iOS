@@ -14,10 +14,13 @@ import MapKit
 //TODO: Make this class a Singleton
 class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
+    static let singleInstance = UserLocation()
+    private override init() {}
+    
     var locationManager: CLLocationManager!
     var currentLocation: CLLocationCoordinate2D?
     
-    func prepareForLocation() -> CLLocationCoordinate2D {
+    func prepareLocation() {
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -25,11 +28,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
-        currentLocation = locationManager.location?.coordinate
-        print("currentlocation equals = \(currentLocation)")
-        
-        return currentLocation!
+    
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -44,21 +43,19 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         currentLocation = userLocation.coordinate
         
-        func calculateRegion(for location: CLLocation) -> MKCoordinateRegion {
-            
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            let latDelta: CLLocationDegrees = 0.05
-            let longDelta: CLLocationDegrees = 0.05
-            let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
-            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            let region = MKCoordinateRegion(center: location, span: span)
-            
-            return region
-            
-        }
+    }
+    
+    func calculateRegion(for location: CLLocationCoordinate2D) -> MKCoordinateRegion {
         
-        let region = calculateRegion(for: userLocation)
+        let latitude = location.latitude
+        let longitude = location.longitude
+        let latDelta: CLLocationDegrees = 0.05
+        let longDelta: CLLocationDegrees = 0.05
+        let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let region = MKCoordinateRegion(center: location, span: span)
+        
+        return region
         
     }
     

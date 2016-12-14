@@ -22,16 +22,16 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VMa-3U-as9">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VMa-3U-as9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="VMa-3U-as9" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="NER-pt-lSs"/>
-                            <constraint firstItem="VMa-3U-as9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Rhl-II-u5i"/>
-                            <constraint firstItem="VMa-3U-as9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hzI-yN-pOH"/>
-                            <constraint firstAttribute="trailing" secondItem="VMa-3U-as9" secondAttribute="trailing" id="siv-Yt-lK2"/>
+                            <constraint firstItem="VMa-3U-as9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="6eF-Ty-5z8"/>
+                            <constraint firstItem="VMa-3U-as9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BZg-Pe-ZvW"/>
+                            <constraint firstItem="VMa-3U-as9" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="LKP-eq-egJ"/>
+                            <constraint firstAttribute="trailing" secondItem="VMa-3U-as9" secondAttribute="trailing" id="qCj-f0-pye"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iqF-ZB-A9h"/>
@@ -201,9 +201,8 @@
                             <rect key="frame" x="113" y="6" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔍 Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8lk-RR-qOp">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔍 Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8lk-RR-qOp">
                                     <rect key="frame" x="0.0" y="1" width="150" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -215,6 +214,12 @@
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="8lk-RR-qOp" firstAttribute="top" secondItem="JUi-7B-lob" secondAttribute="top" constant="1" id="R02-3l-yba"/>
+                                <constraint firstItem="8lk-RR-qOp" firstAttribute="leading" secondItem="JUi-7B-lob" secondAttribute="leading" id="WtI-dO-q4o"/>
+                                <constraint firstAttribute="trailing" secondItem="8lk-RR-qOp" secondAttribute="trailing" id="Za1-mm-Lzd"/>
+                                <constraint firstItem="8lk-RR-qOp" firstAttribute="centerY" secondItem="JUi-7B-lob" secondAttribute="centerY" id="gWh-Ei-ggl"/>
+                            </constraints>
                         </view>
                         <barButtonItem key="rightBarButtonItem" title="Map" id="KP8-gl-9JL">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

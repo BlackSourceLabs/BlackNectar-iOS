@@ -137,10 +137,10 @@
 				327BAD601DF44B5A000EA25E /* SideMenus */,
 				327BAD5F1DF44B3F000EA25E /* StoresListTableView */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
-				321319411DE0F61500FB1774 /* Main.storyboard */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
 				321319491DE0F61500FB1774 /* Info.plist */,
+				321319411DE0F61500FB1774 /* Main.storyboard */,
 			);
 			path = BlackNectar;
 			sourceTree = "<group>";
@@ -518,9 +518,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BlackNectar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectar;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.blacksource.blackNectar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -536,9 +536,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = BlackNectar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Dero.BlackNectar;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.blacksource.blackNectar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

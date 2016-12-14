@@ -13,13 +13,13 @@ import SWRevealController
 
 //TODO: Integrate with Carthage
 
-class StoresTableViewController: UITableViewController, CLLocationManagerDelegate {
+class StoresTableViewController: UITableViewController {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
     var stores: [StoresInfo] = []
-    var currentLocation = UserLocation().prepareForLocation()
     var filterDelegate = SideMenuFilterViewController()
+    let userLocationManager = UserLocation.singleInstance
     
     let async: OperationQueue = {
         let operationQueue = OperationQueue()
@@ -31,15 +31,22 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserLocation().prepareForLocation()
+        userLocationManager.prepareLocation()
         
-        SearchStores.searchForStoresLocations(near: currentLocation) { stores in
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if let location = userLocationManager.currentLocation {
             
-            self.stores = stores
-            print("TableViewController, stores is : \(self.stores)")
-            
-            self.main.addOperation {
-                self.tableView.reloadData()
+            SearchStores.searchForStoresLocations(near: location) { stores in
+                self.stores = stores
+                print("TableViewController, stores is: \(self.stores)")
+                
+                self.main.addOperation {
+                    self.tableView.reloadData()
+                }
+                
             }
             
         }
@@ -71,12 +78,12 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
             do {
                 let data = try Data(contentsOf: url)
                 let image = try UIImage(data: data)
-               
+                
                 
                 self.main.addOperation {
                     cell.storeImage.image = image
                 }
-         
+                
             } catch {
                 print("error")
             }
@@ -116,14 +123,14 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-
+        
         
         return cell
     }
     
-   
-    @IBAction func onFilterTapped(_ sender: Any) {
     
+    @IBAction func onFilterTapped(_ sender: Any) {
+        
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
         }
@@ -134,7 +141,7 @@ class StoresTableViewController: UITableViewController, CLLocationManagerDelegat
 
 //MARK: Actions
 extension StoresTableViewController {
-   
+    
     
     
 }

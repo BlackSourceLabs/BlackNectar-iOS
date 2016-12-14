@@ -15,7 +15,6 @@ import CoreLocation
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    private var locationManager: CLLocationManager!
     private var currentLocation: CLLocationCoordinate2D?
     private var stores: [StoresInfo] = []
     var selectedPin: MKPlacemark? = nil
@@ -26,19 +25,14 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prepareLocationManager()
-        prepareMapView()
-        requestUserLocation()
-    }
-    
-    private func prepareLocationManager() {
         
-        // Setting Up Location Manager
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.requestWhenInUseAuthorization()
+        prepareMapView()
+        SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
+            self.stores = stores
+            
+            self.populateStoreAnnotations()
+        }
+        
     }
     
     
@@ -46,52 +40,20 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         mapView.delegate = self
         mapView.showsUserLocation = true
-    }
-    
-    private func requestUserLocation() {
         
-        locationManager.startUpdatingLocation()
-    }
-    
-    // Updating users location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        guard let userLocation: CLLocation = locations.first else {
+        guard let unwrappedLocation = currentLocation as CLLocationCoordinate2D! else {
+            print("could not unwrap currentLocation")
             return
         }
-        
-        defer {
-            locationManager.stopUpdatingLocation()
+        guard let region = (UserLocation().calculateRegion(for: unwrappedLocation)) as? MKCoordinateRegion else {
+            print("could not unwrap region")
+            return
         }
-        
-        currentLocation = userLocation.coordinate
-        
-        func calculateRegion(for location: CLLocation) -> MKCoordinateRegion {
-            
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
-            let latDelta: CLLocationDegrees = 0.05
-            let longDelta: CLLocationDegrees = 0.05
-            let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: longDelta)
-            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            let region = MKCoordinateRegion(center: location, span: span)
-            
-            return region
-        }
-        
-        let region = calculateRegion(for: userLocation)
+
         self.mapView.setRegion(region, animated: true)
-        
-        
-        SearchStores.searchForStoresLocations(near: currentLocation!) { stores in
-            self.stores = stores
-            
-            self.populateStoreAnnotations()
-        }
-        
-        
     }
     
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -130,8 +92,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         if let selectedPin = selectedPin {
             let mapItem = MKMapItem(placemark: selectedPin)
-            let launcOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-            mapItem.openInMaps(launchOptions: launcOptions)
+            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+            mapItem.openInMaps(launchOptions: launchOptions)
         }
     }
     

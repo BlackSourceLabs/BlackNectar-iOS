@@ -69,7 +69,26 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //HANDLE THIS
+        
+        var allowAuthorization = false
+        var locationStatus: String
+        
+        switch status {
+            
+        case CLAuthorizationStatus.restricted:
+            locationStatus = "Restricted Access to Location"
+            
+        case CLAuthorizationStatus.denied:
+            locationStatus = "User denied access to location"
+            
+        case CLAuthorizationStatus.notDetermined:
+            locationStatus = "Status not determined"
+            
+        default:
+            locationStatus = "Location Access Granted"
+            allowAuthorization = true
+        }
+        
     }
     
     private func calculateRegion(for location: CLLocationCoordinate2D) -> MKCoordinateRegion {

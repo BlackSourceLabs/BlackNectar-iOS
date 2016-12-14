@@ -86,6 +86,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
             
         default:
             locationStatus = "Location Access Granted"
+            
             allowAuthorization = true
         }
         

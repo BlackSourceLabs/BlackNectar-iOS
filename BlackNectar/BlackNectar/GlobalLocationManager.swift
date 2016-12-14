@@ -11,29 +11,48 @@ import UIKit
 import CoreLocation
 import MapKit
 
-//TODO: Make this class a Singleton
 class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
-    static let singleInstance = UserLocation()
+    static let instance = UserLocation()
+    
     private override init() {}
     
     var locationManager: CLLocationManager!
-    var currentLocation: CLLocationCoordinate2D?
+    var currentLocation: CLLocation?
     
-    func prepareLocation() {
+    var currentCoordinate: CLLocationCoordinate2D? {
+        return currentLocation?.coordinate
+    }
+    
+    var currentRegion: MKCoordinateRegion?
+    
+    private var alreadyInitialized = false
+    
+    private var onLocation: ((CLLocationCoordinate2D) -> Void)?
+    
+    func initialize() {
+        
+        if alreadyInitialized {
+            return
+        }
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        
+        alreadyInitialized = true
+    }
     
+    func requestLocation(callback: @escaping ((CLLocationCoordinate2D) -> Void)) {
+         self.onLocation = callback
+        locationManager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        guard let userLocation: CLLocation = locations.first else {
+        guard let location: CLLocation = locations.first else {
             return
         }
         
@@ -41,11 +60,19 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
             locationManager.stopUpdatingLocation()
         }
         
-        currentLocation = userLocation.coordinate
+        self.currentLocation = location
+        let region = calculateRegion(for: location.coordinate)
+        self.currentRegion = region
         
+        onLocation?(location.coordinate)
+        onLocation = nil
     }
     
-    func calculateRegion(for location: CLLocationCoordinate2D) -> MKCoordinateRegion {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        //HANDLE THIS
+    }
+    
+    private func calculateRegion(for location: CLLocationCoordinate2D) -> MKCoordinateRegion {
         
         let latitude = location.latitude
         let longitude = location.longitude

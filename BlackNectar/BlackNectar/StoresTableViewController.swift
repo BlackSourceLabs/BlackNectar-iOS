@@ -19,7 +19,6 @@ class StoresTableViewController: UITableViewController {
     
     var stores: [StoresInfo] = []
     var filterDelegate = SideMenuFilterViewController()
-    let userLocationManager = UserLocation.singleInstance
     
     let async: OperationQueue = {
         let operationQueue = OperationQueue()
@@ -31,31 +30,41 @@ class StoresTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userLocationManager.prepareLocation()
+        UserLocation.instance.initialize()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if let location = userLocationManager.currentLocation {
+        if let currentLocation = UserLocation.instance.currentCoordinate  {
             
-            SearchStores.searchForStoresLocations(near: location) { stores in
-                self.stores = stores
-                print("TableViewController, stores is: \(self.stores)")
-                
-                self.main.addOperation {
-                    self.tableView.reloadData()
-                }
-                
-            }
-            
+            loadStores(at: currentLocation)
         }
-        
+        else {
+            
+            UserLocation.instance.requestLocation() { coordinate in
+                self.loadStores(at: coordinate)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func loadStores(at coordinate: CLLocationCoordinate2D) {
+        
+        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+            self.stores = stores
+            print("TableViewController, stores is: \(self.stores)")
+            
+            self.main.addOperation {
+                self.tableView.reloadData()
+            }
+            
+        }
+        
     }
     
     

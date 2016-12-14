@@ -45,7 +45,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             print("could not unwrap currentLocation")
             return
         }
-        guard let region = (UserLocation().calculateRegion(for: unwrappedLocation)) as? MKCoordinateRegion else {
+        guard let region = UserLocation.instance.currentRegion else {
             print("could not unwrap region")
             return
         }

@@ -12,7 +12,10 @@ import SWRevealController
 
 protocol SideMenuFilterViewControllerDelegate {
 
-    func onButtonTap(sender: UIButton)
+//    func onButtonTap(sender: UIButton)
+    func getDistanceValue(distance: Double) -> Double
+    func getOpenNow(openNow: Bool) -> Bool
+    func getRestaurantsOrStores(restaurant: Bool, store: Bool) -> (Bool, Bool)
 
 }
 
@@ -27,13 +30,13 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var contentViewCell: UIView!
+    @IBOutlet weak var slideValueLabel: UILabel!
 
-    public var distanceFilter: Double?
     var delegate: SideMenuFilterViewControllerDelegate?
-    var hoursOfOperation: Bool?
+    var distanceFilter: Double?
     var isRestaurant: Bool?
     var isStore: Bool?
-    var openNowSwitchValue: Bool?
+    var isOpenNow: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,19 +47,22 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
 
     @IBAction func sliderDidSlide(_ sender: UISlider) {
         
-        let sliderValue = slider.value
-
+        guard let sliderValue = slider.value as? Double else {
+            return
+        }
+        slideValueLabel.text = "\(sliderValue)"
+       
     }
 
     @IBAction func openNowSwitchOffOn(_ sender: Any) {
 
         if openNowSwitch.isOn {
 
-            openNowSwitchValue = true
+            isOpenNow = true
 
         } else {
 
-            openNowSwitchValue = false
+            isOpenNow = false
         }
 
     }
@@ -103,23 +109,42 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         
     }
 
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "applyButtonSegue" {
-//            let destinationVC = segue.destination as! StoresTableViewController
-//            destinationVC.filterDelegate = self
-//            destinationVC.filterDelegate.getDistanceValue()
-//            print("tableview filterdelegate: getDistance value is : \(destinationVC.filterDelegate.getDistanceValue())")
-//            destinationVC.filterDelegate.getOpenNow()
-//            destinationVC.filterDelegate.getRestaurantsOrStores()
-//        }
-//    }
-
-    func onButtonTap(sender: UIButton) {
-
-        delegate?.onButtonTap(sender: sender)
-
+    @IBAction func applyPressed(_ sender: Any) {
+        guard let delegate = self.delegate else {
+            print("delegate not set")
+            return
+        }
+        guard let distance = distanceFilter,
+            let openNowBool = isOpenNow,
+            let restaurantBool = isRestaurant,
+            let storeBool = isStore else {
+                return
+        }
+        
+        delegate.getDistanceValue(distance: distance)
+        delegate.getOpenNow(openNow: openNowBool)
+        delegate.getRestaurantsOrStores(restaurant: restaurantBool, store: storeBool)
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "applyButtonSegue" {
+            
+            let destinationVC = segue.destination as! StoresTableViewController
+            
+            destinationVC.filterDelegate = self
+            destinationVC.distanceFilterValue = distanceFilter
+            destinationVC.isRestaurantBool = isRestaurant
+            destinationVC.isStoreBool = isStore
+            destinationVC.openNowSwitchBool = isOpenNow
+            
+            print("tableview filterdelegate: getDistance value is : \(destinationVC.filterDelegate.distanceFilter)")
+        }
+    }
+
+//    func onButtonTap(sender: UIButton) {
+//        delegate?.onButtonTap(sender: sender)
+//    }
 
     func setButtonAttributes() {
         
@@ -141,21 +166,5 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
 
     }
 
-    func getDistanceValue() -> Double {
-        
-        return distanceFilter!
-        
-    }
-    
-    func getOpenNow() -> Bool {
-        
-        return hoursOfOperation!
-        
-    }
-    
-    func getRestaurantsOrStores() -> (Bool, Bool) {
-        
-        return (isStore!, isRestaurant!)
-        
-    }
+   
 }

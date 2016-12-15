@@ -13,12 +13,16 @@ import SWRevealController
 
 //TODO: Integrate with Carthage
 
-class StoresTableViewController: UITableViewController {
+class StoresTableViewController: UITableViewController, SideMenuFilterViewControllerDelegate {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
     var stores: [StoresInfo] = []
     var filterDelegate = SideMenuFilterViewController()
+    var distanceFilterValue: Double?
+    var isRestaurantBool: Bool?
+    var isStoreBool: Bool?
+    var openNowSwitchBool: Bool?
     
     let async: OperationQueue = {
         let operationQueue = OperationQueue()
@@ -52,6 +56,18 @@ class StoresTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    
+    func getDistanceValue(distance: Double) -> Double {
+        return distance
+    }
+    func getOpenNow(openNow: Bool) -> Bool {
+        return openNow
+    }
+    func getRestaurantsOrStores(restaurant: Bool, store: Bool) -> (Bool, Bool) {
+        return (restaurant, store)
+    }
+    
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
@@ -77,7 +93,8 @@ class StoresTableViewController: UITableViewController {
         
         guard let nav = menu.rearViewController as? UINavigationController else { return }
         guard let rear = nav.topViewController as? SideMenuFilterViewController else { return }
-        
+
+        self.filterDelegate = rear
     }
     
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {

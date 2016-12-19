@@ -16,6 +16,8 @@ import SWRevealController
 class StoresTableViewController: UITableViewController {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var loadingPicsIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var spaceForLoadingIndicator: UIView!
     
     var stores: [StoresInfo] = []
     var filterDelegate = SideMenuFilterViewController()
@@ -55,12 +57,16 @@ class StoresTableViewController: UITableViewController {
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
+        loadingPicsIndicator.startAnimating()
+        
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
             self.stores = stores
             print("TableViewController, stores is: \(self.stores)")
             
             self.main.addOperation {
                 self.tableView.reloadData()
+                self.loadingPicsIndicator.stopAnimating()
+                self.loadingPicsIndicator.hidesWhenStopped = true
             }
             
         }

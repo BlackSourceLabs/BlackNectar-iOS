@@ -16,7 +16,6 @@ import SWRevealController
 class StoresTableViewController: UITableViewController {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
-    @IBOutlet weak var loadingPicsIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UITextField!
     
     var stores: [StoresInfo] = []
@@ -58,9 +57,8 @@ class StoresTableViewController: UITableViewController {
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
-        loadingPicsIndicator.startAnimating()
-        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
             self.stores = stores
@@ -68,12 +66,10 @@ class StoresTableViewController: UITableViewController {
             print("TableViewController, stores is: \(self.stores)")
             
             self.main.addOperation {
+
                 self.tableView.reloadData()
                 
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                
-                self.loadingPicsIndicator.stopAnimating()
-                self.loadingPicsIndicator.hidesWhenStopped = true
                 
             }
             
@@ -128,7 +124,6 @@ class StoresTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
             return UITableViewCell()
         }
@@ -146,6 +141,7 @@ class StoresTableViewController: UITableViewController {
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
+        
         
         
         return cell

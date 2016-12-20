@@ -16,7 +16,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var mapView: MKMapView!
     private var currentLocation: CLLocationCoordinate2D?
-    private var stores: [StoresInfo] = []
+    private var storesInMapView = StoresTableViewController().stores
     var selectedPin: MKPlacemark? = nil
     
     typealias Callback = ([StoresInfo]) -> ()
@@ -25,11 +25,12 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         prepareMapView()
-  
+        
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        populateStoreAnnotations()
+    }
     
     private func prepareMapView() {
         
@@ -54,22 +55,26 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     func populateStoreAnnotations() {
         
-        for store in stores {
+        for store in storesInMapView {
             
-            let storeName = store.storeName
-            let address = store.address.allValues
-            let location = store.location
-            
-            let latitude = location["latitude"]
-            let longitude = location["longitude"]
-            
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate.latitude = latitude as! CLLocationDegrees
-            annotation.coordinate.longitude = longitude as! CLLocationDegrees
-            
-            annotation.subtitle = "\(storeName)"
-            mapView.addAnnotations([annotation])
+            if store != nil {
+                
+                let storeName = store.storeName
+                let address = store.address.allValues
+                let location = store.location
+                
+                let latitude = location["latitude"]
+                let longitude = location["longitude"]
+                
+                let annotation = MKPointAnnotation()
+                
+                annotation.coordinate.latitude = latitude as! CLLocationDegrees
+                annotation.coordinate.longitude = longitude as! CLLocationDegrees
+                
+                annotation.subtitle = "\(storeName)"
+                mapView.addAnnotations([annotation])
+                
+            }
             
         }
         

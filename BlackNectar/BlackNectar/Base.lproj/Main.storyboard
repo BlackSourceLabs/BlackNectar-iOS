@@ -51,14 +51,16 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="cVR-uk-CpM">
-                            <rect key="frame" x="0.0" y="264" width="375" height="20"/>
+                        <activityIndicatorView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="KxJ-2c-nC3">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="storeCell" rowHeight="236" id="jTC-fs-IR7" customClass="StoresTableViewCell" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="236"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="236"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTC-fs-IR7" id="Z8Q-oK-zQ1">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
@@ -235,7 +237,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="filterButton" destination="1iX-Ns-0bU" id="jbh-lT-Hwz"/>
-                        <outlet property="loadingPicsIndicator" destination="cVR-uk-CpM" id="FUh-DP-xmM"/>
+                        <outlet property="loadingPicsIndicator" destination="KxJ-2c-nC3" id="6Mj-pH-yPK"/>
+                        <outlet property="searchBar" destination="8lk-RR-qOp" id="eKQ-52-DUu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>

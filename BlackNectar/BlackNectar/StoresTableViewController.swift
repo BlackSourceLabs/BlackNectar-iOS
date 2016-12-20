@@ -101,6 +101,7 @@ class StoresTableViewController: UITableViewController {
                 
                 self.main.addOperation {
                     cell.storeImage.image = image
+                    
                 }
                 
             } catch {
@@ -128,7 +129,6 @@ class StoresTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        
         let store = stores[indexPath.row]
         var addressString = ""
         
@@ -137,14 +137,31 @@ class StoresTableViewController: UITableViewController {
         //PLEASE 🙏🏽
         addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
         
-        
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-        
-        
-        
+            
         return cell
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let cellAnimation = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)
+        cell.alpha = 0
+        
+        self.main.addOperation {
+            
+            cell.layer.transform = cellAnimation
+            
+            UIView.animate(withDuration: 0.5) {
+                cell.alpha = 1.0
+                cell.layer.transform = CATransform3DIdentity
+                
+            }
+            
+        }
+        
     }
     
     
@@ -155,12 +172,5 @@ class StoresTableViewController: UITableViewController {
         }
         
     }
-    
-}
-
-//MARK: Actions
-extension StoresTableViewController {
-    
-    
     
 }

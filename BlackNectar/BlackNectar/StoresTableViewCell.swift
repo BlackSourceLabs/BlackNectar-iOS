@@ -21,6 +21,7 @@ class StoresTableViewCell: UITableViewCell {
     @IBOutlet weak var storeDistance: UILabel!
     @IBOutlet weak var roundedCornersGoButton: RoundedButtonView!
     
+
     
 }
 

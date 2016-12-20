@@ -64,6 +64,7 @@ class StoresTableViewController: UITableViewController {
         
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
             self.stores = stores
+            
             print("TableViewController, stores is: \(self.stores)")
             
             self.main.addOperation {

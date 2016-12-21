@@ -18,6 +18,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 
     private var stores: [StoresInfo] = []
     private var currentLocation: CLLocationCoordinate2D?
+
     var selectedPin: MKPlacemark? = nil
     let userLocationManager = UserLocation.instance
     typealias Callback = ([StoresInfo]) -> ()
@@ -29,7 +30,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         prepareMapView()
     }
     override func viewDidAppear(_ animated: Bool) {
-      
         populateStoreAnnotations()
     }
 

@@ -217,6 +217,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="filterButton" destination="1iX-Ns-0bU" id="jbh-lT-Hwz"/>
+                        <outlet property="searchBar" destination="8lk-RR-qOp" id="eKQ-52-DUu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -260,7 +261,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="662"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="cYs-ad-7To" id="MsZ-Mb-RSo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="661"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="662"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-YP-JTy">

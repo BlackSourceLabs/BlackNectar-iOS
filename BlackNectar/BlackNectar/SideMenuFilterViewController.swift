@@ -130,7 +130,10 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "applyButtonSegue" {
             
-            let destinationVC = segue.destination as! StoresTableViewController
+            guard let destinationVC = segue.destination as?  StoresTableViewController else {
+                print("unable to unwrap segue destination View controller")
+                return
+            }
             
             destinationVC.filterDelegate = self
             destinationVC.distanceFilterValue = distanceFilter

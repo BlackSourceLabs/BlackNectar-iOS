@@ -17,6 +17,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
+    
     var stores: [StoresInfo] = []
     var filterDelegate = SideMenuFilterViewController()
     var distanceFilterValue: Double?
@@ -35,7 +36,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
-        
+        print("distanceFilterValue is : \(distanceFilterValue), isRestaurant is: \(isRestaurantBool), isStoreBool is : \(isStoreBool), OpenNowSwitch is : \(openNowSwitchBool)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,6 +51,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
                 self.loadStores(at: coordinate)
             }
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,12 +73,18 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
             self.stores = stores
+            
             print("TableViewController, stores is: \(self.stores)")
             
             self.main.addOperation {
                 self.tableView.reloadData()
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                
             }
             
         }

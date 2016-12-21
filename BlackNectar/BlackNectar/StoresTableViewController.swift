@@ -129,6 +129,8 @@ class StoresTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
+        tableView.backgroundView?.removeFromSuperview()
+        
         let store = stores[indexPath.row]
         var addressString = ""
         

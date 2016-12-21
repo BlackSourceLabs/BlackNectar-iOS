@@ -22,10 +22,14 @@ class StoresTableViewController: UITableViewController {
     var filterDelegate = SideMenuFilterViewController()
     
     let async: OperationQueue = {
+        
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
+        
         return operationQueue
+        
     }()
+    
     private let main = OperationQueue.main
     
     override func viewDidLoad() {
@@ -41,11 +45,13 @@ class StoresTableViewController: UITableViewController {
             
             loadStores(at: currentLocation)
         }
+            
         else {
             
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
             }
+            
         }
         
     }

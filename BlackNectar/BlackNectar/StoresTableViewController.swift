@@ -16,8 +16,6 @@ import SWRevealController
 class StoresTableViewController: UITableViewController, SideMenuFilterViewControllerDelegate {
 
     @IBOutlet weak var filterButton: UIBarButtonItem!
-    @IBOutlet weak var searchBar: UITextField!
-
 
     var stores: [StoresInfo] = []
     var filterDelegate = SideMenuFilterViewController()
@@ -37,22 +35,21 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
         super.viewDidLoad()
 
         UserLocation.instance.initialize()
-        print("distanceFilterValue is : \(distanceFilterValue), isRestaurant is: \(isRestaurantBool), isStoreBool is : \(isStoreBool), OpenNowSwitch is : \(openNowSwitchBool)")
+        
+         print("distance filter value inTableView is : \(distanceFilterValue)")
     }
 
     override func viewDidAppear(_ animated: Bool) {
 
-        if let currentLocation = UserLocation.instance.currentCoordinate  {
+        if let currentLocation = UserLocation.instance.currentCoordinate {
 
             loadStores(at: currentLocation)
-        }
-        else {
+        } else {
 
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
             }
         }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,15 +58,14 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
     }
 
 
-    func getDistanceValue(distance: Double) -> Double {
-        return distance
+    func onButtonTap(sender: UIButton, controller: SideMenuFilterViewController) {
+        
+        if sender.isTouchInside {
+            print("Aply button was tapped")
+        }
     }
-    func getOpenNow(openNow: Bool) -> Bool {
-        return openNow
-    }
-    func getRestaurantsOrStores(restaurant: Bool, store: Bool) -> (Bool, Bool) {
-        return (restaurant, store)
-    }
+    
+    
 
 
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -78,9 +74,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
         
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
             self.stores = stores
-
-            print("TableViewController, stores is: \(self.stores)")
-
+            
             self.main.addOperation {
 
                 self.tableView.reloadData()

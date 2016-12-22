@@ -94,7 +94,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 self.mapView.addAnnotations([annotation])
                 
             }
-        
+            
         }
         
     }

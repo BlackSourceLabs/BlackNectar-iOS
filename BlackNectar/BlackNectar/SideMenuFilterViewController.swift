@@ -12,10 +12,12 @@ import SWRevealController
 
 protocol SideMenuFilterViewControllerDelegate {
     
-    func onButtonTap(sender: UIButton, controller: SideMenuFilterViewController)
+    func onCancel()
+    func onApply(restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
+    
 }
 
-class SideMenuFilterViewController: UITableViewController, SWRevealViewControllerDelegate {
+class SideMenuFilterViewController: UITableViewController {
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -28,8 +30,8 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     @IBOutlet weak var contentViewCell: UIView!
     @IBOutlet weak var slideValueLabel: UILabel!
     
-    var delegate: SideMenuFilterViewControllerDelegate? = nil
-    var distanceFilter: Double?
+    var delegate: SideMenuFilterViewControllerDelegate?
+    var distanceFilter = 0
     var isRestaurant: Bool?
     var isStore: Bool?
     var isOpenNow: Bool?
@@ -43,7 +45,7 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     
     @IBAction func sliderDidSlide(_ sender: UISlider) {
         
-        distanceFilter = Double(slider.value)
+        distanceFilter = Int(slider.value)
         
         if distanceFilter != nil {
             let number = String(describing: distanceFilter)
@@ -65,59 +67,62 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
         
     }
     
-    @IBAction func restaurantPressed(_ sender: Any) {
+    @IBAction func onRestaurant(_ sender: Any) {
         
         if isRestaurant == nil {
             
             isRestaurant = true
-            restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+            onButton(button: restaurantButton)
             
-        }else if isRestaurant == true {
+        } else if isRestaurant == true {
             
             isRestaurant = false
-            restaurantButton.layer.backgroundColor = UIColor.darkGray.cgColor
+            offButton(button: restaurantButton)
             
-        }else {
+        } else {
             
             isRestaurant = true
-            restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+            onButton(button: restaurantButton)
             
         }
         
     }
     
-    @IBAction func storesPressed(_ sender: Any) {
+    @IBAction func onStore(_ sender: Any) {
         
         if isStore == nil {
             
             isStore = true
+            onButton(button: storesButton)
             
-            storesButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
-        }else if isStore == true {
+        } else if isStore == true {
             
             isStore = false
-            storesButton.layer.backgroundColor = UIColor.darkGray.cgColor
-        }else {
+            offButton(button: storesButton)
+            
+        } else {
             
             isStore = true
-            storesButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+            onButton(button: storesButton)
+            
         }
         
     }
     
     @IBAction func applyButtonAction(_ sender: Any) {
         
-        guard let delegate = self.delegate else {
-            print("delegate not set")
-            return
-        }
-        
-//        guard let distance = distanceFilter as Double? else {return}
-//        guard let open = isOpenNow as Bool? else {return}
-//        guard let restaurantBool = isRestaurant as Bool? else {return}
-//        guard let storeBool = isStore as Bool? else {return}
+//        guard let delegate = self.delegate else {
+//            print("delegate not set")
+//            return
+//        }
 
-        delegate.onButtonTap(sender: applyButton, controller: self)
+        guard let distance = distanceFilter as Int? else {return}
+        guard let isOpen = isOpenNow as Bool? else {return}
+        guard let restaurant = isRestaurant as Bool? else {return}
+        guard let store = isStore as Bool? else {return}
+        
+        delegate?.onApply(restaurants: restaurant, stores: store, openNow: isOpen, distanceInMiles: distance)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,4 +162,19 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     }
     
     
+}
+
+extension SideMenuFilterViewController {
+    
+    func onButton(button: UIButton) {
+        
+        button.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+        
+    }
+    
+    func offButton(button: UIButton) {
+        
+        button.layer.backgroundColor = UIColor.darkGray.cgColor
+        
+    }
 }

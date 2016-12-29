@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 import SWRevealController
 
-protocol SideMenuFilterViewControllerDelegate {
+protocol SideMenuFilterDelegate {
     
+    func onApply(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
     func onCancel()
-    func onApply(restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
     
 }
 
@@ -30,16 +30,25 @@ class SideMenuFilterViewController: UITableViewController {
     @IBOutlet weak var contentViewCell: UIView!
     @IBOutlet weak var slideValueLabel: UILabel!
     
-    var delegate: SideMenuFilterViewControllerDelegate?
     var distanceFilter = 0
-    var isRestaurant: Bool?
-    var isStore: Bool?
-    var isOpenNow: Bool?
+    var isRestaurant = false
+    var isStore = false
+    var isOpenNow = false
+    
+    var delegate: SideMenuFilterDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setButtonAttributes()
+        styleMenu()
+        
+    }
+    
+    func checkFrontAndRearViewController(callback: @escaping ((SideMenuFilterDelegate) -> Void)) {
+        
+        
+        let sideMenuRevealInstance =  self.revealViewController().frontViewController as? UIViewController
+        sideMenuRevealInstance
         
     }
     
@@ -47,7 +56,7 @@ class SideMenuFilterViewController: UITableViewController {
         
         distanceFilter = Int(slider.value)
         
-        if distanceFilter != nil {
+        if distanceFilter != 0 {
             let number = String(describing: distanceFilter)
             slideValueLabel.text = number
         }
@@ -69,7 +78,7 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func onRestaurant(_ sender: Any) {
         
-        if isRestaurant == nil {
+        if isRestaurant == false {
             
             isRestaurant = true
             onButton(button: restaurantButton)
@@ -90,7 +99,7 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func onStore(_ sender: Any) {
         
-        if isStore == nil {
+        if isStore == false {
             
             isStore = true
             onButton(button: storesButton)
@@ -111,37 +120,22 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func applyButtonAction(_ sender: Any) {
         
+        checkFrontAndRearViewController(callback: { delegate in
+            
+            self.delegate?.onApply(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
+
+            }
+        )
+        
 //        guard let delegate = self.delegate else {
-//            print("delegate not set")
+//           
 //            return
 //        }
-
-        guard let distance = distanceFilter as Int? else {return}
-        guard let isOpen = isOpenNow as Bool? else {return}
-        guard let restaurant = isRestaurant as Bool? else {return}
-        guard let store = isStore as Bool? else {return}
-        
-        delegate?.onApply(restaurants: restaurant, stores: store, openNow: isOpen, distanceInMiles: distance)
-        
+//        
+    
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "applyButtonSegue" {
-            
-            guard let destinationVC = segue.destination as? StoresTableViewController else {return}
-            
-            if distanceFilter != nil || isOpenNow != nil || isRestaurant != nil || isStore != nil {
-                
-                destinationVC.distanceFilterValue = distanceFilter
-                destinationVC.isRestaurantBool = isRestaurant
-                destinationVC.isStoreBool = isStore
-                destinationVC.openNowSwitchBool = isOpenNow
-                destinationVC.filterDelegate = self
-            }
-        }
-    }
-    
-    func setButtonAttributes() {
+    private func styleMenu() {
         
         slider.minimumValue = 2
         slider.maximumValue = 25
@@ -161,7 +155,6 @@ class SideMenuFilterViewController: UITableViewController {
         
     }
     
-    
 }
 
 extension SideMenuFilterViewController {
@@ -177,4 +170,5 @@ extension SideMenuFilterViewController {
         button.layer.backgroundColor = UIColor.darkGray.cgColor
         
     }
+    
 }

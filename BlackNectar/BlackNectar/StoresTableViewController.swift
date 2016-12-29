@@ -13,30 +13,33 @@ import SWRevealController
 
 //TODO: Integrate with Carthage
 
-class StoresTableViewController: UITableViewController, SideMenuFilterViewControllerDelegate {
+class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
     var stores: [StoresInfo] = []
-    var filterDelegate = SideMenuFilterViewController()
-    var distanceFilterValue: Int?
-    var isRestaurantBool: Bool?
-    var isStoreBool: Bool?
-    var openNowSwitchBool: Bool?
+    var distanceFilter: Int?
+    var isRestaurant: Bool?
+    var isStore: Bool?
+    var openNowSwitch: Bool?
     
     let async: OperationQueue = {
+        
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
+       
         return operationQueue
+        
     }()
+    
     private let main = OperationQueue.main
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
-        
-        print("distance filter value inTableView is : \(distanceFilterValue)")
+        configureSlideMenu()
+        setFilterDelegate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,27 +47,55 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             loadStores(at: currentLocation)
+            
         } else {
             
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
             }
+            
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func onFilterTapped(_ sender: Any) {
+        
+        if let revealController = self.revealViewController() {
+            revealController.revealToggle(animated: true)
+        }
+
+    }
     
-    
-    func onApply(restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
-        print("onApply func hit")
+    func onApply(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+        
+        isRestaurant = restaurants
+        isStore = stores
+        openNowSwitch = openNow
+        distanceFilter = distanceInMiles
+        
     }
     
     func onCancel() {
         print("onCancel func hit")
     }
+    
+    private func setFilterDelegate() {
+        
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let filterViewController: SideMenuFilterViewController = mainStoryBoard.instantiateViewController(withIdentifier: "child") as! SideMenuFilterViewController
+        filterViewController.delegate = self
+        
+        if filterViewController.delegate != nil {
+        } else {
+            print("set filter delegate function delegate wasn't set")
+        }
+        
+    }
+    
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
@@ -90,13 +121,17 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
         
         guard let menu = self.revealViewController() else { return }
         
-        let gesture = menu.panGestureRecognizer()
-        self.view.addGestureRecognizer(gesture!)
+        if let gesture = menu.panGestureRecognizer() {
+            
+             self.view.addGestureRecognizer(gesture)
+            
+        }
         
         guard let nav = menu.rearViewController as? UINavigationController else { return }
-        guard let rear = nav.topViewController as? SideMenuFilterViewController else { return }
+        guard let sideMenu = nav.topViewController as? SideMenuFilterViewController else { return }
         
-        self.filterDelegate = rear
+        sideMenu.delegate = self
+        
     }
     
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
@@ -174,12 +209,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterViewContro
     }
     
     
-    @IBAction func onFilterTapped(_ sender: Any) {
-        
-        if let revealController = self.revealViewController() {
-            revealController.revealToggle(animated: true)
-        }
-        
-    }
+   
     
 }

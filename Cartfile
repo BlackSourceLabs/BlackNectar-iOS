@@ -1,1 +1,2 @@
 github "SirWellington/SWRevealViewController" "master"
+github "onevcat/Kingfisher" ~> 3.0

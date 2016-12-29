@@ -12,8 +12,8 @@ import SWRevealController
 
 protocol SideMenuFilterDelegate {
     
-    func onApply(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
-    func onCancel()
+    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
+    func didCancelFilters()
     
 }
 
@@ -34,21 +34,12 @@ class SideMenuFilterViewController: UITableViewController {
     var isRestaurant = false
     var isStore = false
     var isOpenNow = false
-    
     var delegate: SideMenuFilterDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         styleMenu()
-        
-    }
-    
-    func checkFrontAndRearViewController(callback: @escaping ((SideMenuFilterDelegate) -> Void)) {
-        
-        
-        let sideMenuRevealInstance =  self.revealViewController().frontViewController as? UIViewController
-        sideMenuRevealInstance
         
     }
     
@@ -81,17 +72,17 @@ class SideMenuFilterViewController: UITableViewController {
         if isRestaurant == false {
             
             isRestaurant = true
-            onButton(button: restaurantButton)
+            styleButtonOn(button: restaurantButton)
             
         } else if isRestaurant == true {
             
             isRestaurant = false
-            offButton(button: restaurantButton)
+            styleButtonOff(button: restaurantButton)
             
         } else {
             
             isRestaurant = true
-            onButton(button: restaurantButton)
+            styleButtonOn(button: restaurantButton)
             
         }
         
@@ -102,38 +93,36 @@ class SideMenuFilterViewController: UITableViewController {
         if isStore == false {
             
             isStore = true
-            onButton(button: storesButton)
+            styleButtonOn(button: storesButton)
             
         } else if isStore == true {
             
             isStore = false
-            offButton(button: storesButton)
+            styleButtonOff(button: storesButton)
             
         } else {
             
             isStore = true
-            onButton(button: storesButton)
+            styleButtonOn(button: storesButton)
             
         }
         
     }
     
-    @IBAction func applyButtonAction(_ sender: Any) {
+    @IBAction func applyButton(_ sender: UIButton) {
         
-        checkFrontAndRearViewController(callback: { delegate in
-            
-            self.delegate?.onApply(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
-
-            }
-        )
+        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
         
-//        guard let delegate = self.delegate else {
-//           
-//            return
-//        }
-//        
-    
+        closeSideMenu()
+        
     }
+    
+    @IBAction func cancelButton(_ sender: UIButton) {
+        
+        closeSideMenu()
+        
+    }
+    
     
     private func styleMenu() {
         
@@ -159,15 +148,28 @@ class SideMenuFilterViewController: UITableViewController {
 
 extension SideMenuFilterViewController {
     
-    func onButton(button: UIButton) {
+    func styleButtonOn(button: UIButton) {
         
         button.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
         
     }
     
-    func offButton(button: UIButton) {
+    func styleButtonOff(button: UIButton) {
         
         button.layer.backgroundColor = UIColor.darkGray.cgColor
+        
+    }
+    
+}
+
+extension SideMenuFilterViewController {
+    
+    func closeSideMenu() {
+        
+        if let revealController = self.revealViewController() {
+            revealController.revealToggle(animated: true)
+            
+        }
         
     }
     

@@ -10,18 +10,15 @@ import Foundation
 import UIKit
 import SWRevealController
 
-
-
-
-protocol SideMenuFilterViewControllerDelegate {
-
-    func onButtonTap(sender: UIButton)
-
+protocol SideMenuFilterDelegate {
+    
+    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
+    func didCancelFilters()
+    
 }
 
-
-class SideMenuFilterViewController: UITableViewController, SWRevealViewControllerDelegate {
-
+class SideMenuFilterViewController: UITableViewController {
+    
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var openNowLabel: UILabel!
@@ -29,127 +26,151 @@ class SideMenuFilterViewController: UITableViewController, SWRevealViewControlle
     @IBOutlet weak var restaurantButton: UIButton!
     @IBOutlet weak var storesButton: UIButton!
     @IBOutlet weak var applyButton: UIButton!
-    
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var contentViewCell: UIView!
-
+    @IBOutlet weak var slideValueLabel: UILabel!
+    
+    var distanceFilter = 0
+    var isRestaurant = false
+    var isStore = false
+    var isOpenNow = false
+    var delegate: SideMenuFilterDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setButtonAttributes()
+        
+        styleMenu()
+        
     }
-
-
-
-    public var distanceFilter: Double?
-    var delegate: SideMenuFilterViewControllerDelegate?
-    var hoursOfOperation: Bool?
-    var isRestaurant: Bool?
-    var isStore: Bool?
-    var openNowSwitchValue: Bool?
-
-
-
-    @IBAction func sliderDidSlide(_ sender: UISlider) {
-        let sliderValue = slider.value
-        print("slider value is : \(sliderValue)")
-
-    }
-
-    @IBAction func openNowSwitchOffOn(_ sender: Any) {
-
-        if openNowSwitch.isOn {
-
-            openNowSwitchValue = true
-
-        } else {
-
-            openNowSwitchValue = false
-        }
-
-        print("openNowSwitch was set to : \(openNowSwitchValue)")
-
-    }
-
-    @IBAction func restaurantPressed(_ sender: Any) {
-
-        if isRestaurant == nil {
-            isRestaurant = true
-            restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
-        }else if isRestaurant == true {
-            isRestaurant = false
-            restaurantButton.layer.backgroundColor = UIColor.darkGray.cgColor
-        }else {
-            isRestaurant = true
-            restaurantButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
-
-        }
-
-    }
-
-    @IBAction func storesPressed(_ sender: Any) {
-
-        if isStore == nil {
-            isStore = true
-            storesButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
-        }else if isStore == true {
-            isStore = false
-            storesButton.layer.backgroundColor = UIColor.darkGray.cgColor
-        }else {
-            isStore = true
-            storesButton.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
-        }
-        print("isStore variable set to : \(isStore)")
-
-    }
-
     
-
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "applyButtonSegue" {
-//            let destinationVC = segue.destination as! StoresTableViewController
-//            destinationVC.filterDelegate = self
-//            destinationVC.filterDelegate.getDistanceValue()
-//            print("tableview filterdelegate: getDistance value is : \(destinationVC.filterDelegate.getDistanceValue())")
-//            destinationVC.filterDelegate.getOpenNow()
-//            destinationVC.filterDelegate.getRestaurantsOrStores()
-//        }
-//    }
-
-    func onButtonTap(sender: UIButton) {
-
-        delegate?.onButtonTap(sender: sender)
-
+    @IBAction func sliderDidSlide(_ sender: UISlider) {
+        
+        distanceFilter = Int(slider.value)
+        
+        if distanceFilter != 0 {
+            let number = String(describing: distanceFilter)
+            slideValueLabel.text = number
+        }
+        
     }
-
-    func setButtonAttributes() {
+    
+    @IBAction func openNowSwitchOffOn(_ sender: Any) {
+        
+        if openNowSwitch.isOn {
+            
+            isOpenNow = true
+            
+        } else {
+            
+            isOpenNow = false
+        }
+        
+    }
+    
+    @IBAction func onRestaurant(_ sender: Any) {
+        
+        if isRestaurant == false {
+            
+            isRestaurant = true
+            styleButtonOn(button: restaurantButton)
+            
+        } else if isRestaurant == true {
+            
+            isRestaurant = false
+            styleButtonOff(button: restaurantButton)
+            
+        } else {
+            
+            isRestaurant = true
+            styleButtonOn(button: restaurantButton)
+            
+        }
+        
+    }
+    
+    @IBAction func onStore(_ sender: Any) {
+        
+        if isStore == false {
+            
+            isStore = true
+            styleButtonOn(button: storesButton)
+            
+        } else if isStore == true {
+            
+            isStore = false
+            styleButtonOff(button: storesButton)
+            
+        } else {
+            
+            isStore = true
+            styleButtonOn(button: storesButton)
+            
+        }
+        
+    }
+    
+    @IBAction func applyButton(_ sender: UIButton) {
+        
+        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
+        
+        closeSideMenu()
+        
+    }
+    
+    @IBAction func cancelButton(_ sender: UIButton) {
+        
+        closeSideMenu()
+        
+    }
+    
+    
+    private func styleMenu() {
+        
         slider.minimumValue = 2
         slider.maximumValue = 25
-
+        
         applyButton.layer.borderColor = UIColor.white.cgColor
         applyButton.layer.borderWidth = 2
         applyButton.layer.cornerRadius = 10
-
+        
         cancelButton.layer.borderColor = UIColor.white.cgColor
         cancelButton.layer.borderWidth = 2
         cancelButton.layer.cornerRadius = 10
-
+        
         restaurantButton.layer.cornerRadius = 10
         storesButton.layer.cornerRadius = 10
-
+        
         contentViewCell.layer.opacity = 0.75
-
+        
     }
+    
+}
 
-    func getDistanceValue() -> Double {
-        return distanceFilter!
+extension SideMenuFilterViewController {
+    
+    func styleButtonOn(button: UIButton) {
+        
+        button.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+        
     }
-    func getOpenNow() -> Bool {
-        return hoursOfOperation!
+    
+    func styleButtonOff(button: UIButton) {
+        
+        button.layer.backgroundColor = UIColor.darkGray.cgColor
+        
     }
-    func getRestaurantsOrStores() -> (Bool, Bool) {
-        return (isStore!, isRestaurant!)
-    }
+    
+}
 
-
+extension SideMenuFilterViewController {
+    
+    func closeSideMenu() {
+        
+        if let revealController = self.revealViewController() {
+            revealController.revealToggle(animated: true)
+            
+        }
+        
+    }
+    
 }

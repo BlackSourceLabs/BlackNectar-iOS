@@ -13,19 +13,21 @@ import SWRevealController
 
 //TODO: Integrate with Carthage
 
-class StoresTableViewController: UITableViewController {
+class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
-    @IBOutlet weak var searchBar: UITextField!
     
     var stores: [StoresInfo] = []
-    var filterDelegate = SideMenuFilterViewController()
+    var distanceFilter: Int?
+    var showRestaurants: Bool?
+    var showStores: Bool?
+    var onlyShowOpenStores: Bool?
     
     let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
-        
+
         return operationQueue
         
     }()
@@ -36,17 +38,18 @@ class StoresTableViewController: UITableViewController {
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
+        configureSlideMenu()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        if let currentLocation = UserLocation.instance.currentCoordinate  {
+        if let currentLocation = UserLocation.instance.currentCoordinate {
             
             loadStores(at: currentLocation)
-        }
             
-        else {
+        } else {
+
             
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
@@ -60,19 +63,37 @@ class StoresTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func onFilterTapped(_ sender: Any) {
+        
+        if let revealController = self.revealViewController() {
+            revealController.revealToggle(animated: true)
+        }
+
+    }
+    
+    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+        
+        showRestaurants = restaurants
+        showStores = stores
+        onlyShowOpenStores = openNow
+        distanceFilter = distanceInMiles
+        
+    }
+    
+    func didCancelFilters() {
+        print("onCancel func hit")
+    }
+    
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
             self.stores = stores
             
-            print("TableViewController, stores is: \(self.stores)")
-            
             self.main.addOperation {
-
+                
                 self.tableView.reloadData()
                 
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -88,11 +109,15 @@ class StoresTableViewController: UITableViewController {
         
         guard let menu = self.revealViewController() else { return }
         
-        let gesture = menu.panGestureRecognizer()
-        self.view.addGestureRecognizer(gesture!)
+        if let gesture = menu.panGestureRecognizer() {
+            
+             self.view.addGestureRecognizer(gesture)
+            
+        }
         
-        guard let nav = menu.rearViewController as? UINavigationController else { return }
-        guard let rear = nav.topViewController as? SideMenuFilterViewController else { return }
+        guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
+        
+        sideMenu.delegate = self
         
     }
     
@@ -148,7 +173,7 @@ class StoresTableViewController: UITableViewController {
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-            
+        
         return cell
         
     }
@@ -173,12 +198,6 @@ class StoresTableViewController: UITableViewController {
     }
     
     
-    @IBAction func onFilterTapped(_ sender: Any) {
-        
-        if let revealController = self.revealViewController() {
-            revealController.revealToggle(animated: true)
-        }
-        
-    }
+   
     
 }

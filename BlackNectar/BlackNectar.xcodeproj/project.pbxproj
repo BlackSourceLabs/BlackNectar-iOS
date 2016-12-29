@@ -143,10 +143,10 @@
 				327BAD601DF44B5A000EA25E /* SideMenus */,
 				327BAD5F1DF44B3F000EA25E /* StoresListTableView */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
-				321319441DE0F61500FB1774 /* Assets.xcassets */,
+				321319411DE0F61500FB1774 /* Main.storyboard */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
 				321319491DE0F61500FB1774 /* Info.plist */,
-				321319411DE0F61500FB1774 /* Main.storyboard */,
+				321319441DE0F61500FB1774 /* Assets.xcassets */,
 			);
 			path = BlackNectar;
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 				TargetAttributes = {
 					321319391DE0F61500FB1774 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 5E82HJH2N5;
+						DevelopmentTeam = 8X642ANAM2;
 						ProvisioningStyle = Automatic;
 					};
 					3213194D1DE0F61500FB1774 = {
@@ -551,8 +551,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5E82HJH2N5;
+
+				DEVELOPMENT_TEAM = 8X642ANAM2;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -570,8 +571,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5E82HJH2N5;
+
+				DEVELOPMENT_TEAM = 8X642ANAM2;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

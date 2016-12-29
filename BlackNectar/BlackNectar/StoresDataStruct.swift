@@ -43,17 +43,21 @@ struct StoresInfo {
 }
 
 struct AddressInfo {
+    
     let street: String
     let city: String
     let state: String
     
     static func addressToString(dictionary: NSDictionary) -> AddressInfo? {
+        
         guard let street = dictionary["address_line_1"] as? String,
             let city = dictionary["city"] as? String,
             let state = dictionary["state"] as? String else {
                 print("AddressInfo struct error")
                 return nil
+                
         }
+        
         return AddressInfo(street: street, city: city, state: state)
         
     }

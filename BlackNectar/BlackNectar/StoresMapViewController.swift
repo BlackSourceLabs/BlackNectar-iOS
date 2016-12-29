@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import MapKit
 import CoreLocation
+import Kingfisher
 
 
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {

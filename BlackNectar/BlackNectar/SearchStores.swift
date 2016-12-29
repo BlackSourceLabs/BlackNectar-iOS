@@ -12,7 +12,6 @@ import UIKit
 
 class SearchStores {
     
-    //    typealias Stores = [StoresInfo]
     typealias Callback = ([StoresInfo]) -> ()
     
     // API Call

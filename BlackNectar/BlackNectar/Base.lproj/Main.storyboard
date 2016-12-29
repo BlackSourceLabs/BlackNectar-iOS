@@ -64,7 +64,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="375" id="7fN-Qq-HjZ"/>
@@ -335,8 +335,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="applyButtonAction:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="Jy4-Cu-Gxb"/>
-                                                        <segue destination="uUP-V3-9cw" kind="custom" identifier="applyButtonSegue" customClass="SWRevealViewControllerSeguePushController" id="i90-Jf-rKd"/>
+                                                        <action selector="applyButton:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="q52-AW-nJG"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQJ-kN-Uuk">
@@ -349,7 +348,7 @@
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="uUP-V3-9cw" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="jFj-Gy-bbR"/>
+                                                        <action selector="cancelButton:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="1U4-Zy-Icv"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRy-6I-r27">
@@ -451,9 +450,7 @@
     </scenes>
     <resources>
         <image name="Icon-60" width="60" height="60"/>
+        <image name="SplashScreen" width="500" height="500"/>
         <image name="filterbutton-black" width="45" height="45"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="6by-05-Byo"/>
-    </inferredMetricsTieBreakers>
 </document>

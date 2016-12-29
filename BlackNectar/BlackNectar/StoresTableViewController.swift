@@ -39,7 +39,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         UserLocation.instance.initialize()
         configureSlideMenu()
-        setFilterDelegate()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,7 +70,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
 
     }
     
-    func onApply(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
         isRestaurant = restaurants
         isStore = stores
@@ -79,21 +79,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
     }
     
-    func onCancel() {
+    func didCancelFilters() {
         print("onCancel func hit")
-    }
-    
-    private func setFilterDelegate() {
-        
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let filterViewController: SideMenuFilterViewController = mainStoryBoard.instantiateViewController(withIdentifier: "child") as! SideMenuFilterViewController
-        filterViewController.delegate = self
-        
-        if filterViewController.delegate != nil {
-        } else {
-            print("set filter delegate function delegate wasn't set")
-        }
-        
     }
     
     
@@ -127,8 +114,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             
         }
         
-        guard let nav = menu.rearViewController as? UINavigationController else { return }
-        guard let sideMenu = nav.topViewController as? SideMenuFilterViewController else { return }
+        guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
         
         sideMenu.delegate = self
         

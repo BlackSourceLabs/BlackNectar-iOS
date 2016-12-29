@@ -23,6 +23,8 @@
 		327BACDE1DF12F85000EA25E /* SideMenuFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */; };
 		327BAD661DFA26AE000EA25E /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BAD651DFA26AE000EA25E /* RoundedButtonView.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
+		32E134141E159B7700FD65DC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134131E159B7700FD65DC /* Kingfisher.framework */; };
+		32E134151E159B7700FD65DC /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134131E159B7700FD65DC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				32E134151E159B7700FD65DC /* Kingfisher.framework in Embed Frameworks */,
 				3242A2761DF0F845001B5BF8 /* SWRevealController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -78,6 +81,7 @@
 		327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuFilterViewController.swift; sourceTree = "<group>"; };
 		327BAD651DFA26AE000EA25E /* RoundedButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
+		32E134131E159B7700FD65DC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32E134141E159B7700FD65DC /* Kingfisher.framework in Frameworks */,
 				3242A2751DF0F845001B5BF8 /* SWRevealController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +114,7 @@
 		321319311DE0F61500FB1774 = {
 			isa = PBXGroup;
 			children = (
+				32E134131E159B7700FD65DC /* Kingfisher.framework */,
 				3242A2741DF0F845001B5BF8 /* SWRevealController.framework */,
 				3213193C1DE0F61500FB1774 /* BlackNectar */,
 				321319511DE0F61500FB1774 /* BlackNectarTests */,
@@ -224,6 +230,8 @@
 				321319371DE0F61500FB1774 /* Frameworks */,
 				321319381DE0F61500FB1774 /* Resources */,
 				3242A2771DF0F845001B5BF8 /* Embed Frameworks */,
+				32E4C5001E0C546700238E01 /* Strip non valid Architectures */,
+				32E134161E159BAE00FD65DC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -345,6 +353,37 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32E134161E159BAE00FD65DC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		32E4C5001E0C546700238E01 /* Strip non valid Architectures */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Strip non valid Architectures";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Signs a framework with the provided identity\ncode_sign() {\n    # Use the current code_sign_identitiy\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    echo \"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements $1\"\n    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} --preserve-metadata=identifier,entitlements \"$1\"\n}\n\necho \"Stripping frameworks\"\ncd \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nfor file in $(find . -type f -perm +111); do\n# Skip non-dynamic libraries\nif ! [[ \"$(file \"$file\")\" == *\"dynamically linked shared library\"* ]]; then\ncontinue\nfi\n# Get architectures for current file\narchs=\"$(lipo -info \"${file}\" | rev | cut -d ':' -f1 | rev)\"\nstripped=\"\"\nfor arch in $archs; do\nif ! [[ \"${VALID_ARCHS}\" == *\"$arch\"* ]]; then\n# Strip non-valid architectures in-place\nlipo -remove \"$arch\" -output \"$file\" \"$file\" || exit 1\nstripped=\"$stripped $arch\"\nfi\ndone\nif [[ \"$stripped\" != \"\" ]]; then\necho \"Stripped $file of architectures:$stripped\"\nif [ \"${CODE_SIGNING_REQUIRED}\" == \"YES\" ]; then\ncode_sign \"${file}\"\nfi\nfi\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		321319361DE0F61500FB1774 /* Sources */ = {
@@ -512,7 +551,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+
 				DEVELOPMENT_TEAM = 8X642ANAM2;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -520,9 +561,9 @@
 				INFOPLIST_FILE = BlackNectar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tech.blacksource.blackNectar;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.blacksource.blacknectar.BlackNectar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -530,7 +571,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+
 				DEVELOPMENT_TEAM = 8X642ANAM2;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -538,9 +581,9 @@
 				INFOPLIST_FILE = BlackNectar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tech.blacksource.blackNectar;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.blacksource.blacknectar.BlackNectar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};

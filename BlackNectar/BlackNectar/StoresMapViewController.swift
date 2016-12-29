@@ -16,21 +16,42 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 
     @IBOutlet weak var mapView: MKMapView!
 
+
     private var stores: [StoresInfo] = []
     private var currentLocation: CLLocationCoordinate2D?
+
 
     var selectedPin: MKPlacemark? = nil
     let userLocationManager = UserLocation.instance
     typealias Callback = ([StoresInfo]) -> ()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         prepareMapView()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        populateStoreAnnotations()
+        
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+            
+            loadStoresInMapView(at: currentLocation)
+        }
+            
+        else {
+            
+            UserLocation.instance.requestLocation() { coordinate in
+                self.loadStoresInMapView(at: coordinate)
+                
+            }
+            
+        }
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
     }
 
     private func prepareMapView() {
@@ -40,7 +61,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 
         guard let region = UserLocation.instance.currentRegion else {
 
-            return
+          return
         }
 
         self.mapView.setRegion(region, animated: true)
@@ -75,11 +96,29 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 annotation.subtitle = "\(storeName)"
                 mapView.addAnnotations([annotation])
 
+
             }
 
         }
 
     }
+
+    
+    private func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+            self.storesInMapView = stores
+            
+            self.populateStoreAnnotations()
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+        }
+        
+    }
+    
 
     //    func convertHexStringToUIColor(hex:String) -> UIColor {
     //
@@ -88,17 +127,20 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     func getDirections() {
 
         if let selectedPin = selectedPin {
+            
             let mapItem = MKMapItem(placemark: selectedPin)
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
             mapItem.openInMaps(launchOptions: launchOptions)
+            
         }
+        
     }
-
-
+  
 }
 
 
 extension StoresMapViewController {
+    
     func dropPinZoomIn(placemark: MKPlacemark) {
 
         selectedPin = placemark
@@ -119,9 +161,11 @@ extension StoresMapViewController {
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         if annotation is MKUserLocation {
             return nil
         }
+        
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)

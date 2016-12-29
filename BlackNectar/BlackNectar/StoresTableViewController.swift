@@ -19,15 +19,15 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     var stores: [StoresInfo] = []
     var distanceFilter: Int?
-    var isRestaurant: Bool?
-    var isStore: Bool?
-    var openNowSwitch: Bool?
+    var showRestaurants: Bool?
+    var showStores: Bool?
+    var onlyShowOpenStores: Bool?
     
     let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
-       
+
         return operationQueue
         
     }()
@@ -49,6 +49,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             loadStores(at: currentLocation)
             
         } else {
+
             
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
@@ -72,9 +73,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
-        isRestaurant = restaurants
-        isStore = stores
-        openNowSwitch = openNow
+        showRestaurants = restaurants
+        showStores = stores
+        onlyShowOpenStores = openNow
         distanceFilter = distanceInMiles
         
     }
@@ -158,6 +159,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
             return UITableViewCell()
         }
+        
+        tableView.backgroundView?.removeFromSuperview()
         
         let store = stores[indexPath.row]
         var addressString = ""

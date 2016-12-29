@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import CoreLocation
 import SWRevealController
+import Kingfisher
 
 //TODO: Integrate with Carthage
 
@@ -98,22 +99,12 @@ class StoresTableViewController: UITableViewController {
     
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
-        async.addOperation {
-            
-            do {
-                let data = try Data(contentsOf: url)
-                let image = try UIImage(data: data)
-                
-                
-                self.main.addOperation {
-                    cell.storeImage.image = image
-                    
-                }
-                
-            } catch {
-                print("error")
-            }
-        }
+        let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
+        let scale = KingfisherOptionsInfoItem.scaleFactor(UIScreen.main.scale * 2)
+        let options: KingfisherOptionsInfo = [fade, scale]
+        
+        cell.storeImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
+        
     }
     
     
@@ -135,7 +126,7 @@ class StoresTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        tableView.backgroundView?.removeFromSuperview()
+//        tableView.backgroundView?.removeFromSuperview()
         
         let store = stores[indexPath.row]
         var addressString = ""

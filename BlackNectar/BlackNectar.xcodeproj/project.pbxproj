@@ -23,6 +23,8 @@
 		327BACDE1DF12F85000EA25E /* SideMenuFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */; };
 		327BAD661DFA26AE000EA25E /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BAD651DFA26AE000EA25E /* RoundedButtonView.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
+		32E134141E159B7700FD65DC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134131E159B7700FD65DC /* Kingfisher.framework */; };
+		32E134151E159B7700FD65DC /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134131E159B7700FD65DC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				32E134151E159B7700FD65DC /* Kingfisher.framework in Embed Frameworks */,
 				3242A2761DF0F845001B5BF8 /* SWRevealController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -78,6 +81,7 @@
 		327BACDD1DF12F85000EA25E /* SideMenuFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuFilterViewController.swift; sourceTree = "<group>"; };
 		327BAD651DFA26AE000EA25E /* RoundedButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
+		32E134131E159B7700FD65DC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32E134141E159B7700FD65DC /* Kingfisher.framework in Frameworks */,
 				3242A2751DF0F845001B5BF8 /* SWRevealController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +114,7 @@
 		321319311DE0F61500FB1774 = {
 			isa = PBXGroup;
 			children = (
+				32E134131E159B7700FD65DC /* Kingfisher.framework */,
 				3242A2741DF0F845001B5BF8 /* SWRevealController.framework */,
 				3213193C1DE0F61500FB1774 /* BlackNectar */,
 				321319511DE0F61500FB1774 /* BlackNectarTests */,
@@ -225,6 +231,7 @@
 				321319381DE0F61500FB1774 /* Resources */,
 				3242A2771DF0F845001B5BF8 /* Embed Frameworks */,
 				32E4C5001E0C546700238E01 /* Strip non valid Architectures */,
+				32E134161E159BAE00FD65DC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -348,6 +355,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		32E134161E159BAE00FD65DC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		32E4C5001E0C546700238E01 /* Strip non valid Architectures */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

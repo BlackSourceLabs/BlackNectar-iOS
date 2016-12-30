@@ -6,16 +6,16 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import UIKit
 import AromaSwiftClient
 import Kingfisher
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    private let buildNumber: String = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
+    static internal let buildNumber: String = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AromaClient.TOKEN_ID = "34576d0b-6060-4666-9ac1-f5a09be219c3"
         
         AromaClient.beginMessage(withTitle: "App Launched")
-            .addBody("Build #\(buildNumber)")
+            .addBody("Build #\(AppDelegate.buildNumber)")
             .withPriority(.low)
             .send()
         
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AromaClient.beginMessage(withTitle: "Memory Warning")
             .withPriority(.medium)
-            .addBody("Build #\(buildNumber)")
+            .addBody("Build #\(AppDelegate.buildNumber)")
             .send()
         ImageCache.default.clearMemoryCache()
         

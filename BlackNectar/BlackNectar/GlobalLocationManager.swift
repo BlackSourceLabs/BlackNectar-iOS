@@ -6,10 +6,10 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import Foundation
-import UIKit
 import CoreLocation
+import Foundation
 import MapKit
+import UIKit
 
 
 class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {

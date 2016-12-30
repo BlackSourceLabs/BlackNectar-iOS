@@ -6,8 +6,8 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 import UIKit
 
 class SearchStores {

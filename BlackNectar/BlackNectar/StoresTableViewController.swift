@@ -6,11 +6,12 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import UIKit
-import Foundation
 import CoreLocation
-import SWRevealController
+import Foundation
 import Kingfisher
+import SWRevealController
+import UIKit
+
 
 //TODO: Integrate with Carthage
 

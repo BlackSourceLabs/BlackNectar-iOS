@@ -6,11 +6,12 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import UIKit
-import Foundation
-import MapKit
 import CoreLocation
+import Foundation
 import Kingfisher
+import MapKit
+import UIKit
+
 
 
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {

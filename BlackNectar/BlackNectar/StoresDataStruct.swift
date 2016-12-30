@@ -6,9 +6,9 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import CoreLocation
 import Foundation
 import UIKit
-import CoreLocation
 
 // Creating data structure for JSON Request
 struct StoresInfo {

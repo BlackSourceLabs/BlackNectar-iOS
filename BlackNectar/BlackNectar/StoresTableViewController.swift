@@ -188,7 +188,4 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
     }
     
-    
-   
-    
 }

@@ -107,7 +107,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate, with: 0.0) { stores in
             
             self.stores = stores
             

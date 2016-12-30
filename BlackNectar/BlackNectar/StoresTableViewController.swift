@@ -19,10 +19,10 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
     var stores: [StoresInfo] = []
-    var distanceFilter: Int?
-    var showRestaurants: Bool?
-    var showStores: Bool?
-    var onlyShowOpenStores: Bool?
+    var distanceFilter = 0.0
+    var showRestaurants = false
+    var showStores = false
+    var onlyShowOpenStores = true
     
     let async: OperationQueue = {
         
@@ -77,8 +77,14 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         showRestaurants = restaurants
         showStores = stores
         onlyShowOpenStores = openNow
-        distanceFilter = distanceInMiles
+        distanceFilter = DistanceCalculation().milesToMeters(miles: Double(distanceInMiles))
         
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+            
+            loadStores(at: currentLocation)
+            
+        }
+                
     }
     
     func didCancelFilters() {
@@ -90,7 +96,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate, with: distanceFilter) { stores in
             self.stores = stores
             
             self.main.addOperation {
@@ -159,8 +165,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
 
             var distance = 0.0
             distance = DistanceCalculation().getDistance(userLocation: currentLocation, storeLocation: store.location)
-
-            cell.storeDistance.text = "\(distance)"
+            distance = DistanceCalculation().meteresToMiles(meters: distance)
+            
+            cell.storeDistance.text = "\(distance) miles"
         }
         
         //WTF IS THIS? FUNCTION PLEASE

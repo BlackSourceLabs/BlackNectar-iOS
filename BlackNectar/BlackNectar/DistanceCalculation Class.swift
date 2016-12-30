@@ -33,7 +33,7 @@ class DistanceCalculation {
     
     func meteresToMiles(meters: Double) -> Double{
         
-        let miles = meters / 0.000621371
+        let miles = meters * 0.000621371
         
         return miles
         

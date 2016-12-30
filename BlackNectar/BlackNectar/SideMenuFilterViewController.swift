@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import SWRevealController
+import UIKit
 
 protocol SideMenuFilterDelegate {
     

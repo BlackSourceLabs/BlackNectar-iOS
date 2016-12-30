@@ -6,11 +6,12 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import UIKit
-import Foundation
-import MapKit
 import CoreLocation
+import Foundation
 import Kingfisher
+import MapKit
+import UIKit
+
 
 
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
@@ -72,10 +73,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         self.mapView.setRegion(region, animated: true)
     }
-    
-    
+
     // populating stores as annotations in the mapView
-    
     func populateStoreAnnotations() {
         
         for store in storesInMapView {

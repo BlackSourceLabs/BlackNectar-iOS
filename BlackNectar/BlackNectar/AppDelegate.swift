@@ -8,16 +8,30 @@
 
 import UIKit
 import AromaSwiftClient
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private let buildNumber: String = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as? String ?? ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        AromaClient.TOKEN_ID = "34576d0b-6060-4666-9ac1-f5a09be219c3"
+        
+        AromaClient.beginMessage(withTitle: "App Launched")
+            .addBody("Build #\(buildNumber)")
+            .withPriority(.low)
+            .send()
+        
+        ImageCache.default.maxDiskCacheSize = UInt(150.mb)
+        ImageCache.default.maxCachePeriodInSecond = (3.0).days
+        
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -28,6 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        AromaClient.sendLowPriorityMessage(withTitle: "App Entered Background")
+        ImageCache.default.clearMemoryCache()
+        ImageCache.default.cleanExpiredDiskCache()
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -40,8 +59,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        AromaClient.sendMediumPriorityMessage(withTitle: "App Terminated")
+            
     }
-
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        
+        AromaClient.beginMessage(withTitle: "Memory Warning")
+            .withPriority(.medium)
+            .addBody("Build #\(buildNumber)")
+            .send()
+        ImageCache.default.clearMemoryCache()
+        
+    }
 
 }
 

@@ -155,6 +155,13 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         let store = stores[indexPath.row]
         var addressString = ""
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+
+            var distance = 0.0
+            distance = DistanceCalculation().getDistance(userLocation: currentLocation, storeLocation: store.location)
+
+            cell.storeDistance.text = "\(distance)"
+        }
         
         //WTF IS THIS? FUNCTION PLEASE
         //Call it, combine addresses
@@ -164,6 +171,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
+
         
         return cell
         

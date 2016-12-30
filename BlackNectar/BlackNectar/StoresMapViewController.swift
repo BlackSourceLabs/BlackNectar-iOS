@@ -68,12 +68,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.mapView.setRegion(region, animated: true)
     }
 
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // populating stores as annotations in the mapView
 
     func populateStoreAnnotations() {
@@ -86,9 +81,12 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 let address = store.address.allValues
                 let location = store.location
 
-                let latitude = location["latitude"]
-                let longitude = location["longitude"]
+//                let latitude = location["latitude"]
+//                let longitude = location["longitude"]
 
+                let latitude = location.latitude
+                let longitude = location.longitude
+                
                 let annotation = MKPointAnnotation()
 
                 annotation.coordinate.latitude = latitude as! CLLocationDegrees
@@ -110,7 +108,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
-            self.storesInMapView = stores
+            
+            self.stores = stores
             
             self.populateStoreAnnotations()
             

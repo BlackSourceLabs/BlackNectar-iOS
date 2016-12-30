@@ -25,6 +25,9 @@
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 		32E134141E159B7700FD65DC /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134131E159B7700FD65DC /* Kingfisher.framework */; };
 		32E134151E159B7700FD65DC /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134131E159B7700FD65DC /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		32E134191E15DE0D00FD65DC /* AromaSwiftClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134181E15DE0D00FD65DC /* AromaSwiftClient.framework */; };
+		32E1341B1E15DE1100FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1341A1E15DE1100FD65DC /* AromaThrift.framework */; };
+		32E1341D1E15DE1900FD65DC /* SwiftExceptionCatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1341C1E15DE1900FD65DC /* SwiftExceptionCatcher.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,9 @@
 		327BAD651DFA26AE000EA25E /* RoundedButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
 		32E134131E159B7700FD65DC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = "<group>"; };
+		32E134181E15DE0D00FD65DC /* AromaSwiftClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaSwiftClient.framework; path = ../Carthage/Build/iOS/AromaSwiftClient.framework; sourceTree = "<group>"; };
+		32E1341A1E15DE1100FD65DC /* AromaThrift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaThrift.framework; path = ../Carthage/Build/iOS/AromaThrift.framework; sourceTree = "<group>"; };
+		32E1341C1E15DE1900FD65DC /* SwiftExceptionCatcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftExceptionCatcher.framework; path = ../Carthage/Build/iOS/SwiftExceptionCatcher.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,9 @@
 			files = (
 				32E134141E159B7700FD65DC /* Kingfisher.framework in Frameworks */,
 				3242A2751DF0F845001B5BF8 /* SWRevealController.framework in Frameworks */,
+				32E134191E15DE0D00FD65DC /* AromaSwiftClient.framework in Frameworks */,
+				32E1341B1E15DE1100FD65DC /* AromaThrift.framework in Frameworks */,
+				32E1341D1E15DE1900FD65DC /* SwiftExceptionCatcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +129,7 @@
 				321319511DE0F61500FB1774 /* BlackNectarTests */,
 				3213195C1DE0F61500FB1774 /* BlackNectarUITests */,
 				3213193B1DE0F61500FB1774 /* Products */,
+				32E134171E15DE0D00FD65DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +229,16 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		32E134171E15DE0D00FD65DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32E1341C1E15DE1900FD65DC /* SwiftExceptionCatcher.framework */,
+				32E1341A1E15DE1100FD65DC /* AromaThrift.framework */,
+				32E134181E15DE0D00FD65DC /* AromaSwiftClient.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -290,7 +310,7 @@
 				TargetAttributes = {
 					321319391DE0F61500FB1774 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 8X642ANAM2;
+						DevelopmentTeam = 5E82HJH2N5;
 						ProvisioningStyle = Automatic;
 					};
 					3213194D1DE0F61500FB1774 = {
@@ -551,9 +571,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
-				DEVELOPMENT_TEAM = 8X642ANAM2;
-
+				DEVELOPMENT_TEAM = 5E82HJH2N5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -571,9 +589,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
-				DEVELOPMENT_TEAM = 8X642ANAM2;
-
+				DEVELOPMENT_TEAM = 5E82HJH2N5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

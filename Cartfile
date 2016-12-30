@@ -1,2 +1,3 @@
 github "SirWellington/SWRevealViewController" "master"
 github "onevcat/Kingfisher" ~> 3.0
+github "RedRoma/AromaSwiftClient" "develop"

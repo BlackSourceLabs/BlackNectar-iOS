@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AromaSwiftClient
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

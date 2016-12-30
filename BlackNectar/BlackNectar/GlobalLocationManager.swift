@@ -75,19 +75,19 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         switch status {
             
-        case CLAuthorizationStatus.restricted:
-            locationStatus = "Restricted Access to Location"
-            
-        case CLAuthorizationStatus.denied:
-            locationStatus = "User denied access to location"
-            
-        case CLAuthorizationStatus.notDetermined:
-            locationStatus = "Status not determined"
-            
-        default:
-            locationStatus = "Location Access Granted"
-            
-            allowAuthorization = true
+            case CLAuthorizationStatus.restricted:
+                locationStatus = "Restricted Access to Location"
+                
+            case CLAuthorizationStatus.denied:
+                locationStatus = "User denied access to location"
+                
+            case CLAuthorizationStatus.notDetermined:
+                locationStatus = "Status not determined"
+                
+            default:
+                locationStatus = "Location Access Granted"
+                
+                allowAuthorization = true
         }
         
     }

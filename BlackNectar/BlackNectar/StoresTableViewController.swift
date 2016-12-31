@@ -24,7 +24,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     var showRestaurants: Bool?
     var showStores: Bool?
     var onlyShowOpenStores: Bool?
-    var refreshLoadingView: UIView!
     var isRefreshAnimating = false
     
     let async: OperationQueue = {
@@ -198,13 +197,9 @@ extension StoresTableViewController {
     func setupRefreshControl() {
         
         refreshControl = UIRefreshControl()
-        refreshLoadingView = UIView(frame: self.refreshControl!.bounds)
-        
-        refreshLoadingView.backgroundColor = UIColor.clear
         refreshControl?.backgroundColor = UIColor.black
         refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
         
-        self.refreshLoadingView.clipsToBounds = true
         self.isRefreshAnimating = true
         
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)

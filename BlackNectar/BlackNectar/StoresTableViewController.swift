@@ -24,6 +24,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     var showRestaurants: Bool?
     var showStores: Bool?
     var onlyShowOpenStores: Bool?
+    var refreshLoadingView: UIView!
+    var isRefreshAnimating = false
     
     let async: OperationQueue = {
         
@@ -34,13 +36,14 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
     }()
     
-    private let main = OperationQueue.main
+    fileprivate let main = OperationQueue.main
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
         configureSlideMenu()
+        setupRefreshControl()
         
     }
     
@@ -65,6 +68,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func onFilterTapped(_ sender: Any) {
         
         if let revealController = self.revealViewController() {
@@ -152,8 +156,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             return UITableViewCell()
         }
         
-//        tableView.backgroundView?.removeFromSuperview()
-        
         let store = stores[indexPath.row]
         var addressString = ""
         
@@ -187,6 +189,47 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             
         }
         
+    }
+    
+}
+
+extension StoresTableViewController {
+    
+    func setupRefreshControl() {
+        
+        refreshControl = UIRefreshControl()
+        refreshLoadingView = UIView(frame: self.refreshControl!.bounds)
+        
+        refreshLoadingView.backgroundColor = UIColor.clear
+        refreshControl?.backgroundColor = UIColor.black
+        refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
+        
+        self.refreshLoadingView.clipsToBounds = true
+        self.isRefreshAnimating = true
+        
+        refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
+        
+    }
+    
+    
+    func reloadStoreData() {
+        
+        guard let usersLocation = UserLocation.instance.currentCoordinate else { return }
+        let usersLatitude = usersLocation.latitude
+        let usersLongitude = usersLocation.longitude
+        
+        SearchStores.searchForStoresLocations(near: usersLocation) { stores in
+            self.stores = stores
+            
+            self.main.addOperation {
+                
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+                
+            }
+            
+        }
+    
     }
     
 }

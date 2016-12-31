@@ -48,9 +48,9 @@ playground.xcworkspace
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
+BlackNectar/Carthage/Checkouts
+BlackNectar/Carthage/Build
 Carthage/Checkouts
-
-
 Carthage/Build
 
 # fastlane

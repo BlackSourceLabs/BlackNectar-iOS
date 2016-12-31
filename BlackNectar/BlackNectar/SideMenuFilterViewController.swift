@@ -30,12 +30,13 @@ class SideMenuFilterViewController: UITableViewController {
     @IBOutlet weak var contentViewCell: UIView!
     @IBOutlet weak var slideValueLabel: UILabel!
 
-    var distanceFilter = 0.00
+    var distanceFilter: CGFloat = 0.00
     var isRestaurant = false
     var isStore = false
     var isOpenNow = false
     var delegate: SideMenuFilterDelegate?
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,16 +44,23 @@ class SideMenuFilterViewController: UITableViewController {
 
     }
 
+    func passingDistance() -> CGFloat {
+        
+        return distanceFilter
+    
+    }
+    
     @IBAction func sliderDidSlide(_ sender: UISlider) {
 
-        distanceFilter = Double(slider.value)
-        let roundedNumber = Double(distanceFilter.rounded(distanceFilter * 100)/100)
+        distanceFilter = CGFloat(slider.value)
         
-        if distanceFilter != 0 {
-            let number = String(describing: distanceFilter)
-            slideValueLabel.text = "\(number) miles"
+        let roundedNumber = Double(round(distanceFilter * 100)/100)
+        
+        if roundedNumber != 0 {
+            
+            slideValueLabel.text = "\(roundedNumber)"
         }
-
+        
     }
 
     @IBAction func openNowSwitchOffOn(_ sender: Any) {
@@ -112,7 +120,7 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func applyButton(_ sender: UIButton) {
 
-        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
+        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: Int(self.distanceFilter))
 
         closeSideMenu()
 

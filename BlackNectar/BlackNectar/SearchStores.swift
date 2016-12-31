@@ -19,10 +19,14 @@ class SearchStores {
         
         var distance = 0.0
         
-        if radius >= 1.0 {
+        if radius >= 0.25 {
+            
             distance = radius
+
         } else {
+        
             distance = 1500
+        
         }
         
         let storesAPI = "https://blacknectar-api.sirwellington.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"

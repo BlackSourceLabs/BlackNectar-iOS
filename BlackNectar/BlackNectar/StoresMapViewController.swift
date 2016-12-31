@@ -25,7 +25,11 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var selectedPin: MKPlacemark? = nil
     let userLocationManager = UserLocation.instance
     typealias Callback = ([StoresInfo]) -> ()
-
+    var distance = 0.0
+    var showRestaurants = false
+    var showStores = false
+    var onlyShowOpenStores = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -107,7 +111,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate, with: 0.0) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate, with: distance) { stores in
+            
+            print("mapView distance is : \(self.distance)")
             
             self.stores = stores
             
@@ -119,11 +125,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-
-    //    func convertHexStringToUIColor(hex:String) -> UIColor {
-    //
-    //    }
-
     func getDirections() {
 
         if let selectedPin = selectedPin {

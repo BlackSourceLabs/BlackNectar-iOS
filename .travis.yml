@@ -1,0 +1,19 @@
+language: swift
+cache: cocoapods
+rvm: 2.2.2
+osx_image: xcode8
+before_install:
+  - brew update
+
+
+  # Only if app has Carthage dependencies
+  - cd BlackNectar && carthage bootstrap --verbose
+
+script:
+  - carthage build --no-skip-current
+  - |
+    xcodebuild test \
+    -project BlackNectar.xcodeproj \
+    -scheme BlackNectar \
+    -sdk iphonesimulator \
+    -destination 'platform=iOS Simulator, name=iPhone6,OS=latest'

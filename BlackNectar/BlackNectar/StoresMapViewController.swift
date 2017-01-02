@@ -72,16 +72,10 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        guard var region = UserLocation.instance.currentRegion else {
+        guard let region = UserLocation.instance.currentRegion else {
             
             return
         }
-        
-        let latitude = DistanceCalculation.milesToMeters(miles: region.span.latitudeDelta)
-        let longitude = DistanceCalculation.milesToMeters(miles: region.span.longitudeDelta)
-        
-        region.span.latitudeDelta = latitude / 1000
-        region.span.longitudeDelta = longitude / 1000
         
         self.mapView.setRegion(region, animated: true)
     }
@@ -125,7 +119,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate, with: distance) { stores in
+        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
+        
+        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
             print("mapView distance is : \(self.distance)")
             

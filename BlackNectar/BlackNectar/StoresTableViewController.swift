@@ -76,7 +76,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         showRestaurants = restaurants
         showStores = stores
         onlyShowOpenStores = openNow
-        distanceFilter = DistanceCalculation.milesToMeters(miles: Double(distanceInMiles))
+        distanceFilter = Double(distanceInMiles)
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
@@ -96,7 +96,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceFilter) { stores in
+        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distanceFilter))
+        
+        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             self.stores = stores
             
             self.main.addOperation {

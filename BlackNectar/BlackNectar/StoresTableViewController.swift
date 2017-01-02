@@ -31,7 +31,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
-
+        
         return operationQueue
         
     }()
@@ -68,7 +68,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
         }
-
+        
     }
     
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
@@ -76,19 +76,20 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         showRestaurants = restaurants
         showStores = stores
         onlyShowOpenStores = openNow
-        distanceFilter = DistanceCalculation().milesToMeters(miles: Double(distanceInMiles))
+        distanceFilter = DistanceCalculation.milesToMeters(miles: Double(distanceInMiles))
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             loadStores(at: currentLocation)
             
         }
-                
+        
     }
     
     func didCancelFilters() {
+        
         print("onCancel func hit")
-        dismiss(animated: true, completion: nil)
+        
     }
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -117,7 +118,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         if let gesture = menu.panGestureRecognizer() {
             
-             self.view.addGestureRecognizer(gesture)
+            self.view.addGestureRecognizer(gesture)
             
         }
         
@@ -141,14 +142,14 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         if segue.identifier == "mapViewSegue" {
             
-            if let destination = segue.destination as? StoresMapViewController {
+            let destination = segue.destination as? StoresMapViewController
             
-                destination.distance = distanceFilter
-                destination.onlyShowOpenStores = self.onlyShowOpenStores
-                destination.showRestaurants = self.showRestaurants
-                destination.showStores = self.showStores
-                
-            }
+            destination?.distance = distanceFilter
+            destination?.onlyShowOpenStores = self.onlyShowOpenStores
+            destination?.showRestaurants = self.showRestaurants
+            destination?.showStores = self.showStores
+            destination?.stores = self.stores
+            
         }
     }
     
@@ -171,15 +172,15 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             return UITableViewCell()
         }
         
-//        tableView.backgroundView?.removeFromSuperview()
+        //        tableView.backgroundView?.removeFromSuperview()
         
         let store = stores[indexPath.row]
         var addressString = ""
         if let currentLocation = UserLocation.instance.currentCoordinate {
-
+            
             var distance = 0.0
-            distance = DistanceCalculation().getDistance(userLocation: currentLocation, storeLocation: store.location)
-            distance = DistanceCalculation().meteresToMiles(meters: distance)
+            distance = DistanceCalculation.getDistance(userLocation: currentLocation, storeLocation: store.location)
+            distance = DistanceCalculation.meteresToMiles(meters: distance)
             let doubleDown = Double(round(distance * 100)/100)
             
             cell.storeDistance.text = "\(doubleDown) miles"
@@ -193,7 +194,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-
+        
         
         return cell
         
@@ -219,6 +220,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     }
     
     
-   
+    
     
 }
+

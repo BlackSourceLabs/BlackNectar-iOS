@@ -30,7 +30,7 @@ class SideMenuFilterViewController: UITableViewController {
     @IBOutlet weak var contentViewCell: UIView!
     @IBOutlet weak var slideValueLabel: UILabel!
 
-    var distanceFilter: CGFloat = 0.00
+    var distanceFilter = 0.00
     var isRestaurant = false
     var isStore = false
     var isOpenNow = false
@@ -44,7 +44,7 @@ class SideMenuFilterViewController: UITableViewController {
 
     }
 
-    func passingDistance() -> CGFloat {
+    func passingDistance() -> Double {
         
         return distanceFilter
     
@@ -52,9 +52,9 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func sliderDidSlide(_ sender: UISlider) {
 
-        distanceFilter = CGFloat(slider.value)
+        distanceFilter = Double(slider.value)
         
-        let roundedNumber = Double(round(distanceFilter * 100)/100)
+        let roundedNumber = (round(distanceFilter * 100)/100)
         
         if roundedNumber != 0 {
             
@@ -134,9 +134,6 @@ class SideMenuFilterViewController: UITableViewController {
 
 
     private func styleMenu() {
-
-//        slider.minimumValue = 2
-//        slider.maximumValue = 25
 
         applyButton.layer.borderColor = UIColor.white.cgColor
         applyButton.layer.borderWidth = 2

@@ -11,19 +11,19 @@ import CoreLocation
 
 class DistanceCalculation {
     
-    func getDistance(userLocation: CLLocationCoordinate2D, storeLocation: CLLocationCoordinate2D) -> Double {
+    static func getDistance(userLocation: CLLocationCoordinate2D, storeLocation: CLLocationCoordinate2D) -> Double {
         
         let userCoordinateToLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         
         let storeCoordinateToLocation = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
         
-        let calculatedDistance = userCoordinateToLocation.distance(from: storeCoordinateToLocation)
+        let calculatedMeters = userCoordinateToLocation.distance(from: storeCoordinateToLocation)
         
-        return calculatedDistance
+        return calculatedMeters
     
     }
     
-    func milesToMeters(miles: Double) -> Double {
+    static func milesToMeters(miles: Double) -> Double {
         
         let meters = miles * 1609.34
         
@@ -31,7 +31,7 @@ class DistanceCalculation {
         
     }
     
-    func meteresToMiles(meters: Double) -> Double{
+    static func meteresToMiles(meters: Double) -> Double{
         
         let miles = meters * 0.000621371
         

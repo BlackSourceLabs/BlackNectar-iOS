@@ -1,6 +1,0 @@
-framework module SWRevealController {
-  umbrella header "SWRevealController.h"
-
-  export *
-  module * { export * }
-}

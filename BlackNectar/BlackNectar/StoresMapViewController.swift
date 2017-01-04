@@ -18,16 +18,14 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var mapView: MKMapView!
     
-    var stores: [StoresInfo]? = []
     var currentCoordinates: CLLocationCoordinate2D?
-    
-    var selectedPin: MKPlacemark? = nil
-    let userLocationManager = UserLocation.instance
-    
+    var storesInMapView: [StoresInfo] = []
+    var selectedPin: MKPlacemark?
     var distance = 0.0
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
+    let userLocationManager = UserLocation.instance
     
     typealias Callback = ([StoresInfo]) -> ()
     
@@ -44,11 +42,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-      AromaClient.beginMessage(withTitle: "User Entered Map View")
-            .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
-            .withPriority(.medium)
-            .send()
       
       UserLocation.instance.requestLocation() { coordinate in
           
@@ -57,6 +50,11 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             self.populateStoreAnnotations()
             
         }
+      
+      AromaClient.beginMessage(withTitle: "User Entered Map View")
+            .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
+            .withPriority(.medium)
+            .send()
       
     }
     
@@ -78,34 +76,25 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.mapView.setRegion(region, animated: true)
     }
     
-    // populating stores as annotations in the mapView
     func populateStoreAnnotations() {
         
-        if stores != nil {
+        for store in storesInMapView {
             
-            for store in stores! {
-                
-                if store != nil {
-                    
-                    guard let storeName = store.storeName as? String else { return }
-                    let address = store.address.allValues
-                    let location = store.location
-                    
-                    let latitude = location.latitude
-                    let longitude = location.longitude
-                    
-                    let annotation = MKPointAnnotation()
-                    
-                    annotation.coordinate.latitude = latitude as! CLLocationDegrees
-                    annotation.coordinate.longitude = longitude as! CLLocationDegrees
-                    
-                    annotation.title = storeName
-                    mapView.addAnnotations([annotation])
-                    
-                }
-                
-            }
+            let storeName = store.storeName
+            let address = store.address.allValues
+            let location = store.location
             
+            let latitude = location.latitude
+            let longitude = location.longitude
+            
+            let annotation = MKPointAnnotation()
+            
+            annotation.coordinate.latitude = latitude
+            annotation.coordinate.longitude = longitude
+            
+            annotation.title = storeName
+            mapView.addAnnotations([annotation])
+
         }
         
     }
@@ -118,9 +107,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            print("mapView distance is : \(self.distance)")
-            
-            self.stores = stores
+            self.storesInMapView = stores
             
             self.populateStoreAnnotations()
             
@@ -130,13 +117,12 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         view.setSelected(true, animated: true)
         
     }
-  
+    
     func getDirections() {
         
         if let selectedPin = selectedPin {
@@ -156,25 +142,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 
 extension StoresMapViewController {
     
-    func dropPinZoomIn(placemark: MKPlacemark) {
-        
-        selectedPin = placemark
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.title
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-            annotation.subtitle = "\(city), \(state)"
-        }
-        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        
-    }
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
@@ -193,7 +160,6 @@ extension StoresMapViewController {
         button.setBackgroundImage(UIImage(named: "car"), for: .normal)
         button.addTarget(self, action: #selector(getDirections) , for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
-        
         
         return pinView
     }

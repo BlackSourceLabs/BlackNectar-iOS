@@ -6,10 +6,10 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import Foundation
-import UIKit
 import CoreLocation
+import Foundation
 import MapKit
+import UIKit
 
 
 class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
@@ -75,19 +75,19 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         switch status {
             
-        case CLAuthorizationStatus.restricted:
-            locationStatus = "Restricted Access to Location"
-            
-        case CLAuthorizationStatus.denied:
-            locationStatus = "User denied access to location"
-            
-        case CLAuthorizationStatus.notDetermined:
-            locationStatus = "Status not determined"
-            
-        default:
-            locationStatus = "Location Access Granted"
-            
-            allowAuthorization = true
+            case CLAuthorizationStatus.restricted:
+                locationStatus = "Restricted Access to Location"
+                
+            case CLAuthorizationStatus.denied:
+                locationStatus = "User denied access to location"
+                
+            case CLAuthorizationStatus.notDetermined:
+                locationStatus = "Status not determined"
+                
+            default:
+                locationStatus = "Location Access Granted"
+                
+                allowAuthorization = true
         }
         
     }

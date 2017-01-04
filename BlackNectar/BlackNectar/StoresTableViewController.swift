@@ -6,11 +6,12 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import UIKit
-import Foundation
 import CoreLocation
-import SWRevealController
+import Foundation
 import Kingfisher
+import SWRevealController
+import UIKit
+
 
 //TODO: Integrate with Carthage
 
@@ -26,7 +27,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     var showStores = false
     var onlyShowOpenStores = true
     
-    
     let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
@@ -36,13 +36,14 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
     }()
     
-    private let main = OperationQueue.main
+    fileprivate let main = OperationQueue.main
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
         configureSlideMenu()
+        setupRefreshControl()
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
@@ -63,6 +64,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func onFilterTapped(_ sender: Any) {
         
         if let revealController = self.revealViewController() {
@@ -112,7 +114,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         }
         
     }
-    
     
     fileprivate func configureSlideMenu() {
         
@@ -174,8 +175,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             return UITableViewCell()
         }
         
-        //        tableView.backgroundView?.removeFromSuperview()
-        
         let store = stores[indexPath.row]
         var addressString = ""
         if let currentLocation = UserLocation.instance.currentCoordinate {
@@ -196,7 +195,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-        
         
         return cell
         
@@ -221,8 +219,41 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
     }
     
+}
+
+extension StoresTableViewController {
     
+    func setupRefreshControl() {
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = UIColor.black
+        refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
+        
+        self.isRefreshAnimating = true
+        
+        refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
+        
+    }
+
+    func reloadStoreData() {
+        
+        guard let usersLocation = UserLocation.instance.currentCoordinate else { return }
+        let usersLatitude = usersLocation.latitude
+        let usersLongitude = usersLocation.longitude
+        
+        SearchStores.searchForStoresLocations(near: usersLocation) { stores in
+            self.stores = stores
+            
+            self.main.addOperation {
+                
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+                
+            }
+            
+        }
     
-    
+    }
+
 }
 

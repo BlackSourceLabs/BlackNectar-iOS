@@ -6,11 +6,11 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
-import UIKit
-import Foundation
-import MapKit
 import CoreLocation
+import Foundation
 import Kingfisher
+import MapKit
+import UIKit
 
 
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
@@ -22,13 +22,25 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     var selectedPin: MKPlacemark? = nil
     let userLocationManager = UserLocation.instance
+
     var distance = 0.0
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
-    
+  
     typealias Callback = ([StoresInfo]) -> ()
+  
+    let async: OperationQueue = {
+        
+        let operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 10
+        
+        return operationQueue
+    }()
     
+    private let main = OperationQueue.main
+  
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,10 +91,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         self.mapView.setRegion(region, animated: true)
     }
-    
-    
-    // populating stores as annotations in the mapView
-    
+  
+    // populating stores as annotations in the mapView    
     func populateStoreAnnotations() {
         
         if stores != nil {
@@ -107,13 +117,12 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                     mapView.addAnnotations([annotation])
                   
                 }
-                
+              
             }
             
         }
         
     }
-    
     
     private func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         

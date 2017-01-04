@@ -74,6 +74,7 @@ import UIKit
     }
     
     func updateView() {
+        
         layer.cornerRadius = cornerRadius
         layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
         layer.masksToBounds = true

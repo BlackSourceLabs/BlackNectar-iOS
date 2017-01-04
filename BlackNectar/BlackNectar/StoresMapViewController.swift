@@ -137,7 +137,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
         }
         
-        AromaClient.sendMediumPriorityMessage(withTitle: "Filter Opened", withBody: "User is getting directions to store: \(selectedPin)")
+        AromaClient.sendMediumPriorityMessage(withTitle: "Navigating to Store", withBody: "User is getting directions to store: \(selectedPin)")
         
     }
     

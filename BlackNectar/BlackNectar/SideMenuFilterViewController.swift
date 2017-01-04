@@ -114,8 +114,8 @@ class SideMenuFilterViewController: UITableViewController {
     @IBAction func applyButton(_ sender: UIButton) {
         
         self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
-        AromaClient.beginMessage(withTitle: "Apply button selected")
-            .addBody("Users filter settings: restaurants button is \(self.isRestaurant), stores button is \(self.isStore), isopenNow switch is \(self.isOpenNow)")
+        AromaClient.beginMessage(withTitle: "Apply Button Selected")
+            .addBody("Users Filter Settings: restaurants button is \(self.isRestaurant), stores button is \(self.isStore), isopenNow switch is \(self.isOpenNow)")
             .withPriority(.medium)
             .send()
         

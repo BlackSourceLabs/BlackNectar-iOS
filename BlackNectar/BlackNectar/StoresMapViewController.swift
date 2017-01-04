@@ -37,8 +37,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         super.viewDidLoad()
         
         prepareMapView()
-        AromaClient.beginMessage(withTitle: "User entered mapView screen")
-            .addBody("User is interacting with the map")
+        AromaClient.beginMessage(withTitle: "User Entered Map View")
+            .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
             .withPriority(.medium)
             .send()
     
@@ -137,10 +137,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
         }
         
-        AromaClient.beginMessage(withTitle: "Getting directions")
-            .addBody("User is getting directions to location via Apple Maps")
-            .withPriority(.medium)
-            .send()
+        AromaClient.sendMediumPriorityMessage(withTitle: "Filter Opened", withBody: "User is getting directions to store: \(selectedPin)")
         
     }
     

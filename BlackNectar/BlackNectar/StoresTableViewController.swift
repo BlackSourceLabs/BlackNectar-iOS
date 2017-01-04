@@ -75,7 +75,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             revealController.revealToggle(animated: true)
         }
         
-        AromaClient.sendMediumPriorityMessage(withTitle: "Filter Opened")
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
 
     }
     
@@ -89,7 +89,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     }
     
     func didCancelFilters() {
+        
         print("onCancel func hit")
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")   
     }
     
     

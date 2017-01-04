@@ -13,22 +13,23 @@ import MapKit
 import UIKit
 
 
-
 class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-  
-    private var storesInMapView: [StoresInfo] = []
-    var selectedPin: MKPlacemark? = nil
     
-    typealias Callback = ([StoresInfo]) -> ()
+    var stores: [StoresInfo]? = []
+    private var currentLocation: CLLocationCoordinate2D?
+    
+    var selectedPin: MKPlacemark? = nil
+    let userLocationManager = UserLocation.instance
 
     var distance = 0.0
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
-
-    
+  
+    typealias Callback = ([StoresInfo]) -> ()
+  
     let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
@@ -39,6 +40,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     private let main = OperationQueue.main
   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,7 +51,16 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
-            loadStoresInMapView(at: currentLocation)
+            if stores != nil {
+                
+                populateStoreAnnotations()
+                
+            } else {
+                
+                loadStoresInMapView(at: currentLocation)
+
+            }
+            
         }
             
         else {
@@ -80,29 +91,33 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         self.mapView.setRegion(region, animated: true)
     }
-
-    // populating stores as annotations in the mapView
+  
+    // populating stores as annotations in the mapView    
     func populateStoreAnnotations() {
-      
-        for store in stores {
-
-            if store != nil {
-
-                let storeName = store.storeName
-                let address = store.address.allValues
-                let location = store.location
-
-                let latitude = location.latitude
-                let longitude = location.longitude
+        
+        if stores != nil {
+            
+            for store in stores! {
                 
-                let annotation = MKPointAnnotation()
-
-                annotation.coordinate.latitude = latitude as! CLLocationDegrees
-                annotation.coordinate.longitude = longitude as! CLLocationDegrees
-
-                annotation.subtitle = "\(storeName)"
-                mapView.addAnnotations([annotation])
-
+                if store != nil {
+                    
+                    guard let storeName = store.storeName as? String else { return }
+                    let address = store.address.allValues
+                    let location = store.location
+                    
+                    let latitude = location.latitude
+                    let longitude = location.longitude
+                    
+                    let annotation = MKPointAnnotation()
+                    
+                    annotation.coordinate.latitude = latitude as! CLLocationDegrees
+                    annotation.coordinate.longitude = longitude as! CLLocationDegrees
+                    
+                    annotation.title = storeName
+                    mapView.addAnnotations([annotation])
+                  
+                }
+              
             }
             
         }
@@ -113,7 +128,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate, with: distance) { stores in
+        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
+        
+        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
             print("mapView distance is : \(self.distance)")
             
@@ -126,6 +143,13 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
         
     }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    
+        view.setSelected(true, animated: true)
+        
+    }
+    
     
     func getDirections() {
         

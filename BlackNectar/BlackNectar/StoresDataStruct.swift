@@ -14,7 +14,7 @@ import UIKit
 struct StoresInfo {
     
     let storeName: String
-    let location: NSDictionary
+    let location: CLLocationCoordinate2D
     let address: NSDictionary
     let storeImage: URL
     
@@ -36,7 +36,7 @@ struct StoresInfo {
         guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        return StoresInfo(storeName: storeName, location: location, address: address, storeImage: storeImage)
+        return StoresInfo(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage)
         
     }
     

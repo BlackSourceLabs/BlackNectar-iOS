@@ -19,19 +19,20 @@ import UIKit
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var mapButton: UIBarButtonItem!
+    
     
     var stores: [StoresInfo] = []
-    var distanceFilter: Int?
-    var showRestaurants: Bool?
-    var showStores: Bool?
-    var onlyShowOpenStores: Bool?
-    var isRefreshAnimating = false
+    var distanceFilter = 0.0
+    var showRestaurants = false
+    var showStores = false
+    var onlyShowOpenStores = true
     
     let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
-
+        
         return operationQueue
         
     }()
@@ -45,16 +46,12 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         configureSlideMenu()
         setupRefreshControl()
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             loadStores(at: currentLocation)
             
         } else {
-
+            
             
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
@@ -84,22 +81,31 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         showRestaurants = restaurants
         showStores = stores
         onlyShowOpenStores = openNow
-        distanceFilter = distanceInMiles
+        distanceFilter = Double(distanceInMiles)
+        
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+            
+            loadStores(at: currentLocation)
+            
+        }
         
     }
     
     func didCancelFilters() {
         
         print("onCancel func hit")
+
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")   
+
     }
-    
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distanceFilter))
+        
+        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             self.stores = stores
             
             self.main.addOperation {
@@ -114,14 +120,13 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
     }
     
-    
     fileprivate func configureSlideMenu() {
         
         guard let menu = self.revealViewController() else { return }
         
         if let gesture = menu.panGestureRecognizer() {
             
-             self.view.addGestureRecognizer(gesture)
+            self.view.addGestureRecognizer(gesture)
             
         }
         
@@ -140,6 +145,21 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         cell.storeImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "mapViewSegue" {
+            
+            let destination = segue.destination as? StoresMapViewController
+            
+            destination?.distance = distanceFilter
+            destination?.onlyShowOpenStores = self.onlyShowOpenStores
+            destination?.showRestaurants = self.showRestaurants
+            destination?.showStores = self.showStores
+            destination?.stores = self.stores
+            
+        }
     }
     
     
@@ -163,6 +183,15 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         let store = stores[indexPath.row]
         var addressString = ""
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+            
+            var distance = 0.0
+            distance = DistanceCalculation.getDistance(userLocation: currentLocation, storeLocation: store.location)
+            distance = DistanceCalculation.meteresToMiles(meters: distance)
+            let doubleDown = Double(round(distance * 100)/100)
+            
+            cell.storeDistance.text = "\(doubleDown) miles"
+        }
         
         //WTF IS THIS? FUNCTION PLEASE
         //Call it, combine addresses
@@ -206,20 +235,17 @@ extension StoresTableViewController {
         refreshControl?.backgroundColor = UIColor.black
         refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
         
-        self.isRefreshAnimating = true
-        
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
-    
-    
+
     func reloadStoreData() {
         
         guard let usersLocation = UserLocation.instance.currentCoordinate else { return }
         let usersLatitude = usersLocation.latitude
         let usersLongitude = usersLocation.longitude
         
-        SearchStores.searchForStoresLocations(near: usersLocation) { stores in
+        SearchStores.searchForStoresLocations(near: usersLocation, with: distanceFilter) { stores in
             self.stores = stores
             
             self.main.addOperation {
@@ -232,5 +258,6 @@ extension StoresTableViewController {
         }
     
     }
-    
+
 }
+

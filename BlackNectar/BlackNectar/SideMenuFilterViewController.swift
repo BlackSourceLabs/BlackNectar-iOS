@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import AromaSwiftClient
 import Foundation
 import SWRevealController
 import UIKit
@@ -72,6 +73,7 @@ class SideMenuFilterViewController: UITableViewController {
         } else {
 
             isOpenNow = false
+            
         }
 
     }
@@ -119,8 +121,13 @@ class SideMenuFilterViewController: UITableViewController {
     }
     
     @IBAction func applyButton(_ sender: UIButton) {
-
-        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: Int(self.distanceFilter))
+        
+        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
+        AromaClient.beginMessage(withTitle: "Apply Button Selected")
+            .addBody("Users Filter Settings: restaurants button is \(self.isRestaurant), stores button is \(self.isStore), isopenNow switch is \(self.isOpenNow)")
+            .withPriority(.medium)
+            .send()
+        
 
         closeSideMenu()
 

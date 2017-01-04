@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import AromaSwiftClient
 import CoreLocation
 import Foundation
 import Kingfisher
@@ -71,6 +72,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             revealController.revealToggle(animated: true)
         }
         
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
+
     }
     
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
@@ -91,7 +94,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     func didCancelFilters() {
         
         print("onCancel func hit")
-        
+
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")   
+
     }
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -128,6 +133,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
         
         sideMenu.delegate = self
+        
         
     }
     

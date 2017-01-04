@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import AromaSwiftClient
 import CoreLocation
 import Foundation
 import Kingfisher
@@ -36,6 +37,11 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         super.viewDidLoad()
         
         prepareMapView()
+        AromaClient.beginMessage(withTitle: "User entered mapView screen")
+            .addBody("User is interacting with the map")
+            .withPriority(.medium)
+            .send()
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,6 +136,11 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             mapItem.openInMaps(launchOptions: launchOptions)
             
         }
+        
+        AromaClient.beginMessage(withTitle: "Getting directions")
+            .addBody("User is getting directions to location via Apple Maps")
+            .withPriority(.medium)
+            .send()
         
     }
     

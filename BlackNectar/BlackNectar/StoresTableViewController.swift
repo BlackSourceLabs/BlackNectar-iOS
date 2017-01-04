@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import AromaSwiftClient
 import CoreLocation
 import Foundation
 import Kingfisher
@@ -73,6 +74,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
         }
+        
+        AromaClient.sendMediumPriorityMessage(withTitle: "Filter Opened")
 
     }
     
@@ -123,6 +126,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
         
         sideMenu.delegate = self
+        
         
     }
     

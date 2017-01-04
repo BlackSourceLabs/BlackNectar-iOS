@@ -11,14 +11,14 @@ import SWRevealController
 import UIKit
 
 protocol SideMenuFilterDelegate {
-    
+
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
     func didCancelFilters()
-    
+
 }
 
 class SideMenuFilterViewController: UITableViewController {
-    
+
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var openNowLabel: UILabel!
@@ -29,148 +29,157 @@ class SideMenuFilterViewController: UITableViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var contentViewCell: UIView!
     @IBOutlet weak var slideValueLabel: UILabel!
-    
-    var distanceFilter = 0
+
+    var distanceFilter: CGFloat = 0.00
     var isRestaurant = false
     var isStore = false
     var isOpenNow = false
     var delegate: SideMenuFilterDelegate?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         styleMenu()
+
+    }
+
+    func passingDistance() -> CGFloat {
         
+        return distanceFilter
+    
     }
     
     @IBAction func sliderDidSlide(_ sender: UISlider) {
+
+        distanceFilter = CGFloat(slider.value)
         
-        distanceFilter = Int(slider.value)
+        let roundedNumber = Double(round(distanceFilter * 100)/100)
         
-        if distanceFilter != 0 {
-            let number = String(describing: distanceFilter)
-            slideValueLabel.text = number
+        if roundedNumber != 0 {
+            
+            slideValueLabel.text = "\(roundedNumber)"
         }
         
     }
-    
+
     @IBAction func openNowSwitchOffOn(_ sender: Any) {
-        
+
         if openNowSwitch.isOn {
-            
+
             isOpenNow = true
-            
+
         } else {
-            
+
             isOpenNow = false
         }
-        
+
     }
-    
+
     @IBAction func onRestaurant(_ sender: Any) {
-        
+
         if isRestaurant == false {
-            
+
             isRestaurant = true
             styleButtonOn(button: restaurantButton)
-            
+
         } else if isRestaurant == true {
-            
+
             isRestaurant = false
             styleButtonOff(button: restaurantButton)
-            
+
         } else {
-            
+
             isRestaurant = true
             styleButtonOn(button: restaurantButton)
-            
+
         }
-        
+
     }
-    
+
     @IBAction func onStore(_ sender: Any) {
-        
+
         if isStore == false {
-            
+
             isStore = true
             styleButtonOn(button: storesButton)
-            
+
         } else if isStore == true {
-            
+
             isStore = false
             styleButtonOff(button: storesButton)
-            
+
         } else {
-            
+
             isStore = true
             styleButtonOn(button: storesButton)
-            
+
         }
-        
+
     }
     
     @IBAction func applyButton(_ sender: UIButton) {
-        
-        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: self.distanceFilter)
-        
+
+        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: Int(self.distanceFilter))
+
         closeSideMenu()
-        
+
     }
-    
+
     @IBAction func cancelButton(_ sender: UIButton) {
-        
+
         closeSideMenu()
-        
+
     }
-    
-    
+
+
     private func styleMenu() {
-        
-        slider.minimumValue = 2
-        slider.maximumValue = 25
-        
+
+//        slider.minimumValue = 2
+//        slider.maximumValue = 25
+
         applyButton.layer.borderColor = UIColor.white.cgColor
         applyButton.layer.borderWidth = 2
         applyButton.layer.cornerRadius = 10
-        
+
         cancelButton.layer.borderColor = UIColor.white.cgColor
         cancelButton.layer.borderWidth = 2
         cancelButton.layer.cornerRadius = 10
-        
+
         restaurantButton.layer.cornerRadius = 10
         storesButton.layer.cornerRadius = 10
-        
+
         contentViewCell.layer.opacity = 0.75
-        
+
     }
-    
+
 }
 
 extension SideMenuFilterViewController {
-    
+
     func styleButtonOn(button: UIButton) {
-        
+
         button.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
-        
+
     }
-    
+
     func styleButtonOff(button: UIButton) {
-        
+
         button.layer.backgroundColor = UIColor.darkGray.cgColor
-        
+
     }
-    
+
 }
 
 extension SideMenuFilterViewController {
-    
+
     func closeSideMenu() {
-        
+
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
-            
+
         }
-        
+
     }
-    
+
 }

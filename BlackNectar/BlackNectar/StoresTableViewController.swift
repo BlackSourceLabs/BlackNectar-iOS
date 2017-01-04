@@ -18,13 +18,14 @@ import UIKit
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var mapButton: UIBarButtonItem!
+    
     
     var stores: [StoresInfo] = []
-    var distanceFilter: Int?
-    var showRestaurants: Bool?
-    var showStores: Bool?
-    var onlyShowOpenStores: Bool?
-    var isRefreshAnimating = false
+    var distanceFilter = 0.0
+    var showRestaurants = false
+    var showStores = false
+    var onlyShowOpenStores = true
     
     let async: OperationQueue = {
         
@@ -44,16 +45,12 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         configureSlideMenu()
         setupRefreshControl()
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             loadStores(at: currentLocation)
             
         } else {
-
+            
             
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
@@ -81,20 +78,26 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         showRestaurants = restaurants
         showStores = stores
         onlyShowOpenStores = openNow
-        distanceFilter = distanceInMiles
+        distanceFilter = DistanceCalculation().milesToMeters(miles: Double(distanceInMiles))
         
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+            
+            loadStores(at: currentLocation)
+            
+        }
+                
     }
     
     func didCancelFilters() {
         print("onCancel func hit")
+        dismiss(animated: true, completion: nil)
     }
-    
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate, with: distanceFilter) { stores in
             self.stores = stores
             
             self.main.addOperation {
@@ -136,6 +139,21 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "mapViewSegue" {
+            
+            if let destination = segue.destination as? StoresMapViewController {
+            
+                destination.distance = distanceFilter
+                destination.onlyShowOpenStores = self.onlyShowOpenStores
+                destination.showRestaurants = self.showRestaurants
+                destination.showStores = self.showStores
+                
+            }
+        }
+    }
+    
     
     // MARK: - Table view data source
     
@@ -157,6 +175,15 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         let store = stores[indexPath.row]
         var addressString = ""
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+
+            var distance = 0.0
+            distance = DistanceCalculation().getDistance(userLocation: currentLocation, storeLocation: store.location)
+            distance = DistanceCalculation().meteresToMiles(meters: distance)
+            let doubleDown = Double(round(distance * 100)/100)
+            
+            cell.storeDistance.text = "\(doubleDown) miles"
+        }
         
         //WTF IS THIS? FUNCTION PLEASE
         //Call it, combine addresses
@@ -166,6 +193,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
+
         
         return cell
         

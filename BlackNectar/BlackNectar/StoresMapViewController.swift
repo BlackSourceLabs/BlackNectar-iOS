@@ -18,7 +18,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var mapView: MKMapView!
     
-    private var currentLocation: CLLocationCoordinate2D?
+    var currentCoordinates: CLLocationCoordinate2D?
     var storesInMapView: [StoresInfo] = []
     var selectedPin: MKPlacemark?
     var distance = 0.0
@@ -42,31 +42,20 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        prepareMapView()
-        AromaClient.beginMessage(withTitle: "User Entered Map View")
+      
+      UserLocation.instance.requestLocation() { coordinate in
+          
+            self.prepareMapView()
+            self.loadStoresInMapView(at: coordinate)
+            self.populateStoreAnnotations()
+            
+        }
+      
+      AromaClient.beginMessage(withTitle: "User Entered Map View")
             .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
             .withPriority(.medium)
             .send()
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            
-            populateStoreAnnotations()
-            loadStoresInMapView(at: currentLocation)
-            
-        } else {
-            
-            UserLocation.instance.requestLocation() { coordinate in
-                self.loadStoresInMapView(at: coordinate)
-                
-            }
-            
-        }
-        
+      
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,7 +94,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
             annotation.title = storeName
             mapView.addAnnotations([annotation])
-            
+
         }
         
     }
@@ -127,7 +116,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
         
     }
-    
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         

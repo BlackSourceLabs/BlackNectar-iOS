@@ -157,7 +157,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             destination?.onlyShowOpenStores = self.onlyShowOpenStores
             destination?.showRestaurants = self.showRestaurants
             destination?.showStores = self.showStores
-            destination?.stores = self.stores
+            destination?.storesInMapView = self.stores
             
         }
     }

@@ -122,11 +122,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-    
-    //    func convertHexStringToUIColor(hex:String) -> UIColor {
-    //
-    //    }
-    
     func getDirections() {
         
         if let selectedPin = selectedPin {

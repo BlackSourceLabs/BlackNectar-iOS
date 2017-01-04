@@ -56,7 +56,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="236"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTC-fs-IR7" id="Z8Q-oK-zQ1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pEi-tb-VCy">
@@ -75,7 +75,7 @@
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Address" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18x-pk-FJU">
-                                                    <rect key="frame" x="8" y="40" width="219" height="33"/>
+                                                    <rect key="frame" x="8" y="54" width="219" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="219" id="dc1-oK-0ra"/>
                                                         <constraint firstAttribute="height" constant="33" id="xTN-s6-8da"/>
@@ -85,7 +85,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qO-wu-Jcb">
-                                                    <rect key="frame" x="8" y="0.0" width="239" height="38"/>
+                                                    <rect key="frame" x="-20" y="8" width="239" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="38" id="IUT-Gp-io3"/>
                                                         <constraint firstAttribute="width" constant="239" id="WLa-Mi-api"/>
@@ -95,7 +95,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNA-N4-ZzW" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                    <rect key="frame" x="272" y="26" width="58" height="47"/>
+                                                    <rect key="frame" x="297" y="26" width="58" height="47"/>
                                                     <color key="backgroundColor" red="0.900626123" green="0.73430758709999999" blue="0.2481203079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="58" id="b8A-T9-fIV"/>
@@ -117,10 +117,8 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqh-uS-rVW">
-                                                    <rect key="frame" x="8" y="67" width="88" height="18"/>
-
+                                                    <rect key="frame" x="33" y="88" width="171" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="171" id="mgl-he-dku"/>
                                                         <constraint firstAttribute="height" constant="25" id="nVZ-1v-LtZ"/>
@@ -130,7 +128,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtk-HX-iyd">
-                                                    <rect key="frame" x="210" y="11" width="20" height="24"/>
+                                                    <rect key="frame" x="227" y="11" width="45" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="3oD-Vo-sgr"/>
                                                         <constraint firstAttribute="height" constant="24" id="IOb-fD-SkX"/>
@@ -293,7 +291,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-YP-JTy">
                                                     <rect key="frame" x="22" y="118" width="82" height="21"/>
-
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Hmp-lF-AwD"/>
                                                         <constraint firstAttribute="width" constant="82" id="z5f-kG-bP6"/>
@@ -302,7 +299,6 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.25" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="X1A-Xi-EyJ">
                                                     <rect key="frame" x="20" y="154" width="220" height="31"/>
                                                     <constraints>

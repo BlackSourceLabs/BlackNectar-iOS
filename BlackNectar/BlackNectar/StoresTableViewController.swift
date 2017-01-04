@@ -229,8 +229,6 @@ extension StoresTableViewController {
         refreshControl?.backgroundColor = UIColor.black
         refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
         
-        self.isRefreshAnimating = true
-        
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
@@ -241,7 +239,7 @@ extension StoresTableViewController {
         let usersLatitude = usersLocation.latitude
         let usersLongitude = usersLocation.longitude
         
-        SearchStores.searchForStoresLocations(near: usersLocation) { stores in
+        SearchStores.searchForStoresLocations(near: usersLocation, with: distanceFilter) { stores in
             self.stores = stores
             
             self.main.addOperation {

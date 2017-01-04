@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import AromaSwiftClient
 import CoreLocation
 import Foundation
 import Kingfisher
@@ -43,17 +44,20 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        prepareMapView()
-        
-        UserLocation.instance.requestLocation() { coordinate in
+   
+      AromaClient.beginMessage(withTitle: "User Entered Map View")
+            .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
+            .withPriority(.medium)
+            .send()
+      
+      UserLocation.instance.requestLocation() { coordinate in
           
             self.prepareMapView()
             self.loadStoresInMapView(at: coordinate)
             self.populateStoreAnnotations()
             
         }
-        
+      
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,13 +130,13 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
+
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         view.setSelected(true, animated: true)
         
     }
-    
-    
+  
     func getDirections() {
         
         if let selectedPin = selectedPin {
@@ -142,6 +146,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             mapItem.openInMaps(launchOptions: launchOptions)
             
         }
+        
+        AromaClient.sendMediumPriorityMessage(withTitle: "Navigating to Store", withBody: "User is getting directions to store: \(selectedPin)")
         
     }
     

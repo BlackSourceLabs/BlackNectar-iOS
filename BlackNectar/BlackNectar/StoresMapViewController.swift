@@ -19,18 +19,18 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     @IBOutlet weak var mapView: MKMapView!
     
     var stores: [StoresInfo]? = []
-    private var currentLocation: CLLocationCoordinate2D?
+    var currentCoordinates: CLLocationCoordinate2D?
     
     var selectedPin: MKPlacemark? = nil
     let userLocationManager = UserLocation.instance
-
+    
     var distance = 0.0
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
-  
+    
     typealias Callback = ([StoresInfo]) -> ()
-  
+    
     let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
@@ -40,44 +40,24 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }()
     
     private let main = OperationQueue.main
-  
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        prepareMapView()
-        AromaClient.beginMessage(withTitle: "User Entered Map View")
+   
+      AromaClient.beginMessage(withTitle: "User Entered Map View")
             .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
             .withPriority(.medium)
             .send()
-    
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            
-            if stores != nil {
-                
-                populateStoreAnnotations()
-                
-            } else {
-                
-                loadStoresInMapView(at: currentLocation)
-
-            }
+      
+      UserLocation.instance.requestLocation() { coordinate in
+          
+            self.prepareMapView()
+            self.loadStoresInMapView(at: coordinate)
+            self.populateStoreAnnotations()
             
         }
-            
-        else {
-            
-            UserLocation.instance.requestLocation() { coordinate in
-                self.loadStoresInMapView(at: coordinate)
-                
-            }
-            
-        }
-        
+      
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,8 +77,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         self.mapView.setRegion(region, animated: true)
     }
-  
-    // populating stores as annotations in the mapView    
+    
+    // populating stores as annotations in the mapView
     func populateStoreAnnotations() {
         
         if stores != nil {
@@ -121,9 +101,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                     
                     annotation.title = storeName
                     mapView.addAnnotations([annotation])
-                  
+                    
                 }
-              
+                
             }
             
         }
@@ -152,7 +132,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    
+        
         view.setSelected(true, animated: true)
         
     }

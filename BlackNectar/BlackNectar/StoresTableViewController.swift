@@ -41,24 +41,21 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        stores.removeAll()
         
         UserLocation.instance.initialize()
         configureSlideMenu()
         setupRefreshControl()
         
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            
-            loadStores(at: currentLocation)
-            
-        } else {
-            
-            
-            UserLocation.instance.requestLocation() { coordinate in
-                self.loadStores(at: coordinate)
-            }
-            
-        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
+        UserLocation.instance.requestLocation() { coordinate in
+            self.loadStores(at: coordinate)
+        }
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,7 +70,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         }
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
-
+        
     }
     
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
@@ -94,9 +91,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     func didCancelFilters() {
         
         print("onCancel func hit")
-
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")   
-
+        
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
+        
     }
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -238,7 +235,7 @@ extension StoresTableViewController {
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
-
+    
     func reloadStoreData() {
         
         guard let usersLocation = UserLocation.instance.currentCoordinate else { return }
@@ -256,8 +253,8 @@ extension StoresTableViewController {
             }
             
         }
-    
+        
     }
-
+    
 }
 

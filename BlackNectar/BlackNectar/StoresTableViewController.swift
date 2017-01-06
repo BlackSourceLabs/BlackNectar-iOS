@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import AromaSwiftClient
 import CoreLocation
 import Foundation
@@ -49,14 +50,16 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             loadStores(at: currentLocation)
+            LOG.info("Loading Stores around the Users Location")
             
         } else {
-            
             
             UserLocation.instance.requestLocation() { coordinate in
                 self.loadStores(at: coordinate)
             }
             
+            LOG.info("Requesting and Updating the Users Location")
+        
         }
         
     }
@@ -73,6 +76,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         }
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
+        LOG.info("Opening Filter")
 
     }
     
@@ -95,7 +99,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         print("onCancel func hit")
 
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")   
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
+        LOG.info("Cancelling Filter")
 
     }
     
@@ -178,11 +183,15 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+           
+            LOG.error("Failed to dequeue StoresTableViewCell")
             return UITableViewCell()
+       
         }
         
         let store = stores[indexPath.row]
         var addressString = ""
+        
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             var distance = 0.0

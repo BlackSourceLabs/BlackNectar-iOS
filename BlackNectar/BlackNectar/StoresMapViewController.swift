@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import AromaSwiftClient
 import CoreLocation
 import Foundation
@@ -70,6 +71,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         guard let region = UserLocation.instance.currentRegion else {
             
+            LOG.error("Failed to Update the Users Current Region")
             return
         }
         

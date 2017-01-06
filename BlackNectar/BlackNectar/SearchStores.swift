@@ -30,7 +30,7 @@ class SearchStores {
         
         }
         
-        let storesAPI = "https://blacknectar-api.sirwellington.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"
+        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"
         let url = URL(string: storesAPI)!
         
         getStoresFrom(url: url, callback: callback)

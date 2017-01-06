@@ -117,26 +117,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-        view.setSelected(true, animated: true)
-        
-    }
-    
-    func getDirections() {
-        
-        if let selectedPin = selectedPin {
-            
-            let mapItem = MKMapItem(placemark: selectedPin)
-            let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-            mapItem.openInMaps(launchOptions: launchOptions)
-            
-        }
-        
-        AromaClient.sendMediumPriorityMessage(withTitle: "Navigating to Store", withBody: "User is getting directions to store: \(selectedPin)")
-        
-    }
-    
 }
 
 
@@ -152,16 +132,46 @@ extension StoresMapViewController {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView?.pinTintColor = UIColor.black
-        pinView?.isSelected = true
         pinView?.canShowCallout = true
         
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "car"), for: .normal)
-        button.addTarget(self, action: #selector(getDirections) , for: .touchUpInside)
+        
+        button.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
         pinView?.leftCalloutAccessoryView = button
         
         return pinView
     }
     
 }
+    
+extension StoresMapViewController {
+        
+        func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
+            
+            let storePlacemark = MKPlacemark(coordinate: storeCoordinates, addressDictionary: [ "\(title)" : storeName ])
+            let storePin = MKMapItem(placemark: storePlacemark)
+            storePin.name = storeName
+            
+            return storePin
+            
+        }
+        
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            
+            let appleMapslaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            
+            if let storeLocation = view.annotation {
+                
+                let storeName: String = (storeLocation.title ?? nil) ?? "Uknown"
+                
+                getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
+                
+            }
+            
+        }
+        
+    }
+    
+
+

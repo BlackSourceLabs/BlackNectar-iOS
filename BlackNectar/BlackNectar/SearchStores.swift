@@ -93,14 +93,13 @@ class SearchStores {
         }
         
         for element in jsonArray {
+            
             guard let object = element as? NSDictionary else {
-                
-            continue
+                continue
                 
             }
             
             guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
-            
             storesArray.append(store)
             
         }

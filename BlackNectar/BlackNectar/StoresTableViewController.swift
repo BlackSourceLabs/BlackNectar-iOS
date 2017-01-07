@@ -16,7 +16,7 @@ import UIKit
 
 //TODO: Integrate with Carthage
 
-class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
+class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet weak var mapButton: UIBarButtonItem!
@@ -27,6 +27,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
+    let edgeGesture = UIScreenEdgePanGestureRecognizer()
+    var panningWasTriggered = false
     
     let async: OperationQueue = {
         
@@ -59,6 +61,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
             
         }
         
+        setsEdgePanGesture()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,7 +77,85 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         }
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
+        
+    }
+    
+    func setsEdgePanGesture() {
+        
+        edgeGesture.addTarget(self, action: Selector("handleRightEdge:"))
+        edgeGesture.edges = .right
+        edgeGesture.delegate = self
+//        edgeGesture.addTarget(StoresMapViewController(), action: Selector(("handleTopEdgeGesture:")))
 
+        self.view.addGestureRecognizer(edgeGesture)
+    
+    }
+    
+    func handleRightEdge(gesture: UIScreenEdgePanGestureRecognizer) {
+        
+        switch gesture.state {
+        
+        case .began, .changed:
+        
+            if !panningWasTriggered {
+            
+                let threshold: CGFloat = 10
+                let translation = abs(gesture.translation(in: view).x)
+                
+                if translation >= threshold {
+                    
+                    performSegue(withIdentifier: "MapViewSegue", sender: nil)
+                    
+                    panningWasTriggered = true
+                
+                }
+        
+            }
+        
+        case .cancelled, .failed:
+        
+            panningWasTriggered = false
+        
+        default: break
+            
+        }
+        
+    }
+    
+    func goToMapView() {
+        
+        
+        
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return false
+        
     }
     
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
@@ -94,9 +176,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     func didCancelFilters() {
         
         print("onCancel func hit")
-
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")   
-
+        
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
+        
     }
     
     private func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -238,7 +320,7 @@ extension StoresTableViewController {
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
-
+    
     func reloadStoreData() {
         
         guard let usersLocation = UserLocation.instance.currentCoordinate else { return }
@@ -256,8 +338,9 @@ extension StoresTableViewController {
             }
             
         }
-    
+        
     }
-
+    
 }
+
 

@@ -80,84 +80,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    func setsEdgePanGesture() {
-        
-        edgeGesture.addTarget(self, action: Selector("handleRightEdge:"))
-        edgeGesture.edges = .right
-        edgeGesture.delegate = self
-//        edgeGesture.addTarget(StoresMapViewController(), action: Selector(("handleTopEdgeGesture:")))
 
-        self.view.addGestureRecognizer(edgeGesture)
-    
-    }
-    
-    func handleRightEdge(gesture: UIScreenEdgePanGestureRecognizer) {
-        
-        switch gesture.state {
-        
-        case .began, .changed:
-        
-            if !panningWasTriggered {
-            
-                let threshold: CGFloat = 10
-                let translation = abs(gesture.translation(in: view).x)
-                
-                if translation >= threshold {
-                    
-                    performSegue(withIdentifier: "MapViewSegue", sender: nil)
-                    
-                    panningWasTriggered = true
-                
-                }
-        
-            }
-        
-        case .cancelled, .failed:
-        
-            panningWasTriggered = false
-        
-        default: break
-            
-        }
-        
-    }
-    
-    func goToMapView() {
-        
-        
-        
-    }
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return false
-        
-    }
-    
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
         showRestaurants = restaurants
@@ -343,4 +266,78 @@ extension StoresTableViewController {
     
 }
 
+extension StoresTableViewController {
+    
+    func setsEdgePanGesture() {
+        
+        edgeGesture.addTarget(self, action: #selector(self.handleRightEdge(gesture:)))
+        edgeGesture.edges = .right
+        edgeGesture.delegate = self
+        
+        self.view.addGestureRecognizer(edgeGesture)
+        
+    }
+    
+    func handleRightEdge(gesture: UIScreenEdgePanGestureRecognizer) {
+        
+        switch gesture.state {
+            
+        case .began, .changed:
+            
+            if !panningWasTriggered {
+                
+                let threshold: CGFloat = 20
+                let translation = abs(gesture.translation(in: view).x)
+                
+                if translation >= threshold {
+                    
+                    performSegue(withIdentifier: "mapViewSegue", sender: nil)
+                    
+                    panningWasTriggered = true
+                    
+                }
+                
+            }
+            
+        case .cancelled, .failed:
+            
+            panningWasTriggered = false
+            
+        default: break
+            
+        }
+        
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return false
+        
+    }
+    
+}
 

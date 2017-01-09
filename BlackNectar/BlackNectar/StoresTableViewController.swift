@@ -38,26 +38,21 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        stores.removeAll()
         
         UserLocation.instance.initialize()
         configureSlideMenu()
         setupRefreshControl()
         
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            
-            loadStores(at: currentLocation)
-            LOG.info("Loading Stores around the Users Location")
-            
-        } else {
-            
-            UserLocation.instance.requestLocation() { coordinate in
-                self.loadStores(at: coordinate)
-            }
-            
-            LOG.info("Requesting and Updating the Users Location")
-            
-        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
+        UserLocation.instance.requestLocation() { coordinate in
+            self.loadStores(at: coordinate)
+        }
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,7 +68,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate {
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         LOG.info("Opening Filter")
-        
+
     }
     
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {

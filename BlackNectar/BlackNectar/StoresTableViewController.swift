@@ -18,7 +18,7 @@ import UIKit
 //TODO: Integrate with Carthage
 
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
-
+    
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet weak var mapButton: UIBarButtonItem!
@@ -44,7 +44,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         stores.removeAll()
         
         UserLocation.instance.initialize()
@@ -60,8 +60,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         UserLocation.instance.requestLocation() { coordinate in
             self.loadStores(at: coordinate)
         }
-    
-
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,10 +77,10 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         LOG.info("Opening Filter")
-      
+        
     }
     
-
+    
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
         showRestaurants = restaurants
@@ -211,7 +211,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-
+        
         return cell
         
     }
@@ -292,22 +292,23 @@ extension StoresTableViewController {
     }
     
     func setGestureProperties() {
-    
+        
         if !panningWasTriggered {
+            
+            let threshold: CGFloat = 20
+            let translation = abs(edgeGesture.translation(in: view).x)
+            
+            if translation >= threshold {
                 
-                let threshold: CGFloat = 20
-                let translation = abs(gesture.translation(in: view).x)
+                performSegue(withIdentifier: "mapViewSegue", sender: nil)
                 
-                if translation >= threshold {
-                    
-                    performSegue(withIdentifier: "mapViewSegue", sender: nil)
-                    
-                    panningWasTriggered = true
-                    
-                }
-    
+                panningWasTriggered = true
+                
+            }
+            
+        }
     }
-  
+    
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
@@ -315,12 +316,6 @@ extension StoresTableViewController {
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         
         return true
         
@@ -335,7 +330,13 @@ extension StoresTableViewController {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return false
+        
+    }
+    
+}
 
+extension StoresTableViewController {
+    
     func networkLoadingIndicatorIsSpinning() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

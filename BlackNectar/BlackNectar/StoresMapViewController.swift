@@ -101,7 +101,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-    private func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
+    func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
@@ -118,7 +118,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
         
     }
-    
+
 }
 
 
@@ -143,37 +143,50 @@ extension StoresMapViewController {
         pinView?.leftCalloutAccessoryView = button
         
         return pinView
+        
     }
     
 }
-    
+
 extension StoresMapViewController {
+    
+    func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
         
-        func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
-            
-            let storePlacemark = MKPlacemark(coordinate: storeCoordinates, addressDictionary: [ "\(title)" : storeName ])
-            let storePin = MKMapItem(placemark: storePlacemark)
-            storePin.name = storeName
-            
-            return storePin
-            
-        }
+        let storePlacemark = MKPlacemark(coordinate: storeCoordinates, addressDictionary: [ "\(title)" : storeName ])
+        let storePin = MKMapItem(placemark: storePlacemark)
+        storePin.name = storeName
         
-        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        return storePin
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let appleMapslaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        
+        if let storeLocation = view.annotation {
             
-            let appleMapslaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            let storeName: String = (storeLocation.title ?? nil) ?? "Uknown"
             
-            if let storeLocation = view.annotation {
-                
-                let storeName: String = (storeLocation.title ?? nil) ?? "Uknown"
-                
-                getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
-                
-            }
+            getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
             
         }
         
     }
     
+}
+
+extension StoresMapViewController {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
+        
+        storesInMapView.removeAll()
+        
+        self.loadStoresInMapView(at: mapView.centerCoordinate)
+        self.populateStoreAnnotations()
+        
+    }
+    
+}
 
 

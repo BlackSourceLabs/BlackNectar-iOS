@@ -180,7 +180,13 @@ extension StoresMapViewController {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         
-        storesInMapView.removeAll()
+//        storesInMapView.removeAll()
+        
+        for annotation in mapView.annotations {
+            
+            mapView.removeAnnotation(annotation)
+            
+        }
         
         self.loadStoresInMapView(at: mapView.centerCoordinate)
         self.populateStoreAnnotations()

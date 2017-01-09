@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import CoreLocation
 import Foundation
 import UIKit
@@ -29,7 +30,7 @@ class SearchStores {
         
         }
         
-        let storesAPI = "https://blacknectar-api.sirwellington.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"
+        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"
         let url = URL(string: storesAPI)!
         
         getStoresFrom(url: url, callback: callback)
@@ -54,13 +55,17 @@ class SearchStores {
             
             //If I have data, parse the stores from it
             if error != nil {
-                print("Failed to download stores from: \(url)")
+                
+                LOG.error("Failed to download stores from: \(url)")
                 return
+                
             }
             
             guard let data = data else {
-                print("Could not load stores from: \(url)")
+                
+                LOG.error("Could not load stores from: \(url)")
                 return
+                
             }
             
             let stores: [StoresInfo] = parseStores(from: data)
@@ -82,16 +87,19 @@ class SearchStores {
         
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
               let jsonArray = json as? NSArray else {
+                
               return storesArray
+                
         }
         
         for element in jsonArray {
+            
             guard let object = element as? NSDictionary else {
-            continue
+                continue
+                
             }
             
             guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
-            
             storesArray.append(store)
             
         }

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import Foundation
 import CoreLocation
 

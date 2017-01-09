@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import CoreLocation
 import Foundation
 import UIKit
@@ -27,8 +28,10 @@ struct StoresInfo {
             let storeImage = URL(string: storeType)
             
             else {
-                print ("Guard failed on fromJson()")
+                
+                LOG.error("Guard Failed on fromJson method")
                 return nil
+                
         }
         
         guard let coordinatesDictionary = dictionary ["location"] as? NSDictionary else { return nil }
@@ -53,7 +56,8 @@ struct AddressInfo {
         guard let street = dictionary["address_line_1"] as? String,
             let city = dictionary["city"] as? String,
             let state = dictionary["state"] as? String else {
-                print("AddressInfo struct error")
+                
+                LOG.error("Guard Failed on addressToString method")
                 return nil
                 
         }

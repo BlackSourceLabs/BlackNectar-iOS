@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import CoreLocation
 import Foundation
 import MapKit
@@ -17,22 +18,21 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     static let instance = UserLocation()
     private override init() {}
     
+    private var alreadyInitialized = false
+    private var onLocation: ((CLLocationCoordinate2D) -> Void)?
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
+    var currentRegion: MKCoordinateRegion?
     
     var currentCoordinate: CLLocationCoordinate2D? {
         return currentLocation?.coordinate
     }
     
-    var currentRegion: MKCoordinateRegion?
-    
-    private var alreadyInitialized = false
-    
-    private var onLocation: ((CLLocationCoordinate2D) -> Void)?
-    
     func initialize() {
         
         if alreadyInitialized {
+            
+            LOG.error("Failed to Initialize locationManager")
             return
         }
         
@@ -46,18 +46,24 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     }
     
     func requestLocation(callback: @escaping ((CLLocationCoordinate2D) -> Void)) {
+        
          self.onLocation = callback
         locationManager.startUpdatingLocation()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         guard let location: CLLocation = locations.first else {
+            
+            LOG.error("Failed to Update First Location")
             return
         }
         
         defer {
+            
             locationManager.stopUpdatingLocation()
+            
         }
         
         self.currentLocation = location
@@ -66,6 +72,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         onLocation?(location.coordinate)
         onLocation = nil
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

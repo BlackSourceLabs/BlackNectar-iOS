@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import AromaSwiftClient
 import CoreLocation
 import Foundation
@@ -17,10 +18,10 @@ import UIKit
 //TODO: Integrate with Carthage
 
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
+
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet weak var mapButton: UIBarButtonItem!
-    
     
     var stores: [StoresInfo] = []
     var distanceFilter = 0.0
@@ -43,26 +44,24 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        stores.removeAll()
         
         UserLocation.instance.initialize()
         configureSlideMenu()
         setupRefreshControl()
         
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            
-            loadStores(at: currentLocation)
-            
-        } else {
-            
-            
-            UserLocation.instance.requestLocation() { coordinate in
-                self.loadStores(at: coordinate)
-            }
-            
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        setEdgeGesture()
+        
+        UserLocation.instance.requestLocation() { coordinate in
+            self.loadStores(at: coordinate)
         }
-        
-        setsEdgePanGesture()
-        
+    
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,7 +76,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
-        
+        LOG.info("Opening Filter")
+      
     }
     
 
@@ -98,17 +98,16 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     func didCancelFilters() {
         
-        print("onCancel func hit")
-        
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
+        LOG.info("Cancelling Filter")
         
     }
     
-    private func loadStores(at coordinate: CLLocationCoordinate2D) {
+    fileprivate func loadStores(at coordinate: CLLocationCoordinate2D) {
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        networkLoadingIndicatorIsSpinning()
         
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distanceFilter))
+        let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             self.stores = stores
@@ -117,7 +116,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
                 
                 self.tableView.reloadData()
                 
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.networkLoadingIndicatorIsNotSpinning()
+                self.refreshControl?.endRefreshing()
                 
             }
             
@@ -178,16 +178,21 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return stores.count
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+            
+            LOG.error("Failed to dequeue StoresTableViewCell")
             return UITableViewCell()
+            
         }
         
         let store = stores[indexPath.row]
         var addressString = ""
+        
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             var distance = 0.0
@@ -206,7 +211,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-        
+
         return cell
         
     }
@@ -246,19 +251,9 @@ extension StoresTableViewController {
     
     func reloadStoreData() {
         
-        guard let usersLocation = UserLocation.instance.currentCoordinate else { return }
-        let usersLatitude = usersLocation.latitude
-        let usersLongitude = usersLocation.longitude
-        
-        SearchStores.searchForStoresLocations(near: usersLocation, with: distanceFilter) { stores in
-            self.stores = stores
+        if let usersCurrentLocation = UserLocation.instance.currentCoordinate {
             
-            self.main.addOperation {
-                
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-                
-            }
+            loadStores(at: usersCurrentLocation)
             
         }
         
@@ -268,7 +263,7 @@ extension StoresTableViewController {
 
 extension StoresTableViewController {
     
-    func setsEdgePanGesture() {
+    func setEdgeGesture() {
         
         edgeGesture.addTarget(self, action: #selector(self.handleRightEdge(gesture:)))
         edgeGesture.edges = .right
@@ -284,20 +279,7 @@ extension StoresTableViewController {
             
         case .began, .changed:
             
-            if !panningWasTriggered {
-                
-                let threshold: CGFloat = 20
-                let translation = abs(gesture.translation(in: view).x)
-                
-                if translation >= threshold {
-                    
-                    performSegue(withIdentifier: "mapViewSegue", sender: nil)
-                    
-                    panningWasTriggered = true
-                    
-                }
-                
-            }
+            setGestureProperties()
             
         case .cancelled, .failed:
             
@@ -309,6 +291,23 @@ extension StoresTableViewController {
         
     }
     
+    func setGestureProperties() {
+    
+        if !panningWasTriggered {
+                
+                let threshold: CGFloat = 20
+                let translation = abs(gesture.translation(in: view).x)
+                
+                if translation >= threshold {
+                    
+                    performSegue(withIdentifier: "mapViewSegue", sender: nil)
+                    
+                    panningWasTriggered = true
+                    
+                }
+    
+    }
+  
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
@@ -336,6 +335,16 @@ extension StoresTableViewController {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return false
+
+    func networkLoadingIndicatorIsSpinning() {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+    }
+    
+    func networkLoadingIndicatorIsNotSpinning() {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
     }
     

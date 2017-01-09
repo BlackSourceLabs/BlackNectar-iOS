@@ -68,6 +68,7 @@ import UIKit
         }
     }
     @IBInspectable var cornerRadius: CGFloat = 10 {
+        
         didSet{
             updateView()
         }
@@ -80,18 +81,25 @@ import UIKit
         layer.masksToBounds = true
         
         if shouldRasterize
+            
         {
+            
             layer.rasterizationScale = UIScreen.main.scale
+        
         }
         
     }
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         updateView()
+        
     }
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
         updateView()
+        
     }
     
 }

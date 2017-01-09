@@ -6,6 +6,7 @@
 //  Copyright © 2016 Black Whole. All rights reserved.
 //
 
+import Archeota
 import AromaSwiftClient
 import Kingfisher
 import UIKit
@@ -20,12 +21,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        LOG.level = .debug
+        LOG.enable()
+        
         AromaClient.TOKEN_ID = "34576d0b-6060-4666-9ac1-f5a09be219c3"
         
         AromaClient.beginMessage(withTitle: "App Launched")
             .addBody("Build #\(AppDelegate.buildNumber)")
             .withPriority(.low)
             .send()
+        
+        NSSetUncaughtExceptionHandler() { error in
+            
+            AromaClient.beginMessage(withTitle: "App Crashed")
+                .addBody("On Device: \(UIDevice.current.name)")
+                .addLine(2)
+                .addBody("\(error)")
+                .withPriority(.high)
+                .send()
+            
+            LOG.error("Uncaught Exception: \(error)")
+        }
         
         ImageCache.default.maxDiskCacheSize = UInt(150.mb)
         ImageCache.default.maxCachePeriodInSecond = (3.0).days

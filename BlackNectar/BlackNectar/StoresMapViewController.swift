@@ -186,8 +186,25 @@ extension StoresMapViewController {
             
         }
         
-        self.loadStoresInMapView(at: mapView.centerCoordinate)
-        self.populateStoreAnnotations()
+        var cornerCoordinate = CLLocation(coordinate: mapView.centerCoordinate)
+        cornerCoordinate.latitude + mapView.region.span.latitudeDelta
+        cornerCoordinate.longitude + mapView.region.span.longitudeDelta
+        
+        let mapViewDistance = DistanceCalculation.getDistance(userLocation: mapView.centerCoordinate, storeLocation: cornerCoordinate)
+        
+        let distanceInMeters = DistanceCalculation.milesToMeters(miles: mapViewDistance)
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        SearchStores.searchForStoresLocations(near: mapView.centerCoordinate, with: distanceInMeters) { stores in
+            
+            self.storesInMapView = stores
+            
+            self.populateStoreAnnotations()
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+        }
         
     }
     

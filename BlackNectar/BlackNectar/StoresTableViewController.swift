@@ -19,7 +19,7 @@ import UIKit
 //TODO: Integrate with Carthage
 
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
-
+    
     
     @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet weak var mapButton: UIBarButtonItem!
@@ -45,7 +45,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         stores.removeAll()
         
         UserLocation.instance.initialize()
@@ -61,8 +61,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         UserLocation.instance.requestLocation() { coordinate in
             self.loadStores(at: coordinate)
         }
-    
-
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,10 +78,10 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         LOG.info("Opening Filter")
-      
+        
     }
     
-
+    
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
         showRestaurants = restaurants
@@ -245,6 +245,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
 }
 
+//MARK - Pull to Refresh Code
 extension StoresTableViewController {
     
     func setupRefreshControl() {
@@ -269,6 +270,7 @@ extension StoresTableViewController {
     
 }
 
+//MARK - UI Screen Pan Gesture Code
 extension StoresTableViewController {
     
     func setEdgeGesture() {
@@ -300,22 +302,25 @@ extension StoresTableViewController {
     }
     
     func setGestureProperties() {
-    
+        
         if !panningWasTriggered {
+            
+            let threshold: CGFloat = 20
+            let translation = abs(edgeGesture.translation(in: view).x)
+            
+            if translation >= threshold {
                 
-                let threshold: CGFloat = 20
-                let translation = abs(gesture.translation(in: view).x)
+                performSegue(withIdentifier: "mapViewSegue", sender: nil)
                 
-                if translation >= threshold {
-                    
-                    performSegue(withIdentifier: "mapViewSegue", sender: nil)
-                    
-                    panningWasTriggered = true
-                    
-                }
-    
+                panningWasTriggered = true
+                
+            }
+            
+        }
+        
+        
     }
-  
+    
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
@@ -343,7 +348,30 @@ extension StoresTableViewController {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return false
+    }
+    
+}
 
+//MARK - Navigation Code
+fileprivate extension StoresTableViewController {
+    
+    func navigate(toStore store: StoresInfo) {
+        
+        let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
+        
+        let storePlacemark = MKPlacemark(coordinate: store.location, addressDictionary: ["\(title)" : store.storeName])
+        let storePin = MKMapItem(placemark: storePlacemark)
+        storePin.name = store.storeName
+        
+        storePin.openInMaps(launchOptions: appleMapsLaunchOptions)
+        
+    }
+    
+}
+
+//MARK - Network Loading Indicator Code
+fileprivate extension StoresTableViewController {
+    
     func networkLoadingIndicatorIsSpinning() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -357,22 +385,4 @@ extension StoresTableViewController {
     }
     
 }
-
-//MARK - Navigation Code
-fileprivate extension StoresTableViewController {
- 
-    func navigate(toStore store: StoresInfo) {
-        
-        let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
-        
-        let storePlacemark = MKPlacemark(coordinate: store.location, addressDictionary: ["\(title)" : store.storeName])
-        let storePin = MKMapItem(placemark: storePlacemark)
-        storePin.name = store.storeName
-        
-        storePin.openInMaps(launchOptions: appleMapsLaunchOptions)
-        
-    }
-
-}
-
 

@@ -62,7 +62,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
             self.loadStores(at: coordinate)
         }
         
-        
     }
     
     override func didReceiveMemoryWarning() {

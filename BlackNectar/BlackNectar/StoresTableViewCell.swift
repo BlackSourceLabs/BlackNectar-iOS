@@ -13,11 +13,9 @@ import UIKit
 
 class StoresTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var backgroundCardView: UIView!
     @IBOutlet weak var storeImage: UIImageView!
     @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var storeAddress: UILabel!
-    @IBOutlet weak var storeHours: UILabel!
     @IBOutlet weak var storeDistance: UILabel!
     
     var onGoButtonPressed: ((StoresTableViewCell) -> ())?

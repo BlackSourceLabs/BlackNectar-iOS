@@ -27,6 +27,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var showStores = false
     var onlyShowOpenStores = true
     let userLocationManager = UserLocation.instance
+    var mapViewLoaded = false
     
     typealias Callback = ([StoresInfo]) -> ()
     
@@ -180,23 +181,44 @@ extension StoresMapViewController {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         
-        for annotation in mapView.annotations {
+        
+        if !mapViewLoaded {
             
-            mapView.removeAnnotation(annotation)
+            populateStoreAnnotations()
+            
+            mapViewLoaded = true
+            
+        } else {
+            
+    
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            self.storesInMapView.removeAll()
+
+            dragToGetStores()
+            
+            mapViewLoaded = true
             
         }
         
-        var cornerCoordinate = CLLocation(coordinate: mapView.centerCoordinate)
-        cornerCoordinate.latitude + mapView.region.span.latitudeDelta
-        cornerCoordinate.longitude + mapView.region.span.longitudeDelta
+    }
+    
+    func dragToGetStores() {
         
-        let mapViewDistance = DistanceCalculation.getDistance(userLocation: mapView.centerCoordinate, storeLocation: cornerCoordinate)
+        let latitudeSpan = mapView.centerCoordinate.latitude + (mapView.region.span.latitudeDelta / 2)
+        let longitudeSpan = mapView.centerCoordinate.longitude //+ mapView.region.span.longitudeDelta
         
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: mapViewDistance)
+        let cornerCoordinate = CLLocation(latitude: latitudeSpan, longitude: longitudeSpan)
+        
+        let mapViewDistance = DistanceCalculation.getDistance(userLocation: mapView.centerCoordinate, storeLocation: cornerCoordinate.coordinate)
+        
+        let roundedNumber = (round(mapViewDistance * 100)/100)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        SearchStores.searchForStoresLocations(near: mapView.centerCoordinate, with: distanceInMeters) { stores in
+        print("mapView center coordinate is : \(mapView.centerCoordinate) AND rounded number is : \(roundedNumber)")
+        
+        SearchStores.searchForStoresLocations(near: mapView.centerCoordinate, with: roundedNumber) { stores in
             
             self.storesInMapView = stores
             

@@ -11,6 +11,7 @@ import AromaSwiftClient
 import CoreLocation
 import Foundation
 import Kingfisher
+import MapKit
 import SWRevealController
 import UIKit
 
@@ -60,8 +61,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         UserLocation.instance.requestLocation() { coordinate in
             self.loadStores(at: coordinate)
         }
-        
-        
+      
     }
     
     override func didReceiveMemoryWarning() {
@@ -193,6 +193,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         let store = stores[indexPath.row]
         var addressString = ""
         
+        
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             var distance = 0.0
@@ -203,6 +204,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
             cell.storeDistance.text = "\(doubleDown) miles"
         }
         
+        
+        
         //WTF IS THIS? FUNCTION PLEASE
         //Call it, combine addresses
         //PLEASE 🙏🏽
@@ -211,7 +214,11 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
+        cell.onGoButtonPressed = { cell in
+            self.navigate(toStore: store)
+        }
         
+
         return cell
         
     }
@@ -237,6 +244,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
 }
 
+//MARK - Pull to Refresh Code
 extension StoresTableViewController {
     
     func setupRefreshControl() {
@@ -261,6 +269,7 @@ extension StoresTableViewController {
     
 }
 
+//MARK - UI Screen Pan Gesture Code
 extension StoresTableViewController {
     
     func setEdgeGesture() {
@@ -307,6 +316,7 @@ extension StoresTableViewController {
             }
             
         }
+
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -330,12 +340,31 @@ extension StoresTableViewController {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return false
+      
+    }
+    
+}
+
+//MARK - Navigation Code
+fileprivate extension StoresTableViewController {
+    
+    func navigate(toStore store: StoresInfo) {
+        
+        let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
+        
+        let storePlacemark = MKPlacemark(coordinate: store.location, addressDictionary: ["\(title)" : store.storeName])
+        let storePin = MKMapItem(placemark: storePlacemark)
+        storePin.name = store.storeName
+        
+        storePin.openInMaps(launchOptions: appleMapsLaunchOptions)
         
     }
     
 }
 
-extension StoresTableViewController {
+//MARK - Network Loading Indicator Code
+fileprivate extension StoresTableViewController {
+
     
     func networkLoadingIndicatorIsSpinning() {
         

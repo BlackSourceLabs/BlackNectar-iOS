@@ -31,7 +31,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     typealias Callback = ([StoresInfo]) -> ()
     
-    let async: OperationQueue = {
+    fileprivate let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
@@ -39,29 +39,32 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         return operationQueue
     }()
     
-    private let main = OperationQueue.main
+    fileprivate let main = OperationQueue.main
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      UserLocation.instance.requestLocation() { coordinate in
-          
-            self.prepareMapView()
-            self.loadStoresInMapView(at: coordinate)
-            self.populateStoreAnnotations()
-            
-        }
-      
-      AromaClient.beginMessage(withTitle: "User Entered Map View")
+        
+        prepareMapView()
+        loadStores()
+        
+        AromaClient.beginMessage(withTitle: "User Entered Map View")
             .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
             .withPriority(.medium)
             .send()
-      
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
+    }
+    
+    private func loadStores() {
+        
+        UserLocation.instance.requestLocation() { coordinate in
+            self.loadStoresInMapView(at: coordinate)
+        }
         
     }
     
@@ -79,28 +82,10 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.mapView.setRegion(region, animated: true)
     }
     
-    func populateStoreAnnotations() {
-        
-        for store in storesInMapView {
-            
-            let storeName = store.storeName
-            let address = store.address.allValues
-            let location = store.location
-            
-            let latitude = location.latitude
-            let longitude = location.longitude
-            
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate.latitude = latitude
-            annotation.coordinate.longitude = longitude
-            
-            annotation.title = storeName
-            mapView.addAnnotations([annotation])
+}
 
-        }
-        
-    }
+//MARK: Loading Stores Into View
+extension StoresMapViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
@@ -112,17 +97,50 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
             self.storesInMapView = stores
             
-            self.populateStoreAnnotations()
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            
+            self.main.addOperation {
+                self.populateStoreAnnotations()
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
         }
         
     }
-
+    
+    func populateStoreAnnotations() {
+        
+        var annotations: [MKAnnotation] = []
+        
+        for store in storesInMapView {
+            
+            let annotation = createAnnotation(forStore: store)
+            annotations.append(annotation)
+        }
+        
+        mapView.addAnnotations(annotations)
+        mapView.removeNonVisibleAnnotations()
+    }
+    
+    private func createAnnotation(forStore store: StoresInfo) -> MKAnnotation {
+        
+        let storeName = store.storeName
+        let address = store.address.allValues
+        let location = store.location
+        
+        let latitude = location.latitude
+        let longitude = location.longitude
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate.latitude = latitude
+        annotation.coordinate.longitude = longitude
+        annotation.title = storeName
+        
+        return annotation
+    }
+    
+    
 }
 
 
+//MARK: Map View Delegate Methods
 extension StoresMapViewController {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -149,6 +167,7 @@ extension StoresMapViewController {
     
 }
 
+//MARK: Geting Directions
 extension StoresMapViewController {
     
     func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
@@ -181,55 +200,29 @@ extension StoresMapViewController {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         
+        let center = mapView.centerCoordinate
         
-        if !mapViewLoaded {
-            
-            populateStoreAnnotations()
-            
-            mapViewLoaded = true
-            
-        } else {
-            
-    
-            self.mapView.removeAnnotations(self.mapView.annotations)
-            
-            self.storesInMapView.removeAll()
-
-            dragToGetStores()
-            
-            mapViewLoaded = true
-            
-        }
+        LOG.debug("User dragged Map Screen to: \(center)")
         
-    }
-    
-    func dragToGetStores() {
-        
-        let latitudeSpan = mapView.centerCoordinate.latitude + (mapView.region.span.latitudeDelta / 2)
-        let longitudeSpan = mapView.centerCoordinate.longitude //+ mapView.region.span.longitudeDelta
-        
-        let cornerCoordinate = CLLocation(latitude: latitudeSpan, longitude: longitudeSpan)
-        
-        let mapViewDistance = DistanceCalculation.getDistance(userLocation: mapView.centerCoordinate, storeLocation: cornerCoordinate.coordinate)
-        
-        let roundedNumber = (round(mapViewDistance * 100)/100)
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        print("mapView center coordinate is : \(mapView.centerCoordinate) AND rounded number is : \(roundedNumber)")
-        
-        SearchStores.searchForStoresLocations(near: mapView.centerCoordinate, with: roundedNumber) { stores in
-            
-            self.storesInMapView = stores
-            
-            self.populateStoreAnnotations()
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            
-        }
-        
+        self.loadStoresInMapView(at: center)
     }
     
 }
 
+
+fileprivate extension MKMapView {
+    
+    func isVisible(annotation: MKAnnotation) -> Bool {
+        
+        let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
+        return MKMapRectContainsPoint(self.visibleMapRect, annotationPoint)
+    }
+    
+    func removeNonVisibleAnnotations() {
+        
+        self.annotations
+            .filter({ !isVisible(annotation: $0)})
+            .forEach({ self.removeAnnotation($0) })
+    }
+}
 

@@ -73,7 +73,7 @@ class SearchStores {
             //We have contact. Here are the stores
             callback(stores)
             
-            
+
         }
         
         task.resume()

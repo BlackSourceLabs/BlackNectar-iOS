@@ -61,7 +61,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         UserLocation.instance.requestLocation() { coordinate in
             self.loadStores(at: coordinate)
         }
-        
+      
     }
     
     override func didReceiveMemoryWarning() {
@@ -214,11 +214,11 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         goLoadImage(into: cell, withStore: store.storeImage)
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
-        
         cell.onGoButtonPressed = { cell in
             self.navigate(toStore: store)
         }
         
+
         return cell
         
     }
@@ -316,8 +316,7 @@ extension StoresTableViewController {
             }
             
         }
-        
-        
+
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -332,12 +331,6 @@ extension StoresTableViewController {
         
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
-        return true
-        
-    }
-    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
@@ -347,6 +340,7 @@ extension StoresTableViewController {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return false
+      
     }
     
 }
@@ -370,6 +364,7 @@ fileprivate extension StoresTableViewController {
 
 //MARK - Network Loading Indicator Code
 fileprivate extension StoresTableViewController {
+
     
     func networkLoadingIndicatorIsSpinning() {
         

@@ -1,8 +1,10 @@
 # BlackNectar-iOS
 BlackNectar for iOS
 Designed and Developed by BlackSource
-[![Build Status](https://travis-ci.org/BlackSourceLabs/BlackNectar-iOS.svg?branch=develop)](https://travis-ci.org/BlackSourceLabs/BlackNectar-iOS)
 
+![5 5_device_img_5](https://cloud.githubusercontent.com/assets/20737269/21950061/0fb4218e-d9ac-11e6-9ec2-05a7c44e1b2f.jpg)
+
+[![Build Status](https://travis-ci.org/BlackSourceLabs/BlackNectar-iOS.svg?branch=develop)](https://travis-ci.org/BlackSourceLabs/BlackNectar-iOS)
 [![license](https://img.shields.io/github/license/BlackSourceLabs/BlackNectar-iOS.svg)]()
 
 ## Why

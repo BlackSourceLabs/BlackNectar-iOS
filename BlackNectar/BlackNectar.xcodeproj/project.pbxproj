@@ -227,9 +227,9 @@
 		327BAD611DF44B8B000EA25E /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */,
 				3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */,
 				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
-				36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */,
 			);
 			name = MapView;
 			sourceTree = "<group>";

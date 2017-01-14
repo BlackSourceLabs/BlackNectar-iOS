@@ -11,7 +11,7 @@ Designed and Developed by BlackSource
 Our mission is to help the underserved by using technology. 
 People on the Calfresh EBT program are oftentimes neglected and looked down upon in society.
 We decided to make a difference in our community and take action.
-Our goal is to help people that are on EBT by helping them find stores, restaurants and farmer's' markets that are nearby and accept EBT. 
+Our goal is to help people that are on EBT by helping them find stores, restaurants and farmer's markets that are nearby and accept EBT. 
 
 
 ## What is BlackNectar?

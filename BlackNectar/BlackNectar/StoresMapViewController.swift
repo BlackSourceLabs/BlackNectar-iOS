@@ -119,7 +119,7 @@ extension StoresMapViewController {
         mapView.removeNonVisibleAnnotations()
     }
     
-    private func createAnnotation(forStore store: StoresInfo) -> MKAnnotation {
+    private func createAnnotation(forStore store: StoresInfo) -> CustomAnnotation {
         
         let storeName = store.storeName
         let address = store.address.allValues
@@ -128,10 +128,7 @@ extension StoresMapViewController {
         let latitude = location.latitude
         let longitude = location.longitude
         
-        let annotation = MKPointAnnotation()
-        annotation.coordinate.latitude = latitude
-        annotation.coordinate.longitude = longitude
-        annotation.title = storeName
+        let annotation = CustomAnnotation(name: storeName, latitude: latitude, longitude: longitude)
         
         return annotation
     }
@@ -149,19 +146,19 @@ extension StoresMapViewController {
             return nil
         }
         
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-        pinView?.pinTintColor = UIColor.black
-        pinView?.canShowCallout = true
-        
+        let annotation = annotation as? CustomAnnotation
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        
+        let blackNectarPin = UIImage(named: "Icon-60")
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation?.identifier)
+
         button.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
-        pinView?.leftCalloutAccessoryView = button
+
+        annotationView.canShowCallout = true
+        annotationView.leftCalloutAccessoryView = button
+        annotationView.image = blackNectarPin
         
-        return pinView
+        return annotationView
         
     }
     
@@ -193,7 +190,7 @@ extension StoresMapViewController {
         }
         
     }
-
+    
     
 }
 

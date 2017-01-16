@@ -41,6 +41,7 @@
 		32E1344F1E15FEE600FD65DC /* SWRevealController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E134401E15FE6700FD65DC /* SWRevealController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32E134551E160EAF00FD65DC /* TimeIntervals+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E134541E160EAF00FD65DC /* TimeIntervals+.swift */; };
 		32E134561E160EAF00FD65DC /* TimeIntervals+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E134541E160EAF00FD65DC /* TimeIntervals+.swift */; };
+		36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		32E134401E15FE6700FD65DC /* SWRevealController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWRevealController.framework; path = Carthage/Build/iOS/SWRevealController.framework; sourceTree = "<group>"; };
 		32E134511E160E5500FD65DC /* Integers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Integers+.swift"; sourceTree = "<group>"; };
 		32E134541E160EAF00FD65DC /* TimeIntervals+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeIntervals+.swift"; sourceTree = "<group>"; };
+		36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 		327BAD611DF44B8B000EA25E /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */,
 				3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */,
 				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
 			);
@@ -348,7 +351,7 @@
 				TargetAttributes = {
 					321319391DE0F61500FB1774 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 5E82HJH2N5;
+						DevelopmentTeam = 3TAADZBCK9;
 						ProvisioningStyle = Automatic;
 					};
 					3213194D1DE0F61500FB1774 = {
@@ -451,6 +454,7 @@
 				3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */,
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
+				36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */,
 				3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */,
 				327BACDE1DF12F85000EA25E /* SideMenuFilterViewController.swift in Sources */,
 				32E134551E160EAF00FD65DC /* TimeIntervals+.swift in Sources */,

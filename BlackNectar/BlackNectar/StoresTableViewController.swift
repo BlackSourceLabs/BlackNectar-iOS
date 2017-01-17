@@ -103,7 +103,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    fileprivate func loadStores(at coordinate: CLLocationCoordinate2D) {
+    internal func loadStores(at coordinate: CLLocationCoordinate2D) {
         
         networkLoadingIndicatorIsSpinning()
         

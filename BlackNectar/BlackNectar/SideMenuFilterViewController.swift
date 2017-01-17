@@ -65,16 +65,19 @@ class SideMenuFilterViewController: UITableViewController {
             slideValueLabel.text = "\(roundedNumber)"
         }
         
+        defaultPreferences.set(distanceFilter, forKey: "distanceFilter")
+        
     }
 
     @IBAction func openNowSwitchOffOn(_ sender: Any) {
 
-        if openNowSwitch.isOn {
+        if openNowSwitch.isOn == true {
 
             isOpenNow = true
 
         } else {
-
+            
+            openNowSwitch.isOn = false
             isOpenNow = false
             
         }
@@ -217,17 +220,40 @@ extension SideMenuFilterViewController {
             
             switch isRestaurant || isOpenNow || isStore {
             
-            case isRestaurant == true:
-                styleButtonOn(button: restaurantButton)
-            
-            case isStore == true:
-                styleButtonOn(button: storesButton)
-            
-            case isOpenNow == true:
-                openNowSwitch.setOn(true, animated: true)
+                case isRestaurant == true, isStore == true, isOpenNow == true:
+                    styleButtonOn(button: restaurantButton)
+                    styleButtonOn(button: storesButton)
+                    openNowSwitch.setOn(true, animated: false)
+                    openNowSwitch.isOn = true
+
+                case isRestaurant == true, isOpenNow == true:
+                    styleButtonOn(button: restaurantButton)
+                    openNowSwitch.isOn = true
+                    openNowSwitch.setOn(true, animated: false)
+
                 
-            default:
-                return
+                case isStore == true, isOpenNow == true:
+                    styleButtonOn(button: storesButton)
+                    openNowSwitch.isOn = true
+                    openNowSwitch.setOn(true, animated: false)
+
+                
+                case isOpenNow == true:
+                    openNowSwitch.isOn = true
+                    openNowSwitch.setOn(true, animated: false)
+                
+                default:
+                
+                    slider.value = 0
+                    slideValueLabel.text = "0"
+                
+                    openNowSwitch.isOn = false
+                    openNowSwitch.setOn(false, animated: false)
+                
+                    styleButtonOff(button: restaurantButton)
+                    styleButtonOff(button: storesButton)
+                
+                    return
                 
             }
             

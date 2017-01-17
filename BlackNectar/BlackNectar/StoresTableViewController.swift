@@ -31,6 +31,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     var onlyShowOpenStores = true
     let edgeGesture = UIScreenEdgePanGestureRecognizer()
     var panningWasTriggered = false
+    let defaults = SideMenuFilterViewController().defaultPreferences
     
     let async: OperationQueue = {
         
@@ -51,6 +52,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         UserLocation.instance.initialize()
         configureSlideMenu()
         setupRefreshControl()
+        loadDefaults()
         
     }
     
@@ -379,4 +381,23 @@ fileprivate extension StoresTableViewController {
     }
     
 }
+
+//MARK - Load User Preferences Code
+fileprivate extension StoresTableViewController {
+    
+    func loadDefaults() {
+        
+        if defaults.double(forKey: "distanceFilter") > 0 {
+            
+            showStores = defaults.bool(forKey: "isStore")
+            distanceFilter = defaults.double(forKey: "distanceFilter")
+            showRestaurants = defaults.bool(forKey: "isRestaurant")
+            onlyShowOpenStores = defaults.bool(forKey: "isOpenNow")
+            
+        }
+        
+    }
+    
+}
+
 

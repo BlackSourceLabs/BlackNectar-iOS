@@ -46,9 +46,9 @@ class SearchStoresTest: XCTestCase {
         
         let promise = expectation(description: "Callback will be called")
         
-        var testCallback: ([StoresInfo]) -> Void = { stores in
+        let testCallback: ([StoresInfo]) -> Void = { stores in
             
-            if !stores.isEmpty {
+            if  !stores.isEmpty {
                 promise.fulfill()
             }
         }
@@ -58,4 +58,46 @@ class SearchStoresTest: XCTestCase {
         waitForExpectations(timeout: 3, handler: nil)
         
     }
+    
+    func testSearchForStoresByName() {
+        
+        let storeName: String = "Vons"
+        
+        let promise = expectation(description: "Callback will be called")
+        
+        let testCallback: ([StoresInfo]) -> Void = { stores in
+            
+            if stores.isEmpty {
+                promise.fulfill()
+            }
+            
+        }
+        
+        SearchStores.searchForStoresByName(withName: storeName, callback: testCallback)
+        
+        waitForExpectations(timeout: 3.0, handler: nil)
+    }
+    
+    func testGetStoresFrom() {
+        
+        let restaurantURL: String = "https://www.pexels.com/photo/salad-healthy-vegetables-vegan-69482/"
+        
+        guard let restaurantImage = URL(string: restaurantURL) else { return }
+        
+        let promise = expectation(description: "Callback will be called")
+        
+        let testCallback: ([StoresInfo]) -> Void = { stores in
+            
+            if stores.isEmpty {
+                promise.fulfill()
+            }
+        
+        }
+        
+        SearchStores.getStoresFrom(url: restaurantImage, callback: testCallback)
+        
+        waitForExpectations(timeout: 3.0, handler: nil)
+        
+    }
+    
 }

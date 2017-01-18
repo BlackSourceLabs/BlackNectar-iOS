@@ -14,17 +14,6 @@ import XCTest
 
 class SearchStoresTest: XCTestCase {
     
-    struct testStoreInfo {
-        
-        let storeName: String
-        let storeLocation: CLLocationCoordinate2D
-        let storeAddress: NSDictionary
-        let storeImage: URL
-        
-    }
-    
-    typealias testCallback = ([testStoreInfo]) -> ()
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -51,13 +40,22 @@ class SearchStoresTest: XCTestCase {
         
         let usersLatitude: CLLocationDegrees = 40.6782
         let usersLongitude: CLLocationDegrees = -73.9442
-        let userslocation = CLLocationCoordinate2D(latitude: usersLatitude, longitude: usersLongitude)
+        let userLocation = CLLocationCoordinate2D(latitude: usersLatitude, longitude: usersLongitude)
         
-        let storeDistance: Double = 15.5
+        let storeDistance: Double = 1500
         
+        let promise = expectation(description: "Callback will be called")
         
-        XCTAssertNotNil(SearchStores.searchForStoresLocations(near: userslocation, with: storeDistance, callback: testCallback))
+        var testCallback: ([StoresInfo]) -> Void = { stores in
+            
+            if !stores.isEmpty {
+                promise.fulfill()
+            }
+        }
+        
+        SearchStores.searchForStoresLocations(near: userLocation, with: storeDistance, callback: testCallback)
+        
+        waitForExpectations(timeout: 3, handler: nil)
         
     }
-    
 }

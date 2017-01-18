@@ -45,7 +45,7 @@ class SearchStores {
         callback(stores)
     }
     
-    private static func getStoresFrom(url: URL, callback: @escaping Callback) {
+    static func getStoresFrom(url: URL, callback: @escaping Callback) {
         //Get stores from url
         //When done, pass them to `callback`
         

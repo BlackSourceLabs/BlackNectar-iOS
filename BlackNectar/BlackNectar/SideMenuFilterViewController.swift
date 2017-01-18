@@ -37,15 +37,14 @@ class SideMenuFilterViewController: UITableViewController {
     var isStore = false
     var isOpenNow = false
     var delegate: SideMenuFilterDelegate?
-    let defaultPreferences = UserDefaults.standard
-    
+    var defaults: [String : Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         styleMenu()
-        loadDefaults()
-
+        loadsDefaults()
+        
     }
 
     func passingDistance() -> Double {
@@ -64,8 +63,6 @@ class SideMenuFilterViewController: UITableViewController {
             
             slideValueLabel.text = "\(roundedNumber)"
         }
-        
-        defaultPreferences.set(distanceFilter, forKey: "distanceFilter")
         
     }
 
@@ -128,7 +125,7 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func applyButton(_ sender: UIButton) {
         
-        setUserPreferences()
+        UserPreferences.instance.setUserPreferences(distanceFilter: distanceFilter, isRestaurant: isRestaurant, isOpenNow: isOpenNow, isStore: isStore)
         
         self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: Int(self.distanceFilter))
         AromaClient.beginMessage(withTitle: "Apply Button Selected")
@@ -194,70 +191,20 @@ extension SideMenuFilterViewController {
 
     }
 
+}
+
+extension SideMenuFilterViewController {
     
-    func setUserPreferences() {
+    func loadsDefaults() {
         
-        defaultPreferences.set(distanceFilter, forKey: "distanceFilter")
-        defaultPreferences.set(isRestaurant, forKey: "isRestaurant")
-        defaultPreferences.set(isOpenNow, forKey: "isOpenNow")
-        defaultPreferences.set(isStore, forKey: "isStore")
+        defaults = UserPreferences.instance.loadDefaults()
         
-    }
-    
-    func loadDefaults() {
-        
-        if defaultPreferences.double(forKey: "distanceFilter") > 0 {
-            
-            distanceFilter = defaultPreferences.double(forKey: "distanceFilter")
-            isRestaurant = defaultPreferences.bool(forKey: "isRestaurant")
-            isOpenNow = defaultPreferences.bool(forKey: "isOpenNow")
-            isStore = defaultPreferences.bool(forKey: "isStore")
-            
-            let roundedNumber = (round(defaultPreferences.double(forKey: "distanceFilter") * 100)/100)
-            
-            slider.value = Float(defaultPreferences.double(forKey: "distanceFilter"))
-            slideValueLabel.text = "\(roundedNumber)"
-            
-            switch isRestaurant || isOpenNow || isStore {
-            
-                case isRestaurant == true, isStore == true, isOpenNow == true:
-                    styleButtonOn(button: restaurantButton)
-                    styleButtonOn(button: storesButton)
-                    openNowSwitch.setOn(true, animated: false)
-                    openNowSwitch.isOn = true
+        distanceFilter = defaults["distanceFilter"] as! Double
+        isRestaurant = defaults["showRestaurants"] as! Bool
+        isOpenNow = defaults["onlyShowOpenStores"] as! Bool
+        isStore = defaults["showStores"] as! Bool
 
-                case isRestaurant == true, isOpenNow == true:
-                    styleButtonOn(button: restaurantButton)
-                    openNowSwitch.isOn = true
-                    openNowSwitch.setOn(true, animated: false)
-
-                
-                case isStore == true, isOpenNow == true:
-                    styleButtonOn(button: storesButton)
-                    openNowSwitch.isOn = true
-                    openNowSwitch.setOn(true, animated: false)
-
-                
-                case isOpenNow == true:
-                    openNowSwitch.isOn = true
-                    openNowSwitch.setOn(true, animated: false)
-                
-                default:
-                
-                    slider.value = 0
-                    slideValueLabel.text = "0"
-                
-                    openNowSwitch.isOn = false
-                    openNowSwitch.setOn(false, animated: false)
-                
-                    styleButtonOff(button: restaurantButton)
-                    styleButtonOff(button: storesButton)
-                
-                    return
-                
-            }
-            
-        }
+        UserPreferences.instance.setSideMenuDefaults(viewController: self, distanceFilter: distanceFilter, isRestaurant: isRestaurant, isOpenNow: isOpenNow, isStore: isStore)
         
     }
     

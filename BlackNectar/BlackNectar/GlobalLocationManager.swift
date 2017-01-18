@@ -99,7 +99,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
     }
     
-    private func calculateRegion(for location: CLLocationCoordinate2D) -> MKCoordinateRegion {
+    internal func calculateRegion(for location: CLLocationCoordinate2D) -> MKCoordinateRegion {
         
         let latitude = location.latitude
         let longitude = location.longitude

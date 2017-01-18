@@ -346,9 +346,9 @@ extension StoresTableViewController {
 }
 
 //MARK - Navigation Code
-fileprivate extension StoresTableViewController {
+extension StoresTableViewController {
     
-    func navigate(toStore store: StoresInfo) {
+    internal func navigate(toStore store: StoresInfo) {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         

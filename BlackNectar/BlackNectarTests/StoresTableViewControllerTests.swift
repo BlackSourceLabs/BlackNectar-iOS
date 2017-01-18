@@ -2,52 +2,51 @@
 //  StoresTableViewControllerTests.swift
 //  BlackNectar
 //
-//  Created by Dero on 1/16/17.
+//  Created by Cordero Hernandez on 1/16/17.
 //  Copyright © 2017 Black Whole. All rights reserved.
 //
 
-import XCTest
-import CoreLocation
+@testable import BlackNectar
+
 import MapKit
-@testable import BlackNectar 
+import XCTest
 
 class StoresTableViewControllerTests: XCTestCase {
-        
+    
+    var storesTableViewController: StoresTableViewController!
+    
     override func setUp() {
         super.setUp()
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        storesTableViewController = StoresTableViewController()
         
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testLoadStores() {
         
-        let storesTableViewController = StoresTableViewController()
+        let cityLatitude: CLLocationDegrees = 40.6782
+        let cityLongitude: CLLocationDegrees = -73.9442
+        let brooklynNY = CLLocationCoordinate2D(latitude: cityLatitude, longitude: cityLongitude)
         
-        let latitude: CLLocationDegrees = 40.6782
-        let longitude: CLLocationDegrees = -73.9442
-        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        XCTAssertNil(storesTableViewController.loadStores(at: location))
-        
-        
+        XCTAssertNotNil(storesTableViewController.loadStores(at: brooklynNY))
         
     }
+    
+    func testNavigateToStore() {
+        
+        let restaurantLatitude: CLLocationDegrees = 34.14341
+        let restaurantLongitude: CLLocationDegrees = -118.392
+        let restaurantLocation = CLLocationCoordinate2D(latitude: restaurantLatitude, longitude: restaurantLongitude)
+        
+        let restaurantAddress: NSDictionary = ["address" : "11943 W Ventura blvd"]
+        let restaurantURL: String = "https://www.pexels.com/photo/salad-healthy-vegetables-vegan-69482/"
+        
+        guard let restaurantImage = URL(string: restaurantURL) else { return }
+        
+        let hopeVeganRestaurant = StoresInfo(storeName: "HOPE", location: restaurantLocation, address: restaurantAddress, storeImage: restaurantImage)
+        
+        XCTAssertNotNil(storesTableViewController.navigate(toStore: hopeVeganRestaurant))
+    }
+    
     
 }

@@ -68,13 +68,12 @@ class SideMenuFilterViewController: UITableViewController {
 
     @IBAction func openNowSwitchOffOn(_ sender: Any) {
 
-        if openNowSwitch.isOn == true {
+        if openNowSwitch.isOn {
 
             isOpenNow = true
 
         } else {
             
-            openNowSwitch.isOn = false
             isOpenNow = false
             
         }

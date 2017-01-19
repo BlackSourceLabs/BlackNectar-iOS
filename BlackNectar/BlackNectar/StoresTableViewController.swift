@@ -31,7 +31,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     var onlyShowOpenStores = true
     let edgeGesture = UIScreenEdgePanGestureRecognizer()
     var panningWasTriggered = false
-    var defaults: [String : Any] = [:]
+
     
     let async: OperationQueue = {
         
@@ -387,13 +387,11 @@ fileprivate extension StoresTableViewController {
     
     func passDefaultValues() {
         
-        defaults = UserPreferences.instance.loadDefaults()
-        
-        onlyShowOpenStores = defaults["onlyShowOpenStores"] as! Bool
-        showRestaurants = defaults["showRestaurants"] as! Bool
-        distanceFilter = defaults["distanceFilter"] as! Double
-        showStores = defaults["showStores"] as! Bool
-            print(onlyShowOpenStores, showRestaurants, distanceFilter, showStores)
+        onlyShowOpenStores = UserPreferences.instance.isOpenNow
+        showRestaurants = UserPreferences.instance.isRestaurant
+        distanceFilter = UserPreferences.instance.distanceFilter
+        showStores = UserPreferences.instance.isStore
+
     }
     
 }

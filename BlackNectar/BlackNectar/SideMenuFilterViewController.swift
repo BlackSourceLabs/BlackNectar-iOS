@@ -37,7 +37,7 @@ class SideMenuFilterViewController: UITableViewController {
     var isStore = false
     var isOpenNow = false
     var delegate: SideMenuFilterDelegate?
-    var defaults: [String : Any] = [:]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

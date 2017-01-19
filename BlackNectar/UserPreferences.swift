@@ -105,7 +105,7 @@ class UserPreferences {
             
             ])
         
-    }
+    }   
     
     func setSideMenuDefaults(viewController: SideMenuFilterViewController, distanceFilter: Double, isRestaurant: Bool, isOpenNow: Bool, isStore: Bool) {
         

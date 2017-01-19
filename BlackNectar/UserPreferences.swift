@@ -9,21 +9,77 @@
 import Foundation
 
 
-class UserPreferences: NSObject {
+class UserPreferences {
     
     static let instance = UserPreferences()
-    private override init() {}
+    private init() {}
     
     let defaultPreferences = UserDefaults.standard
     
-    func setUserPreferences(distanceFilter: Double, isRestaurant: Bool, isOpenNow: Bool, isStore: Bool) {
+    var distanceFilter: Double {
         
-        defaultPreferences.set(distanceFilter, forKey: "distanceFilter")
-        defaultPreferences.set(isRestaurant, forKey: "isRestaurant")
-        defaultPreferences.set(isOpenNow, forKey: "isOpenNow")
-        defaultPreferences.set(isStore, forKey: "isStore")
+        get {
+        
+            return defaultPreferences.double(forKey: "distanceFilter")
+        
+        }
+        
+        set (value){
+        
+            defaultPreferences.set(value, forKey: "distanceFilter")
+            
+        }
         
     }
+    
+    var isRestaurant: Bool {
+        
+        get {
+            
+            return defaultPreferences.bool(forKey: "isRestaurant")
+            
+        }
+        
+        set (value){
+            
+            defaultPreferences.set(value, forKey: "isRestaurant")
+            
+        }
+        
+    }
+    
+    var isStore: Bool {
+        
+        get {
+            
+            return defaultPreferences.bool(forKey: "isStore")
+            
+        }
+        
+        set (value){
+            
+            defaultPreferences.set(value, forKey: "isStore")
+            
+        }
+        
+    }
+    
+    var isOpenNow: Bool {
+        
+        get {
+            
+            return defaultPreferences.bool(forKey: "isOpenNow")
+            
+        }
+        
+        set (value) {
+            
+            defaultPreferences.set(value, forKey: "isOpenNow")
+            
+        }
+        
+    }
+    
     
     func loadDefaults() -> ([String : Any]) {
         

@@ -55,6 +55,8 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func sliderDidSlide(_ sender: UISlider) {
         
+        UserPreferences.instance.distanceFilter.subtract(distanceFilter)
+        
         distanceFilter = Double(slider.value)
         
         let roundedNumber = (round(distanceFilter * 100)/100)
@@ -62,6 +64,8 @@ class SideMenuFilterViewController: UITableViewController {
         if roundedNumber != 0 {
             
             slideValueLabel.text = "\(roundedNumber)"
+        
+            UserPreferences.instance.distanceFilter.add(roundedNumber)
         }
         
     }

@@ -79,34 +79,7 @@ class UserPreferences {
         }
         
     }
-    
-    
-    func loadDefaults() -> ([String : Any]) {
-        
-        var distanceFilter = 0.0
-        var isRestaurant = false
-        var isOpenNow = false
-        var isStore = false
-        
-        if defaultPreferences.double(forKey: "distanceFilter") > 0 {
-            
-            distanceFilter = defaultPreferences.double(forKey: "distanceFilter")
-            isRestaurant = defaultPreferences.bool(forKey: "isRestaurant")
-            isOpenNow = defaultPreferences.bool(forKey: "isOpenNow")
-            isStore = defaultPreferences.bool(forKey: "isStore")
-            
-        }
-        
-        return ([
-            "distanceFilter" : distanceFilter,
-            "onlyShowOpenStores" : isOpenNow,
-            "showRestaurants" : isRestaurant,
-            "showStores" : isStore
-            
-            ])
-        
-    }   
-    
+
     func setSideMenuDefaults(viewController: SideMenuFilterViewController, distanceFilter: Double, isRestaurant: Bool, isOpenNow: Bool, isStore: Bool) {
         
         let roundedNumber = (round(defaultPreferences.double(forKey: "distanceFilter") * 100)/100)

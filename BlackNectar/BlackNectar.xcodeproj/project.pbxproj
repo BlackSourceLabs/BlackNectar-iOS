@@ -178,13 +178,13 @@
 				327BAD641DFA2685000EA25E /* Views */,
 				327BAD631DF44BEA000EA25E /* APIDataStructure */,
 				327BAD621DF44BC5000EA25E /* APICall */,
+				369843881E31928F0048D8B1 /* DistanceCalculation */,
 				327BAD611DF44B8B000EA25E /* MapView */,
 				327BAD601DF44B5A000EA25E /* SideMenus */,
 				327BAD5F1DF44B3F000EA25E /* StoresListTableView */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
 				369843871E3166E30048D8B1 /* UserPreferences */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
-				0A726B491E1D94B40031572D /* DistanceCalculation.swift */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
 				321319491DE0F61500FB1774 /* Info.plist */,
@@ -289,6 +289,14 @@
 				36289FB71E2FEEA300FCA6E1 /* UserPreferences.swift */,
 			);
 			name = UserPreferences;
+			sourceTree = "<group>";
+		};
+		369843881E31928F0048D8B1 /* DistanceCalculation */ = {
+			isa = PBXGroup;
+			children = (
+				0A726B491E1D94B40031572D /* DistanceCalculation.swift */,
+			);
+			name = DistanceCalculation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

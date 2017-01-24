@@ -80,7 +80,7 @@ class UserPreferences {
         
     }
 
-    func setSideMenuDefaults(viewController: SideMenuFilterViewController, distanceFilter: Double, isRestaurant: Bool, isOpenNow: Bool, isStore: Bool) {
+    func setSideMenuDefaults(in viewController: SideMenuFilterViewController, distanceFilter: Double, isRestaurant: Bool, isOpenNow: Bool, isStore: Bool) {
         
         let roundedNumber = (round(defaultPreferences.double(forKey: "distanceFilter") * 100)/100)
         

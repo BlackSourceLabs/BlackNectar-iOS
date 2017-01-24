@@ -7,6 +7,7 @@
 //
 
 import Archeota
+import AromaSwiftClient
 import CoreLocation
 import Foundation
 import MapKit
@@ -34,6 +35,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
             
             LOG.error("Failed to Initialize locationManager")
             return
+            
         }
         
         locationManager = CLLocationManager()
@@ -77,24 +79,49 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        var allowAuthorization = false
-        var locationStatus: String
         
         switch status {
             
             case CLAuthorizationStatus.restricted:
-                locationStatus = "Restricted Access to Location"
-                
-            case CLAuthorizationStatus.denied:
-                locationStatus = "User denied access to location"
-                
+            
+                LOG.warn("User restricted Access to Location")
+                AromaClient.beginMessage(withTitle: "Restricted Access to Location")
+                    .addBody("The User has restricted access to access their locaiton")
+                    .withPriority(.high)
+                    .send()
+            
             case CLAuthorizationStatus.notDetermined:
-                locationStatus = "Status not determined"
+            
+                LOG.warn("User status not determined")
+                AromaClient.beginMessage(withTitle: "User status not determined")
+                    .addBody("The user has not yet made a choice regarding whether this app can use location services")
+                    .withPriority(.high)
+                    .send()
+            
+            case CLAuthorizationStatus.denied:
                 
+                LOG.warn("User denied access to location")
+                AromaClient.beginMessage(withTitle: "User denied location permission")
+                    .addBody("User denied permission to access their location")
+                    .withPriority(.high)
+                    .send()
+            
+            case CLAuthorizationStatus.authorizedWhenInUse:
+            
+                LOG.warn("User allowed access to location")
+                AromaClient.beginMessage(withTitle: "User allowed access to location")
+                    .addBody("User granted authorization to use their location only when your app is visible to them (authorized when in use)")
+                    .withPriority(.medium)
+                    .send()
+            
             default:
-                locationStatus = "Location Access Granted"
                 
-                allowAuthorization = true
+                LOG.warn("User location access granted")
+                AromaClient.beginMessage(withTitle: " User location access granted")
+                    .addBody("User location access granted")
+                    .withPriority(.medium)
+                    .send()
+            
         }
         
     }

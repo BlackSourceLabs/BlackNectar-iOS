@@ -193,6 +193,14 @@
 			name = APIDataStructTests;
 			sourceTree = "<group>";
 		};
+		320820621E3713C3009FFCB9 /* DistanceCalculationTests */ = {
+			isa = PBXGroup;
+			children = (
+				320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */,
+			);
+			name = DistanceCalculationTests;
+			sourceTree = "<group>";
+		};
 		321319311DE0F61500FB1774 = {
 			isa = PBXGroup;
 			children = (
@@ -238,12 +246,12 @@
 		321319511DE0F61500FB1774 /* BlackNectarTests */ = {
 			isa = PBXGroup;
 			children = (
-				3208205F1E2EF37A009FFCB9 /* APIDataStructTests */,
 				3208205C1E2E0FA9009FFCB9 /* APICallTests */,
+				3208205F1E2EF37A009FFCB9 /* APIDataStructTests */,
+				320820621E3713C3009FFCB9 /* DistanceCalculationTests */,
+				321319541DE0F61500FB1774 /* Info.plist */,
 				320820521E2DDE9E009FFCB9 /* MapViewTests */,
 				3208204F1E2DC1FD009FFCB9 /* StoresListTableViewTests */,
-				320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */,
-				321319541DE0F61500FB1774 /* Info.plist */,
 			);
 			path = BlackNectarTests;
 			sourceTree = "<group>";

@@ -47,16 +47,16 @@
         <scene sceneID="PI3-SW-0Qh">
             <objects>
                 <tableViewController id="7dd-Vg-sa8" customClass="StoresTableViewController" customModule="BlackNectar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="hhb-k9-YPD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="hhb-k9-YPD">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="storeCell" rowHeight="236" id="jTC-fs-IR7" customClass="StoresTableViewCell" customModule="BlackNectar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="236"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTC-fs-IR7" id="Z8Q-oK-zQ1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
@@ -170,6 +170,7 @@
                                         <constraint firstItem="Ncw-Zf-bET" firstAttribute="centerX" secondItem="Z8Q-oK-zQ1" secondAttribute="centerX" id="qwk-PK-I7m"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="storeAddress" destination="18x-pk-FJU" id="K2l-Jh-8pv"/>
                                     <outlet property="storeDistance" destination="pz3-tN-mvZ" id="4dg-5v-dWk"/>

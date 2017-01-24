@@ -31,18 +31,19 @@ class SearchStores {
         }
         
         let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"
-        let url = URL(string: storesAPI)!
+        guard let url = URL(string: storesAPI) else { return }
         
         getStoresFrom(url: url, callback: callback)
         
     }
     
-    static func searchForStoresByName(withName name: String, callback: Callback) {
+    static func searchForStoresByName(withName name: String, callback: @escaping Callback) {
         
-        //Make API call to get stores with searchTerm `name`
-        let stores = [StoresInfo]()
+        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?searchTerm=\(name)"
+        guard let url = URL(string: storesAPI) else { return }
         
-        callback(stores)
+        getStoresFrom(url: url, callback: callback)
+        
     }
     
     static func getStoresFrom(url: URL, callback: @escaping Callback) {

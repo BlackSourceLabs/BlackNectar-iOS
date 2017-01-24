@@ -43,7 +43,8 @@ class SideMenuFilterViewController: UITableViewController {
         super.viewDidLoad()
 
         styleMenu()
-
+        loadsDefaults()
+        
     }
 
     func passingDistance() -> Double {
@@ -53,7 +54,9 @@ class SideMenuFilterViewController: UITableViewController {
     }
     
     @IBAction func sliderDidSlide(_ sender: UISlider) {
-
+        
+        UserPreferences.instance.distanceFilter.subtract(distanceFilter)
+        
         distanceFilter = Double(slider.value)
         
         let roundedNumber = (round(distanceFilter * 100)/100)
@@ -61,6 +64,8 @@ class SideMenuFilterViewController: UITableViewController {
         if roundedNumber != 0 {
             
             slideValueLabel.text = "\(roundedNumber)"
+        
+            UserPreferences.instance.distanceFilter.add(roundedNumber)
         }
         
     }
@@ -70,10 +75,12 @@ class SideMenuFilterViewController: UITableViewController {
         if openNowSwitch.isOn {
 
             isOpenNow = true
-
+            UserPreferences.instance.isOpenNow = true
+            
         } else {
-
+            
             isOpenNow = false
+            UserPreferences.instance.isOpenNow = false
             
         }
 
@@ -84,18 +91,15 @@ class SideMenuFilterViewController: UITableViewController {
         if isRestaurant == false {
 
             isRestaurant = true
+            UserPreferences.instance.isRestaurant = true
             styleButtonOn(button: restaurantButton)
-
-        } else if isRestaurant == true {
-
-            isRestaurant = false
-            styleButtonOff(button: restaurantButton)
-
+            
         } else {
 
-            isRestaurant = true
-            styleButtonOn(button: restaurantButton)
-
+            isRestaurant = false
+            UserPreferences.instance.isRestaurant = false
+            styleButtonOff(button: restaurantButton)
+            
         }
 
     }
@@ -105,17 +109,14 @@ class SideMenuFilterViewController: UITableViewController {
         if isStore == false {
 
             isStore = true
+            UserPreferences.instance.isStore = true
             styleButtonOn(button: storesButton)
-
-        } else if isStore == true {
-
-            isStore = false
-            styleButtonOff(button: storesButton)
-
+            
         } else {
 
-            isStore = true
-            styleButtonOn(button: storesButton)
+            isStore = false
+            UserPreferences.instance.isStore = false
+            styleButtonOff(button: storesButton)
 
         }
 
@@ -124,6 +125,7 @@ class SideMenuFilterViewController: UITableViewController {
     @IBAction func applyButton(_ sender: UIButton) {
         
         self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: Int(self.distanceFilter))
+        
         AromaClient.beginMessage(withTitle: "Apply Button Selected")
             .addBody("Users Filter Settings: restaurants button is \(self.isRestaurant), stores button is \(self.isStore), isopenNow switch is \(self.isOpenNow)")
             .withPriority(.medium)
@@ -139,7 +141,6 @@ class SideMenuFilterViewController: UITableViewController {
         closeSideMenu()
 
     }
-
 
     private func styleMenu() {
 
@@ -187,4 +188,19 @@ extension SideMenuFilterViewController {
 
     }
 
+}
+
+extension SideMenuFilterViewController {
+    
+    func loadsDefaults() {
+        
+        distanceFilter = UserPreferences.instance.distanceFilter
+        isRestaurant = UserPreferences.instance.isRestaurant
+        isOpenNow = UserPreferences.instance.isOpenNow
+        isStore = UserPreferences.instance.isStore
+
+        UserPreferences.instance.setSideMenuDefaults(in: self, distanceFilter: distanceFilter, isRestaurant: isRestaurant, isOpenNow: isOpenNow, isStore: isStore)
+        
+    }
+    
 }

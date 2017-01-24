@@ -17,19 +17,19 @@ class DistanceCalculationTests: XCTestCase {
         
         let usersLatitude: CLLocationDegrees = 40.6782
         let usersLongitude: CLLocationDegrees = -73.9442
-        let userslocation = CLLocationCoordinate2D(latitude: usersLatitude, longitude: usersLongitude)
+        let usersLocation = CLLocationCoordinate2D(latitude: usersLatitude, longitude: usersLongitude)
         
         let restaurantsLatitude: CLLocationDegrees = 34.14341
         let restaurantsLongitude: CLLocationDegrees = -118.392
         let restaurantsLocation = CLLocationCoordinate2D(latitude: restaurantsLatitude, longitude: restaurantsLongitude)
         
-        XCTAssertNotNil(DistanceCalculation.getDistance(userLocation: userslocation, storeLocation: restaurantsLocation))
+        XCTAssertNotNil(DistanceCalculation.getDistance(userLocation: usersLocation, storeLocation: restaurantsLocation))
         
     }
     
     func testMilesToMeters() {
         
-        let miles: Double = 100.00
+        let miles: Double = 5000
         
         XCTAssertNotNil(DistanceCalculation.milesToMeters(miles: miles))
         
@@ -38,14 +38,27 @@ class DistanceCalculationTests: XCTestCase {
     
     func testMetersToMiles() {
         
-        let meters: Double = 200.00
+        let meters: Double = 5000
         
-        XCTAssertNotNil(DistanceCalculation.milesToMeters(miles: meters))
+        XCTAssertNotNil(DistanceCalculation.metersToMiles(meters: meters))
         
     }
     
+    func testMilesToMetersWithBadArgs() {
+        
+        let miles: Double = -5000
+        
+        XCTAssertNotNil(DistanceCalculation.milesToMeters(miles: miles))
+        
+    }
     
-    
-  
+    func testMetersToMilesWithBadArgs() {
+        
+        let meters: Double = -5000
+        
+        XCTAssertNotNil(DistanceCalculation.metersToMiles(meters: meters))
+        
+    }
     
 }
+

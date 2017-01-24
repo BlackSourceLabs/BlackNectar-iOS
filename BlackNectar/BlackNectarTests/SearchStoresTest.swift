@@ -48,9 +48,10 @@ class SearchStoresTest: XCTestCase {
         
         let testCallback: ([StoresInfo]) -> Void = { stores in
             
-            if  !stores.isEmpty {
+            if !stores.isEmpty {
                 promise.fulfill()
             }
+            
         }
         
         SearchStores.searchForStoresLocations(near: userLocation, with: storeDistance, callback: testCallback)
@@ -67,7 +68,7 @@ class SearchStoresTest: XCTestCase {
         
         let testCallback: ([StoresInfo]) -> Void = { stores in
             
-            if stores.isEmpty {
+            if !stores.isEmpty {
                 promise.fulfill()
             }
             
@@ -76,28 +77,6 @@ class SearchStoresTest: XCTestCase {
         SearchStores.searchForStoresByName(withName: storeName, callback: testCallback)
         
         waitForExpectations(timeout: 3.0, handler: nil)
-    }
-    
-    func testGetStoresFrom() {
-        
-        let restaurantURL: String = "https://www.pexels.com/photo/salad-healthy-vegetables-vegan-69482/"
-        
-        guard let restaurantImage = URL(string: restaurantURL) else { return }
-        
-        let promise = expectation(description: "Callback will be called")
-        
-        let testCallback: ([StoresInfo]) -> Void = { stores in
-            
-            if stores.isEmpty {
-                promise.fulfill()
-            }
-        
-        }
-        
-        SearchStores.getStoresFrom(url: restaurantImage, callback: testCallback)
-        
-        waitForExpectations(timeout: 3.0, handler: nil)
-        
     }
     
 }

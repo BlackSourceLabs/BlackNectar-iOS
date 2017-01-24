@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		0A726B4A1E1D94B40031572D /* DistanceCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726B491E1D94B40031572D /* DistanceCalculation.swift */; };
 		0A9CE6371E1D98B7008860BA /* Integers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E134511E160E5500FD65DC /* Integers+.swift */; };
+		320820511E2DC278009FFCB9 /* StoresTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820501E2DC278009FFCB9 /* StoresTableViewControllerTests.swift */; };
+		320820541E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820531E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift */; };
+		320820571E2DE525009FFCB9 /* GlobalLocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820561E2DE525009FFCB9 /* GlobalLocationManagerTests.swift */; };
+		320820591E2DF038009FFCB9 /* DistanceCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */; };
+		3208205E1E2E0FD6009FFCB9 /* SearchStoresTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3208205D1E2E0FD6009FFCB9 /* SearchStoresTest.swift */; };
+		320820611E2EF38E009FFCB9 /* StoresDataStructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820601E2EF38E009FFCB9 /* StoresDataStructTests.swift */; };
 		3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213193D1DE0F61500FB1774 /* AppDelegate.swift */; };
 		321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */; };
 		321319431DE0F61500FB1774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321319411DE0F61500FB1774 /* Main.storyboard */; };
 		321319451DE0F61500FB1774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321319441DE0F61500FB1774 /* Assets.xcassets */; };
 		321319481DE0F61500FB1774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321319461DE0F61500FB1774 /* LaunchScreen.storyboard */; };
-		321319531DE0F61500FB1774 /* BlackNectarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321319521DE0F61500FB1774 /* BlackNectarTests.swift */; };
 		3213195E1DE0F61500FB1774 /* BlackNectarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */; };
 		3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */; };
 		3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196D1DE1576900FB1774 /* SearchStores.swift */; };
@@ -83,6 +88,12 @@
 
 /* Begin PBXFileReference section */
 		0A726B491E1D94B40031572D /* DistanceCalculation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCalculation.swift; sourceTree = "<group>"; };
+		320820501E2DC278009FFCB9 /* StoresTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewControllerTests.swift; sourceTree = "<group>"; };
+		320820531E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresMapViewControllerTests.swift; sourceTree = "<group>"; };
+		320820561E2DE525009FFCB9 /* GlobalLocationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManagerTests.swift; sourceTree = "<group>"; };
+		320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCalculationTests.swift; sourceTree = "<group>"; };
+		3208205D1E2E0FD6009FFCB9 /* SearchStoresTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStoresTest.swift; sourceTree = "<group>"; };
+		320820601E2EF38E009FFCB9 /* StoresDataStructTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresDataStructTests.swift; sourceTree = "<group>"; };
 		3213193A1DE0F61500FB1774 /* BlackNectar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackNectar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3213193D1DE0F61500FB1774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresMapViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +102,6 @@
 		321319471DE0F61500FB1774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		321319491DE0F61500FB1774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3213194E1DE0F61500FB1774 /* BlackNectarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlackNectarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		321319521DE0F61500FB1774 /* BlackNectarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackNectarTests.swift; sourceTree = "<group>"; };
 		321319541DE0F61500FB1774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		321319591DE0F61500FB1774 /* BlackNectarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlackNectarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3213195D1DE0F61500FB1774 /* BlackNectarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackNectarUITests.swift; sourceTree = "<group>"; };
@@ -150,6 +160,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3208204F1E2DC1FD009FFCB9 /* StoresListTableViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				320820501E2DC278009FFCB9 /* StoresTableViewControllerTests.swift */,
+			);
+			name = StoresListTableViewTests;
+			sourceTree = "<group>";
+		};
+		320820521E2DDE9E009FFCB9 /* MapViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				320820531E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift */,
+				320820561E2DE525009FFCB9 /* GlobalLocationManagerTests.swift */,
+			);
+			name = MapViewTests;
+			sourceTree = "<group>";
+		};
+		3208205C1E2E0FA9009FFCB9 /* APICallTests */ = {
+			isa = PBXGroup;
+			children = (
+				3208205D1E2E0FD6009FFCB9 /* SearchStoresTest.swift */,
+			);
+			name = APICallTests;
+			sourceTree = "<group>";
+		};
+		3208205F1E2EF37A009FFCB9 /* APIDataStructTests */ = {
+			isa = PBXGroup;
+			children = (
+				320820601E2EF38E009FFCB9 /* StoresDataStructTests.swift */,
+			);
+			name = APIDataStructTests;
+			sourceTree = "<group>";
+		};
 		321319311DE0F61500FB1774 = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +238,11 @@
 		321319511DE0F61500FB1774 /* BlackNectarTests */ = {
 			isa = PBXGroup;
 			children = (
-				321319521DE0F61500FB1774 /* BlackNectarTests.swift */,
+				3208205F1E2EF37A009FFCB9 /* APIDataStructTests */,
+				3208205C1E2E0FA9009FFCB9 /* APICallTests */,
+				320820521E2DDE9E009FFCB9 /* MapViewTests */,
+				3208204F1E2DC1FD009FFCB9 /* StoresListTableViewTests */,
+				320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */,
 				321319541DE0F61500FB1774 /* Info.plist */,
 			);
 			path = BlackNectarTests;
@@ -230,9 +277,9 @@
 		327BAD611DF44B8B000EA25E /* MapView */ = {
 			isa = PBXGroup;
 			children = (
-				36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */,
 				3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */,
 				3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */,
+				36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */,
 			);
 			name = MapView;
 			sourceTree = "<group>";
@@ -491,8 +538,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				321319531DE0F61500FB1774 /* BlackNectarTests.swift in Sources */,
 				32E134561E160EAF00FD65DC /* TimeIntervals+.swift in Sources */,
+				320820541E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift in Sources */,
+				320820611E2EF38E009FFCB9 /* StoresDataStructTests.swift in Sources */,
+				320820591E2DF038009FFCB9 /* DistanceCalculationTests.swift in Sources */,
+				320820571E2DE525009FFCB9 /* GlobalLocationManagerTests.swift in Sources */,
+				320820511E2DC278009FFCB9 /* StoresTableViewControllerTests.swift in Sources */,
+				3208205E1E2E0FD6009FFCB9 /* SearchStoresTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

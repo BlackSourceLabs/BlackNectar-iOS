@@ -119,7 +119,7 @@ extension StoresMapViewController {
         mapView.removeNonVisibleAnnotations()
     }
     
-    private func createAnnotation(forStore store: StoresInfo) -> CustomAnnotation {
+    func createAnnotation(forStore store: StoresInfo) -> CustomAnnotation {
         
         let storeName = store.storeName
         let address = store.address.allValues
@@ -213,7 +213,9 @@ fileprivate extension MKMapView {
     func isVisible(annotation: MKAnnotation) -> Bool {
         
         let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
+        
         return MKMapRectContainsPoint(self.visibleMapRect, annotationPoint)
+        
     }
     
     func removeNonVisibleAnnotations() {
@@ -221,6 +223,8 @@ fileprivate extension MKMapView {
         self.annotations
             .filter({ !isVisible(annotation: $0)})
             .forEach({ self.removeAnnotation($0) })
+        
     }
+    
 }
 

@@ -103,7 +103,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    fileprivate func loadStores(at coordinate: CLLocationCoordinate2D) {
+    func loadStores(at coordinate: CLLocationCoordinate2D) {
         
         networkLoadingIndicatorIsSpinning()
         
@@ -198,7 +198,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
             
             var distance = 0.0
             distance = DistanceCalculation.getDistance(userLocation: currentLocation, storeLocation: store.location)
-            distance = DistanceCalculation.meteresToMiles(meters: distance)
+            distance = DistanceCalculation.metersToMiles(meters: distance)
             let doubleDown = Double(round(distance * 100)/100)
             
             cell.storeDistance.text = "\(doubleDown) miles"
@@ -346,9 +346,9 @@ extension StoresTableViewController {
 }
 
 //MARK - Navigation Code
-fileprivate extension StoresTableViewController {
+extension StoresTableViewController {
     
-    func navigate(toStore store: StoresInfo) {
+    internal func navigate(toStore store: StoresInfo) {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         

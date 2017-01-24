@@ -74,11 +74,13 @@ class SideMenuFilterViewController: UITableViewController {
 
         if openNowSwitch.isOn {
 
-            isOpenNow = true; UserPreferences.instance.isOpenNow = true
+            isOpenNow = true
+            UserPreferences.instance.isOpenNow = true
             
         } else {
             
-            isOpenNow = false; UserPreferences.instance.isOpenNow = false
+            isOpenNow = false
+            UserPreferences.instance.isOpenNow = false
             
         }
 
@@ -88,18 +90,15 @@ class SideMenuFilterViewController: UITableViewController {
 
         if isRestaurant == false {
 
-            isRestaurant = true; UserPreferences.instance.isRestaurant = true
+            isRestaurant = true
+            UserPreferences.instance.isRestaurant = true
             styleButtonOn(button: restaurantButton)
-            
-        } else if isRestaurant == true {
-
-            isRestaurant = false; UserPreferences.instance.isRestaurant = false
-            styleButtonOff(button: restaurantButton)
             
         } else {
 
-            isRestaurant = true; UserPreferences.instance.isRestaurant = true
-            styleButtonOn(button: restaurantButton)
+            isRestaurant = false
+            UserPreferences.instance.isRestaurant = false
+            styleButtonOff(button: restaurantButton)
             
         }
 
@@ -109,19 +108,16 @@ class SideMenuFilterViewController: UITableViewController {
 
         if isStore == false {
 
-            isStore = true; UserPreferences.instance.isStore = true
+            isStore = true
+            UserPreferences.instance.isStore = true
             styleButtonOn(button: storesButton)
             
-        } else if isStore == true {
-
-            isStore = false; UserPreferences.instance.isStore = false
-            styleButtonOff(button: storesButton)
-
         } else {
 
-            isStore = true; UserPreferences.instance.isStore = true
-            styleButtonOn(button: storesButton)
-            
+            isStore = false
+            UserPreferences.instance.isStore = false
+            styleButtonOff(button: storesButton)
+
         }
 
     }
@@ -203,7 +199,7 @@ extension SideMenuFilterViewController {
         isOpenNow = UserPreferences.instance.isOpenNow
         isStore = UserPreferences.instance.isStore
 
-        UserPreferences.instance.setSideMenuDefaults(viewController: self, distanceFilter: distanceFilter, isRestaurant: isRestaurant, isOpenNow: isOpenNow, isStore: isStore)
+        UserPreferences.instance.setSideMenuDefaults(in: self, distanceFilter: distanceFilter, isRestaurant: isRestaurant, isOpenNow: isOpenNow, isStore: isStore)
         
     }
     

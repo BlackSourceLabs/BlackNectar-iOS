@@ -19,6 +19,7 @@ class CustomAnnotation: NSObject, MKAnnotation {
     init(name: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         title = name
         coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+        
     }
 
 }

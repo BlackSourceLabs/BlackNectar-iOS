@@ -52,7 +52,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         UserLocation.instance.initialize()
         configureSlideMenu()
         setupRefreshControl()
-        passDefaultValues()
+        loadDefaultValues()
         
     }
     
@@ -385,7 +385,7 @@ fileprivate extension StoresTableViewController {
 //MARK - Sets User Preferences for various filters
 fileprivate extension StoresTableViewController {
     
-    func passDefaultValues() {
+    func loadDefaultValues() {
         
         onlyShowOpenStores = UserPreferences.instance.isOpenNow
         showRestaurants = UserPreferences.instance.isRestaurant

@@ -15,6 +15,7 @@ import UIKit
 struct StoresInfo {
     
     let storeName: String
+    let storeFarmersMarket: Bool
     let location: CLLocationCoordinate2D
     let address: NSDictionary
     let storeImage: URL
@@ -22,7 +23,7 @@ struct StoresInfo {
     static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
         
         guard let storeName = dictionary ["store_name"] as? String,
-            let location = dictionary ["location"] as? NSDictionary,
+            let storeFarmersMarket = dictionary ["is_farmers_market"] as? Bool,
             let address = dictionary ["address"] as? NSDictionary,
             let storeType = dictionary ["main_image_url"] as? String,
             let storeImage = URL(string: storeType)
@@ -37,9 +38,9 @@ struct StoresInfo {
         guard let coordinatesDictionary = dictionary ["location"] as? NSDictionary else { return nil }
         guard let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees else { return nil }
         guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
-        let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        return StoresInfo(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage)
+        return StoresInfo(storeName: storeName, storeFarmersMarket: storeFarmersMarket, location: location, address: address, storeImage: storeImage)
         
     }
     

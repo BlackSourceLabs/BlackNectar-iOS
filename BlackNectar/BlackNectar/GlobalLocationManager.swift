@@ -79,29 +79,28 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        
         switch status {
             
             case CLAuthorizationStatus.restricted:
             
-                LOG.warn("User restricted Access to Location")
-                AromaClient.beginMessage(withTitle: "Restricted Access to Location")
-                    .addBody("The User has restricted access to access their locaiton")
+                LOG.warn("User restricted access to Location")
+                AromaClient.beginMessage(withTitle: "User restricted access to Location")
+                    .addBody("The User has restricted access to their locaiton")
                     .withPriority(.high)
                     .send()
             
             case CLAuthorizationStatus.notDetermined:
-            
+                    
                 LOG.warn("User status not determined")
                 AromaClient.beginMessage(withTitle: "User status not determined")
                     .addBody("The user has not yet made a choice regarding whether this app can use location services")
-                    .withPriority(.high)
+                    .withPriority(.medium)
                     .send()
             
             case CLAuthorizationStatus.denied:
                 
                 LOG.warn("User denied access to location")
-                AromaClient.beginMessage(withTitle: "User denied location permission")
+                AromaClient.beginMessage(withTitle: "User denied access to location")
                     .addBody("User denied permission to access their location")
                     .withPriority(.high)
                     .send()
@@ -116,9 +115,9 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
             
             default:
                 
-                LOG.warn("User location access granted")
-                AromaClient.beginMessage(withTitle: " User location access granted")
-                    .addBody("User location access granted")
+                LOG.warn("User status not determines")
+                AromaClient.beginMessage(withTitle: " User Status not determined")
+                    .addBody("The user has not yet made a choice regarding whether this app can use location services")
                     .withPriority(.medium)
                     .send()
             

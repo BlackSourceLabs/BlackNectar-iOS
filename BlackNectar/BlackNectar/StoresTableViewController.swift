@@ -26,7 +26,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     var stores: [StoresInfo] = []
     var distanceFilter = 0.0
-    var showRestaurants = false
+    var showFarmersMarkets = false
     var showStores = false
     var onlyShowOpenStores = true
     var panningWasTriggered = false
@@ -56,6 +56,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
+
     override func viewDidAppear(_ animated: Bool) {
         
         setEdgeGesture()
@@ -83,9 +84,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     }
     
     
-    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+    func didApplyFilters(_ filter: SideMenuFilterViewController, farmersMarkets: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
-        showRestaurants = restaurants
+        showFarmersMarkets = farmersMarkets
         showStores = stores
         onlyShowOpenStores = openNow
         distanceFilter = Double(distanceInMiles)
@@ -169,7 +170,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
             
             destination?.distance = distanceFilter
             destination?.onlyShowOpenStores = self.onlyShowOpenStores
-            destination?.showRestaurants = self.showRestaurants
+            destination?.showFarmersMarkets = self.showFarmersMarkets
             destination?.showStores = self.showStores
             destination?.storesInMapView = self.stores
             
@@ -226,7 +227,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         cell.onGoButtonPressed = { cell in
             
             self.navigateWithDrivingDirections(toStore: store)
-           
+            
             AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
                 .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
                 .withPriority(.medium)
@@ -401,7 +402,7 @@ fileprivate extension StoresTableViewController {
     func loadDefaultValues() {
         
         onlyShowOpenStores = UserPreferences.instance.isOpenNow
-        showRestaurants = UserPreferences.instance.isRestaurant
+        showFarmersMarkets = UserPreferences.instance.isFarmersMarket
         distanceFilter = UserPreferences.instance.distanceFilter
         showStores = UserPreferences.instance.isStore
         

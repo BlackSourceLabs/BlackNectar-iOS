@@ -23,7 +23,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var storesInMapView: [StoresInfo] = []
     var selectedPin: MKPlacemark?
     var distance = 0.0
-    var showRestaurants = false
+    var showFarmersMarkets = false
     var showStores = false
     var onlyShowOpenStores = true
     var mapViewLoaded = false
@@ -126,6 +126,7 @@ extension StoresMapViewController {
         
         mapView.addAnnotations(annotations)
         mapView.removeNonVisibleAnnotations()
+        
     }
     
     func createAnnotation(forStore store: StoresInfo) -> CustomAnnotation {
@@ -141,7 +142,6 @@ extension StoresMapViewController {
         
         return annotation
     }
-    
     
 }
 

@@ -51,6 +51,7 @@ class SearchStores {
         //Get stores from url
         //When done, pass them to `callback`
         
+        let now = Date()
         let request = URLRequest(url: url)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error  in
@@ -85,6 +86,17 @@ class SearchStores {
             //We have contact. Here are the stores
             callback(stores)
             
+            let time = now.timeIntervalSinceNow
+            
+            if abs(time) > 3.0 {
+                
+                LOG.warn("Loading stores took longer than 3 seconds")
+                AromaClient.beginMessage(withTitle: "Loading stores took longer than 3 seconds")
+                    .addBody("Loading stores took \(abs(time)) seconds long")
+                    .withPriority(.medium)
+                    .send()
+                
+            }
 
         }
         

@@ -90,7 +90,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
                     .send()
             
             case CLAuthorizationStatus.notDetermined:
-                    
+                
                 LOG.warn("User status not determined")
                 AromaClient.beginMessage(withTitle: "User status not determined")
                     .addBody("The user has not yet made a choice regarding whether this app can use location services")
@@ -113,13 +113,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
                     .withPriority(.medium)
                     .send()
             
-            default:
-                
-                LOG.warn("User status not determines")
-                AromaClient.beginMessage(withTitle: " User Status not determined")
-                    .addBody("The user has not yet made a choice regarding whether this app can use location services")
-                    .withPriority(.medium)
-                    .send()
+            default : break
             
         }
         

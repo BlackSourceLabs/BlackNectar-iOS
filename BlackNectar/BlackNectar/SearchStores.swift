@@ -7,6 +7,7 @@
 //
 
 import Archeota
+import AromaSwiftClient
 import CoreLocation
 import Foundation
 import UIKit
@@ -50,6 +51,7 @@ class SearchStores {
         //Get stores from url
         //When done, pass them to `callback`
         
+        let now = Date()
         let request = URLRequest(url: url)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error  in
@@ -58,13 +60,23 @@ class SearchStores {
             if error != nil {
                 
                 LOG.error("Failed to download stores from: \(url)")
+                AromaClient.beginMessage(withTitle: "Failed to down stores from url")
+                    .addBody("Failed to download stores from: \(url)")
+                    .withPriority(.high)
+                    .send()
+                
                 return
                 
             }
             
             guard let data = data else {
                 
-                LOG.error("Could not load stores from: \(url)")
+                LOG.error("Failed to load stores from: \(url)")
+                AromaClient.beginMessage(withTitle: "Failed to load stores from url")
+                    .addBody("Failed to load stores from: \(url)")
+                    .withPriority(.high)
+                    .send()
+                
                 return
                 
             }
@@ -74,6 +86,17 @@ class SearchStores {
             //We have contact. Here are the stores
             callback(stores)
             
+            let time = now.timeIntervalSinceNow
+            
+            if abs(time) > 3.0 {
+                
+                LOG.warn("Loading stores took longer than 3 seconds")
+                AromaClient.beginMessage(withTitle: "Loading stores took longer than 3 seconds")
+                    .addBody("Loading stores took \(abs(time)) seconds long")
+                    .withPriority(.medium)
+                    .send()
+                
+            }
 
         }
         
@@ -96,6 +119,7 @@ class SearchStores {
         for element in jsonArray {
             
             guard let object = element as? NSDictionary else {
+                
                 continue
                 
             }

@@ -29,9 +29,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
-    let edgeGesture = UIScreenEdgePanGestureRecognizer()
     var panningWasTriggered = false
-
+    let edgeGesture = UIScreenEdgePanGestureRecognizer()
+    
     
     let async: OperationQueue = {
         
@@ -63,7 +63,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         UserLocation.instance.requestLocation() { coordinate in
             self.loadStores(at: coordinate)
         }
-      
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,6 +112,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
+            
             self.stores = stores
             
             self.main.addOperation {
@@ -120,6 +121,12 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
                 
                 self.networkLoadingIndicatorIsNotSpinning()
                 self.refreshControl?.endRefreshing()
+                
+            }
+            
+            if self.stores.isEmpty {
+                
+                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
                 
             }
             
@@ -217,10 +224,16 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         cell.storeName.text = store.storeName
         cell.storeAddress.text = addressString
         cell.onGoButtonPressed = { cell in
-            self.navigate(toStore: store)
+            
+            self.navigateWithDrivingDirections(toStore: store)
+           
+            AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
+                .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
+                .withPriority(.medium)
+                .send()
+            
         }
         
-
         return cell
         
     }
@@ -318,7 +331,7 @@ extension StoresTableViewController {
             }
             
         }
-
+        
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -342,7 +355,7 @@ extension StoresTableViewController {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return false
-      
+        
     }
     
 }
@@ -350,7 +363,7 @@ extension StoresTableViewController {
 //MARK - Navigation Code
 extension StoresTableViewController {
     
-    internal func navigate(toStore store: StoresInfo) {
+    internal func navigateWithDrivingDirections(toStore store: StoresInfo) {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         
@@ -366,7 +379,7 @@ extension StoresTableViewController {
 
 //MARK - Network Loading Indicator Code
 fileprivate extension StoresTableViewController {
-
+    
     
     func networkLoadingIndicatorIsSpinning() {
         
@@ -391,7 +404,22 @@ fileprivate extension StoresTableViewController {
         showRestaurants = UserPreferences.instance.isRestaurant
         distanceFilter = UserPreferences.instance.distanceFilter
         showStores = UserPreferences.instance.isStore
+        
+    }
+    
+}
 
+extension StoresTableViewController {
+    
+    
+    func makeNoteThatNoStoresFound(additionalMessage: String = "") {
+        
+        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        AromaClient.beginMessage(withTitle: "No stores loading result is 0")
+            .addBody("There are no stores around the users location (Stores loading result is 0 :\(additionalMessage)")
+            .withPriority(.high)
+            .send()
+        
     }
     
 }

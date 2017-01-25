@@ -32,17 +32,17 @@ class UserPreferences {
         
     }
     
-    var isRestaurant: Bool {
+    var isFarmersMarket: Bool {
         
         get {
             
-            return defaultPreferences.bool(forKey: "isRestaurant")
+            return defaultPreferences.bool(forKey: "isFarmersMarket")
             
         }
         
         set (value){
             
-            defaultPreferences.set(value, forKey: "isRestaurant")
+            defaultPreferences.set(value, forKey: "isFarmersMarket")
             
         }
         
@@ -80,20 +80,20 @@ class UserPreferences {
         
     }
 
-    func setSideMenuDefaults(in viewController: SideMenuFilterViewController, distanceFilter: Double, isRestaurant: Bool, isOpenNow: Bool, isStore: Bool) {
+    func setSideMenuDefaults(in viewController: SideMenuFilterViewController, distanceFilter: Double, isFarmersMarket: Bool, isOpenNow: Bool, isStore: Bool) {
         
         let roundedNumber = (round(defaultPreferences.double(forKey: "distanceFilter") * 100)/100)
         
         viewController.slider.value = Float(defaultPreferences.double(forKey: "distanceFilter"))
         viewController.slideValueLabel.text = "\(roundedNumber)"
         
-        if isRestaurant {
+        if isFarmersMarket {
             
-            viewController.styleButtonOn(button: viewController.restaurantButton)
+            viewController.styleButtonOn(button: viewController.farmersMarketButton)
             
         } else {
             
-            viewController.styleButtonOff(button: viewController.restaurantButton)
+            viewController.styleButtonOff(button: viewController.farmersMarketButton)
             
         }
         

@@ -26,8 +26,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
-    let userLocationManager = UserLocation.instance
     var mapViewLoaded = false
+    
     
     typealias Callback = ([StoresInfo]) -> ()
     
@@ -47,11 +47,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         prepareMapView()
         loadStores()
-        
-        AromaClient.beginMessage(withTitle: "User Entered Map View")
-            .addBody("Users location is: \(UserLocation.instance.currentCoordinate)")
-            .withPriority(.medium)
-            .send()
+        userLocationInfoForAroma()
         
     }
     
@@ -63,7 +59,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     private func loadStores() {
         
         UserLocation.instance.requestLocation() { coordinate in
+            
             self.loadStoresInMapView(at: coordinate)
+            
         }
         
     }
@@ -77,14 +75,16 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             
             LOG.error("Failed to Update the Users Current Region")
             return
+            
         }
         
         self.mapView.setRegion(region, animated: true)
+        
     }
     
 }
 
-//MARK: Loading Stores Into View
+//MARK: Loading Stores Into mapView
 extension StoresMapViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
@@ -98,9 +98,18 @@ extension StoresMapViewController {
             self.storesInMapView = stores
             
             self.main.addOperation {
+                
                 self.populateStoreAnnotations()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                
             }
+            
+            if self.storesInMapView.isEmpty {
+                
+                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Map View")
+                
+            }
+            
         }
         
     }
@@ -149,11 +158,11 @@ extension StoresMapViewController {
         let annotation = annotation as? CustomAnnotation
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        let blackNectarPin = UIImage(named: "NectarMapPin")
+        let blackNectarPin = UIImage(named: "BlackNectarMapPinYellow")
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation?.identifier)
-
+        
         button.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
-
+        
         annotationView.canShowCallout = true
         annotationView.leftCalloutAccessoryView = button
         annotationView.image = blackNectarPin
@@ -187,6 +196,11 @@ extension StoresMapViewController {
             
             getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
             
+            AromaClient.beginMessage(withTitle: "User tapped on \(storeName) map pin")
+                .addBody("User navigated to \(storeName)\nstore coordinates: \(storeLocation.coordinate)\n(Map View)")
+                .withPriority(.medium)
+                .send()
+            
         }
         
     }
@@ -203,6 +217,7 @@ extension StoresMapViewController {
         LOG.debug("User dragged Map Screen to: \(center)")
         
         self.loadStoresInMapView(at: center)
+        
     }
     
 }
@@ -227,4 +242,31 @@ fileprivate extension MKMapView {
     }
     
 }
+
+extension StoresMapViewController {
+    
+    func makeNoteThatNoStoresFound(additionalMessage: String = "") {
+        
+        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        AromaClient.beginMessage(withTitle: "No stores loading result is 0")
+            .addBody("There are no stores around the users location (Stores loading result is 0 :\(additionalMessage)")
+            .withPriority(.high)
+            .send()
+        
+    }
+    
+    func userLocationInfoForAroma() {
+        
+        guard let userLocationForAroma = UserLocation.instance.currentCoordinate else { return }
+        
+        AromaClient.beginMessage(withTitle: "User Entered Map View")
+            .addBody("User Location is: \(userLocationForAroma)")
+            .withPriority(.low)
+            .send()
+        
+    }
+    
+}
+
+
 

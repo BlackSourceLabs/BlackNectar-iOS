@@ -43,7 +43,7 @@ class StoresMapViewControllerTests: XCTestCase {
         
         guard let restaurantImage = URL(string: restaurantURL) else { return }
         
-        let hopeVeganRestaurant = StoresInfo(storeName: "HOPE", location: restaurantLocation, address: restaurantAddress, storeImage: restaurantImage)
+        let hopeVeganRestaurant = StoresInfo(storeName: "HOPE", location: restaurantLocation, address: restaurantAddress, storeImage: restaurantImage, isFarmersMarket: false)
         
         XCTAssertNotNil(storesMapViewController.createAnnotation(forStore: hopeVeganRestaurant))
         

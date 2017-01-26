@@ -82,7 +82,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.stores = stores
+            self.stores = self.filterStoresFrom(stores: stores)
             
             self.main.addOperation {
                 
@@ -101,6 +101,23 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
             
         }
         
+    }
+    
+    private func filterStoresFrom(stores: [StoresInfo]) -> [StoresInfo] {
+        
+        if showStores == showFarmersMarkets {
+            return stores
+        }
+        
+        if showStores {
+            return stores.filter() { !$0.isFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
     }
     
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {

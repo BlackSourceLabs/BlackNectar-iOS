@@ -20,6 +20,8 @@ struct StoresInfo {
     let storeImage: URL
     let isFarmersMarket: Bool
     
+    var notFarmersMarket: Bool { return !isFarmersMarket }
+    
     static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
         
         guard let storeName = dictionary ["store_name"] as? String,

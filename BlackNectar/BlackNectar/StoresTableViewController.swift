@@ -110,7 +110,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
         
         if showStores {
-            return stores.filter() { !$0.isFarmersMarket }
+            return stores.filter() { $0.notFarmersMarket }
         }
         
         if showFarmersMarkets {
@@ -341,7 +341,7 @@ extension StoresTableViewController {
             destination?.onlyShowOpenStores = self.onlyShowOpenStores
             destination?.showFarmersMarkets = self.showFarmersMarkets
             destination?.showStores = self.showStores
-            destination?.storesInMapView = self.stores
+            destination?.stores = self.stores
             
         }
     }

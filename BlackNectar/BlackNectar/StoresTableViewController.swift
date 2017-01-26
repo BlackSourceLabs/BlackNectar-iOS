@@ -111,20 +111,21 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     }
 }
 
-//MARK: Side Menu Filter Delegate
+//MARK: Side Menu Filter Delegate Code
 extension StoresTableViewController {
     
     fileprivate func configureSideMenu() {
         
         guard let menu = self.revealViewController() else { return }
-        menu.delegate = self
         
         if let gesture = menu.panGestureRecognizer() {
             self.view.addGestureRecognizer(gesture)
+            
         }
         
         guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
         sideMenu.delegate = self
+        
     }
     
     func didOpenFilterMenu() {
@@ -145,6 +146,7 @@ extension StoresTableViewController {
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             loadStores(at: currentLocation)
+            
         }
         
     }
@@ -328,16 +330,6 @@ extension StoresTableViewController {
     
 }
 
-//MARK: SWReveal Delegate
-extension StoresTableViewController: SWRevealViewControllerDelegate {
-    func revealController(_ revealController: SWRevealViewController!, panGestureRecognizerShouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
-        
-        guard let other = otherGestureRecognizer else { return false }
-        
-        return other != edgePanGestureRecognizer
-    }
-}
-
 //MARK: UI Screen Pan Gesture Code
 extension StoresTableViewController {
     
@@ -385,31 +377,7 @@ extension StoresTableViewController {
         }
         
     }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 
-        
-        switch gestureRecognizer.state {
-            
-            case .cancelled, .failed :
-            
-            setEdgeGesture()
-            
-            default : break
-            
-        }
-       
-    
-        return false
-        
-    }
-    
 }
 
 //MARK: Network Loading Indicator Code
@@ -445,13 +413,17 @@ fileprivate extension StoresTableViewController {
     }
     
     func makeNoteThatFilterMenuOpened() {
+        
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         LOG.info("Filter Opened")
+        
     }
     
     func makeNoteThatFilterMenuCancelled() {
+        
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
         LOG.info("Cancelling Filter")
+        
     }
     
 }

@@ -39,7 +39,7 @@ class StoresDataStructTests: XCTestCase {
     
     func testFromJson() {
         
-        let restaurantName = String()
+        let restaurantName = "store_name"
         let restaurantLocation = String()
         let restaurantAddress = String()
         let storeImage = String()
@@ -48,8 +48,8 @@ class StoresDataStructTests: XCTestCase {
                                             restaurantAddress : "11943 W Ventura blvd",
                                             storeImage : "What a beautiful picture"]
         
-        XCTAssertNil(StoresInfo.fromJson(dictionary: restaurantInfo))
-        
+        let result = StoresInfo.fromJson(dictionary: restaurantInfo)
+        XCTAssertTrue(result != nil)
     }
     
 }

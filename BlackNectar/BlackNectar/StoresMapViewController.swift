@@ -20,12 +20,16 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     @IBOutlet weak var mapView: MKMapView!
     
     var currentCoordinates: CLLocationCoordinate2D?
-    var storesInMapView: [StoresInfo] = []
+    
+    var stores: [StoresInfo] = []
+    
     var selectedPin: MKPlacemark?
     var distance = 0.0
-    var showRestaurants = false
-    var showStores = false
+    
+    var showFarmersMarkets = true
+    var showStores = true
     var onlyShowOpenStores = true
+    
     var mapViewLoaded = false
     
     
@@ -51,9 +55,15 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        loadUserDefaults()
+    }
+    
+    private func loadUserDefaults() {
+        self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
+        self.showStores = UserPreferences.instance.isStore
     }
     
     private func loadStores() {
@@ -95,7 +105,7 @@ extension StoresMapViewController {
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.storesInMapView = stores
+            self.stores = self.filterStores(stores: stores)
             
             self.main.addOperation {
                 
@@ -104,7 +114,7 @@ extension StoresMapViewController {
                 
             }
             
-            if self.storesInMapView.isEmpty {
+            if self.stores.isEmpty {
                 
                 self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Map View")
                 
@@ -114,11 +124,28 @@ extension StoresMapViewController {
         
     }
     
+    private func filterStores(stores: [StoresInfo]) -> [StoresInfo] {
+        
+        if showStores == showFarmersMarkets {
+            return stores
+        }
+        
+        if showStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
+    }
+    
     func populateStoreAnnotations() {
         
         var annotations: [MKAnnotation] = []
         
-        for store in storesInMapView {
+        for store in stores {
             
             let annotation = createAnnotation(forStore: store)
             annotations.append(annotation)

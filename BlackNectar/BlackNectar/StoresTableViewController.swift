@@ -21,9 +21,12 @@ import UIKit
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
     
     var stores: [StoresInfo] = []
+    
+    var filteredStores: [StoresInfo] = []
+    
     var distanceFilter = 0.0
-    var showRestaurants = false
-    var showStores = false
+    var showFarmersMarkets = true
+    var showStores = true
     var onlyShowOpenStores = true
     var panningWasTriggered = false
     let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
@@ -79,7 +82,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.stores = stores
+            self.stores = self.filterStoresFrom(stores: stores)
             
             self.main.addOperation {
                 
@@ -100,6 +103,23 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
+    private func filterStoresFrom(stores: [StoresInfo]) -> [StoresInfo] {
+        
+        if showStores == showFarmersMarkets {
+            return stores
+        }
+        
+        if showStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
+    }
+    
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
         let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
@@ -117,6 +137,7 @@ extension StoresTableViewController {
     fileprivate func configureSideMenu() {
         
         guard let menu = self.revealViewController() else { return }
+        adjustWidth(menu: menu)
         
         if let gesture = menu.panGestureRecognizer() {
             self.view.addGestureRecognizer(gesture)
@@ -128,6 +149,11 @@ extension StoresTableViewController {
         
     }
     
+    private func adjustWidth(menu: SWRevealViewController) {
+        let width = self.view.frame.width * 0.85
+        menu.rearViewRevealWidth = width
+    }
+    
     func didOpenFilterMenu() {
         disconnectEdgeGesture()
         makeNoteThatFilterMenuOpened()
@@ -137,9 +163,9 @@ extension StoresTableViewController {
         reconnectEdgeGesture()
     }
     
-    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+    func didApplyFilters(_ filter: SideMenuFilterViewController, farmersMarkets: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
-        showRestaurants = restaurants
+        showFarmersMarkets = farmersMarkets
         showStores = stores
         onlyShowOpenStores = openNow
         distanceFilter = Double(distanceInMiles)
@@ -201,7 +227,6 @@ extension StoresTableViewController {
             
             cell.storeDistance.text = "\(doubleDown) miles"
         }
-        
         
         
         //WTF IS THIS? FUNCTION PLEASE
@@ -314,9 +339,9 @@ extension StoresTableViewController {
             
             destination?.distance = distanceFilter
             destination?.onlyShowOpenStores = self.onlyShowOpenStores
-            destination?.showRestaurants = self.showRestaurants
+            destination?.showFarmersMarkets = self.showFarmersMarkets
             destination?.showStores = self.showStores
-            destination?.storesInMapView = self.stores
+            destination?.stores = self.stores
             
         }
     }
@@ -335,7 +360,7 @@ extension StoresTableViewController {
     func loadDefaultValues() {
         
         onlyShowOpenStores = UserPreferences.instance.isOpenNow
-        showRestaurants = UserPreferences.instance.isRestaurant
+        showFarmersMarkets = UserPreferences.instance.isFarmersMarket
         distanceFilter = UserPreferences.instance.distanceFilter
         showStores = UserPreferences.instance.isStore
         

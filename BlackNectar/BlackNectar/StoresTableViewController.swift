@@ -21,6 +21,9 @@ import UIKit
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
     
     var stores: [StoresInfo] = []
+    
+    var filteredStores: [StoresInfo] = []
+    
     var distanceFilter = 0.0
     var showFarmersMarkets = true
     var showStores = true

@@ -219,18 +219,17 @@
                         <barButtonItem key="rightBarButtonItem" title="Map" id="KP8-gl-9JL">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="mapViewSegue" id="I9G-1H-mnH"/>
+                                <action selector="mapButtonTapped:" destination="7dd-Vg-sa8" id="GDJ-Hp-8TB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="filterButton" destination="1iX-Ns-0bU" id="jbh-lT-Hwz"/>
-                        <outlet property="mapButton" destination="KP8-gl-9JL" id="Yyy-Hr-yg1"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="mapViewSegue" id="xdh-tm-f6B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245.5999999999999" y="1563.8680659670167"/>
+            <point key="canvasLocation" x="1249" y="1564"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="PXy-H6-aON">

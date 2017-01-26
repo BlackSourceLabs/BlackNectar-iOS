@@ -18,6 +18,7 @@ struct StoresInfo {
     let location: CLLocationCoordinate2D
     let address: NSDictionary
     let storeImage: URL
+    let isFarmersMarket: Bool
     
     static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
         
@@ -26,7 +27,7 @@ struct StoresInfo {
             let address = dictionary ["address"] as? NSDictionary,
             let storeType = dictionary ["main_image_url"] as? String,
             let storeImage = URL(string: storeType)
-            
+
             else {
                 
                 LOG.error("Guard Failed on fromJson method")
@@ -39,7 +40,9 @@ struct StoresInfo {
         guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        return StoresInfo(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage)
+        let isFarmersMarket: Bool = dictionary["is_farmers_market"] as? Bool ?? false
+        
+        return StoresInfo(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
         
     }
     

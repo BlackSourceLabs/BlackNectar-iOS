@@ -227,6 +227,19 @@ extension StoresTableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard stores.notEmpty else { return }
+        guard tableView.cellForRow(at: indexPath) is StoresTableViewCell else { return }
+        
+        let index = indexPath.row
+        guard stores.isInBounds(index: index) else { return }
+        
+        let store = stores[indexPath.row]
+        self.navigateWithDrivingDirections(toStore: store)
+        
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let cellAnimation = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)

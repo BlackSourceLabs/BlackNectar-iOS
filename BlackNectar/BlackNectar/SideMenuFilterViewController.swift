@@ -14,6 +14,8 @@ import UIKit
 
 protocol SideMenuFilterDelegate {
 
+    func didOpenFilterMenu()
+    func didCloseFilterMenu()
     func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
     func didCancelFilters()
 
@@ -45,6 +47,16 @@ class SideMenuFilterViewController: UITableViewController {
         styleMenu()
         loadsDefaults()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        delegate?.didOpenFilterMenu()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        delegate?.didCloseFilterMenu()
     }
 
     func passingDistance() -> Double {

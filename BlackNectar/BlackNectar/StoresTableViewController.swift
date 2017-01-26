@@ -20,18 +20,13 @@ import UIKit
 
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
     
-    
-    @IBOutlet weak var filterButton: UIBarButtonItem!
-    @IBOutlet weak var mapButton: UIBarButtonItem!
-    
     var stores: [StoresInfo] = []
     var distanceFilter = 0.0
     var showRestaurants = false
     var showStores = false
     var onlyShowOpenStores = true
     var panningWasTriggered = false
-    let edgeGesture = UIScreenEdgePanGestureRecognizer()
-    
+    let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
     
     let async: OperationQueue = {
         
@@ -47,22 +42,20 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stores.removeAll()
-        
         UserLocation.instance.initialize()
-        configureSlideMenu()
+        configureSideMenu()
         setupRefreshControl()
         loadDefaultValues()
+        
+        UserLocation.instance.requestLocation() { coordinate in
+            self.loadStores(at: coordinate)
+        }
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         setEdgeGesture()
-        
-        UserLocation.instance.requestLocation() { coordinate in
-            self.loadStores(at: coordinate)
-        }
         
     }
     
@@ -76,33 +69,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
         }
-        
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
-        LOG.info("Opening Filter")
-        
-    }
-    
-    
-    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
-        
-        showRestaurants = restaurants
-        showStores = stores
-        onlyShowOpenStores = openNow
-        distanceFilter = Double(distanceInMiles)
-        
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            
-            loadStores(at: currentLocation)
-            
-        }
-        
-    }
-    
-    func didCancelFilters() {
-        
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
-        LOG.info("Cancelling Filter")
-        
     }
     
     func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -134,23 +100,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    fileprivate func configureSlideMenu() {
-        
-        guard let menu = self.revealViewController() else { return }
-        
-        if let gesture = menu.panGestureRecognizer() {
-            
-            self.view.addGestureRecognizer(gesture)
-            
-        }
-        
-        guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
-        
-        sideMenu.delegate = self
-        
-        
-    }
-    
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
         let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
@@ -160,24 +109,62 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         cell.storeImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
         
     }
+}
+
+//MARK: Side Menu Filter Delegate
+extension StoresTableViewController {
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    fileprivate func configureSideMenu() {
         
-        if segue.identifier == "mapViewSegue" {
-            
-            let destination = segue.destination as? StoresMapViewController
-            
-            destination?.distance = distanceFilter
-            destination?.onlyShowOpenStores = self.onlyShowOpenStores
-            destination?.showRestaurants = self.showRestaurants
-            destination?.showStores = self.showStores
-            destination?.storesInMapView = self.stores
-            
+        guard let menu = self.revealViewController() else { return }
+        menu.delegate = self
+        
+        if let gesture = menu.panGestureRecognizer() {
+            self.view.addGestureRecognizer(gesture)
         }
+        
+        guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
+        sideMenu.delegate = self
     }
     
+    func didOpenFilterMenu() {
+        disconnectEdgeGesture()
+        makeNoteThatFilterMenuOpened()
+    }
     
-    // MARK: - Table view data source
+    func didCloseFilterMenu() {
+        reconnectEdgeGesture()
+    }
+    
+    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+        
+        showRestaurants = restaurants
+        showStores = stores
+        onlyShowOpenStores = openNow
+        distanceFilter = Double(distanceInMiles)
+        
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+            loadStores(at: currentLocation)
+        }
+        
+    }
+    
+    func didCancelFilters() {
+        makeNoteThatFilterMenuCancelled()
+    }
+    
+    private func disconnectEdgeGesture() {
+        self.view.removeGestureRecognizer(edgePanGestureRecognizer)
+    }
+    
+    private func reconnectEdgeGesture() {
+        self.view.addGestureRecognizer(edgePanGestureRecognizer)
+    }
+    
+}
+
+//MARK: Table View Code
+extension StoresTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -226,7 +213,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         cell.onGoButtonPressed = { cell in
             
             self.navigateWithDrivingDirections(toStore: store)
-           
+            
             AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
                 .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
                 .withPriority(.medium)
@@ -259,7 +246,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
 }
 
-//MARK - Pull to Refresh Code
+//MARK: Pull to Refresh Code
 extension StoresTableViewController {
     
     func setupRefreshControl() {
@@ -284,83 +271,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK - UI Screen Pan Gesture Code
-extension StoresTableViewController {
-    
-    func setEdgeGesture() {
-        
-        edgeGesture.addTarget(self, action: #selector(self.handleRightEdge(gesture:)))
-        edgeGesture.edges = .right
-        edgeGesture.delegate = self
-        
-        self.view.addGestureRecognizer(edgeGesture)
-        
-    }
-    
-    func handleRightEdge(gesture: UIScreenEdgePanGestureRecognizer) {
-        
-        switch gesture.state {
-            
-        case .began, .changed:
-            
-            setGestureProperties()
-            
-        case .cancelled, .failed:
-            
-            panningWasTriggered = false
-            
-        default: break
-            
-        }
-        
-    }
-    
-    func setGestureProperties() {
-        
-        if !panningWasTriggered {
-            
-            let threshold: CGFloat = 20
-            let translation = abs(edgeGesture.translation(in: view).x)
-            
-            if translation >= threshold {
-                
-                performSegue(withIdentifier: "mapViewSegue", sender: nil)
-                
-                panningWasTriggered = true
-                
-            }
-            
-        }
-        
-    }
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return true
-        
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        return false
-        
-    }
-    
-}
-
-//MARK - Navigation Code
+//MARK: Navigation Code
 extension StoresTableViewController {
     
     internal func navigateWithDrivingDirections(toStore store: StoresInfo) {
@@ -377,7 +288,131 @@ extension StoresTableViewController {
     
 }
 
-//MARK - Network Loading Indicator Code
+//MARK: Prepare and Perform Segue Code
+extension StoresTableViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "mapViewSegue" {
+            
+            let destination = segue.destination as? StoresMapViewController
+            
+            destination?.distance = distanceFilter
+            destination?.onlyShowOpenStores = self.onlyShowOpenStores
+            destination?.showRestaurants = self.showRestaurants
+            destination?.showStores = self.showStores
+            destination?.storesInMapView = self.stores
+            
+        }
+    }
+    
+    @IBAction func mapButtonTapped(_ sender: Any) {
+        
+        performSegue(withIdentifier: "mapViewSegue", sender: nil)
+        
+    }
+    
+}
+
+//MARK: User Preferences Code
+extension StoresTableViewController {
+    
+    func loadDefaultValues() {
+        
+        onlyShowOpenStores = UserPreferences.instance.isOpenNow
+        showRestaurants = UserPreferences.instance.isRestaurant
+        distanceFilter = UserPreferences.instance.distanceFilter
+        showStores = UserPreferences.instance.isStore
+        
+    }
+    
+}
+
+//MARK: SWReveal Delegate
+extension StoresTableViewController: SWRevealViewControllerDelegate {
+    func revealController(_ revealController: SWRevealViewController!, panGestureRecognizerShouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer!) -> Bool {
+        
+        guard let other = otherGestureRecognizer else { return false }
+        
+        return other != edgePanGestureRecognizer
+    }
+}
+
+//MARK: UI Screen Pan Gesture Code
+extension StoresTableViewController {
+    
+    func setEdgeGesture() {
+        
+        edgePanGestureRecognizer.addTarget(self, action: #selector(self.handleRightEdge(gesture:)))
+        edgePanGestureRecognizer.edges = .right
+        edgePanGestureRecognizer.delegate = self
+        
+        self.view.addGestureRecognizer(edgePanGestureRecognizer)
+        
+    }
+    
+    func handleRightEdge(gesture: UIScreenEdgePanGestureRecognizer) {
+        
+        switch gesture.state {
+            
+            case .began, .changed:
+                setGestureProperties()
+            
+            case .cancelled, .failed:
+                panningWasTriggered = false
+            
+        default: break
+            
+        }
+        
+    }
+    
+    func setGestureProperties() {
+        
+        if !panningWasTriggered {
+            
+            let threshold: CGFloat = 30
+            let translation = abs(edgePanGestureRecognizer.translation(in: view).x)
+            
+            if translation >= threshold {
+                
+                performSegue(withIdentifier: "mapViewSegue", sender: nil)
+                
+                panningWasTriggered = true
+                
+            }
+            
+        }
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        return true
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+
+        
+        switch gestureRecognizer.state {
+            
+            case .cancelled, .failed :
+            
+            setEdgeGesture()
+            
+            default : break
+            
+        }
+       
+    
+        return false
+        
+    }
+    
+}
+
+//MARK: Network Loading Indicator Code
 fileprivate extension StoresTableViewController {
     
     
@@ -395,21 +430,8 @@ fileprivate extension StoresTableViewController {
     
 }
 
-//MARK - Sets User Preferences for various filters
+//MARK: Aroma Messages Code
 fileprivate extension StoresTableViewController {
-    
-    func loadDefaultValues() {
-        
-        onlyShowOpenStores = UserPreferences.instance.isOpenNow
-        showRestaurants = UserPreferences.instance.isRestaurant
-        distanceFilter = UserPreferences.instance.distanceFilter
-        showStores = UserPreferences.instance.isStore
-        
-    }
-    
-}
-
-extension StoresTableViewController {
     
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
@@ -420,6 +442,16 @@ extension StoresTableViewController {
             .withPriority(.high)
             .send()
         
+    }
+    
+    func makeNoteThatFilterMenuOpened() {
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
+        LOG.info("Filter Opened")
+    }
+    
+    func makeNoteThatFilterMenuCancelled() {
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
+        LOG.info("Cancelling Filter")
     }
     
 }

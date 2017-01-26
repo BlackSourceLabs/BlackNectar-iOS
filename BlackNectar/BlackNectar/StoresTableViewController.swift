@@ -229,8 +229,13 @@ extension StoresTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let store = stores[indexPath.row]
+        guard stores.notEmpty else { return }
+        guard tableView.cellForRow(at: indexPath) is StoresTableViewCell else { return }
         
+        let index = indexPath.row
+        guard stores.isInBounds(index: index) else { return }
+        
+        let store = stores[indexPath.row]
         self.navigateWithDrivingDirections(toStore: store)
         
     }

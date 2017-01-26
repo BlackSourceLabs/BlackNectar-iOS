@@ -117,6 +117,7 @@ extension StoresTableViewController {
     fileprivate func configureSideMenu() {
         
         guard let menu = self.revealViewController() else { return }
+        adjustWidth(menu: menu)
         
         if let gesture = menu.panGestureRecognizer() {
             self.view.addGestureRecognizer(gesture)
@@ -126,6 +127,11 @@ extension StoresTableViewController {
         guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
         sideMenu.delegate = self
         
+    }
+    
+    private func adjustWidth(menu: SWRevealViewController) {
+        let width = self.view.frame.width * 0.85
+        menu.rearViewRevealWidth = width
     }
     
     func didOpenFilterMenu() {

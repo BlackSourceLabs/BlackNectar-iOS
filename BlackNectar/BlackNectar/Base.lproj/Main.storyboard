@@ -60,7 +60,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -332,7 +332,7 @@
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="onRestaurant:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="Wa3-iC-Fbu"/>
+                                                        <action selector="onFarmersMarket:" destination="dg9-R3-Y9r" eventType="touchUpInside" id="jzq-Mm-vNd"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-sf-DZZ">
@@ -463,9 +463,9 @@
                         <outlet property="cancelButton" destination="hQJ-kN-Uuk" id="V2q-3l-reX"/>
                         <outlet property="contentViewCell" destination="MsZ-Mb-RSo" id="qvG-Io-PvR"/>
                         <outlet property="distanceLabel" destination="8yA-YP-JTy" id="ugQ-z2-sxh"/>
+                        <outlet property="farmersMarketButton" destination="tDh-mv-38n" id="55S-ZT-uwP"/>
                         <outlet property="openNowLabel" destination="Th7-Fu-RW4" id="w1h-cE-LQn"/>
                         <outlet property="openNowSwitch" destination="ynX-1C-t7V" id="urh-0C-Yan"/>
-                        <outlet property="restaurantButton" destination="tDh-mv-38n" id="pvI-7i-QuJ"/>
                         <outlet property="slideValueLabel" destination="beC-5C-j7N" id="lwh-k3-by5"/>
                         <outlet property="slider" destination="X1A-Xi-EyJ" id="yC8-ry-OLM"/>
                         <outlet property="storesButton" destination="pRy-6I-r27" id="Y9i-KC-Q3t"/>

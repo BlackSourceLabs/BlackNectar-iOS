@@ -16,7 +16,7 @@ protocol SideMenuFilterDelegate {
 
     func didOpenFilterMenu()
     func didCloseFilterMenu()
-    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
+    func didApplyFilters(_ filter: SideMenuFilterViewController, farmersMarkets: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int)
     func didCancelFilters()
 
 }
@@ -27,7 +27,7 @@ class SideMenuFilterViewController: UITableViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var openNowLabel: UILabel!
     @IBOutlet weak var openNowSwitch: UISwitch!
-    @IBOutlet weak var restaurantButton: UIButton!
+    @IBOutlet weak var farmersMarketButton: UIButton!
     @IBOutlet weak var storesButton: UIButton!
     @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -35,7 +35,7 @@ class SideMenuFilterViewController: UITableViewController {
     @IBOutlet weak var slideValueLabel: UILabel!
 
     var distanceFilter = 0.00
-    var isRestaurant = false
+    var isFarmersMarket = false
     var isStore = false
     var isOpenNow = false
     var delegate: SideMenuFilterDelegate?
@@ -98,19 +98,19 @@ class SideMenuFilterViewController: UITableViewController {
 
     }
 
-    @IBAction func onRestaurant(_ sender: Any) {
+    @IBAction func onFarmersMarket(_ sender: UIButton) {
 
-        if isRestaurant == false {
+        if isFarmersMarket == false {
 
-            isRestaurant = true
-            UserPreferences.instance.isRestaurant = true
-            styleButtonOn(button: restaurantButton)
+            isFarmersMarket = true
+            UserPreferences.instance.isFarmersMarket = true
+            styleButtonOn(button: farmersMarketButton)
             
         } else {
 
-            isRestaurant = false
-            UserPreferences.instance.isRestaurant = false
-            styleButtonOff(button: restaurantButton)
+            isFarmersMarket = false
+            UserPreferences.instance.isFarmersMarket = false
+            styleButtonOff(button: farmersMarketButton)
             
         }
 
@@ -136,10 +136,10 @@ class SideMenuFilterViewController: UITableViewController {
     
     @IBAction func applyButton(_ sender: UIButton) {
         
-        self.delegate?.didApplyFilters(self, restaurants: self.isRestaurant, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: Int(self.distanceFilter))
+        self.delegate?.didApplyFilters(self, farmersMarkets: self.isFarmersMarket, stores: self.isStore, openNow: self.isOpenNow, distanceInMiles: Int(self.distanceFilter))
         
         AromaClient.beginMessage(withTitle: "Apply Button Selected")
-            .addBody("Users Filter Settings: restaurants button is \(self.isRestaurant), stores button is \(self.isStore), isopenNow switch is \(self.isOpenNow)")
+            .addBody("Users Filter Settings: farmersMarkets button is \(self.isFarmersMarket) | stores button is \(self.isStore) | isOpenNow switch is \(self.isOpenNow)")
             .withPriority(.medium)
             .send()
         
@@ -164,7 +164,7 @@ class SideMenuFilterViewController: UITableViewController {
         cancelButton.layer.borderWidth = 2
         cancelButton.layer.cornerRadius = 10
 
-        restaurantButton.layer.cornerRadius = 10
+        farmersMarketButton.layer.cornerRadius = 10
         storesButton.layer.cornerRadius = 10
 
         contentViewCell.layer.opacity = 0.75
@@ -207,11 +207,11 @@ extension SideMenuFilterViewController {
     func loadsDefaults() {
         
         distanceFilter = UserPreferences.instance.distanceFilter
-        isRestaurant = UserPreferences.instance.isRestaurant
+        isFarmersMarket = UserPreferences.instance.isFarmersMarket
         isOpenNow = UserPreferences.instance.isOpenNow
         isStore = UserPreferences.instance.isStore
 
-        UserPreferences.instance.setSideMenuDefaults(in: self, distanceFilter: distanceFilter, isRestaurant: isRestaurant, isOpenNow: isOpenNow, isStore: isStore)
+        UserPreferences.instance.setSideMenuDefaults(in: self, distanceFilter: distanceFilter, isFarmersMarket: isFarmersMarket, isOpenNow: isOpenNow, isStore: isStore)
         
     }
     

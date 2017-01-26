@@ -22,8 +22,8 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     var stores: [StoresInfo] = []
     var distanceFilter = 0.0
-    var showRestaurants = false
-    var showStores = false
+    var showFarmersMarkets = true
+    var showStores = true
     var onlyShowOpenStores = true
     var panningWasTriggered = false
     let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
@@ -143,9 +143,9 @@ extension StoresTableViewController {
         reconnectEdgeGesture()
     }
     
-    func didApplyFilters(_ filter: SideMenuFilterViewController, restaurants: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+    func didApplyFilters(_ filter: SideMenuFilterViewController, farmersMarkets: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
         
-        showRestaurants = restaurants
+        showFarmersMarkets = farmersMarkets
         showStores = stores
         onlyShowOpenStores = openNow
         distanceFilter = Double(distanceInMiles)
@@ -207,7 +207,6 @@ extension StoresTableViewController {
             
             cell.storeDistance.text = "\(doubleDown) miles"
         }
-        
         
         
         //WTF IS THIS? FUNCTION PLEASE
@@ -320,7 +319,7 @@ extension StoresTableViewController {
             
             destination?.distance = distanceFilter
             destination?.onlyShowOpenStores = self.onlyShowOpenStores
-            destination?.showRestaurants = self.showRestaurants
+            destination?.showFarmersMarkets = self.showFarmersMarkets
             destination?.showStores = self.showStores
             destination?.storesInMapView = self.stores
             
@@ -341,7 +340,7 @@ extension StoresTableViewController {
     func loadDefaultValues() {
         
         onlyShowOpenStores = UserPreferences.instance.isOpenNow
-        showRestaurants = UserPreferences.instance.isRestaurant
+        showFarmersMarkets = UserPreferences.instance.isFarmersMarket
         distanceFilter = UserPreferences.instance.distanceFilter
         showStores = UserPreferences.instance.isStore
         

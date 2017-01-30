@@ -11,7 +11,7 @@ import CoreLocation
 import Foundation
 import UIKit
 
-// Creating data structure for JSON Request
+// Creates data structure for JSON Request
 struct StoresInfo {
     
     let storeName: String
@@ -25,7 +25,6 @@ struct StoresInfo {
     static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
         
         guard let storeName = dictionary ["store_name"] as? String,
-            let location = dictionary ["location"] as? NSDictionary,
             let address = dictionary ["address"] as? NSDictionary,
             let storeType = dictionary ["main_image_url"] as? String,
             let storeImage = URL(string: storeType)
@@ -45,29 +44,6 @@ struct StoresInfo {
         let isFarmersMarket: Bool = dictionary["is_farmers_market"] as? Bool ?? false
         
         return StoresInfo(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
-        
-    }
-    
-}
-
-struct AddressInfo {
-    
-    let street: String
-    let city: String
-    let state: String
-    
-    static func addressToString(dictionary: NSDictionary) -> AddressInfo? {
-        
-        guard let street = dictionary["address_line_1"] as? String,
-            let city = dictionary["city"] as? String,
-            let state = dictionary["state"] as? String else {
-                
-                LOG.error("Guard Failed on addressToString method")
-                return nil
-                
-        }
-        
-        return AddressInfo(street: street, city: city, state: state)
         
     }
     

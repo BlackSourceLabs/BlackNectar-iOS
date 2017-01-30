@@ -67,6 +67,7 @@ import UIKit
             updateView()
         }
     }
+    
     @IBInspectable var cornerRadius: CGFloat = 10 {
         
         didSet{
@@ -89,12 +90,14 @@ import UIKit
         }
         
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         updateView()
         
     }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         

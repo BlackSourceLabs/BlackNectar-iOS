@@ -62,16 +62,29 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func onFilterTapped(_ sender: Any) {
         
         if let revealController = self.revealViewController() {
             revealController.revealToggle(animated: true)
         }
+    }
+    
+    private func filterStoresFrom(stores: [StoresInfo]) -> [StoresInfo] {
+        
+        if showStores == showFarmersMarkets {
+            return stores
+        }
+        
+        if showStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
     }
     
     func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -103,22 +116,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    private func filterStoresFrom(stores: [StoresInfo]) -> [StoresInfo] {
-        
-        if showStores == showFarmersMarkets {
-            return stores
-        }
-        
-        if showStores {
-            return stores.filter() { $0.notFarmersMarket }
-        }
-        
-        if showFarmersMarkets {
-            return stores.filter() { $0.isFarmersMarket }
-        }
-        
-        return stores
-    }
     
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
@@ -129,6 +126,17 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         cell.storeImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
         
     }
+    
+    func goCombineAndLoadAddress(into cell: StoresTableViewCell, withStore address: NSDictionary) {
+        
+        guard let street = address["address_line_1"] as? String else { return }
+        guard let city = address["city"] as? String else { return }
+        guard let state = address["state"] as? String else { return }
+        
+        cell.storeAddress.text = street + "\n" + city + ", " + state
+        
+    }
+    
 }
 
 //MARK: Side Menu Filter Delegate Code
@@ -215,8 +223,6 @@ extension StoresTableViewController {
         }
         
         let store = stores[indexPath.row]
-        var addressString = ""
-        
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
@@ -228,15 +234,10 @@ extension StoresTableViewController {
             cell.storeDistance.text = "\(doubleDown) miles"
         }
         
-        
-        //WTF IS THIS? FUNCTION PLEASE
-        //Call it, combine addresses
-        //PLEASE 🙏🏽
-        addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
-        
         goLoadImage(into: cell, withStore: store.storeImage)
+        goCombineAndLoadAddress(into: cell, withStore: store.address)
+        
         cell.storeName.text = store.storeName
-        cell.storeAddress.text = addressString
         cell.onGoButtonPressed = { cell in
             
             self.navigateWithDrivingDirections(toStore: store)
@@ -385,11 +386,11 @@ extension StoresTableViewController {
         
         switch gesture.state {
             
-            case .began, .changed:
-                setGestureProperties()
+        case .began, .changed:
+            setGestureProperties()
             
-            case .cancelled, .failed:
-                panningWasTriggered = false
+        case .cancelled, .failed:
+            panningWasTriggered = false
             
         default: break
             
@@ -415,7 +416,7 @@ extension StoresTableViewController {
         }
         
     }
-
+    
 }
 
 //MARK: Network Loading Indicator Code

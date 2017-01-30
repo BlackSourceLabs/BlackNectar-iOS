@@ -59,11 +59,14 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         super.viewDidAppear(animated)
         
         loadUserDefaults()
+        
     }
     
     private func loadUserDefaults() {
+        
         self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
         self.showStores = UserPreferences.instance.isStore
+        
     }
     
     private func loadStores() {
@@ -99,7 +102,7 @@ extension StoresMapViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        networkLoadingIndicatorIsSpinning()
         
         let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
         
@@ -110,7 +113,7 @@ extension StoresMapViewController {
             self.main.addOperation {
                 
                 self.populateStoreAnnotations()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.networkLoadingIndicatorIsNotSpinning()
                 
             }
             
@@ -139,6 +142,7 @@ extension StoresMapViewController {
         }
         
         return stores
+        
     }
     
     func populateStoreAnnotations() {
@@ -153,12 +157,12 @@ extension StoresMapViewController {
         
         mapView.addAnnotations(annotations)
         mapView.removeNonVisibleAnnotations()
+        
     }
     
     func createAnnotation(forStore store: StoresInfo) -> CustomAnnotation {
         
         let storeName = store.storeName
-        let address = store.address.allValues
         let location = store.location
         
         let latitude = location.latitude
@@ -167,8 +171,8 @@ extension StoresMapViewController {
         let annotation = CustomAnnotation(name: storeName, latitude: latitude, longitude: longitude)
         
         return annotation
+        
     }
-    
     
 }
 
@@ -200,7 +204,7 @@ extension StoresMapViewController {
     
 }
 
-//MARK: Geting Directions
+//MARK: Gets Directions
 extension StoresMapViewController {
     
     func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
@@ -231,7 +235,6 @@ extension StoresMapViewController {
         }
         
     }
-    
     
 }
 
@@ -290,6 +293,24 @@ extension StoresMapViewController {
             .addBody("User Location is: \(userLocationForAroma)")
             .withPriority(.low)
             .send()
+        
+    }
+    
+}
+
+//MARK: Network Loading Indicator Code
+fileprivate extension StoresMapViewController {
+    
+    
+    func networkLoadingIndicatorIsSpinning() {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+    }
+    
+    func networkLoadingIndicatorIsNotSpinning() {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
     }
     

@@ -60,7 +60,7 @@ class SearchStores {
             if error != nil {
                 
                 LOG.error("Failed to download stores from: \(url)")
-                AromaClient.beginMessage(withTitle: "Failed to down stores from url")
+                AromaClient.beginMessage(withTitle: "Failed to download stores from url")
                     .addBody("Failed to download stores from: \(url)")
                     .withPriority(.high)
                     .send()

@@ -70,7 +70,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
     }
     
-    private func filterStoresFrom(stores: [StoresInfo]) -> [StoresInfo] {
+    private func filterStores(from stores: [StoresInfo]) -> [StoresInfo] {
         
         if showStores == showFarmersMarkets {
             return stores
@@ -95,7 +95,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.stores = self.filterStoresFrom(stores: stores)
+            self.stores = self.filterStores(from: stores)
             
             self.main.addOperation {
                 

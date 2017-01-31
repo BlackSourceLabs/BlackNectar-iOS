@@ -108,7 +108,7 @@ extension StoresMapViewController {
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.stores = self.filterStores(stores: stores)
+            self.stores = self.filterStores(from: stores)
             
             self.main.addOperation {
                 
@@ -127,7 +127,7 @@ extension StoresMapViewController {
         
     }
     
-    private func filterStores(stores: [StoresInfo]) -> [StoresInfo] {
+    private func filterStores(from stores: [StoresInfo]) -> [StoresInfo] {
         
         if showStores == showFarmersMarkets {
             return stores

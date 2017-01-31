@@ -14,9 +14,10 @@ extension Array {
         return !isEmpty
     }
     
-// Tells whether the specified index is in bounds of the array.
-// Use this check with indexes before accessing the array.
-
+    /**
+        Tells whether the specified index is in bounds of the array.
+        Use this check with indexes before accessing the array.
+    */
     func isInBounds(index: Int) -> Bool {
         
         return index >= 0 && index < self.count

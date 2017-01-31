@@ -89,7 +89,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     func loadStores(at coordinate: CLLocationCoordinate2D) {
         
-        networkLoadingIndicatorIsSpinning()
+        startSpinningIndicator()
         
         let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
         
@@ -101,7 +101,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
                 
                 self.tableView.reloadData()
                 
-                self.networkLoadingIndicatorIsNotSpinning()
+                self.stopSpinningIndicator()
                 self.refreshControl?.endRefreshing()
                 
             }
@@ -423,13 +423,13 @@ extension StoresTableViewController {
 fileprivate extension StoresTableViewController {
     
     
-    func networkLoadingIndicatorIsSpinning() {
+    func startSpinningIndicator() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
     }
     
-    func networkLoadingIndicatorIsNotSpinning() {
+    func stopSpinningIndicator() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         

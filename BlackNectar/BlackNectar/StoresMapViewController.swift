@@ -102,7 +102,7 @@ extension StoresMapViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
-        networkLoadingIndicatorIsSpinning()
+        startSpinningIndicator()
         
         let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
         
@@ -113,7 +113,7 @@ extension StoresMapViewController {
             self.main.addOperation {
                 
                 self.populateStoreAnnotations()
-                self.networkLoadingIndicatorIsNotSpinning()
+                self.stopSpinningIndicator()
                 
             }
             
@@ -302,13 +302,13 @@ extension StoresMapViewController {
 fileprivate extension StoresMapViewController {
     
     
-    func networkLoadingIndicatorIsSpinning() {
+    func startSpinningIndicator() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
     }
     
-    func networkLoadingIndicatorIsNotSpinning() {
+    func stopSpinningIndicator() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         

@@ -18,9 +18,9 @@ class DistanceCalculation {
         
         let storeCoordinate = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
         
-        let calculateMeters = userCoordinate.distance(from: storeCoordinate)
+        let distanceInMeters = userCoordinate.distance(from: storeCoordinate)
         
-        return calculateMeters
+        return distanceInMeters
     
     }
     

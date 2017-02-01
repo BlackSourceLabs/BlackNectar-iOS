@@ -21,7 +21,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     var currentCoordinates: CLLocationCoordinate2D?
     
-    var stores: [Stores] = []
+    var stores: [Store] = []
     
     var selectedPin: MKPlacemark?
     var distance = 0.0
@@ -33,7 +33,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var mapViewLoaded = false
     
     
-    typealias Callback = ([Stores]) -> ()
+    typealias Callback = ([Store]) -> ()
     
     fileprivate let async: OperationQueue = {
         
@@ -127,7 +127,7 @@ extension StoresMapViewController {
         
     }
     
-    private func filterStores(from stores: [Stores]) -> [Stores] {
+    private func filterStores(from stores: [Store]) -> [Store] {
         
         if showStores == showFarmersMarkets {
             return stores
@@ -160,7 +160,7 @@ extension StoresMapViewController {
         
     }
     
-    func createAnnotation(forStore store: Stores) -> CustomAnnotation {
+    func createAnnotation(forStore store: Store) -> CustomAnnotation {
         
         let storeName = store.storeName
         let location = store.location

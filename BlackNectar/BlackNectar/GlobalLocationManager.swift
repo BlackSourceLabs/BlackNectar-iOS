@@ -45,6 +45,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         locationManager.requestWhenInUseAuthorization()
         
         alreadyInitialized = true
+        
     }
     
     func requestLocation(callback: @escaping ((CLLocationCoordinate2D) -> Void)) {

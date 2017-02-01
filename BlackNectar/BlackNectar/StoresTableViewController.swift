@@ -20,9 +20,9 @@ import UIKit
 
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
     
-    var stores: [StoresInfo] = []
+    var stores: [Store] = []
     
-    var filteredStores: [StoresInfo] = []
+    var filteredStores: [Store] = []
     
     var distanceFilter = 0.0
     var showFarmersMarkets = true
@@ -62,10 +62,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func onFilterTapped(_ sender: Any) {
         
@@ -74,36 +70,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
     }
     
-    func loadStores(at coordinate: CLLocationCoordinate2D) {
-        
-        networkLoadingIndicatorIsSpinning()
-        
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
-            
-            self.stores = self.filterStoresFrom(stores: stores)
-            
-            self.main.addOperation {
-                
-                self.tableView.reloadData()
-                
-                self.networkLoadingIndicatorIsNotSpinning()
-                self.refreshControl?.endRefreshing()
-                
-            }
-            
-            if self.stores.isEmpty {
-                
-                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
-                
-            }
-            
-        }
-        
-    }
-    
-    private func filterStoresFrom(stores: [StoresInfo]) -> [StoresInfo] {
+    private func filterStores(from stores: [Store]) -> [Store] {
         
         if showStores == showFarmersMarkets {
             return stores
@@ -120,6 +87,36 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         return stores
     }
     
+    func loadStores(at coordinate: CLLocationCoordinate2D) {
+        
+        startSpinningIndicator()
+        
+        let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
+        
+        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
+            
+            self.stores = self.filterStores(from: stores)
+            
+            self.main.addOperation {
+                
+                self.tableView.reloadData()
+                
+                self.stopSpinningIndicator()
+                self.refreshControl?.endRefreshing()
+                
+            }
+            
+            if self.stores.isEmpty {
+                
+                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
+                
+            }
+            
+        }
+        
+    }
+    
+    
     func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
         let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
@@ -129,6 +126,17 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         cell.storeImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
         
     }
+    
+    func insertAddress(into cell: StoresTableViewCell, withStore store: Store) {
+        
+        let street = store.address.addressLineOne
+        let city = store.address.city
+        let state = store.address.state
+        
+        cell.storeAddress.text = street + "\n" + city + ", " + state
+        
+    }
+    
 }
 
 //MARK: Side Menu Filter Delegate Code
@@ -215,8 +223,6 @@ extension StoresTableViewController {
         }
         
         let store = stores[indexPath.row]
-        var addressString = ""
-        
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
@@ -228,24 +234,14 @@ extension StoresTableViewController {
             cell.storeDistance.text = "\(doubleDown) miles"
         }
         
-        
-        //WTF IS THIS? FUNCTION PLEASE
-        //Call it, combine addresses
-        //PLEASE 🙏🏽
-        addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
-        
         goLoadImage(into: cell, withStore: store.storeImage)
+        insertAddress(into: cell, withStore: store)
+        
         cell.storeName.text = store.storeName
-        cell.storeAddress.text = addressString
         cell.onGoButtonPressed = { cell in
             
             self.navigateWithDrivingDirections(toStore: store)
-            
-            AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
-                .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
-                .withPriority(.medium)
-                .send()
-            
+            self.makeNoteThatUserTappedOnStore(cell: cell)
         }
         
         return cell
@@ -314,7 +310,7 @@ extension StoresTableViewController {
 //MARK: Navigation Code
 extension StoresTableViewController {
     
-    internal func navigateWithDrivingDirections(toStore store: StoresInfo) {
+    internal func navigateWithDrivingDirections(toStore store: Store) {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         
@@ -385,11 +381,11 @@ extension StoresTableViewController {
         
         switch gesture.state {
             
-            case .began, .changed:
-                setGestureProperties()
+        case .began, .changed:
+            setGestureProperties()
             
-            case .cancelled, .failed:
-                panningWasTriggered = false
+        case .cancelled, .failed:
+            panningWasTriggered = false
             
         default: break
             
@@ -415,20 +411,20 @@ extension StoresTableViewController {
         }
         
     }
-
+    
 }
 
 //MARK: Network Loading Indicator Code
 fileprivate extension StoresTableViewController {
     
     
-    func networkLoadingIndicatorIsSpinning() {
+    func startSpinningIndicator() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
     }
     
-    func networkLoadingIndicatorIsNotSpinning() {
+    func stopSpinningIndicator() {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
@@ -462,6 +458,13 @@ fileprivate extension StoresTableViewController {
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
         LOG.info("Cancelling Filter")
         
+    }
+    
+    func makeNoteThatUserTappedOnStore(cell: StoresTableViewCell) {
+        AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
+            .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
+            .withPriority(.medium)
+            .send()
     }
     
 }

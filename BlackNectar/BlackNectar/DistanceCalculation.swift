@@ -14,13 +14,13 @@ class DistanceCalculation {
     
     static func getDistance(userLocation: CLLocationCoordinate2D, storeLocation: CLLocationCoordinate2D) -> Double {
         
-        let userCoordinateToLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        let userCoordinate = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         
-        let storeCoordinateToLocation = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
+        let storeCoordinate = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
         
-        let calculatedMeters = userCoordinateToLocation.distance(from: storeCoordinateToLocation)
+        let distanceInMeters = userCoordinate.distance(from: storeCoordinate)
         
-        return calculatedMeters
+        return distanceInMeters
     
     }
     

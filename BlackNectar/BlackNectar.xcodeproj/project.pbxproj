@@ -212,7 +212,7 @@
 			children = (
 				32E134501E160E3100FD65DC /* Extensions */,
 				327BAD641DFA2685000EA25E /* Views */,
-				327BAD631DF44BEA000EA25E /* APIDataStructure */,
+				327BAD631DF44BEA000EA25E /* Model */,
 				327BAD621DF44BC5000EA25E /* APICall */,
 				369843881E31928F0048D8B1 /* DistanceCalculation */,
 				327BAD611DF44B8B000EA25E /* MapView */,
@@ -285,12 +285,12 @@
 			name = APICall;
 			sourceTree = "<group>";
 		};
-		327BAD631DF44BEA000EA25E /* APIDataStructure */ = {
+		327BAD631DF44BEA000EA25E /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				3213196B1DE105AF00FB1774 /* StoresDataStruct.swift */,
 			);
-			name = APIDataStructure;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		327BAD641DFA2685000EA25E /* Views */ = {

@@ -12,7 +12,7 @@ import Foundation
 import UIKit
 
 // Creates data structure for JSON Request
-struct Stores {
+struct Store {
     
     let storeName: String
     let location: CLLocationCoordinate2D
@@ -22,7 +22,7 @@ struct Stores {
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
     
-    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Stores? {
+    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
     
         guard let storeName = storeDictionary ["store_name"] as? String,
             let addressJSON = storeDictionary ["address"] as? NSDictionary,
@@ -36,7 +36,7 @@ struct Stores {
                 
         }
         
-        guard let addressObject = Address(from: addressJSON) else { return nil }
+        guard let address = Address(from: addressJSON) else { return nil }
         
         guard let coordinatesDictionary = storeDictionary ["location"] as? NSDictionary else { return nil }
         guard let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees else { return nil }
@@ -45,7 +45,7 @@ struct Stores {
         
         let isFarmersMarket: Bool = storeDictionary["is_farmers_market"] as? Bool ?? false
         
-        return Stores(storeName: storeName, location: coordinatesObject, address: addressObject, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
+        return Store(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
         
     }
     

@@ -12,38 +12,64 @@ import Foundation
 import UIKit
 
 // Creates data structure for JSON Request
-struct StoresInfo {
+struct Stores {
     
     let storeName: String
     let location: CLLocationCoordinate2D
-    let address: NSDictionary
+    let address: Address
     let storeImage: URL
     let isFarmersMarket: Bool
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
     
-    static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
-        
-        guard let storeName = dictionary ["store_name"] as? String,
-            let address = dictionary ["address"] as? NSDictionary,
-            let storeType = dictionary ["main_image_url"] as? String,
+    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Stores? {
+    
+        guard let storeName = storeDictionary ["store_name"] as? String,
+            let addressJSON = storeDictionary ["address"] as? NSDictionary,
+            let storeType = storeDictionary ["main_image_url"] as? String,
             let storeImage = URL(string: storeType)
 
             else {
                 
-                LOG.error("Guard Failed on fromJson method")
+                LOG.error("Failed on getting Store JSON Data")
                 return nil
                 
         }
         
-        guard let coordinatesDictionary = dictionary ["location"] as? NSDictionary else { return nil }
+        guard let addressObject = Address(from: addressJSON) else { return nil }
+        
+        guard let coordinatesDictionary = storeDictionary ["location"] as? NSDictionary else { return nil }
         guard let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees else { return nil }
         guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        let isFarmersMarket: Bool = dictionary["is_farmers_market"] as? Bool ?? false
+        let isFarmersMarket: Bool = storeDictionary["is_farmers_market"] as? Bool ?? false
         
-        return StoresInfo(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
+        return Stores(storeName: storeName, location: coordinatesObject, address: addressObject, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
+        
+    }
+    
+}
+
+struct Address {
+    
+    let addressLineOne: String?
+    let addressLineTwo: String?
+    let city: String?
+    let state: String?
+    let county: String?
+    let zipCode: String?
+    let localZipCode: String?
+    
+    init?(from storeDictionary: NSDictionary) {
+        
+        addressLineOne = storeDictionary ["address_line_1"] as? String
+        addressLineTwo = storeDictionary ["address_line_2"] as? String
+        city = storeDictionary ["city"] as? String
+        state = storeDictionary ["state"] as? String
+        county = storeDictionary ["county"] as? String
+        zipCode = storeDictionary ["zip_code"] as? String
+        localZipCode = storeDictionary ["local_zip_code"] as? String
         
     }
     

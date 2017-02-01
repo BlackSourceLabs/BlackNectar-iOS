@@ -20,9 +20,9 @@ import UIKit
 
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
     
-    var stores: [StoresInfo] = []
+    var stores: [Stores] = []
     
-    var filteredStores: [StoresInfo] = []
+    var filteredStores: [Stores] = []
     
     var distanceFilter = 0.0
     var showFarmersMarkets = true
@@ -70,7 +70,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
     }
     
-    private func filterStores(from stores: [StoresInfo]) -> [StoresInfo] {
+    private func filterStores(from stores: [Stores]) -> [Stores] {
         
         if showStores == showFarmersMarkets {
             return stores
@@ -127,11 +127,11 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    func goCombineAndLoadAddress(into cell: StoresTableViewCell, withStore address: NSDictionary) {
+    func goCombineAndLoadAddress(into cell: StoresTableViewCell, withStore store: Stores) {
         
-        guard let street = address["address_line_1"] as? String else { return }
-        guard let city = address["city"] as? String else { return }
-        guard let state = address["state"] as? String else { return }
+        guard let street = store.address.addressLineOne else { return }
+        guard let city = store.address.city else { return }
+        guard let state = store.address.state else { return }
         
         cell.storeAddress.text = street + "\n" + city + ", " + state
         
@@ -235,7 +235,7 @@ extension StoresTableViewController {
         }
         
         goLoadImage(into: cell, withStore: store.storeImage)
-        goCombineAndLoadAddress(into: cell, withStore: store.address)
+        goCombineAndLoadAddress(into: cell, withStore: store)
         
         cell.storeName.text = store.storeName
         cell.onGoButtonPressed = { cell in
@@ -315,7 +315,7 @@ extension StoresTableViewController {
 //MARK: Navigation Code
 extension StoresTableViewController {
     
-    internal func navigateWithDrivingDirections(toStore store: StoresInfo) {
+    internal func navigateWithDrivingDirections(toStore store: Stores) {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         

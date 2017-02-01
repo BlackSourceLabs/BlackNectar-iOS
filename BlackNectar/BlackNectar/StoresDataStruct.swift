@@ -22,30 +22,30 @@ struct Store {
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
     
-    init?(json storeDictionary: NSDictionary) {
+    init?(json: NSDictionary) {
         
-        guard let storeName = storeDictionary ["store_name"] as? String,
-              let addressJSON = storeDictionary ["address"] as? NSDictionary,
-              let storeImageString = storeDictionary ["main_image_url"] as? String,
+        guard let storeName = json["store_name"] as? String,
+              let addressJSON = json["address"] as? NSDictionary,
+              let storeImageString = json["main_image_url"] as? String,
               let storeImageURL = URL(string: storeImageString)
         else {
-            LOG.error("Failed to parse Store: \(storeDictionary)")
+            LOG.error("Failed to parse Store: \(json)")
             return nil
         }
         
         guard let address = Address(from: addressJSON) else { return nil }
         
-        guard let coordinatesDictionary = storeDictionary ["location"] as? NSDictionary,
-              let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees,
-              let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees
+        guard let coordinatesDictionary = json["location"] as? NSDictionary,
+              let latitude = coordinatesDictionary["latitude"] as? CLLocationDegrees,
+              let longitude = coordinatesDictionary["longitude"] as? CLLocationDegrees
         else {
-            LOG.warn("Failed to get Store location information: \(storeDictionary)")
+            LOG.warn("Failed to get Store location information: \(json)")
             return nil
         }
         
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        let isFarmersMarket: Bool = storeDictionary["is_farmers_market"] as? Bool ?? false
+        let isFarmersMarket: Bool = json["is_farmers_market"] as? Bool ?? false
         
         self.storeName = storeName
         self.location = coordinatesObject

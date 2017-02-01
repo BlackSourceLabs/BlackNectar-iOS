@@ -26,18 +26,23 @@ struct Store {
         
         guard let storeName = storeDictionary ["store_name"] as? String,
               let addressJSON = storeDictionary ["address"] as? NSDictionary,
-              let storeType = storeDictionary ["main_image_url"] as? String,
-              let storeImage = URL(string: storeType)
+              let storeImageString = storeDictionary ["main_image_url"] as? String,
+              let storeImageURL = URL(string: storeImageString)
         else {
-            LOG.error("Failed on getting Store JSON Data")
+            LOG.error("Failed to parse Store: \(storeDictionary)")
             return nil
         }
         
         guard let address = Address(from: addressJSON) else { return nil }
         
-        guard let coordinatesDictionary = storeDictionary ["location"] as? NSDictionary else { return nil }
-        guard let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees else { return nil }
-        guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
+        guard let coordinatesDictionary = storeDictionary ["location"] as? NSDictionary,
+              let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees,
+              let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees
+        else {
+            LOG.warn("Failed to get Store location information: \(storeDictionary)")
+            return nil
+        }
+        
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
         let isFarmersMarket: Bool = storeDictionary["is_farmers_market"] as? Bool ?? false
@@ -45,7 +50,7 @@ struct Store {
         self.storeName = storeName
         self.location = coordinatesObject
         self.address = address
-        self.storeImage = storeImage
+        self.storeImage = storeImageURL
         self.isFarmersMarket = isFarmersMarket
     }
     

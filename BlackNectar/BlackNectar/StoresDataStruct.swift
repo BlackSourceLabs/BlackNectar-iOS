@@ -22,19 +22,15 @@ struct Store {
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
     
-    
-    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
-    
+    init?(json storeDictionary: NSDictionary) {
+        
         guard let storeName = storeDictionary ["store_name"] as? String,
-            let addressJSON = storeDictionary ["address"] as? NSDictionary,
-            let storeType = storeDictionary ["main_image_url"] as? String,
-            let storeImage = URL(string: storeType)
-
-            else {
-                
-                LOG.error("Failed on getting Store JSON Data")
-                return nil
-                
+              let addressJSON = storeDictionary ["address"] as? NSDictionary,
+              let storeType = storeDictionary ["main_image_url"] as? String,
+              let storeImage = URL(string: storeType)
+        else {
+            LOG.error("Failed on getting Store JSON Data")
+            return nil
         }
         
         guard let address = Address(from: addressJSON) else { return nil }
@@ -46,8 +42,16 @@ struct Store {
         
         let isFarmersMarket: Bool = storeDictionary["is_farmers_market"] as? Bool ?? false
         
-        return Store(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
+        self.storeName = storeName
+        self.location = coordinatesObject
+        self.address = address
+        self.storeImage = storeImage
+        self.isFarmersMarket = isFarmersMarket
+    }
+    
+    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
         
+        return Store(json: storeDictionary)
     }
     
 }

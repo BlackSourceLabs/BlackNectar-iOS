@@ -129,9 +129,9 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
     func insertAddress(into cell: StoresTableViewCell, withStore store: Store) {
         
-        guard let street = store.address.addressLineOne else { return }
-        guard let city = store.address.city else { return }
-        guard let state = store.address.state else { return }
+        let street = store.address.addressLineOne
+        let city = store.address.city
+        let state = store.address.state
         
         cell.storeAddress.text = street + "\n" + city + ", " + state
         

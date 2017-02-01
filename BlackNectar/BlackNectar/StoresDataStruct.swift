@@ -22,6 +22,7 @@ struct Store {
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
     
+    
     static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
     
         guard let storeName = storeDictionary ["store_name"] as? String,
@@ -53,24 +54,35 @@ struct Store {
 
 struct Address {
     
-    let addressLineOne: String?
+    let addressLineOne: String
     let addressLineTwo: String?
-    let city: String?
-    let state: String?
-    let county: String?
-    let zipCode: String?
+    let city: String
+    let state: String
+    let county: String
+    let zipCode: String
     let localZipCode: String?
     
     init?(from storeDictionary: NSDictionary) {
         
-        addressLineOne = storeDictionary ["address_line_1"] as? String
-        addressLineTwo = storeDictionary ["address_line_2"] as? String
-        city = storeDictionary ["city"] as? String
-        state = storeDictionary ["state"] as? String
-        county = storeDictionary ["county"] as? String
-        zipCode = storeDictionary ["zip_code"] as? String
-        localZipCode = storeDictionary ["local_zip_code"] as? String
+        guard let addressLineOne = storeDictionary ["address_line_1"] as? String else { return nil }
         
+        let addressLineTwo = storeDictionary ["address_line_2"] as? String
+        
+        guard let city = storeDictionary ["city"] as? String else { return nil }
+        guard let state = storeDictionary ["state"] as? String else { return nil }
+        guard let county = storeDictionary ["county"] as? String else { return nil }
+        guard let zipCode = storeDictionary ["zip_code"] as? String else { return nil }
+        
+        let localZipCode = storeDictionary ["local_zip_code"] as? String
+        
+        self.addressLineOne = addressLineOne
+        self.addressLineTwo = addressLineTwo
+        
+        self.city = city
+        self.state = state
+        self.county = county
+        self.zipCode = zipCode
+        self.localZipCode = localZipCode
     }
     
 }

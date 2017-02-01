@@ -241,12 +241,7 @@ extension StoresTableViewController {
         cell.onGoButtonPressed = { cell in
             
             self.navigateWithDrivingDirections(toStore: store)
-            
-            AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
-                .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
-                .withPriority(.medium)
-                .send()
-            
+            self.makeNoteThatUserTappedOnStore(cell: cell)
         }
         
         return cell
@@ -463,6 +458,13 @@ fileprivate extension StoresTableViewController {
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
         LOG.info("Cancelling Filter")
         
+    }
+    
+    func makeNoteThatUserTappedOnStore(cell: StoresTableViewCell) {
+        AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
+            .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
+            .withPriority(.medium)
+            .send()
     }
     
 }

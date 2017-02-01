@@ -20,9 +20,9 @@ import UIKit
 
 class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
     
-    var stores: [Stores] = []
+    var stores: [Store] = []
     
-    var filteredStores: [Stores] = []
+    var filteredStores: [Store] = []
     
     var distanceFilter = 0.0
     var showFarmersMarkets = true
@@ -70,7 +70,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
     }
     
-    private func filterStores(from stores: [Stores]) -> [Stores] {
+    private func filterStores(from stores: [Store]) -> [Store] {
         
         if showStores == showFarmersMarkets {
             return stores
@@ -127,7 +127,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    func goCombineAndLoadAddress(into cell: StoresTableViewCell, withStore store: Stores) {
+    func insertAddress(into cell: StoresTableViewCell, withStore store: Store) {
         
         guard let street = store.address.addressLineOne else { return }
         guard let city = store.address.city else { return }
@@ -235,7 +235,7 @@ extension StoresTableViewController {
         }
         
         goLoadImage(into: cell, withStore: store.storeImage)
-        goCombineAndLoadAddress(into: cell, withStore: store)
+        insertAddress(into: cell, withStore: store)
         
         cell.storeName.text = store.storeName
         cell.onGoButtonPressed = { cell in
@@ -315,7 +315,7 @@ extension StoresTableViewController {
 //MARK: Navigation Code
 extension StoresTableViewController {
     
-    internal func navigateWithDrivingDirections(toStore store: Stores) {
+    internal func navigateWithDrivingDirections(toStore store: Store) {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         

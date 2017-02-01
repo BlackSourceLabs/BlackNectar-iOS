@@ -14,7 +14,7 @@ import UIKit
 
 class SearchStores {
     
-    typealias Callback = ([StoresInfo]) -> ()
+    typealias Callback = ([Stores]) -> ()
     
     // API Call
     static func searchForStoresLocations(near point: CLLocationCoordinate2D, with radius: Double, callback: @escaping Callback) {
@@ -81,7 +81,7 @@ class SearchStores {
                 
             }
             
-            let stores: [StoresInfo] = parseStores(from: data)
+            let stores: [Stores] = parseStores(from: data)
             
             //We have contact. Here are the stores
             callback(stores)
@@ -105,9 +105,9 @@ class SearchStores {
     }
     
     
-    private static func parseStores(from data: Data) -> [StoresInfo] {
+    private static func parseStores(from data: Data) -> [Stores] {
         
-        var storesArray: [StoresInfo] = []
+        var storesArray: [Stores] = []
         
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
               let jsonArray = json as? NSArray else {
@@ -124,7 +124,8 @@ class SearchStores {
                 
             }
             
-            guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
+            guard let store = Stores.getStoreJsonData(from: object) else { continue }
+            
             storesArray.append(store)
             
         }

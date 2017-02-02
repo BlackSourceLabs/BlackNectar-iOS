@@ -62,6 +62,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Oxygen-Bold.ttf</string>
+		<string>Oxygen-Light.ttf</string>
+		<string>Oxygen-Regular.ttf</string>
+		<string>Uni-Sans-Heavy-Italic.tff</string>
+		<string>Uni-Sans-Heavy.tff</string>
+		<string>Uni-Sans-Thin-Italic.ttf</string>
+		<string>Uni-Sans-Thin.tff</string>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Kevin Bradbury on 1/13/17.
-//  Copyright © 2017 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Foundation

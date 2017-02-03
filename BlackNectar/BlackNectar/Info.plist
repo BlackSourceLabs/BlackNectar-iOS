@@ -67,10 +67,20 @@
 		<string>Oxygen-Bold.ttf</string>
 		<string>Oxygen-Light.ttf</string>
 		<string>Oxygen-Regular.ttf</string>
-		<string>Uni-Sans-Heavy-Italic.tff</string>
-		<string>Uni-Sans-Heavy.tff</string>
-		<string>Uni-Sans-Thin-Italic.ttf</string>
-		<string>Uni-Sans-Thin.tff</string>
+		<string>Uni Sans Bold Italic.ttf</string>
+		<string>Uni Sans Bold.ttf</string>
+		<string>Uni Sans Book Italic.ttf</string>
+		<string>Uni Sans Book.ttf</string>
+		<string>Uni Sans Heavy Italic.ttf</string>
+		<string>Uni Sans Heavy.ttf</string>
+		<string>Uni Sans Italic.ttf</string>
+		<string>Uni Sans Light Italic.ttf</string>
+		<string>Uni Sans Light.ttf</string>
+		<string>Uni Sans SemiBold Italic.ttf</string>
+		<string>Uni Sans SemiBold.ttf</string>
+		<string>Uni Sans Thin Italic.ttf</string>
+		<string>Uni Sans Thin.ttf</string>
+		<string>Uni Sans.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

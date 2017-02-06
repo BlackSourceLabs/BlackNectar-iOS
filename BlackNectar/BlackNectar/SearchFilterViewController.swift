@@ -89,7 +89,7 @@ class SearchFilterViewController: UITableViewController, MKMapViewDelegate, CLLo
     
 }
 
-//MARK: Loading Stores into Search Filter Map View
+//MARK: Loading Stores into Map View
 extension StoresMapViewControlelr {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
@@ -131,7 +131,56 @@ extension StoresMapViewControlelr {
         
         mapView.addAnnotations(annotations)
         mapView.removeNonVisibleAnnotations()
+        
     }
+    
+    func createAnnotation(forStore store: Store) -> CustomAnnotation {
+        
+        let storeName = store.storeName
+        let location = store.location
+        
+        let latitude = location.latitude
+        let longitude = location.longitude
+        
+        let annotation = CustomAnnotation(name: storeName, latitude: latitude, longitude: longitude)
+        
+        return annotation
+        
+    }
+    
+}
+
+//MARK: Map View Delegate Code
+extension SearchFilterViewController {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            
+            return nil
+            
+        }
+        
+        let annotation = annotation as? CustomAnnotation
+        let smallSquare = CGSize(width: 30, height: 30)
+        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        let blackNectarPin = UIImage(named: "BlacknectarMapPin")
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation?.identifier)
+        
+        button.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
+        
+        annotationView.canShowCallout = true
+        annotationView.leftCalloutAccessoryView = button
+        annotationView.image = blackNectarPin
+        
+        return annotationView
+        
+    }
+    
+    
+    
+    
+    
     
 }
 

@@ -279,7 +279,7 @@ extension StoresMapViewController {
         
         LOG.warn("There are no stores around the users location (Stores loading result is 0)")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("There are no stores around the users location (Stores loading result is 0 :\(additionalMessage)")
+            .addBody("There are no stores around the users location (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         

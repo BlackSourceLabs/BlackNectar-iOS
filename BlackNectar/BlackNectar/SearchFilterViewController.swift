@@ -45,6 +45,11 @@ class SearchFilterViewController: UITableViewController, MKMapViewDelegate, CLLo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        prepareMapView()
+        loadStores()
+        userLocationInfoForAroma()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,11 +107,11 @@ extension SearchFilterViewController {
             
             self.stores = stores
             
-            
             self.main.addOperation {
                 
                 self.populateStoreAnnotations()
                 self.stopSpinningIndicator()
+                
             }
             
         }
@@ -164,7 +169,7 @@ extension SearchFilterViewController {
         let annotation = annotation as? CustomAnnotation
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        let blackNectarPin = UIImage(named: "BlacknectarMapPin")
+        let blackNectarPin = UIImage(named: "BlackNectarMapPin")
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation?.identifier)
         
         button.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
@@ -268,7 +273,7 @@ extension SearchFilterViewController {
         
         guard let userLocationForAroma = UserLocation.instance.currentCoordinate else { return }
         
-        AromaClient.beginMessage(withTitle: "User Entered Map View")
+        AromaClient.beginMessage(withTitle: "User Entered Map View (Search Filter)")
             .addBody("User Location is: \(userLocationForAroma)")
             .withPriority(.low)
             .send()

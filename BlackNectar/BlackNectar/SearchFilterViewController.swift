@@ -90,7 +90,7 @@ class SearchFilterViewController: UITableViewController, MKMapViewDelegate, CLLo
 }
 
 //MARK: Loading Stores into Map View
-extension StoresMapViewControlelr {
+extension SearchFilterViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
@@ -210,6 +210,42 @@ extension SearchFilterViewController {
                 .send()
             
         }
+        
+    }
+    
+}
+
+//MARK: Loads Stores When User Pans 
+
+extension SearchFilterViewController {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let center = mapView.centerCoordinate
+        
+        LOG.debug("User dragged Map Screen to: \(center)")
+        
+        self.loadStoresInMapView(at: center)
+        
+    }
+    
+}
+
+fileprivate extension MKMapView {
+    
+    func isVisible(annotation: MKAnnotation) -> Bool {
+        
+        let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
+        
+        return MKMapRectContainsPoint(self.visibleMapRect, annotationPoint)
+    
+    }
+    
+    func removeNonVisibleAnnotations() {
+        
+        self.annotations
+            .filter({ !isVisible(annotation: $0)})
+            .forEach({ self.removeAnnotation($0) })
         
     }
     

@@ -73,7 +73,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -133,6 +133,15 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTapGoButton:" destination="jTC-fs-IR7" eventType="touchUpInside" id="Plb-fL-kwF"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5aq-Lx-mLs">
+                                                    <rect key="frame" x="164" y="34" width="80" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.95571154359999999" green="0.14994600420000001" blue="0.1504919827" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="New Filter"/>
+                                                    <connections>
+                                                        <segue destination="k9s-Gt-zGD" kind="show" id="tMW-gE-zbd"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -243,7 +252,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="1564"/>
+            <point key="canvasLocation" x="1272.8" y="1563.8680659670167"/>
         </scene>
         <!--Search FIilter View Controller-->
         <scene sceneID="RYF-K3-KTk">
@@ -790,4 +799,7 @@
         <image name="SplashScreen" width="500" height="500"/>
         <image name="filterbutton-black" width="45" height="45"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hgF-uQ-UYj"/>
+    </inferredMetricsTieBreakers>
 </document>

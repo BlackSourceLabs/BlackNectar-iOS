@@ -177,10 +177,41 @@ extension SearchFilterViewController {
         
     }
     
+}
+
+//MARK: Gets Driving Directions Code
+
+extension SearchFilterViewController {
     
     
+    func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
+        
+        let storePlacemark = MKPlacemark(coordinate: storeCoordinates, addressDictionary: [ "\(title)" : storeName ])
+        let storePin = MKMapItem(placemark: storePlacemark)
+        storePin.name = storeName
+        
+        return storePin
+        
+    }
     
-    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let appleMapslaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        
+        if let storeLocation = view.annotation {
+            
+            let storeName: String = (storeLocation.title ?? nil) ?? "Uknown"
+            
+            getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
+            
+            AromaClient.beginMessage(withTitle: "User tapped on \(storeName) map pin")
+                .addBody("User navigated to \(storeName)\nstore coordinates: \(storeLocation.coordinate)\n(Search Filter Map View)")
+                .withPriority(.medium)
+                .send()
+            
+        }
+        
+    }
     
 }
 

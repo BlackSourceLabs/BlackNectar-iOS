@@ -14,7 +14,7 @@ import UIKit
 
 class SearchStores {
     
-    typealias Callback = ([StoresInfo]) -> ()
+    typealias Callback = ([Store]) -> ()
     
     // API Call
     static func searchForStoresLocations(near point: CLLocationCoordinate2D, with radius: Double, callback: @escaping Callback) {
@@ -60,7 +60,7 @@ class SearchStores {
             if error != nil {
                 
                 LOG.error("Failed to download stores from: \(url)")
-                AromaClient.beginMessage(withTitle: "Failed to down stores from url")
+                AromaClient.beginMessage(withTitle: "Failed to download stores from url")
                     .addBody("Failed to download stores from: \(url)")
                     .withPriority(.high)
                     .send()
@@ -81,7 +81,7 @@ class SearchStores {
                 
             }
             
-            let stores: [StoresInfo] = parseStores(from: data)
+            let stores: [Store] = parseStores(from: data)
             
             //We have contact. Here are the stores
             callback(stores)
@@ -105,9 +105,9 @@ class SearchStores {
     }
     
     
-    private static func parseStores(from data: Data) -> [StoresInfo] {
+    private static func parseStores(from data: Data) -> [Store] {
         
-        var storesArray: [StoresInfo] = []
+        var storesArray: [Store] = []
         
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
               let jsonArray = json as? NSArray else {
@@ -124,7 +124,8 @@ class SearchStores {
                 
             }
             
-            guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
+            guard let store = Store.getStoreJsonData(from: object) else { continue }
+            
             storesArray.append(store)
             
         }

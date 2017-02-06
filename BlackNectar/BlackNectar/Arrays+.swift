@@ -21,5 +21,7 @@ extension Array {
     func isInBounds(index: Int) -> Bool {
         
         return index >= 0 && index < self.count
+        
     }
+    
 }

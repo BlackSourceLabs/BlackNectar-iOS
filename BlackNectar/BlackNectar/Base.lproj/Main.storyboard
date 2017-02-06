@@ -6,22 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Oxygen-Regular.ttf">
-            <string>Oxygen-Regular</string>
-        </array>
-        <array key="Uni Sans Bold.ttf">
-            <string>UniSansBold</string>
-        </array>
-        <array key="Uni Sans Light.ttf">
-            <string>UniSansLight</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Stores Map View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -73,7 +60,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -238,7 +225,6 @@
                     </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="mapViewSegue" id="xdh-tm-f6B"/>
-                        <segue destination="k9s-Gt-zGD" kind="show" id="ujy-ov-Lms"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -513,7 +499,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tna-hs-Zie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1273" y="2306"/>
+            <point key="canvasLocation" x="1249" y="1564"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="PXy-H6-aON">
@@ -782,7 +768,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="GPS-Full@3x.png" width="66" height="68"/>
         <image name="Icon-60" width="60" height="60"/>
         <image name="SplashScreen" width="500" height="500"/>
         <image name="filterbutton-black" width="45" height="45"/>

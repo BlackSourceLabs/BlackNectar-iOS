@@ -21,7 +21,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     var currentCoordinates: CLLocationCoordinate2D?
     
-    var stores: [StoresInfo] = []
+    var stores: [Store] = []
     
     var selectedPin: MKPlacemark?
     var distance = 0.0
@@ -33,7 +33,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var mapViewLoaded = false
     
     
-    typealias Callback = ([StoresInfo]) -> ()
+    typealias Callback = ([Store]) -> ()
     
     fileprivate let async: OperationQueue = {
         
@@ -59,11 +59,14 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         super.viewDidAppear(animated)
         
         loadUserDefaults()
+        
     }
     
     private func loadUserDefaults() {
+        
         self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
         self.showStores = UserPreferences.instance.isStore
+        
     }
     
     private func loadStores() {
@@ -99,18 +102,18 @@ extension StoresMapViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        startSpinningIndicator()
         
         let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.stores = self.filterStores(stores: stores)
+            self.stores = self.filterStores(from: stores)
             
             self.main.addOperation {
                 
                 self.populateStoreAnnotations()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.stopSpinningIndicator()
                 
             }
             
@@ -124,7 +127,7 @@ extension StoresMapViewController {
         
     }
     
-    private func filterStores(stores: [StoresInfo]) -> [StoresInfo] {
+    private func filterStores(from stores: [Store]) -> [Store] {
         
         if showStores == showFarmersMarkets {
             return stores
@@ -139,6 +142,7 @@ extension StoresMapViewController {
         }
         
         return stores
+        
     }
     
     func populateStoreAnnotations() {
@@ -153,12 +157,12 @@ extension StoresMapViewController {
         
         mapView.addAnnotations(annotations)
         mapView.removeNonVisibleAnnotations()
+        
     }
     
-    func createAnnotation(forStore store: StoresInfo) -> CustomAnnotation {
+    func createAnnotation(forStore store: Store) -> CustomAnnotation {
         
         let storeName = store.storeName
-        let address = store.address.allValues
         let location = store.location
         
         let latitude = location.latitude
@@ -167,8 +171,8 @@ extension StoresMapViewController {
         let annotation = CustomAnnotation(name: storeName, latitude: latitude, longitude: longitude)
         
         return annotation
+        
     }
-    
     
 }
 
@@ -200,7 +204,7 @@ extension StoresMapViewController {
     
 }
 
-//MARK: Geting Directions
+//MARK: Gets Directions
 extension StoresMapViewController {
     
     func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
@@ -231,7 +235,6 @@ extension StoresMapViewController {
         }
         
     }
-    
     
 }
 
@@ -290,6 +293,24 @@ extension StoresMapViewController {
             .addBody("User Location is: \(userLocationForAroma)")
             .withPriority(.low)
             .send()
+        
+    }
+    
+}
+
+//MARK: Network Loading Indicator Code
+fileprivate extension StoresMapViewController {
+    
+    
+    func startSpinningIndicator() {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+    }
+    
+    func stopSpinningIndicator() {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
     }
     

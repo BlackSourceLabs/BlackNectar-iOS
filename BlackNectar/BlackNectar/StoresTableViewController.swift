@@ -414,33 +414,15 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Network Loading Indicator Code
-fileprivate extension StoresTableViewController {
-    
-    
-    func startSpinningIndicator() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-    }
-    
-    func stopSpinningIndicator() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-    }
-    
-}
-
 //MARK: Aroma Messages Code
 fileprivate extension StoresTableViewController {
     
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        LOG.warn("There are no stores around the users location")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("There are no stores around the users location (Stores loading result is 0 :\(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         

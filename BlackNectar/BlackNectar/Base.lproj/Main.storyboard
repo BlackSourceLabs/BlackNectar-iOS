@@ -294,7 +294,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liB-bH-UIF">
                                                     <rect key="frame" x="20" y="0.0" width="130" height="30"/>
-                                                    <color key="backgroundColor" red="0.75173264741897583" green="0.65808886289596558" blue="0.38662290573120117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="Lq3-rz-scr"/>
                                                         <constraint firstAttribute="height" constant="30" id="msB-6j-6bO"/>
@@ -306,7 +306,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24T-s2-CYd">
                                                     <rect key="frame" x="174" y="0.0" width="130" height="30"/>
-                                                    <color key="backgroundColor" red="0.75173264741897583" green="0.65808886289596558" blue="0.38662290573120117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="Zfz-kE-mee"/>
                                                         <constraint firstAttribute="height" constant="30" id="ubG-Xg-9yK"/>
@@ -487,7 +487,7 @@
                     <navigationItem key="navigationItem" id="0CR-ch-crS">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="Zxc-HX-K3f">
-                            <rect key="frame" x="103.5" y="5.5" width="168" height="33"/>
+                            <rect key="frame" x="104" y="6" width="168" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Huw-KN-cYv">
@@ -511,6 +511,8 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="farmersMarketsButton" destination="liB-bH-UIF" id="LiL-7W-Ow5"/>
+                        <outlet property="groceryStoresButton" destination="24T-s2-CYd" id="7BA-xA-HvY"/>
                         <outlet property="mapView" destination="97t-k7-OFi" id="SSM-V6-dF8"/>
                     </connections>
                 </tableViewController>
@@ -561,7 +563,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cYs-ad-7To" id="MsZ-Mb-RSo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="665.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-YP-JTy">
@@ -768,7 +770,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

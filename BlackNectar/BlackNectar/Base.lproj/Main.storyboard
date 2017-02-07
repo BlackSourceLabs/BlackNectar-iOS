@@ -73,7 +73,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -303,6 +303,9 @@
                                                     <state key="normal" title="Farmer's Markets">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onFarmersMarkets:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="sAU-GD-23I"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24T-s2-CYd">
                                                     <rect key="frame" x="174" y="0.0" width="130" height="30"/>
@@ -315,6 +318,9 @@
                                                     <state key="normal" title="Grocery Stores">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onGroceryStores:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="hhW-hr-g0t"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

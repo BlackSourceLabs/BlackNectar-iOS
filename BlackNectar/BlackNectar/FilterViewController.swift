@@ -28,6 +28,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     var showFarmersMarkets = true
     var showGroceryStores = true
     
+    let blackNectarPin = UIImage(named: "BlackNectarMapPin")
+    
     fileprivate let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
@@ -164,16 +166,15 @@ extension FilterViewController {
             
         }
         
-        let annotation = annotation as? CustomAnnotation
         let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        let blackNectarPin = UIImage(named: "BlackNectarMapPin")
+        let callOutViewButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        callOutViewButton.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
+        
+        let annotation = annotation as? CustomAnnotation
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation?.identifier)
         
-        button.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
-        
         annotationView.canShowCallout = true
-        annotationView.leftCalloutAccessoryView = button
+        annotationView.leftCalloutAccessoryView = callOutViewButton
         annotationView.image = blackNectarPin
         
         return annotationView

@@ -23,8 +23,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     var currentCoordinates: CLLocationCoordinate2D?
     
     var distance = 0.0
-    var showFarmersMarkets = true
-    var showGroceryStores = true
+    var showFarmersMarkets = false
+    var showGroceryStores = false
     
     fileprivate var stores: [Store] = []
     fileprivate var selectedPin: MKPlacemark?
@@ -56,6 +56,40 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         super.viewDidAppear(animated)
         
         loadUserDefaults()
+        
+    }
+    
+    
+//MARK: Filter Buttons Code
+    @IBAction func onFarmersMarkets(_ sender: UIButton) {
+        
+        if showFarmersMarkets == false {
+            
+            showFarmersMarkets = true
+            styleButtonOn(button: farmersMarketsButton)
+            
+        } else {
+            
+            showFarmersMarkets = false
+            styleButtonOff(button: farmersMarketsButton)
+            
+        }
+        
+    }
+    
+    @IBAction func onGroceryStores(_ sender: UIButton) {
+        
+        if showGroceryStores == false {
+            
+            showGroceryStores = true
+            styleButtonOn(button: groceryStoresButton)
+            
+        } else {
+            
+            showGroceryStores = false
+            styleButtonOff(button: groceryStoresButton)
+            
+        }
         
     }
     
@@ -94,8 +128,18 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
 }
 
-//MARK: Loading Stores into Map View
+//MARK: Loads Stores into Map View and when User Pans
 extension FilterViewController {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let center = mapView.centerCoordinate
+        
+        LOG.debug("User dragged Map Screen to: \(center)")
+        
+        self.loadStoresInMapView(at: center)
+        
+    }
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
@@ -213,21 +257,6 @@ extension FilterViewController {
                 .send()
             
         }
-        
-    }
-    
-}
-
-//MARK: Loads Stores When User Pans
-extension FilterViewController {
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
-        let center = mapView.centerCoordinate
-        
-        LOG.debug("User dragged Map Screen to: \(center)")
-        
-        self.loadStoresInMapView(at: center)
         
     }
     

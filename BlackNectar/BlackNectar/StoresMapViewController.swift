@@ -253,7 +253,7 @@ extension StoresMapViewController {
 }
 
 
-fileprivate extension MKMapView {
+extension MKMapView {
     
     func isVisible(annotation: MKAnnotation) -> Bool {
         
@@ -279,7 +279,7 @@ extension StoresMapViewController {
         
         LOG.warn("There are no stores around the users location (Stores loading result is 0)")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("There are no stores around the users location (Stores loading result is 0 : \(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         
@@ -298,23 +298,6 @@ extension StoresMapViewController {
     
 }
 
-//MARK: Network Loading Indicator Code
-fileprivate extension StoresMapViewController {
-    
-    
-    func startSpinningIndicator() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-    }
-    
-    func stopSpinningIndicator() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-    }
-    
-}
 
 
 

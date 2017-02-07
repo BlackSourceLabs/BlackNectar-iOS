@@ -17,6 +17,8 @@ import UIKit
 class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var farmersMarketsButton: UIButton!
+    @IBOutlet weak var groceryStoresButton: UIButton!
     
     var currentCoordinates: CLLocationCoordinate2D?
     
@@ -226,6 +228,35 @@ extension FilterViewController {
         LOG.debug("User dragged Map Screen to: \(center)")
         
         self.loadStoresInMapView(at: center)
+        
+    }
+    
+}
+
+//MARK: Style Menu Code
+extension FilterViewController {
+    
+    func styleMenu() {
+        
+        farmersMarketsButton.layer.borderColor = UIColor.white.cgColor
+        farmersMarketsButton.layer.borderWidth = 2
+        farmersMarketsButton.layer.cornerRadius = 10
+        
+        groceryStoresButton.layer.borderColor = UIColor.white.cgColor
+        groceryStoresButton.layer.borderWidth = 2
+        farmersMarketsButton.layer.cornerRadius = 10
+        
+    }
+    
+    func styleButtonOn(button: UIButton) {
+        
+        button.layer.backgroundColor = UIColor.init(red: 0.235, green: 0.191, blue: 0.77, alpha: 1).cgColor
+        
+    }
+    
+    func styleButtonOff(button: UIButton) {
+        
+        button.layer.backgroundColor = UIColor.init(red: 0.27, green: 0.27, blue: 0.27, alpha: 1).cgColor
         
     }
     

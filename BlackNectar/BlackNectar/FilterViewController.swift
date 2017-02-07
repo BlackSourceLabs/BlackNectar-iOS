@@ -48,6 +48,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         prepareMapView()
         loadStores()
+        styleMenu()
         userLocationInfoForAroma()
         
     }
@@ -268,24 +269,24 @@ extension FilterViewController {
     func styleMenu() {
         
         farmersMarketsButton.layer.borderColor = UIColor.white.cgColor
-        farmersMarketsButton.layer.borderWidth = 2
-        farmersMarketsButton.layer.cornerRadius = 10
+        farmersMarketsButton.layer.borderWidth = 1
+        farmersMarketsButton.layer.cornerRadius = 7
         
         groceryStoresButton.layer.borderColor = UIColor.white.cgColor
-        groceryStoresButton.layer.borderWidth = 2
-        farmersMarketsButton.layer.cornerRadius = 10
+        groceryStoresButton.layer.borderWidth = 1
+        groceryStoresButton.layer.cornerRadius = 7
         
     }
     
     func styleButtonOn(button: UIButton) {
         
-        button.layer.backgroundColor = UIColor.init(red: 0.235, green: 0.191, blue: 0.77, alpha: 1).cgColor
+        button.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
         
     }
     
     func styleButtonOff(button: UIButton) {
         
-        button.layer.backgroundColor = UIColor.init(red: 0.27, green: 0.27, blue: 0.27, alpha: 1).cgColor
+        button.layer.backgroundColor = UIColor.init(red: 0.105, green: 0.105, blue: 0.105, alpha: 1).cgColor
         
     }
     

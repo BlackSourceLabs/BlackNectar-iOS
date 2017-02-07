@@ -1,5 +1,5 @@
 //
-//  MapViewSearchFilter.swift
+//  FilterViewController.swift
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 2/6/17.
@@ -14,7 +14,7 @@ import Kingfisher
 import MapKit
 import UIKit
 
-class SearchFilterViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -28,12 +28,10 @@ class SearchFilterViewController: UITableViewController, MKMapViewDelegate, CLLo
     var showFarmersMarkets = true
     var showGroceryStores = true
     
-    typealias callBack = ([Store]) -> ()
-    
     fileprivate let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 10
+        operationQueue.maxConcurrentOperationCount = 2
         
         return operationQueue
         
@@ -95,7 +93,7 @@ class SearchFilterViewController: UITableViewController, MKMapViewDelegate, CLLo
 }
 
 //MARK: Loading Stores into Map View
-extension SearchFilterViewController {
+extension FilterViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
@@ -156,7 +154,7 @@ extension SearchFilterViewController {
 }
 
 //MARK: Map View Delegate Code
-extension SearchFilterViewController {
+extension FilterViewController {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -185,8 +183,7 @@ extension SearchFilterViewController {
 }
 
 //MARK: Gets Driving Directions Code
-
-extension SearchFilterViewController {
+extension FilterViewController {
     
     
     func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
@@ -220,9 +217,8 @@ extension SearchFilterViewController {
     
 }
 
-//MARK: Loads Stores When User Pans 
-
-extension SearchFilterViewController {
+//MARK: Loads Stores When User Pans
+extension FilterViewController {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
@@ -236,34 +232,14 @@ extension SearchFilterViewController {
     
 }
 
-fileprivate extension MKMapView {
-    
-    func isVisible(annotation: MKAnnotation) -> Bool {
-        
-        let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
-        
-        return MKMapRectContainsPoint(self.visibleMapRect, annotationPoint)
-    
-    }
-    
-    func removeNonVisibleAnnotations() {
-        
-        self.annotations
-            .filter({ !isVisible(annotation: $0)})
-            .forEach({ self.removeAnnotation($0) })
-        
-    }
-    
-}
-
 //MARK: Aroma Messages
-extension SearchFilterViewController {
+extension FilterViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        LOG.warn("There are no stores around the users location: \(UserLocation.instance.currentLocation)")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("There are no stores around the users location (Stores loading result is 0 : \(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         
@@ -281,63 +257,4 @@ extension SearchFilterViewController {
     }
     
 }
-
-//MARK: Network Loading Indicator Code
-fileprivate extension SearchFilterViewController {
-    
-    
-    func startSpinningIndicator() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-    }
-    
-    func stopSpinningIndicator() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -24,7 +24,7 @@
 		3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196D1DE1576900FB1774 /* SearchStores.swift */; };
 		3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */; };
 		3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */; };
-		322BB1471E49143900867D13 /* SearchFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322BB1461E49143900867D13 /* SearchFilterViewController.swift */; };
+		322BB1471E49143900867D13 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322BB1461E49143900867D13 /* FilterViewController.swift */; };
 		3275805D1E204FB900E2915A /* Archeota.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3275805B1E2040F000E2915A /* Archeota.framework */; };
 		3275805E1E204FB900E2915A /* Archeota.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3275805B1E2040F000E2915A /* Archeota.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		327A75AB1E43AD8A00FE4619 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */; };
@@ -49,6 +49,7 @@
 		327BAD661DFA26AE000EA25E /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BAD651DFA26AE000EA25E /* RoundedButtonView.swift */; };
 		3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297A36B1E39AF090055BC89 /* Arrays+.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
+		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
 		32E134411E15FE6700FD65DC /* AromaSwiftClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */; };
 		32E134431E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
 		32E134441E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
@@ -120,7 +121,7 @@
 		3213196D1DE1576900FB1774 /* SearchStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStores.swift; sourceTree = "<group>"; };
 		3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewController.swift; sourceTree = "<group>"; };
 		3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManager.swift; sourceTree = "<group>"; };
-		322BB1461E49143900867D13 /* SearchFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFilterViewController.swift; sourceTree = "<group>"; };
+		322BB1461E49143900867D13 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		3275805B1E2040F000E2915A /* Archeota.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Archeota.framework; path = Carthage/Build/iOS/Archeota.framework; sourceTree = "<group>"; };
 		327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Bold.ttf"; sourceTree = "<group>"; };
 		327A75A91E43AD8A00FE4619 /* Oxygen-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Light.ttf"; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 		327BAD651DFA26AE000EA25E /* RoundedButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 		3297A36B1E39AF090055BC89 /* Arrays+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Arrays+.swift"; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
+		32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+.swift"; sourceTree = "<group>"; };
 		32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaSwiftClient.framework; path = Carthage/Build/iOS/AromaSwiftClient.framework; sourceTree = "<group>"; };
 		32E1343D1E15FE6700FD65DC /* AromaThrift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaThrift.framework; path = Carthage/Build/iOS/AromaThrift.framework; sourceTree = "<group>"; };
 		32E1343E1E15FE6700FD65DC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
@@ -258,7 +260,7 @@
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				327BAD611DF44B8B000EA25E /* MapView */,
 				327BAD631DF44BEA000EA25E /* Model */,
-				322BB1451E4913C900867D13 /* Search Filter */,
+				322BB1451E4913C900867D13 /* Filter */,
 				327BAD601DF44B5A000EA25E /* SideMenus */,
 				327BAD5F1DF44B3F000EA25E /* StoresListTableView */,
 				369843871E3166E30048D8B1 /* UserPreferences */,
@@ -289,12 +291,12 @@
 			path = BlackNectarUITests;
 			sourceTree = "<group>";
 		};
-		322BB1451E4913C900867D13 /* Search Filter */ = {
+		322BB1451E4913C900867D13 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				322BB1461E49143900867D13 /* SearchFilterViewController.swift */,
+				322BB1461E49143900867D13 /* FilterViewController.swift */,
 			);
-			name = "Search Filter";
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		327A75A71E43AD2000FE4619 /* Fonts */ = {
@@ -391,6 +393,7 @@
 				3297A36B1E39AF090055BC89 /* Arrays+.swift */,
 				32E134511E160E5500FD65DC /* Integers+.swift */,
 				32E134541E160EAF00FD65DC /* TimeIntervals+.swift */,
+				32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -572,11 +575,12 @@
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
 				36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */,
+				32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */,
 				3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */,
 				327BACDE1DF12F85000EA25E /* SideMenuFilterViewController.swift in Sources */,
 				32E134551E160EAF00FD65DC /* TimeIntervals+.swift in Sources */,
 				0A9CE6371E1D98B7008860BA /* Integers+.swift in Sources */,
-				322BB1471E49143900867D13 /* SearchFilterViewController.swift in Sources */,
+				322BB1471E49143900867D13 /* FilterViewController.swift in Sources */,
 				3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */,
 				327BAD661DFA26AE000EA25E /* RoundedButtonView.swift in Sources */,
 				32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */,

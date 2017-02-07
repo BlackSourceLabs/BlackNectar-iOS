@@ -20,15 +20,14 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
     var currentCoordinates: CLLocationCoordinate2D?
     
-    var stores: [Store] = []
-    
-    var selectedPin: MKPlacemark?
     var distance = 0.0
-    
     var showFarmersMarkets = true
     var showGroceryStores = true
     
-    let blackNectarPin = UIImage(named: "BlackNectarMapPin")
+    fileprivate var stores: [Store] = []
+    fileprivate var selectedPin: MKPlacemark?
+    fileprivate let blackNectarPin = UIImage(named: "BlackNectarMapPin")
+    
     
     fileprivate let async: OperationQueue = {
         
@@ -48,7 +47,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         prepareMapView()
         loadStores()
         userLocationInfoForAroma()
-        
         
     }
     

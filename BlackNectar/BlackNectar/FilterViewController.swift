@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  FilterViewController.swift
 //  BlackNectar
 //
-//  Created by Cordero Hernandez on 11/19/16.
+//  Created by Cordero Hernandez on 2/6/17.
 //  Copyright © 2017 BlackSource. All rights reserved.
 //
 
@@ -14,33 +14,28 @@ import Kingfisher
 import MapKit
 import UIKit
 
-
-class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
     var currentCoordinates: CLLocationCoordinate2D?
     
-    var stores: [Store] = []
-    
-    var selectedPin: MKPlacemark?
     var distance = 0.0
-    
     var showFarmersMarkets = true
-    var showStores = true
-    var onlyShowOpenStores = true
+    var showGroceryStores = true
     
-    var mapViewLoaded = false
+    fileprivate var stores: [Store] = []
+    fileprivate var selectedPin: MKPlacemark?
+    fileprivate let blackNectarPin = UIImage(named: "BlackNectarMapPin")
     
-    
-    typealias Callback = ([Store]) -> ()
     
     fileprivate let async: OperationQueue = {
         
         let operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 10
+        operationQueue.maxConcurrentOperationCount = 2
         
         return operationQueue
+        
     }()
     
     fileprivate let main = OperationQueue.main
@@ -62,16 +57,17 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
+    
     private func loadUserDefaults() {
         
         self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        self.showStores = UserPreferences.instance.isStore
+        self.showGroceryStores = UserPreferences.instance.isStore
         
     }
     
     private func loadStores() {
         
-        UserLocation.instance.requestLocation() { coordinate in
+        UserLocation.instance.requestLocation { coordinate in
             
             self.loadStoresInMapView(at: coordinate)
             
@@ -86,9 +82,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         guard let region = UserLocation.instance.currentRegion else {
             
-            LOG.error("Failed to Update the Users Current Region")
+            LOG.error("Failed to the Users Current Region")
             return
-            
         }
         
         self.mapView.setRegion(region, animated: true)
@@ -97,8 +92,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
 }
 
-//MARK: Loading Stores Into mapView
-extension StoresMapViewController {
+//MARK: Loading Stores into Map View
+extension FilterViewController {
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
@@ -108,7 +103,7 @@ extension StoresMapViewController {
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.stores = self.filterStores(from: stores)
+            self.stores = stores
             
             self.main.addOperation {
                 
@@ -117,31 +112,13 @@ extension StoresMapViewController {
                 
             }
             
-            if self.stores.isEmpty {
-                
-                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Map View")
-                
-            }
+        }
+        
+        if self.stores.isEmpty {
+            
+            self.makeNoteThatNoStoresFound(additionalMessage: "User is in the Search Filter Map View")
             
         }
-        
-    }
-    
-    private func filterStores(from stores: [Store]) -> [Store] {
-        
-        if showStores == showFarmersMarkets {
-            return stores
-        }
-        
-        if showStores {
-            return stores.filter() { $0.notFarmersMarket }
-        }
-        
-        if showFarmersMarkets {
-            return stores.filter() { $0.isFarmersMarket }
-        }
-        
-        return stores
         
     }
     
@@ -176,26 +153,26 @@ extension StoresMapViewController {
     
 }
 
-
-//MARK: Map View Delegate Methods
-extension StoresMapViewController {
+//MARK: Map View Delegate Code
+extension FilterViewController {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
+            
             return nil
+            
         }
         
-        let annotation = annotation as? CustomAnnotation
         let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        let blackNectarPin = UIImage(named: "BlackNectarMapPin")
+        let callOutViewButton = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        callOutViewButton.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
+        
+        let annotation = annotation as? CustomAnnotation
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation?.identifier)
         
-        button.setBackgroundImage(UIImage(named: "carIcon"), for: .normal)
-        
         annotationView.canShowCallout = true
-        annotationView.leftCalloutAccessoryView = button
+        annotationView.leftCalloutAccessoryView = callOutViewButton
         annotationView.image = blackNectarPin
         
         return annotationView
@@ -204,8 +181,9 @@ extension StoresMapViewController {
     
 }
 
-//MARK: Gets Directions
-extension StoresMapViewController {
+//MARK: Gets Driving Directions Code
+extension FilterViewController {
+    
     
     func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
         
@@ -228,7 +206,7 @@ extension StoresMapViewController {
             getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
             
             AromaClient.beginMessage(withTitle: "User tapped on \(storeName) map pin")
-                .addBody("User navigated to \(storeName)\nstore coordinates: \(storeLocation.coordinate)\n(Map View)")
+                .addBody("User navigated to \(storeName)\nstore coordinates: \(storeLocation.coordinate)\n(Search Filter Map View)")
                 .withPriority(.medium)
                 .send()
             
@@ -238,9 +216,10 @@ extension StoresMapViewController {
     
 }
 
-extension StoresMapViewController {
+//MARK: Loads Stores When User Pans
+extension FilterViewController {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         let center = mapView.centerCoordinate
         
@@ -252,32 +231,12 @@ extension StoresMapViewController {
     
 }
 
-
-extension MKMapView {
-    
-    func isVisible(annotation: MKAnnotation) -> Bool {
-        
-        let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
-        
-        return MKMapRectContainsPoint(self.visibleMapRect, annotationPoint)
-        
-    }
-    
-    func removeNonVisibleAnnotations() {
-        
-        self.annotations
-            .filter({ !isVisible(annotation: $0)})
-            .forEach({ self.removeAnnotation($0) })
-        
-    }
-    
-}
-
-extension StoresMapViewController {
+//MARK: Aroma Messages
+extension FilterViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        LOG.warn("There are no stores around the users location: \(UserLocation.instance.currentLocation)")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
             .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
@@ -289,7 +248,7 @@ extension StoresMapViewController {
         
         guard let userLocationForAroma = UserLocation.instance.currentCoordinate else { return }
         
-        AromaClient.beginMessage(withTitle: "User Entered Map View")
+        AromaClient.beginMessage(withTitle: "User Entered Map View (Search Filter)")
             .addBody("User Location is: \(userLocationForAroma)")
             .withPriority(.low)
             .send()
@@ -297,7 +256,4 @@ extension StoresMapViewController {
     }
     
 }
-
-
-
 

@@ -209,7 +209,7 @@
                             </button>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
-                            <rect key="frame" x="113" y="6" width="150" height="33"/>
+                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="T0k-sW-weX">
@@ -243,12 +243,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="1564"/>
+            <point key="canvasLocation" x="1272.8" y="1563.8680659670167"/>
         </scene>
         <!--Search FIilter View Controller-->
         <scene sceneID="RYF-K3-KTk">
             <objects>
-                <tableViewController id="k9s-Gt-zGD" userLabel="Search FIilter View Controller" sceneMemberID="viewController">
+                <tableViewController id="k9s-Gt-zGD" userLabel="Search FIilter View Controller" customClass="FilterViewController" customModule="BlackNectar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1cG-GB-XXG">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -487,7 +487,7 @@
                     <navigationItem key="navigationItem" id="0CR-ch-crS">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="Zxc-HX-K3f">
-                            <rect key="frame" x="104" y="6" width="168" height="33"/>
+                            <rect key="frame" x="103.5" y="5.5" width="168" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Huw-KN-cYv">
@@ -510,6 +510,9 @@
                             </constraints>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="97t-k7-OFi" id="SSM-V6-dF8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tna-hs-Zie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -558,7 +561,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cYs-ad-7To" id="MsZ-Mb-RSo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="665.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-YP-JTy">

@@ -340,6 +340,7 @@ extension StoresTableViewController {
             destination?.stores = self.stores
             
         }
+        
     }
     
     @IBAction func mapButtonTapped(_ sender: Any) {

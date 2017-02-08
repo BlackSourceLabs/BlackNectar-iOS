@@ -25,6 +25,7 @@
 		3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */; };
 		3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */; };
 		322BB1471E49143900867D13 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322BB1461E49143900867D13 /* FilterViewController.swift */; };
+		324500761E4BA79F00A3CE63 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324500751E4BA79F00A3CE63 /* Colors.swift */; };
 		3275805D1E204FB900E2915A /* Archeota.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3275805B1E2040F000E2915A /* Archeota.framework */; };
 		3275805E1E204FB900E2915A /* Archeota.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3275805B1E2040F000E2915A /* Archeota.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		327A75AB1E43AD8A00FE4619 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */; };
@@ -122,6 +123,7 @@
 		3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewController.swift; sourceTree = "<group>"; };
 		3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManager.swift; sourceTree = "<group>"; };
 		322BB1461E49143900867D13 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		324500751E4BA79F00A3CE63 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3275805B1E2040F000E2915A /* Archeota.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Archeota.framework; path = Carthage/Build/iOS/Archeota.framework; sourceTree = "<group>"; };
 		327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Bold.ttf"; sourceTree = "<group>"; };
 		327A75A91E43AD8A00FE4619 /* Oxygen-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Light.ttf"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		3213193C1DE0F61500FB1774 /* BlackNectar */ = {
 			isa = PBXGroup;
 			children = (
+				324500741E4BA78200A3CE63 /* BlackNectarColors */,
 				327BAD621DF44BC5000EA25E /* APICall */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
@@ -297,6 +300,14 @@
 				322BB1461E49143900867D13 /* FilterViewController.swift */,
 			);
 			name = Filter;
+			sourceTree = "<group>";
+		};
+		324500741E4BA78200A3CE63 /* BlackNectarColors */ = {
+			isa = PBXGroup;
+			children = (
+				324500751E4BA79F00A3CE63 /* Colors.swift */,
+			);
+			name = BlackNectarColors;
 			sourceTree = "<group>";
 		};
 		327A75A71E43AD2000FE4619 /* Fonts */ = {
@@ -571,6 +582,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */,
+				324500761E4BA79F00A3CE63 /* Colors.swift in Sources */,
 				3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */,
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,

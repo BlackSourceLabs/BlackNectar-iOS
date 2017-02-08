@@ -280,13 +280,13 @@ extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {
         
-        button.layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+        button.layer.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77).cgColor
         
     }
     
     func styleButtonOff(button: UIButton) {
         
-        button.layer.backgroundColor = UIColor.init(red: 0.105, green: 0.105, blue: 0.105, alpha: 1).cgColor
+        button.layer.backgroundColor = Colors.fromRGB(red: 27, green: 27, blue: 27).cgColor
         
     }
     

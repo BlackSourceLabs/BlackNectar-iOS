@@ -36,7 +36,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var borderThickness: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 1 {
         
         didSet
         {
@@ -44,7 +44,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.black {
+    @IBInspectable var borderColor: UIColor = UIColor.white {
         
         didSet
         {
@@ -68,9 +68,10 @@ import UIKit
         }
     }
     
-    @IBInspectable var cornerRadius: CGFloat = 10 {
+    @IBInspectable var cornerRadius: CGFloat = 5 {
         
-        didSet{
+        didSet
+        {
             updateView()
         }
     }
@@ -78,7 +79,8 @@ import UIKit
     func updateView() {
         
         layer.cornerRadius = cornerRadius
-        layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+        layer.borderWidth = borderWidth
+        layer.borderColor = borderColor.cgColor
         layer.masksToBounds = true
         
         if shouldRasterize

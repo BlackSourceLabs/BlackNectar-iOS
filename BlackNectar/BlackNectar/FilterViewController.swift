@@ -48,7 +48,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         prepareMapView()
         loadStores()
-        styleMenu()
         userLocationInfoForAroma()
         
     }
@@ -119,7 +118,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         guard let region = UserLocation.instance.currentRegion else {
             
-            LOG.error("Failed to the Users Current Region")
+            LOG.error("Failed to load the Users Current Region")
             return
         }
         
@@ -266,27 +265,18 @@ extension FilterViewController {
 //MARK: Style Menu Code
 extension FilterViewController {
     
-    func styleMenu() {
-        
-        farmersMarketsButton.layer.borderColor = UIColor.white.cgColor
-        farmersMarketsButton.layer.borderWidth = 1
-        farmersMarketsButton.layer.cornerRadius = 7
-        
-        groceryStoresButton.layer.borderColor = UIColor.white.cgColor
-        groceryStoresButton.layer.borderWidth = 1
-        groceryStoresButton.layer.cornerRadius = 7
-        
-    }
-    
     func styleButtonOn(button: UIButton) {
         
-        button.layer.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77).cgColor
-        
+        button.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77)
+        button.titleLabel?.font = UIFont(name: "Oxygen-Bold", size: 16)
+        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: nil, completion: nil)
     }
     
     func styleButtonOff(button: UIButton) {
         
-        button.layer.backgroundColor = Colors.fromRGB(red: 27, green: 27, blue: 27).cgColor
+        button.backgroundColor = UIColor.clear
+        button.titleLabel?.font = UIFont(name: "Oxygen-Regular", size: 16)
+        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: nil, completion: nil)
         
     }
     

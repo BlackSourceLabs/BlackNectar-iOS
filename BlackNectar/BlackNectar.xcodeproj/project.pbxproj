@@ -251,7 +251,7 @@
 		3213193C1DE0F61500FB1774 /* BlackNectar */ = {
 			isa = PBXGroup;
 			children = (
-				324500741E4BA78200A3CE63 /* BlackNectarColors */,
+				324500741E4BA78200A3CE63 /* Colors */,
 				327BAD621DF44BC5000EA25E /* APICall */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
@@ -302,12 +302,12 @@
 			name = Filter;
 			sourceTree = "<group>";
 		};
-		324500741E4BA78200A3CE63 /* BlackNectarColors */ = {
+		324500741E4BA78200A3CE63 /* Colors */ = {
 			isa = PBXGroup;
 			children = (
 				324500751E4BA79F00A3CE63 /* Colors.swift */,
 			);
-			name = BlackNectarColors;
+			name = Colors;
 			sourceTree = "<group>";
 		};
 		327A75A71E43AD2000FE4619 /* Fonts */ = {

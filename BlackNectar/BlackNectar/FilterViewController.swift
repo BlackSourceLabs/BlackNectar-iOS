@@ -14,6 +14,12 @@ import Kingfisher
 import MapKit
 import UIKit
 
+protocol FilterDelegate {
+    
+    func filters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, distanceInMiles: Int)
+    
+}
+
 class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
@@ -25,6 +31,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     var distance = 0.0
     var showFarmersMarkets = false
     var showGroceryStores = false
+    
+    var delegate: FilterDelegate?
     
     fileprivate var stores: [Store] = []
     fileprivate var selectedPin: MKPlacemark?
@@ -67,6 +75,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             
             showFarmersMarkets = true
             styleButtonOn(button: farmersMarketsButton)
+            self.delegate?.filters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: <#T##Bool#>, distanceInMiles: <#T##Int#>)
             
         } else {
             

@@ -267,16 +267,24 @@ extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {
         
-        button.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77)
-        button.titleLabel?.font = UIFont(name: "Oxygen-Bold", size: 16)
-        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        let animations = {
+            button.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77)
+            button.titleLabel?.font = Fonts.instance.oxygenBold
+            
+        }
+        
+        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)
+        
     }
     
     func styleButtonOff(button: UIButton) {
         
-        button.backgroundColor = UIColor.clear
-        button.titleLabel?.font = UIFont(name: "Oxygen-Regular", size: 16)
-        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        let animations = {
+            button.backgroundColor = UIColor.clear
+            button.titleLabel?.font = Fonts.instance.oxygenRegular
+        }
+        
+        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)
         
     }
     

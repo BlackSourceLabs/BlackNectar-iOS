@@ -269,7 +269,7 @@ extension FilterViewController {
         
         let animations = {
             button.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77)
-            button.titleLabel?.font = Fonts.instance.oxygenBold
+            button.titleLabel?.font = Fonts.oxygenBold
             
         }
         
@@ -281,7 +281,7 @@ extension FilterViewController {
         
         let animations = {
             button.backgroundColor = UIColor.clear
-            button.titleLabel?.font = Fonts.instance.oxygenRegular
+            button.titleLabel?.font = Fonts.oxygenRegular
         }
         
         UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)

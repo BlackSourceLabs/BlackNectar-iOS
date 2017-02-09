@@ -26,6 +26,7 @@
 		3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */; };
 		322BB1471E49143900867D13 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322BB1461E49143900867D13 /* FilterViewController.swift */; };
 		324500761E4BA79F00A3CE63 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324500751E4BA79F00A3CE63 /* Colors.swift */; };
+		324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324500781E4BFDFC00A3CE63 /* Fonts.swift */; };
 		3275805D1E204FB900E2915A /* Archeota.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3275805B1E2040F000E2915A /* Archeota.framework */; };
 		3275805E1E204FB900E2915A /* Archeota.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3275805B1E2040F000E2915A /* Archeota.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		327A75AB1E43AD8A00FE4619 /* Oxygen-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */; };
@@ -124,6 +125,7 @@
 		3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManager.swift; sourceTree = "<group>"; };
 		322BB1461E49143900867D13 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		324500751E4BA79F00A3CE63 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		324500781E4BFDFC00A3CE63 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		3275805B1E2040F000E2915A /* Archeota.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Archeota.framework; path = Carthage/Build/iOS/Archeota.framework; sourceTree = "<group>"; };
 		327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Bold.ttf"; sourceTree = "<group>"; };
 		327A75A91E43AD8A00FE4619 /* Oxygen-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oxygen-Light.ttf"; sourceTree = "<group>"; };
@@ -251,13 +253,14 @@
 		3213193C1DE0F61500FB1774 /* BlackNectar */ = {
 			isa = PBXGroup;
 			children = (
+				324500771E4BFDF200A3CE63 /* Fonts */,
 				324500741E4BA78200A3CE63 /* Colors */,
 				327BAD621DF44BC5000EA25E /* APICall */,
 				3213193D1DE0F61500FB1774 /* AppDelegate.swift */,
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
 				369843881E31928F0048D8B1 /* DistanceCalculation */,
 				32E134501E160E3100FD65DC /* Extensions */,
-				327A75A71E43AD2000FE4619 /* Fonts */,
+				327A75A71E43AD2000FE4619 /* Resources */,
 				327A75EA1E451C8800FE4619 /* Info.plist */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
@@ -310,7 +313,15 @@
 			name = Colors;
 			sourceTree = "<group>";
 		};
-		327A75A71E43AD2000FE4619 /* Fonts */ = {
+		324500771E4BFDF200A3CE63 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				324500781E4BFDFC00A3CE63 /* Fonts.swift */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		327A75A71E43AD2000FE4619 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				327A75C61E451BAD00FE4619 /* Uni Sans Bold Italic.ttf */,
@@ -331,7 +342,7 @@
 				327A75A91E43AD8A00FE4619 /* Oxygen-Light.ttf */,
 				327A75AA1E43AD8A00FE4619 /* Oxygen-Regular.ttf */,
 			);
-			name = Fonts;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		327BAD5F1DF44B3F000EA25E /* StoresListTableView */ = {
@@ -598,6 +609,7 @@
 				32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */,
 				0A726B4A1E1D94B40031572D /* DistanceCalculation.swift in Sources */,
 				36289FB81E2FEEA300FCA6E1 /* UserPreferences.swift in Sources */,
+				324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,8 +12,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Oxygen-Regular.ttf">
-            <string>Oxygen-Regular</string>
+        <array key="Oxygen-Bold.ttf">
+            <string>Oxygen-Bold</string>
         </array>
         <array key="Uni Sans Bold.ttf">
             <string>UniSansBold</string>
@@ -121,14 +121,14 @@
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderThickness">
-                                                            <real key="value" value="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffSet">
                                                             <size key="value" width="0.0" height="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -209,7 +209,7 @@
                             </button>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
-                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
+                            <rect key="frame" x="113" y="6" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="T0k-sW-weX">
@@ -285,45 +285,74 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.10586584359407425" green="0.10589186102151871" blue="0.10586420446634293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="57" id="UO1-gI-aUN">
-                                        <rect key="frame" x="0.0" y="60" width="375" height="57"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="UO1-gI-aUN">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UO1-gI-aUN" id="Mrp-LV-GOk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liB-bH-UIF">
-                                                    <rect key="frame" x="20" y="0.0" width="130" height="30"/>
-                                                    <color key="backgroundColor" red="0.75173264741897583" green="0.65808886289596558" blue="0.38662290573120117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="130" id="Lq3-rz-scr"/>
-                                                        <constraint firstAttribute="height" constant="30" id="msB-6j-6bO"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Oxygen-Regular" family="Oxygen" pointSize="16"/>
-                                                    <state key="normal" title="Farmer's Markets">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24T-s2-CYd">
-                                                    <rect key="frame" x="174" y="0.0" width="130" height="30"/>
-                                                    <color key="backgroundColor" red="0.75173264741897583" green="0.65808886289596558" blue="0.38662290573120117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24T-s2-CYd" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
+                                                    <rect key="frame" x="184" y="8" width="130" height="35"/>
+                                                    <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="Zfz-kE-mee"/>
-                                                        <constraint firstAttribute="height" constant="30" id="ubG-Xg-9yK"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Oxygen-Regular" family="Oxygen" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="16"/>
                                                     <state key="normal" title="Grocery Stores">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="circular" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="onGroceryStores:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="Fzv-cB-ecJ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liB-bH-UIF" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="8" width="140" height="35"/>
+                                                    <color key="backgroundColor" red="0.92549019607843142" green="0.75294117647058822" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="140" id="Lq3-rz-scr"/>
+                                                        <constraint firstAttribute="height" constant="35" id="msB-6j-6bO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Oxygen-Bold" family="Oxygen" pointSize="16"/>
+                                                    <state key="normal" title="Farmer's Markets">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="circular" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="onFarmersMarkets:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="sAU-GD-23I"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="liB-bH-UIF" firstAttribute="top" secondItem="Mrp-LV-GOk" secondAttribute="top" id="43c-iA-2ac"/>
+                                                <constraint firstItem="liB-bH-UIF" firstAttribute="top" secondItem="Mrp-LV-GOk" secondAttribute="top" constant="8" id="43c-iA-2ac"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="baseline" secondItem="liB-bH-UIF" secondAttribute="firstBaseline" id="6JL-tO-RQU"/>
                                                 <constraint firstItem="liB-bH-UIF" firstAttribute="leading" secondItem="Mrp-LV-GOk" secondAttribute="leading" constant="20" id="CaA-Ml-lLB"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="firstBaseline" secondItem="liB-bH-UIF" secondAttribute="baseline" id="NC6-PC-Me1"/>
+                                                <constraint firstItem="24T-s2-CYd" firstAttribute="height" secondItem="liB-bH-UIF" secondAttribute="height" id="aU8-R1-Hpl"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="top" secondItem="liB-bH-UIF" secondAttribute="top" id="ant-Ca-qUg"/>
-                                                <constraint firstAttribute="bottom" secondItem="liB-bH-UIF" secondAttribute="bottom" constant="27" id="jTf-iJ-CrR"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="leading" secondItem="liB-bH-UIF" secondAttribute="trailing" constant="24" id="ntd-R0-VtC"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="24T-s2-CYd" secondAttribute="trailing" constant="8" id="xfv-FC-ckm"/>
                                             </constraints>
@@ -331,7 +360,7 @@
                                         <color key="backgroundColor" red="0.10586584359407425" green="0.10589186102151871" blue="0.10586420446634293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="QeE-PT-LQ3">
-                                        <rect key="frame" x="0.0" y="117" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="130" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="QeE-PT-LQ3" id="W02-3Z-ZCg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
@@ -355,10 +384,10 @@
                                                 <constraint firstItem="DWF-TY-ut1" firstAttribute="centerY" secondItem="W02-3Z-ZCg" secondAttribute="centerY" id="mmZ-aW-3p1"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.10586584359407425" green="0.10589186102151871" blue="0.10586420446634293" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="277" id="eBv-hN-5oU">
-                                        <rect key="frame" x="0.0" y="165" width="375" height="277"/>
+                                        <rect key="frame" x="0.0" y="178" width="375" height="277"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eBv-hN-5oU" id="syz-at-Z23">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="277"/>
@@ -394,7 +423,7 @@
                                         <color key="backgroundColor" red="0.1058658436" green="0.105891861" blue="0.1058642045" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="61" id="sk7-7q-0MP">
-                                        <rect key="frame" x="0.0" y="442" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="455" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sk7-7q-0MP" id="2lm-WT-eDM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
@@ -431,7 +460,7 @@
                                         <color key="backgroundColor" red="0.1058658436" green="0.105891861" blue="0.1058642045" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="61" id="aTu-hU-FBE">
-                                        <rect key="frame" x="0.0" y="503" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="516" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aTu-hU-FBE" id="5vP-oK-Z4K">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
@@ -468,7 +497,7 @@
                                         <color key="backgroundColor" red="0.1058658436" green="0.105891861" blue="0.1058642045" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="42" id="xaZ-kM-HKV">
-                                        <rect key="frame" x="0.0" y="564" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="577" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xaZ-kM-HKV" id="hYc-yV-mZ0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -487,7 +516,7 @@
                     <navigationItem key="navigationItem" id="0CR-ch-crS">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="Zxc-HX-K3f">
-                            <rect key="frame" x="103.5" y="5.5" width="168" height="33"/>
+                            <rect key="frame" x="104" y="6" width="168" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Huw-KN-cYv">
@@ -511,6 +540,8 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="farmersMarketsButton" destination="liB-bH-UIF" id="LiL-7W-Ow5"/>
+                        <outlet property="groceryStoresButton" destination="24T-s2-CYd" id="7BA-xA-HvY"/>
                         <outlet property="mapView" destination="97t-k7-OFi" id="SSM-V6-dF8"/>
                     </connections>
                 </tableViewController>
@@ -561,7 +592,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cYs-ad-7To" id="MsZ-Mb-RSo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="665.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-YP-JTy">
@@ -768,7 +799,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

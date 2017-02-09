@@ -17,12 +17,14 @@ import UIKit
 class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var farmersMarketsButton: UIButton!
+    @IBOutlet weak var groceryStoresButton: UIButton!
     
     var currentCoordinates: CLLocationCoordinate2D?
     
     var distance = 0.0
-    var showFarmersMarkets = true
-    var showGroceryStores = true
+    var showFarmersMarkets = false
+    var showGroceryStores = false
     
     fileprivate var stores: [Store] = []
     fileprivate var selectedPin: MKPlacemark?
@@ -58,6 +60,40 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     }
     
     
+//MARK: Filter Buttons Code
+    @IBAction func onFarmersMarkets(_ sender: UIButton) {
+        
+        if showFarmersMarkets == false {
+            
+            showFarmersMarkets = true
+            styleButtonOn(button: farmersMarketsButton)
+            
+        } else {
+            
+            showFarmersMarkets = false
+            styleButtonOff(button: farmersMarketsButton)
+            
+        }
+        
+    }
+    
+    @IBAction func onGroceryStores(_ sender: UIButton) {
+        
+        if showGroceryStores == false {
+            
+            showGroceryStores = true
+            styleButtonOn(button: groceryStoresButton)
+            
+        } else {
+            
+            showGroceryStores = false
+            styleButtonOff(button: groceryStoresButton)
+            
+        }
+        
+    }
+    
+    
     private func loadUserDefaults() {
         
         self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
@@ -82,7 +118,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         guard let region = UserLocation.instance.currentRegion else {
             
-            LOG.error("Failed to the Users Current Region")
+            LOG.error("Failed to load the Users Current Region")
             return
         }
         
@@ -92,8 +128,18 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
 }
 
-//MARK: Loading Stores into Map View
+//MARK: Loads Stores into Map View and when User Pans
 extension FilterViewController {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let center = mapView.centerCoordinate
+        
+        LOG.debug("User dragged Map Screen to: \(center)")
+        
+        self.loadStoresInMapView(at: center)
+        
+    }
     
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
@@ -216,16 +262,29 @@ extension FilterViewController {
     
 }
 
-//MARK: Loads Stores When User Pans
+//MARK: Style Menu Code
 extension FilterViewController {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    func styleButtonOn(button: UIButton) {
         
-        let center = mapView.centerCoordinate
+        let animations = {
+            button.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77)
+            button.titleLabel?.font = Fonts.oxygenBold
+            
+        }
         
-        LOG.debug("User dragged Map Screen to: \(center)")
+        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)
         
-        self.loadStoresInMapView(at: center)
+    }
+    
+    func styleButtonOff(button: UIButton) {
+        
+        let animations = {
+            button.backgroundColor = UIColor.clear
+            button.titleLabel?.font = Fonts.oxygenRegular
+        }
+        
+        UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)
         
     }
     

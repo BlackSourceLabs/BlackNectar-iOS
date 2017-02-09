@@ -11,10 +11,7 @@ import UIKit
 
 class Fonts {
     
-    static let instance = Fonts()
-    private init() {}
-    
-    var oxygenBold = UIFont(name: "Oxygen-Bold", size: 16)
-    var oxygenRegular = UIFont(name: "Oxygen-Regular", size: 16)
+    static let oxygenBold = UIFont(name: "Oxygen-Bold", size: 16)
+    static let oxygenRegular = UIFont(name: "Oxygen-Regular", size: 16)
   
 }

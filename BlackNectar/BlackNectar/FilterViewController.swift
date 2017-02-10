@@ -64,14 +64,28 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         super.viewDidAppear(animated)
         
         loadUserDefaults()
+        styleGroceryButton()
         
     }
     
     
-//MARK: Filter Buttons Code
+    //MARK: Filter Buttons Code
     @IBAction func onFarmersMarkets(_ sender: UIButton) {
         
-        if showFarmersMarkets == false {
+        showFarmersMarkets = !showFarmersMarkets
+        styleFarmersMarkets()
+        
+    }
+    
+    @IBAction func onGroceryStores(_ sender: UIButton) {
+        
+        showGroceryStores = !showGroceryStores
+        styleGroceryButton()
+    }
+    
+    fileprivate func styleFarmersMarkets() {
+        
+        if showFarmersMarkets {
             
             showFarmersMarkets = true
             styleButtonOn(button: farmersMarketsButton)
@@ -86,23 +100,20 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    @IBAction func onGroceryStores(_ sender: UIButton) {
+    fileprivate func styleGroceryButton() {
         
-        if showGroceryStores == false {
+        if showGroceryStores {
             
-            showGroceryStores = true
             styleButtonOn(button: groceryStoresButton)
             
         } else {
             
-            showGroceryStores = false
             styleButtonOff(button: groceryStoresButton)
             
         }
         
     }
-    
-    
+ 
     private func loadUserDefaults() {
         
         self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket

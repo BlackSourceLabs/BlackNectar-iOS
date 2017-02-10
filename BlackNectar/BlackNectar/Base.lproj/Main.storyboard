@@ -15,6 +15,9 @@
         <array key="Oxygen-Bold.ttf">
             <string>Oxygen-Bold</string>
         </array>
+        <array key="Oxygen-Regular.ttf">
+            <string>Oxygen-Regular</string>
+        </array>
         <array key="Uni Sans Bold.ttf">
             <string>UniSansBold</string>
         </array>
@@ -133,6 +136,15 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTapGoButton:" destination="jTC-fs-IR7" eventType="touchUpInside" id="Plb-fL-kwF"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkA-WU-xru">
+                                                    <rect key="frame" x="143" y="36" width="67" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <segue destination="k9s-Gt-zGD" kind="show" id="iD2-U4-3qj"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -315,7 +327,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="onGroceryStores:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="Fzv-cB-ecJ"/>
+                                                        <action selector="onGroceryStores:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="uvq-vN-mvl"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liB-bH-UIF" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
@@ -436,7 +448,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="ebA-jN-LIN"/>
                                                         <constraint firstAttribute="width" constant="94" id="weU-IJ-iWh"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Oxygen-Regular" family="Oxygen" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -473,7 +485,7 @@
                                                         <constraint firstAttribute="width" constant="107" id="6rO-Xp-Xfe"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="107" id="Qol-6g-iAX"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Oxygen-Regular" family="Oxygen" pointSize="16"/>
                                                     <color key="textColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -821,4 +833,7 @@
         <image name="SplashScreen" width="500" height="500"/>
         <image name="filterbutton-black" width="45" height="45"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="hgF-uQ-UYj"/>
+    </inferredMetricsTieBreakers>
 </document>

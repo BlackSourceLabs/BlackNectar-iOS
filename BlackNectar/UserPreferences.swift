@@ -79,44 +79,5 @@ class UserPreferences {
         }
         
     }
-
-    func setSideMenuDefaults(in viewController: SideMenuFilterViewController, distanceFilter: Double, isFarmersMarket: Bool, isOpenNow: Bool, isStore: Bool) {
-        
-        let roundedNumber = (round(defaultPreferences.double(forKey: "distanceFilter") * 100)/100)
-        
-        viewController.slider.value = Float(defaultPreferences.double(forKey: "distanceFilter"))
-        viewController.slideValueLabel.text = "\(roundedNumber)"
-        
-        if isFarmersMarket {
-            
-            viewController.styleButtonOn(button: viewController.farmersMarketButton)
-            
-        } else {
-            
-            viewController.styleButtonOff(button: viewController.farmersMarketButton)
-            
-        }
-        
-        if isOpenNow {
-            
-            viewController.openNowSwitch.isOn = true
-            
-        } else {
-            
-            viewController.openNowSwitch.isOn = false
-            
-        }
-        
-        if isStore {
-            
-            viewController.styleButtonOn(button: viewController.storesButton)
-            
-        } else {
-            
-            viewController.styleButtonOff(button: viewController.storesButton)
-            
-        }
-        
-    }
     
 }

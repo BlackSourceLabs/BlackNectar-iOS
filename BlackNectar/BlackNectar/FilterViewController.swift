@@ -144,13 +144,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         }
         
     }
- 
-    private func loadUserDefaults() {
-        
-        self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        self.showGroceryStores = UserPreferences.instance.isStore
-        
-    }
     
     private func loadStores() {
         

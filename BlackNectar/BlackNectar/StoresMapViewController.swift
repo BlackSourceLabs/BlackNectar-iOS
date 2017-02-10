@@ -266,7 +266,15 @@ extension MKMapView {
     func removeNonVisibleAnnotations() {
         
         self.annotations
-            .filter({ !isVisible(annotation: $0)})
+            .filter({ !isVisible(annotation: $0) })
+            .forEach({ self.removeAnnotation($0) })
+        
+    }
+    
+    func removeVisibleAnnotations() {
+        
+        self.annotations
+            .filter({ isVisible(annotation: $0) })
             .forEach({ self.removeAnnotation($0) })
         
     }

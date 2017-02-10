@@ -18,7 +18,7 @@ import UIKit
 
 //TODO: Integrate with Carthage
 
-class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, FilterDelegate, UIGestureRecognizerDelegate {
+class StoresTableViewController: UITableViewController, FilterDelegate, UIGestureRecognizerDelegate {
     
     var stores: [Store] = []
     
@@ -46,7 +46,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
-        configureSideMenu()
         setupRefreshControl()
         loadDefaultValues()
         
@@ -60,14 +59,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
         setEdgeGesture()
         
-    }
-    
-    
-    @IBAction func onFilterTapped(_ sender: Any) {
-        
-        if let revealController = self.revealViewController() {
-            revealController.revealToggle(animated: true)
-        }
     }
     
     func loadStores(at coordinate: CLLocationCoordinate2D) {
@@ -139,74 +130,20 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
 }
 
-//MARK: Side Menu Filter Delegate Code
+//MARK: Filter Delegate Code
 extension StoresTableViewController {
     
-    fileprivate func configureSideMenu() {
-        
-        guard let menu = self.revealViewController() else { return }
-        adjustWidth(menu: menu)
-        
-        if let gesture = menu.panGestureRecognizer() {
-            self.view.addGestureRecognizer(gesture)
-            
-        }
-        
-        guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
-        sideMenu.delegate = self
-        
-    }
-    
-    private func adjustWidth(menu: SWRevealViewController) {
-        let width = self.view.frame.width * 0.85
-        menu.rearViewRevealWidth = width
-    }
-    
-    func didOpenFilterMenu() {
-        disconnectEdgeGesture()
-        makeNoteThatFilterMenuOpened()
-    }
-    
-    func didCloseFilterMenu() {
-        reconnectEdgeGesture()
-    }
-    
-    func didApplyFilters(_ filter: SideMenuFilterViewController, farmersMarkets: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
-        
-        showFarmersMarkets = farmersMarkets
-        showStores = stores
-        onlyShowOpenStores = openNow
-        distanceFilter = Double(distanceInMiles)
-        
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            loadStores(at: currentLocation)
-            
-        }
-        
-    }
-    
-    func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, coordinate: CLLocationCoordinate2D) {
+    func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool) {
         
         showFarmersMarkets = farmersMarkets
         showStores = groceryStores
         
+        
         if let currentLocation = UserLocation.instance.currentCoordinate {
             loadStores(at: currentLocation)
             
         }
         
-    }
-    
-    func didCancelFilters() {
-        makeNoteThatFilterMenuCancelled()
-    }
-    
-    private func disconnectEdgeGesture() {
-        self.view.removeGestureRecognizer(edgePanGestureRecognizer)
-    }
-    
-    private func reconnectEdgeGesture() {
-        self.view.addGestureRecognizer(edgePanGestureRecognizer)
     }
     
 }

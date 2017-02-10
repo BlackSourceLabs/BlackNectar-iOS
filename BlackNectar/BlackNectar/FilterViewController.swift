@@ -16,7 +16,7 @@ import UIKit
 
 protocol FilterDelegate {
     
-    func filters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, distanceInMiles: Int)
+    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, coordinate: CLLocationCoordinate2D)
     
 }
 

@@ -18,7 +18,7 @@ import UIKit
 
 //TODO: Integrate with Carthage
 
-class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
+class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, FilterDelegate, UIGestureRecognizerDelegate {
     
     var stores: [Store] = []
     
@@ -70,23 +70,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
     }
     
-    private func filterStores(from stores: [Store]) -> [Store] {
-        
-        if showStores == showFarmersMarkets {
-            return stores
-        }
-        
-        if showStores {
-            return stores.filter() { $0.notFarmersMarket }
-        }
-        
-        if showFarmersMarkets {
-            return stores.filter() { $0.isFarmersMarket }
-        }
-        
-        return stores
-    }
-    
     func loadStores(at coordinate: CLLocationCoordinate2D) {
         
         startSpinningIndicator()
@@ -114,6 +97,23 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
             
         }
         
+    }
+    
+    private func filterStores(from stores: [Store]) -> [Store] {
+        
+        if showStores == showFarmersMarkets {
+            return stores
+        }
+        
+        if showStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
     }
     
     
@@ -177,6 +177,18 @@ extension StoresTableViewController {
         showStores = stores
         onlyShowOpenStores = openNow
         distanceFilter = Double(distanceInMiles)
+        
+        if let currentLocation = UserLocation.instance.currentCoordinate {
+            loadStores(at: currentLocation)
+            
+        }
+        
+    }
+    
+    func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, coordinate: CLLocationCoordinate2D) {
+        
+        showFarmersMarkets = farmersMarkets
+        showStores = groceryStores
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             loadStores(at: currentLocation)

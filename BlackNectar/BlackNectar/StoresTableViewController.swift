@@ -12,7 +12,6 @@ import CoreLocation
 import Foundation
 import Kingfisher
 import MapKit
-import SWRevealController
 import UIKit
 
 

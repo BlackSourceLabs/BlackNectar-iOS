@@ -193,7 +193,7 @@ extension FilterViewController {
         
         SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
             
-            self.stores = stores
+            self.stores = self.filterStores(from: stores)
             
             self.main.addOperation {
                 
@@ -206,9 +206,27 @@ extension FilterViewController {
         
         if self.stores.isEmpty {
             
-            self.makeNoteThatNoStoresFound(additionalMessage: "User is in the Search Filter Map View")
+            self.makeNoteThatNoStoresFound(additionalMessage: "User is in the Filter Map View")
             
         }
+        
+    }
+    
+    private func filterStores(from stores: [Store]) -> [Store] {
+        
+        if showFarmersMarkets == showGroceryStores {
+            return stores
+        }
+        
+        if showGroceryStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
         
     }
     

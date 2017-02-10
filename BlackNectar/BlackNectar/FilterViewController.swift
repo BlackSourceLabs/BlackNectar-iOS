@@ -81,7 +81,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         super.viewDidLoad()
         
         prepareMapView()
-        loadStores()
         userLocationInfoForAroma()
         
     }
@@ -89,8 +88,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadUserDefaults()
-        styleGroceryButton()
+        styleGroceryStores()
+        styleFarmersMarkets()
         
     }
     
@@ -100,13 +99,18 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         showFarmersMarkets = !showFarmersMarkets
         styleFarmersMarkets()
+        mapView.removeVisibleAnnotations()
+        loadStores()
         
     }
     
     @IBAction func onGroceryStores(_ sender: UIButton) {
         
         showGroceryStores = !showGroceryStores
-        styleGroceryButton()
+        styleGroceryStores()
+        mapView.removeVisibleAnnotations()
+        loadStores()
+        
     }
     
     fileprivate func styleFarmersMarkets() {
@@ -115,7 +119,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             
             showFarmersMarkets = true
             styleButtonOn(button: farmersMarketsButton)
-            self.delegate?.filters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: <#T##Bool#>, distanceInMiles: <#T##Int#>)
             
         } else {
             
@@ -126,14 +129,16 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    fileprivate func styleGroceryButton() {
+    fileprivate func styleGroceryStores() {
         
         if showGroceryStores {
             
+            showGroceryStores = true
             styleButtonOn(button: groceryStoresButton)
             
         } else {
             
+            showGroceryStores = false
             styleButtonOff(button: groceryStoresButton)
             
         }

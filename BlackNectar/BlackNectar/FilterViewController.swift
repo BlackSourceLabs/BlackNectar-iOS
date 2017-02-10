@@ -28,11 +28,37 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
     var currentCoordinates: CLLocationCoordinate2D?
     
-    var distance = 0.0
-    var showFarmersMarkets = false
-    var showGroceryStores = false
+    var showFarmersMarkets: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.isFarmersMarket
+        }
+        
+        set {
+            
+            UserPreferences.instance.isFarmersMarket = newValue
+            
+        }
+        
+    }
+    
+    var showGroceryStores: Bool {
+        
+        get {
+            return UserPreferences.instance.isStore
+            
+        }
+        
+        set {
+            UserPreferences.instance.isStore = newValue
+            
+        }
+        
+    }
     
     var delegate: FilterDelegate?
+    var distance = 0.0
     
     fileprivate var stores: [Store] = []
     fileprivate var selectedPin: MKPlacemark?

@@ -76,7 +76,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -136,6 +136,15 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTapGoButton:" destination="jTC-fs-IR7" eventType="touchUpInside" id="Plb-fL-kwF"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wd-5w-9bi">
+                                                    <rect key="frame" x="164" y="34" width="62" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <segue destination="k9s-Gt-zGD" kind="show" id="8Tc-gf-nQ8"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -201,19 +210,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Wq0-Aq-3dq">
-                        <barButtonItem key="leftBarButtonItem" image="filterbutton-black" style="plain" id="1iX-Ns-0bU">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8pY-Ti-18o">
-                                <rect key="frame" x="16" y="-1" width="45" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="filterbutton-black"/>
-                                <connections>
-                                    <action selector="onFilterTapped:" destination="7dd-Vg-sa8" eventType="touchUpInside" id="sm9-qe-bwU"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <segue destination="k9s-Gt-zGD" kind="show" id="pBZ-vV-CyN"/>
-                            </connections>
-                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
                             <rect key="frame" x="113" y="6" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -244,7 +240,6 @@
                     </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="mapViewSegue" id="xdh-tm-f6B"/>
-                        <segue destination="k9s-Gt-zGD" kind="show" id="hgF-uQ-UYj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -581,9 +576,5 @@
         <image name="GPS-Full@3x.png" width="66" height="68"/>
         <image name="Icon-60" width="60" height="60"/>
         <image name="SplashScreen" width="500" height="500"/>
-        <image name="filterbutton-black" width="45" height="45"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="hgF-uQ-UYj"/>
-    </inferredMetricsTieBreakers>
 </document>

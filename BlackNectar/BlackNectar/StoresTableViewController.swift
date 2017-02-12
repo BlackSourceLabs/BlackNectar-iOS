@@ -18,8 +18,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     
     var stores: [Store] = []
     
-    var filteredStores: [Store] = []
-    
     var distanceFilter = 0.0
     var showFarmersMarkets = true
     var showStores = true

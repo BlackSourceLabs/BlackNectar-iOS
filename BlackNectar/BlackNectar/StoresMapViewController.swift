@@ -33,8 +33,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var mapViewLoaded = false
     
     
-    typealias Callback = ([Store]) -> ()
-    
     fileprivate let async: OperationQueue = {
         
         let operationQueue = OperationQueue()

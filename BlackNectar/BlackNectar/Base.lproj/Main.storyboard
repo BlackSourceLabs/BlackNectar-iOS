@@ -76,7 +76,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -136,15 +136,6 @@
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTapGoButton:" destination="jTC-fs-IR7" eventType="touchUpInside" id="Plb-fL-kwF"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wd-5w-9bi">
-                                                    <rect key="frame" x="164" y="34" width="62" height="52"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <connections>
-                                                        <segue destination="k9s-Gt-zGD" kind="show" id="8Tc-gf-nQ8"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -210,6 +201,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Wq0-Aq-3dq">
+                        <barButtonItem key="leftBarButtonItem" title="Map" id="KP8-gl-9JL">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="mapButtonTapped:" destination="7dd-Vg-sa8" id="GDJ-Hp-8TB"/>
+                            </connections>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
                             <rect key="frame" x="113" y="6" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -231,10 +228,9 @@
                                 <constraint firstItem="T0k-sW-weX" firstAttribute="leading" secondItem="JUi-7B-lob" secondAttribute="leading" id="xCN-T4-56F"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="KP8-gl-9JL">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Iau-I3-h1E">
                             <connections>
-                                <action selector="mapButtonTapped:" destination="7dd-Vg-sa8" id="GDJ-Hp-8TB"/>
+                                <segue destination="53d-qj-Kex" kind="presentation" identifier="filterSegue" id="LsL-lo-Soj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -244,7 +240,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272.8" y="1563.8680659670167"/>
+            <point key="canvasLocation" x="1273" y="1564"/>
         </scene>
         <!--Search FIilter View Controller-->
         <scene sceneID="RYF-K3-KTk">
@@ -516,6 +512,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="0CR-ch-crS">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="Cancel-White@3x.png" id="GSN-bZ-L29">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="k9s-Gt-zGD" id="e16-xi-e3u"/>
+                            </connections>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Zxc-HX-K3f">
                             <rect key="frame" x="104" y="6" width="168" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -548,7 +550,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tna-hs-Zie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1273" y="2336"/>
+            <point key="canvasLocation" x="2212" y="2335.6821589205401"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C1Q-tl-KBE">
@@ -556,7 +558,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -571,8 +573,28 @@
             </objects>
             <point key="canvasLocation" x="398" y="1564"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CoW-NJ-TAI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="53d-qj-Kex" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1kx-CI-YzW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="k9s-Gt-zGD" kind="relationship" relationship="rootViewController" id="5id-HN-7pZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xW2-uo-E2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272.8" y="2335.6821589205401"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Cancel-White@3x.png" width="24" height="24"/>
         <image name="GPS-Full@3x.png" width="66" height="68"/>
         <image name="Icon-60" width="60" height="60"/>
         <image name="SplashScreen" width="500" height="500"/>

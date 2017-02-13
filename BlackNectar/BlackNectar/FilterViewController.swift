@@ -93,6 +93,14 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
+    //MARK: Cancel Button Code
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
     
     //MARK: Filter Buttons Code
     @IBAction func onFarmersMarkets(_ sender: UIButton) {

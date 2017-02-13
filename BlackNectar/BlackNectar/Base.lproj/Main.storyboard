@@ -294,7 +294,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24T-s2-CYd" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                    <rect key="frame" x="184" y="8" width="130" height="35"/>
+                                                    <rect key="frame" x="182" y="8" width="130" height="35"/>
                                                     <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="130" id="Zfz-kE-mee"/>
@@ -320,7 +320,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liB-bH-UIF" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="8" width="140" height="35"/>
+                                                    <rect key="frame" x="18" y="8" width="140" height="35"/>
                                                     <color key="backgroundColor" red="0.92549019607843142" green="0.75294117647058822" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="140" id="Lq3-rz-scr"/>
@@ -350,7 +350,7 @@
                                             <constraints>
                                                 <constraint firstItem="liB-bH-UIF" firstAttribute="top" secondItem="Mrp-LV-GOk" secondAttribute="top" constant="8" id="43c-iA-2ac"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="baseline" secondItem="liB-bH-UIF" secondAttribute="firstBaseline" id="6JL-tO-RQU"/>
-                                                <constraint firstItem="liB-bH-UIF" firstAttribute="leading" secondItem="Mrp-LV-GOk" secondAttribute="leading" constant="20" id="CaA-Ml-lLB"/>
+                                                <constraint firstItem="liB-bH-UIF" firstAttribute="leading" secondItem="Mrp-LV-GOk" secondAttribute="leading" constant="18" id="CaA-Ml-lLB"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="firstBaseline" secondItem="liB-bH-UIF" secondAttribute="baseline" id="NC6-PC-Me1"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="height" secondItem="liB-bH-UIF" secondAttribute="height" id="aU8-R1-Hpl"/>
                                                 <constraint firstItem="24T-s2-CYd" firstAttribute="top" secondItem="liB-bH-UIF" secondAttribute="top" id="ant-Ca-qUg"/>
@@ -556,7 +556,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

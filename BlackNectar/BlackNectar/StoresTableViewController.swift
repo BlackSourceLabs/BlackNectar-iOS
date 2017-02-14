@@ -16,12 +16,37 @@ import UIKit
 
 class StoresTableViewController: UITableViewController, FilterDelegate, UIGestureRecognizerDelegate {
     
-    var stores: [Store] = []
+    var showFarmersMarkets: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.isFarmersMarket
+        }
+        
+        set {
+            
+            UserPreferences.instance.isFarmersMarket = newValue
+            
+        }
+        
+    }
     
+    var showStores: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.isStore
+        }
+        
+        set {
+            
+            UserPreferences.instance.isStore = newValue
+        }
+        
+    }
+    
+    var stores: [Store] = []
     var distanceFilter = 0.0
-    var showFarmersMarkets = true
-    var showStores = true
-    var onlyShowOpenStores = true
     var panningWasTriggered = false
     let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
     
@@ -41,7 +66,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
         UserLocation.instance.initialize()
         setupRefreshControl()
-        loadDefaultValues()
         
         UserLocation.instance.requestLocation() { coordinate in
             self.loadStores(at: coordinate)
@@ -131,7 +155,6 @@ extension StoresTableViewController {
         
         showFarmersMarkets = farmersMarkets
         showStores = groceryStores
-        
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             loadStores(at: currentLocation)
@@ -292,17 +315,9 @@ extension StoresTableViewController {
         
     }
     
-}
-
-//MARK: User Preferences Code
-extension StoresTableViewController {
-    
-    func loadDefaultValues() {
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         
-        onlyShowOpenStores = UserPreferences.instance.isOpenNow
-        showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        distanceFilter = UserPreferences.instance.distanceFilter
-        showStores = UserPreferences.instance.isStore
+        performSegue(withIdentifier: "filterSegue", sender: nil)
         
     }
     

@@ -300,7 +300,6 @@ extension StoresTableViewController {
             let destination = segue.destination as? StoresMapViewController
             
             destination?.distance = distanceFilter
-            destination?.onlyShowOpenStores = self.onlyShowOpenStores
             destination?.showFarmersMarkets = self.showFarmersMarkets
             destination?.showStores = self.showStores
             destination?.stores = self.stores
@@ -309,7 +308,7 @@ extension StoresTableViewController {
         
     }
     
-    @IBAction func mapButtonTapped(_ sender: Any) {
+    @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
         
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
         

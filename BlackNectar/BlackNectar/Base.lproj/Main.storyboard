@@ -204,7 +204,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Map" id="KP8-gl-9JL">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="mapButtonTapped:" destination="7dd-Vg-sa8" id="GDJ-Hp-8TB"/>
+                                <action selector="mapButtonTapped:" destination="7dd-Vg-sa8" id="quW-KN-T8c"/>
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
@@ -230,12 +230,13 @@
                         </view>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="Iau-I3-h1E">
                             <connections>
-                                <segue destination="53d-qj-Kex" kind="presentation" identifier="filterSegue" id="6ns-tg-os9"/>
+                                <action selector="searchButtonTapped:" destination="7dd-Vg-sa8" id="GiV-M4-0OS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="mapViewSegue" id="xdh-tm-f6B"/>
+                        <segue destination="53d-qj-Kex" kind="presentation" identifier="filterSegue" id="Uak-hg-xaW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>

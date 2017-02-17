@@ -16,5 +16,7 @@ extension UITableViewController {
         
         let sections = IndexSet.init(integer: section)
         self.tableView.reloadSections(sections, with: animation)
+        
     }
+    
 }

@@ -236,7 +236,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="mapViewSegue" id="xdh-tm-f6B"/>
-                        <segue destination="53d-qj-Kex" kind="presentation" identifier="filterSegue" id="Uak-hg-xaW"/>
+                        <segue destination="kfi-dD-UoL" kind="presentation" identifier="filterSegue" id="Ki5-qi-7Nm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -543,6 +543,7 @@
                             </constraints>
                         </view>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="farmersMarketsButton" destination="liB-bH-UIF" id="LiL-7W-Ow5"/>
                         <outlet property="groceryStoresButton" destination="24T-s2-CYd" id="7BA-xA-HvY"/>
@@ -551,7 +552,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tna-hs-Zie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2212" y="2335.6821589205401"/>
+            <point key="canvasLocation" x="2212" y="2299.7001499250377"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C1Q-tl-KBE">
@@ -559,7 +560,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -575,23 +576,23 @@
             <point key="canvasLocation" x="398" y="1564"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="CoW-NJ-TAI">
+        <scene sceneID="A58-Jz-nGc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="53d-qj-Kex" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfi-dD-UoL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="1kx-CI-YzW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="i7J-TN-6qe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="k9s-Gt-zGD" kind="relationship" relationship="rootViewController" id="5id-HN-7pZ"/>
+                        <segue destination="k9s-Gt-zGD" kind="relationship" relationship="rootViewController" id="F7C-1W-23Q"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xW2-uo-E2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7l5-yT-tuK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272.8" y="2335.6821589205401"/>
+            <point key="canvasLocation" x="1273" y="2300"/>
         </scene>
     </scenes>
     <resources>

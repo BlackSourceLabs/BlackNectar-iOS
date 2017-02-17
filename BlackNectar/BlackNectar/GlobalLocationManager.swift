@@ -149,7 +149,7 @@ fileprivate extension UserLocation {
     
     func makeNoteThatAccessGranted(_ status: CLAuthorizationStatus) {
         
-        LOG.warn("User allowed access to location: \(status)")
+        LOG.warn("User allowed access to location: \(status.name)")
         
         AromaClient.beginMessage(withTitle: "User Location Access Granted")
             .addBody("User granted authorization to use their location: \(status)")
@@ -167,4 +167,18 @@ fileprivate extension UserLocation {
             .send()
     }
     
+}
+
+fileprivate extension CLAuthorizationStatus {
+    
+    var name: String {
+        
+        switch self {
+            case .authorizedAlways : return "(authorizedAlways)"
+            case .authorizedWhenInUse : return "(authorizedWhenInUse)"
+            case .denied : return "(denied)"
+            case .notDetermined : return "(notDetermined)"
+            case .restricted : return "(restricted)"
+        }
+    }
 }

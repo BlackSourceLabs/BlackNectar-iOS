@@ -376,7 +376,7 @@ fileprivate extension StoresTableViewController {
         LOG.debug("User tapped on Store: \(store)")
         
         AromaClient.beginMessage(withTitle: "User Tapped On Store ")
-            .addBody("From the StoresTableiewController").addLine(2)
+            .addBody("From the StoresTableViewController").addLine(2)
             .addBody("User navigated to \(store.storeName)\n\n\(store)")
             .withPriority(.medium)
             .send()

@@ -64,17 +64,33 @@ class UserPreferences {
         
     }
     
-    var isOpenNow: Bool {
+    var showMyLocationSwitch: Bool {
         
         get {
             
-            return defaultPreferences.bool(forKey: "isOpenNow")
+            return defaultPreferences.bool(forKey: "showMyLocationSwitch")
             
         }
         
-        set (value) {
+        set (value){
             
-            defaultPreferences.set(value, forKey: "isOpenNow")
+            defaultPreferences.set(value, forKey: "showMyLocationSwitch")
+            
+        }
+        
+    }
+    
+    var showUseZipeCodeSwitch: Bool {
+        
+        get {
+            
+            return defaultPreferences.bool(forKey: "showUseZipCodeSwitch")
+            
+        }
+        
+        set(value){
+            
+            defaultPreferences.set(value, forKey: "showUseZipCodeSwitch")
             
         }
         

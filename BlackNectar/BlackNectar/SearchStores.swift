@@ -63,6 +63,7 @@ class SearchStores {
             
             //We have contact. Here are the stores
             callback(stores)
+            makeNoteThatStoresLoaded(stores: stores, using: url)
             
             let time = abs(now.timeIntervalSinceNow)
             
@@ -97,7 +98,10 @@ class SearchStores {
                 
             }
             
-            guard let store = Store.getStoreJsonData(from: object) else { continue }
+            guard let store = Store.getStoreJsonData(from: object) else {
+                makeNoteThatStoreCouldNotBeParsed(json: object)
+                continue
+            }
             
             storesArray.append(store)
             
@@ -132,6 +136,28 @@ fileprivate extension SearchStores {
             .withPriority(.medium)
             .send()
         
+    }
+    
+    static func makeNoteThatStoresLoaded(stores: [Store], using url: URL) {
+        
+        let message =  "Loaded \(stores.count) stores using URL | \(url)"
+        LOG.debug(message)
+        
+        AromaClient.beginMessage(withTitle: "Stores Loaded")
+            .addBody(message)
+            .withPriority(.low)
+            .send()
+    }
+    
+    static func makeNoteThatStoreCouldNotBeParsed(json: NSDictionary) {
+        
+        let message = "Could not parse store from JSON: \(json)"
+        LOG.warn(message)
+        
+        AromaClient.beginMessage(withTitle: "JSON Parse Failed")
+            .addBody(message)
+            .withPriority(.medium)
+            .send()
     }
 }
 

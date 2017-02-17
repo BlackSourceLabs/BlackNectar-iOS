@@ -358,7 +358,7 @@ extension FilterViewController {
 }
 
 //MARK: Aroma Messages
-extension FilterViewController {
+fileprivate extension FilterViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         

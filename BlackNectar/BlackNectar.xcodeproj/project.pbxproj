@@ -220,6 +220,7 @@
 		320820621E3713C3009FFCB9 /* DistanceCalculationTests */ = {
 			isa = PBXGroup;
 			children = (
+				DE80BFEF1E56939A00449144 /* Filter */,
 				320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */,
 			);
 			name = DistanceCalculationTests;
@@ -401,6 +402,7 @@
 				32E134511E160E5500FD65DC /* Integers+.swift */,
 				32E134541E160EAF00FD65DC /* TimeIntervals+.swift */,
 				32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */,
+				DE80BFED1E56926300449144 /* UITableViewControllers+.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -591,6 +593,7 @@
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
 				36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */,
+				DE80BFEE1E56926300449144 /* UITableViewControllers+.swift in Sources */,
 				32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */,
 				3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */,
 				32E134551E160EAF00FD65DC /* TimeIntervals+.swift in Sources */,
@@ -612,6 +615,7 @@
 			files = (
 				32E134561E160EAF00FD65DC /* TimeIntervals+.swift in Sources */,
 				320820541E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift in Sources */,
+				DE80BFF11E5693A800449144 /* FilterViewControllerTests.swift in Sources */,
 				320820611E2EF38E009FFCB9 /* StoresDataStructTests.swift in Sources */,
 				320820591E2DF038009FFCB9 /* DistanceCalculationTests.swift in Sources */,
 				320820571E2DE525009FFCB9 /* GlobalLocationManagerTests.swift in Sources */,

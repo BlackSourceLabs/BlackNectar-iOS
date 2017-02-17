@@ -82,17 +82,17 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         switch status {
             
-        case CLAuthorizationStatus.restricted:
-            makeNoteThatAccessIsRestricted()
-            
-        case CLAuthorizationStatus.denied:
-            makeNoteThatAccessIsDenied()
-            
-        case CLAuthorizationStatus.authorizedWhenInUse:
-            makeNoteThatAccessGranted(status)
-            
-        default:
-            makeNoteThatAccessIsUndetermined()
+            case .restricted:
+                makeNoteThatAccessIsRestricted()
+                
+            case .denied:
+                makeNoteThatAccessIsDenied()
+                
+            case .authorizedWhenInUse, .authorizedAlways:
+                makeNoteThatAccessGranted(status)
+                
+            default:
+                makeNoteThatAccessIsUndetermined()
             
         }
         

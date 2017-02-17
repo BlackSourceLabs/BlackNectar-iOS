@@ -66,6 +66,8 @@
 		32E134561E160EAF00FD65DC /* TimeIntervals+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E134541E160EAF00FD65DC /* TimeIntervals+.swift */; };
 		36289FB81E2FEEA300FCA6E1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36289FB71E2FEEA300FCA6E1 /* UserPreferences.swift */; };
 		36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */; };
+		DE80BFEE1E56926300449144 /* UITableViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFED1E56926300449144 /* UITableViewControllers+.swift */; };
+		DE80BFF11E5693A800449144 /* FilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFF01E5693A800449144 /* FilterViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +154,8 @@
 		32E134541E160EAF00FD65DC /* TimeIntervals+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeIntervals+.swift"; sourceTree = "<group>"; };
 		36289FB71E2FEEA300FCA6E1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPreferences.swift; path = ../UserPreferences.swift; sourceTree = "<group>"; };
 		36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		DE80BFED1E56926300449144 /* UITableViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewControllers+.swift"; sourceTree = "<group>"; };
+		DE80BFF01E5693A800449144 /* FilterViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +419,14 @@
 				0A726B491E1D94B40031572D /* DistanceCalculation.swift */,
 			);
 			name = DistanceCalculation;
+			sourceTree = "<group>";
+		};
+		DE80BFEF1E56939A00449144 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				DE80BFF01E5693A800449144 /* FilterViewControllerTests.swift */,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

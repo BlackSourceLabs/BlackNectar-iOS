@@ -46,7 +46,7 @@ class SearchStoresTest: XCTestCase {
         
         let promise = expectation(description: "Callback will be called")
         
-        let testCallback: ([StoresInfo]) -> Void = { stores in
+        let testCallback: ([Store]) -> Void = { stores in
             
             if !stores.isEmpty {
                 promise.fulfill()
@@ -66,7 +66,7 @@ class SearchStoresTest: XCTestCase {
         
         let promise = expectation(description: "Callback will be called")
         
-        let testCallback: ([StoresInfo]) -> Void = { stores in
+        let testCallback: ([Store]) -> Void = { stores in
             
             if !stores.isEmpty {
                 promise.fulfill()

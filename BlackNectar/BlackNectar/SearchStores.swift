@@ -17,21 +17,9 @@ class SearchStores {
     typealias Callback = ([Store]) -> ()
     
     // API Call
-    static func searchForStoresLocations(near point: CLLocationCoordinate2D, with radius: Double, callback: @escaping Callback) {
+    static func searchForStoresLocations(near point: CLLocationCoordinate2D, callback: @escaping Callback) {
         
-        var distance = 0.0
-        
-        if radius >= 0.25 {
-            
-            distance = radius
-
-        } else {
-        
-            distance = 1500
-        
-        }
-        
-        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"
+        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)"
         guard let url = URL(string: storesAPI) else { return }
         
         getStoresFrom(url: url, callback: callback)

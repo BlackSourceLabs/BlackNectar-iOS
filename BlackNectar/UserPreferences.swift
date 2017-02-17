@@ -32,7 +32,7 @@ class UserPreferences {
         
     }
     
-    var isFarmersMarket: Bool {
+    var showFarmersMarkets: Bool {
         
         get {
             
@@ -48,7 +48,7 @@ class UserPreferences {
         
     }
     
-    var isStore: Bool {
+    var showStores: Bool {
         
         get {
             

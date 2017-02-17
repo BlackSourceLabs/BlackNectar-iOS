@@ -32,12 +32,12 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         get {
             
-            return UserPreferences.instance.isFarmersMarket
+            return UserPreferences.instance.showFarmersMarkets
         }
         
         set {
             
-            UserPreferences.instance.isFarmersMarket = newValue
+            UserPreferences.instance.showFarmersMarkets = newValue
             
         }
         
@@ -46,12 +46,12 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     var showGroceryStores: Bool {
         
         get {
-            return UserPreferences.instance.isStore
+            return UserPreferences.instance.showStores
             
         }
         
         set {
-            UserPreferences.instance.isStore = newValue
+            UserPreferences.instance.showStores = newValue
             
         }
         
@@ -85,13 +85,13 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         styleGroceryStores()
         styleFarmersMarkets()
-        
     }
+ 
     
     //MARK: Cancel Button Code
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -196,9 +196,7 @@ extension FilterViewController {
         
         startSpinningIndicator()
         
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate) { stores in
             
             self.stores = self.filterStores(from: stores)
             

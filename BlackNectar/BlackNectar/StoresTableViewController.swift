@@ -17,36 +17,14 @@ import UIKit
 class StoresTableViewController: UITableViewController, FilterDelegate, UIGestureRecognizerDelegate {
     
     var showFarmersMarkets: Bool {
-        
-        get {
-            
-            return UserPreferences.instance.isFarmersMarket
-        }
-        
-        set {
-            
-            UserPreferences.instance.isFarmersMarket = newValue
-            
-        }
-        
+        return UserPreferences.instance.showFarmersMarkets
     }
     
     var showStores: Bool {
-        
-        get {
-            
-            return UserPreferences.instance.isStore
-        }
-        
-        set {
-            
-            UserPreferences.instance.isStore = newValue
-        }
-        
+        return UserPreferences.instance.showStores
     }
     
     var stores: [Store] = []
-    var distanceFilter = 0.0
     var panningWasTriggered = false
     let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
     
@@ -83,9 +61,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
         startSpinningIndicator()
         
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate) { stores in
             
             self.stores = self.filterStores(from: stores)
             
@@ -152,9 +128,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
 extension StoresTableViewController {
     
     func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool) {
-        
-        showFarmersMarkets = farmersMarkets
-        showStores = groceryStores
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             loadStores(at: currentLocation)
@@ -231,19 +204,12 @@ extension StoresTableViewController {
         
         let cellAnimation = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)
         cell.alpha = 0
+        cell.layer.transform = cellAnimation
         
-        self.main.addOperation {
-            
-            cell.layer.transform = cellAnimation
-            
-            UIView.animate(withDuration: 0.5) {
-                cell.alpha = 1.0
-                cell.layer.transform = CATransform3DIdentity
-                
-            }
-            
+        UIView.animate(withDuration: 0.5) {
+            cell.alpha = 1.0
+            cell.layer.transform = CATransform3DIdentity
         }
-        
     }
     
 }
@@ -255,7 +221,7 @@ extension StoresTableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.black
-        refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
+        refreshControl?.tintColor = UIColor .init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
         
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
@@ -297,9 +263,6 @@ extension StoresTableViewController {
         
         if let destination = segue.destination as? StoresMapViewController {
             
-            destination.distance = distanceFilter
-            destination.showFarmersMarkets = self.showFarmersMarkets
-            destination.showStores = self.showStores
             destination.stores = self.stores
             
         }

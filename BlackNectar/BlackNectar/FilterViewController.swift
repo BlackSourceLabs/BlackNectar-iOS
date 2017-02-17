@@ -38,10 +38,9 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             return UserPreferences.instance.showFarmersMarkets
         }
         
-        set {
+        set(newValue) {
             
             UserPreferences.instance.showFarmersMarkets = newValue
-            
         }
         
     }
@@ -49,13 +48,41 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     var showGroceryStores: Bool {
         
         get {
-            return UserPreferences.instance.showStores
             
+            return UserPreferences.instance.showStores
         }
         
-        set {
-            UserPreferences.instance.showStores = newValue
+        set(newValue) {
             
+            UserPreferences.instance.showStores = newValue
+        }
+        
+    }
+    
+    var showMyLocationSwitch: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.showMyLocationSwitch
+        }
+        
+        set(newValue) {
+            
+            UserPreferences.instance.showMyLocationSwitch = newValue
+        }
+        
+    }
+    
+    var showUseZipCodeSwitch: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.showUseZipeCodeSwitch
+        }
+        
+        set(newValue){
+            
+            UserPreferences.instance.showUseZipeCodeSwitch = newValue
         }
         
     }

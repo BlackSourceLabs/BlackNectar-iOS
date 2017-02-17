@@ -47,24 +47,14 @@ class SearchStores {
             //If I have data, parse the stores from it
             if error != nil {
                 
-                LOG.error("Failed to download stores from: \(url)")
-                AromaClient.beginMessage(withTitle: "Failed to download stores from url")
-                    .addBody("Failed to download stores from: \(url)")
-                    .withPriority(.high)
-                    .send()
-                
+                noteThatFailedToDownloadStores(from: url, error: error)
                 return
                 
             }
             
             guard let data = data else {
                 
-                LOG.error("Failed to load stores from: \(url)")
-                AromaClient.beginMessage(withTitle: "Failed to load stores from url")
-                    .addBody("Failed to load stores from: \(url)")
-                    .withPriority(.high)
-                    .send()
-                
+                noteThatFailedToDownloadStores(from: url, error: error)
                 return
                 
             }
@@ -74,16 +64,11 @@ class SearchStores {
             //We have contact. Here are the stores
             callback(stores)
             
-            let time = now.timeIntervalSinceNow
+            let time = abs(now.timeIntervalSinceNow)
             
-            if abs(time) > 3.0 {
+            if time > 3.0 {
                 
-                LOG.warn("Loading stores took longer than 3 seconds")
-                AromaClient.beginMessage(withTitle: "Loading stores took longer than 3 seconds")
-                    .addBody("Loading stores took \(abs(time)) seconds long")
-                    .withPriority(.medium)
-                    .send()
-                
+                noteThatLoadingStoreTookLongerThan3Seconds(time: time)
             }
 
         }
@@ -122,6 +107,32 @@ class SearchStores {
         
     }
     
+}
+
+//MARK: Aroma Messages
+fileprivate extension SearchStores {
+    
+    static func noteThatFailedToDownloadStores(from url: URL, error: Error? = nil) {
+        
+        LOG.error("Failed to download stores from: \(url) | \(error)")
+        
+        AromaClient.beginMessage(withTitle: "Failed to download stores from url")
+            .addBody("Failed to download stores from: \(url)").addLine(2)
+            .addBody("\(error)")
+            .withPriority(.high)
+            .send()
+    }
+    
+    static func noteThatLoadingStoreTookLongerThan3Seconds(time: TimeInterval) {
+        
+        LOG.warn("Loading stores took longer than 3 seconds: \(time)s")
+        
+        AromaClient.beginMessage(withTitle: "High Latency Loading Stores")
+            .addBody("Loading stores took \(time)s long")
+            .withPriority(.medium)
+            .send()
+        
+    }
 }
 
 

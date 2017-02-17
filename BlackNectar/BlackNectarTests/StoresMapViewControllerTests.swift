@@ -38,12 +38,12 @@ class StoresMapViewControllerTests: XCTestCase {
         let restaurantlongitude: CLLocationDegrees = -118.392
         let restaurantLocation = CLLocationCoordinate2D(latitude: restaurantlatitude, longitude: restaurantlongitude)
         
-        let restaurantAddress: NSDictionary = ["address" : "11943 W Ventura blvd"]
+        let restaurantAddress = Address(addressLineOne: "737", addressLineTwo: nil, city: "Bronx", state: "NY", county: "NEW YORK", zipCode: "10455", localZipCode: nil)
         let restaurantURL: String = "https://www.pexels.com/photo/salad-healthy-vegetables-vegan-69482/"
         
         guard let restaurantImage = URL(string: restaurantURL) else { return }
         
-        let hopeVeganRestaurant = StoresInfo(storeName: "HOPE", location: restaurantLocation, address: restaurantAddress, storeImage: restaurantImage, isFarmersMarket: false)
+        let hopeVeganRestaurant = Store(storeName: "HOPE", location: restaurantLocation, address: restaurantAddress, storeImage: restaurantImage, isFarmersMarket: false)
         
         XCTAssertNotNil(storesMapViewController.createAnnotation(forStore: hopeVeganRestaurant))
         

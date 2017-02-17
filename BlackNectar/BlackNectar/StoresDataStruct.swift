@@ -22,25 +22,35 @@ struct Store {
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
     
+    
+    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
+        
+        return Store(json: storeDictionary)
+    }
+    
+}
+
+extension Store {
+    
     init?(json: NSDictionary) {
         
         guard let storeName = json["store_name"] as? String,
-              let addressJSON = json["address"] as? NSDictionary,
-              let storeImageString = json["main_image_url"] as? String,
-              let storeImageURL = URL(string: storeImageString)
-        else {
-            LOG.error("Failed to parse Store: \(json)")
-            return nil
+            let addressJSON = json["address"] as? NSDictionary,
+            let storeImageString = json["main_image_url"] as? String,
+            let storeImageURL = URL(string: storeImageString)
+            else {
+                LOG.error("Failed to parse Store: \(json)")
+                return nil
         }
         
         guard let address = Address(from: addressJSON) else { return nil }
         
         guard let coordinatesDictionary = json["location"] as? NSDictionary,
-              let latitude = coordinatesDictionary["latitude"] as? CLLocationDegrees,
-              let longitude = coordinatesDictionary["longitude"] as? CLLocationDegrees
-        else {
-            LOG.warn("Failed to get Store location information: \(json)")
-            return nil
+            let latitude = coordinatesDictionary["latitude"] as? CLLocationDegrees,
+            let longitude = coordinatesDictionary["longitude"] as? CLLocationDegrees
+            else {
+                LOG.warn("Failed to get Store location information: \(json)")
+                return nil
         }
         
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -48,17 +58,12 @@ struct Store {
         let isFarmersMarket: Bool = json["is_farmers_market"] as? Bool ?? false
         
         self.storeName = storeName
-        self.location = coordinatesObject
         self.address = address
+        self.location = coordinatesObject
         self.storeImage = storeImageURL
         self.isFarmersMarket = isFarmersMarket
-    }
-    
-    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
         
-        return Store(json: storeDictionary)
     }
-    
 }
 
 struct Address {
@@ -70,6 +75,10 @@ struct Address {
     let county: String
     let zipCode: String
     let localZipCode: String?
+    
+}
+
+extension Address {
     
     init?(from storeDictionary: NSDictionary) {
         

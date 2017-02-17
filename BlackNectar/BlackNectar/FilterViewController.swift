@@ -16,7 +16,7 @@ import UIKit
 
 protocol FilterDelegate {
     
-    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, coordinate: CLLocationCoordinate2D)
+    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool)
     
 }
 
@@ -60,7 +60,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     var delegate: FilterDelegate?
     var distance = 0.0
     
-    fileprivate var stores: [Store] = []
+    var stores: [Store] = []
     fileprivate var selectedPin: MKPlacemark?
     fileprivate let blackNectarPin = UIImage(named: "BlackNectarMapPin")
     
@@ -96,11 +96,10 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     //MARK: Cancel Button Code
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         
+        self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores)
         self.dismiss(animated: true, completion: nil)
         
     }
-    
-    
     
     //MARK: Filter Buttons Code
     @IBAction func onFarmersMarkets(_ sender: UIButton) {

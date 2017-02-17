@@ -295,14 +295,19 @@ extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "mapViewSegue" {
+        if let destination = segue.destination as? StoresMapViewController {
             
-            let destination = segue.destination as? StoresMapViewController
+            destination.distance = distanceFilter
+            destination.showFarmersMarkets = self.showFarmersMarkets
+            destination.showStores = self.showStores
+            destination.stores = self.stores
             
-            destination?.distance = distanceFilter
-            destination?.showFarmersMarkets = self.showFarmersMarkets
-            destination?.showStores = self.showStores
-            destination?.stores = self.stores
+        }
+        
+        if let destination = segue.destination as? UINavigationController {
+            
+            let filterViewController = destination.topViewController as? FilterViewController
+            filterViewController?.delegate = self
             
         }
         

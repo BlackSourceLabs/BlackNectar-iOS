@@ -67,7 +67,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
             
             self.main.addOperation {
                 
-                self.tableView.reloadData()
+                self.reloadSection(0)
                 
                 self.stopSpinningIndicator()
                 self.refreshControl?.endRefreshing()

@@ -307,13 +307,13 @@ extension StoresTableViewController {
         
         switch gesture.state {
             
-        case .began, .changed:
-            setGestureProperties()
-            
-        case .cancelled, .failed:
-            panningWasTriggered = false
-            
-        default: break
+            case .began, .changed:
+                setGestureProperties()
+                
+            case .cancelled, .failed:
+                panningWasTriggered = false
+                
+            default: break
             
         }
         

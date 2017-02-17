@@ -242,6 +242,7 @@ extension StoresMapViewController {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         
         let center = mapView.centerCoordinate
+        self.currentCoordinates = center
         
         LOG.debug("User dragged Map Screen to: \(center)")
         
@@ -286,7 +287,8 @@ fileprivate extension StoresMapViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        LOG.warn("No stores found around the users location: \(currentCoordinates)")
+        
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
             .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)

@@ -209,7 +209,9 @@ extension StoresTableViewController {
         UIView.animate(withDuration: 0.5) {
             cell.alpha = 1.0
             cell.layer.transform = CATransform3DIdentity
+            
         }
+        
     }
     
 }

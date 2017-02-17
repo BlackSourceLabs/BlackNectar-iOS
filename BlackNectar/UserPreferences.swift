@@ -36,13 +36,13 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.object(forKey: "isFarmersMarket") as? Bool ?? true
+            return defaultPreferences.object(forKey: "showFarmersMarkets") as? Bool ?? true
             
         }
         
         set (value){
             
-            defaultPreferences.set(value, forKey: "isFarmersMarket")
+            defaultPreferences.set(value, forKey: "showFarmersMarkets")
             
         }
         
@@ -52,13 +52,13 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.object(forKey: "isStore") as? Bool ?? true
+            return defaultPreferences.object(forKey: "showStores") as? Bool ?? true
             
         }
         
         set (value){
             
-            defaultPreferences.set(value, forKey: "isStore")
+            defaultPreferences.set(value, forKey: "showStores")
             
         }
         

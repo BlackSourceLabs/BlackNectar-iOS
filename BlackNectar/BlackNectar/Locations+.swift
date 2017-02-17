@@ -21,3 +21,13 @@ extension CLLocationCoordinate2D {
         return "(\(self.latitude), \(self.longitude))"
     }
 }
+
+
+/**
+    Defines the `==` operation that can be used between to Coordinate objects.
+ */
+func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+    
+    return lhs.latitude == rhs.latitude &&
+           lhs.longitude == rhs.longitude
+}

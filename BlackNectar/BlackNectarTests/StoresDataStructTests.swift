@@ -48,7 +48,7 @@ class StoresDataStructTests: XCTestCase {
                                             restaurantAddress : "11943 W Ventura blvd",
                                             storeImage : "What a beautiful picture"]
         
-        let result = StoresInfo.fromJson(dictionary: restaurantInfo)
+        let result = Store.getStoreJsonData(from: restaurantInfo)
         XCTAssertTrue(result != nil)
     }
     

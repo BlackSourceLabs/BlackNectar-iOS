@@ -12,22 +12,19 @@ import CoreLocation
 import Foundation
 import Kingfisher
 import MapKit
-import SWRevealController
 import UIKit
 
-
-//TODO: Integrate with Carthage
-
-class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
+class StoresTableViewController: UITableViewController, FilterDelegate, UIGestureRecognizerDelegate {
+    
+    var showFarmersMarkets: Bool {
+        return UserPreferences.instance.showFarmersMarkets
+    }
+    
+    var showStores: Bool {
+        return UserPreferences.instance.showStores
+    }
     
     var stores: [Store] = []
-    
-    var filteredStores: [Store] = []
-    
-    var distanceFilter = 0.0
-    var showFarmersMarkets = true
-    var showStores = true
-    var onlyShowOpenStores = true
     var panningWasTriggered = false
     let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
     
@@ -46,9 +43,7 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
-        configureSideMenu()
         setupRefreshControl()
-        loadDefaultValues()
         
         UserLocation.instance.requestLocation() { coordinate in
             self.loadStores(at: coordinate)
@@ -62,12 +57,31 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         
     }
     
-    
-    @IBAction func onFilterTapped(_ sender: Any) {
+    func loadStores(at coordinate: CLLocationCoordinate2D) {
         
-        if let revealController = self.revealViewController() {
-            revealController.revealToggle(animated: true)
+        startSpinningIndicator()
+        
+        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+            
+            self.stores = self.filterStores(from: stores)
+            
+            self.main.addOperation {
+                
+                self.reloadSection(0)
+                
+                self.stopSpinningIndicator()
+                self.refreshControl?.endRefreshing()
+                
+            }
+            
+            if self.stores.isEmpty {
+                
+                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
+                
+            }
+            
         }
+        
     }
     
     private func filterStores(from stores: [Store]) -> [Store] {
@@ -85,35 +99,6 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         }
         
         return stores
-    }
-    
-    func loadStores(at coordinate: CLLocationCoordinate2D) {
-        
-        startSpinningIndicator()
-        
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
-            
-            self.stores = self.filterStores(from: stores)
-            
-            self.main.addOperation {
-                
-                self.tableView.reloadData()
-                
-                self.stopSpinningIndicator()
-                self.refreshControl?.endRefreshing()
-                
-            }
-            
-            if self.stores.isEmpty {
-                
-                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
-                
-            }
-            
-        }
-        
     }
     
     
@@ -139,62 +124,16 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
     
 }
 
-//MARK: Side Menu Filter Delegate Code
+//MARK: Filter Delegate Code
 extension StoresTableViewController {
     
-    fileprivate func configureSideMenu() {
-        
-        guard let menu = self.revealViewController() else { return }
-        adjustWidth(menu: menu)
-        
-        if let gesture = menu.panGestureRecognizer() {
-            self.view.addGestureRecognizer(gesture)
-            
-        }
-        
-        guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
-        sideMenu.delegate = self
-        
-    }
-    
-    private func adjustWidth(menu: SWRevealViewController) {
-        let width = self.view.frame.width * 0.85
-        menu.rearViewRevealWidth = width
-    }
-    
-    func didOpenFilterMenu() {
-        disconnectEdgeGesture()
-        makeNoteThatFilterMenuOpened()
-    }
-    
-    func didCloseFilterMenu() {
-        reconnectEdgeGesture()
-    }
-    
-    func didApplyFilters(_ filter: SideMenuFilterViewController, farmersMarkets: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
-        
-        showFarmersMarkets = farmersMarkets
-        showStores = stores
-        onlyShowOpenStores = openNow
-        distanceFilter = Double(distanceInMiles)
+    func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool) {
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             loadStores(at: currentLocation)
             
         }
         
-    }
-    
-    func didCancelFilters() {
-        makeNoteThatFilterMenuCancelled()
-    }
-    
-    private func disconnectEdgeGesture() {
-        self.view.removeGestureRecognizer(edgePanGestureRecognizer)
-    }
-    
-    private func reconnectEdgeGesture() {
-        self.view.addGestureRecognizer(edgePanGestureRecognizer)
     }
     
 }
@@ -265,16 +204,11 @@ extension StoresTableViewController {
         
         let cellAnimation = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)
         cell.alpha = 0
+        cell.layer.transform = cellAnimation
         
-        self.main.addOperation {
-            
-            cell.layer.transform = cellAnimation
-            
-            UIView.animate(withDuration: 0.5) {
-                cell.alpha = 1.0
-                cell.layer.transform = CATransform3DIdentity
-                
-            }
+        UIView.animate(withDuration: 0.5) {
+            cell.alpha = 1.0
+            cell.layer.transform = CATransform3DIdentity
             
         }
         
@@ -289,7 +223,7 @@ extension StoresTableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.black
-        refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
+        refreshControl?.tintColor = UIColor .init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
         
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
@@ -329,37 +263,30 @@ extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "mapViewSegue" {
+        if let destination = segue.destination as? StoresMapViewController {
             
-            let destination = segue.destination as? StoresMapViewController
+            destination.stores = self.stores
             
-            destination?.distance = distanceFilter
-            destination?.onlyShowOpenStores = self.onlyShowOpenStores
-            destination?.showFarmersMarkets = self.showFarmersMarkets
-            destination?.showStores = self.showStores
-            destination?.stores = self.stores
+        }
+        
+        if let destination = segue.destination as? UINavigationController {
+            
+            let filterViewController = destination.topViewController as? FilterViewController
+            filterViewController?.delegate = self
             
         }
         
     }
     
-    @IBAction func mapButtonTapped(_ sender: Any) {
+    @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
         
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
         
     }
     
-}
-
-//MARK: User Preferences Code
-extension StoresTableViewController {
-    
-    func loadDefaultValues() {
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         
-        onlyShowOpenStores = UserPreferences.instance.isOpenNow
-        showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        distanceFilter = UserPreferences.instance.distanceFilter
-        showStores = UserPreferences.instance.isStore
+        performSegue(withIdentifier: "filterSegue", sender: nil)
         
     }
     
@@ -389,7 +316,7 @@ extension StoresTableViewController {
                 panningWasTriggered = false
                 
             default: break
-                
+            
         }
         
     }

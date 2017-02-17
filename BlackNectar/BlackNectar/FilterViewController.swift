@@ -14,6 +14,12 @@ import Kingfisher
 import MapKit
 import UIKit
 
+protocol FilterDelegate {
+    
+    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool)
+    
+}
+
 class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
@@ -22,11 +28,39 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
     var currentCoordinates: CLLocationCoordinate2D?
     
-    var distance = 0.0
-    var showFarmersMarkets = false
-    var showGroceryStores = false
+    var showFarmersMarkets: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.showFarmersMarkets
+        }
+        
+        set {
+            
+            UserPreferences.instance.showFarmersMarkets = newValue
+            
+        }
+        
+    }
     
-    fileprivate var stores: [Store] = []
+    var showGroceryStores: Bool {
+        
+        get {
+            return UserPreferences.instance.showStores
+            
+        }
+        
+        set {
+            UserPreferences.instance.showStores = newValue
+            
+        }
+        
+    }
+    
+    var delegate: FilterDelegate?
+    var distance = 0.0
+    
+    var stores: [Store] = []
     fileprivate var selectedPin: MKPlacemark?
     fileprivate let blackNectarPin = UIImage(named: "BlackNectarMapPin")
     
@@ -47,23 +81,48 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         super.viewDidLoad()
         
         prepareMapView()
-        loadStores()
         userLocationInfoForAroma()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        loadUserDefaults()
+        styleGroceryStores()
+        styleFarmersMarkets()
+    }
+ 
+    
+    //MARK: Cancel Button Code
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        
+        self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
-    
-//MARK: Filter Buttons Code
+    //MARK: Filter Buttons Code
     @IBAction func onFarmersMarkets(_ sender: UIButton) {
         
-        if showFarmersMarkets == false {
+        showFarmersMarkets = !showFarmersMarkets
+        styleFarmersMarkets()
+        mapView.removeVisibleAnnotations()
+        loadStores()
+        
+    }
+    
+    @IBAction func onGroceryStores(_ sender: UIButton) {
+        
+        showGroceryStores = !showGroceryStores
+        styleGroceryStores()
+        mapView.removeVisibleAnnotations()
+        loadStores()
+        
+    }
+    
+    fileprivate func styleFarmersMarkets() {
+        
+        if showFarmersMarkets {
             
             showFarmersMarkets = true
             styleButtonOn(button: farmersMarketsButton)
@@ -77,9 +136,9 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    @IBAction func onGroceryStores(_ sender: UIButton) {
+    fileprivate func styleGroceryStores() {
         
-        if showGroceryStores == false {
+        if showGroceryStores {
             
             showGroceryStores = true
             styleButtonOn(button: groceryStoresButton)
@@ -90,14 +149,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             styleButtonOff(button: groceryStoresButton)
             
         }
-        
-    }
-    
-    
-    private func loadUserDefaults() {
-        
-        self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        self.showGroceryStores = UserPreferences.instance.isStore
         
     }
     
@@ -145,11 +196,9 @@ extension FilterViewController {
         
         startSpinningIndicator()
         
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate) { stores in
             
-            self.stores = stores
+            self.stores = self.filterStores(from: stores)
             
             self.main.addOperation {
                 
@@ -162,9 +211,27 @@ extension FilterViewController {
         
         if self.stores.isEmpty {
             
-            self.makeNoteThatNoStoresFound(additionalMessage: "User is in the Search Filter Map View")
+            self.makeNoteThatNoStoresFound(additionalMessage: "User is in the Filter Map View")
             
         }
+        
+    }
+    
+    private func filterStores(from stores: [Store]) -> [Store] {
+        
+        if showFarmersMarkets == showGroceryStores {
+            return stores
+        }
+        
+        if showGroceryStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
         
     }
     

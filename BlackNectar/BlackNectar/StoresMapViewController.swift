@@ -26,14 +26,18 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var selectedPin: MKPlacemark?
     var distance = 0.0
     
-    var showFarmersMarkets = true
-    var showStores = true
+    var showFarmersMarkets: Bool {
+        return UserPreferences.instance.showFarmersMarkets
+    }
+    
+    var showStores: Bool {
+        return UserPreferences.instance.showStores
+    }
+    
     var onlyShowOpenStores = true
     
     var mapViewLoaded = false
     
-    
-    typealias Callback = ([Store]) -> ()
     
     fileprivate let async: OperationQueue = {
         
@@ -58,16 +62,8 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadUserDefaults()
-        
     }
     
-    private func loadUserDefaults() {
-        
-        self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        self.showStores = UserPreferences.instance.isStore
-        
-    }
     
     private func loadStores() {
         
@@ -104,9 +100,7 @@ extension StoresMapViewController {
         
         startSpinningIndicator()
         
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
+        SearchStores.searchForStoresLocations(near: coordinate) { stores in
             
             self.stores = self.filterStores(from: stores)
             
@@ -266,7 +260,15 @@ extension MKMapView {
     func removeNonVisibleAnnotations() {
         
         self.annotations
-            .filter({ !isVisible(annotation: $0)})
+            .filter({ !isVisible(annotation: $0) })
+            .forEach({ self.removeAnnotation($0) })
+        
+    }
+    
+    func removeVisibleAnnotations() {
+        
+        self.annotations
+            .filter({ isVisible(annotation: $0) })
             .forEach({ self.removeAnnotation($0) })
         
     }

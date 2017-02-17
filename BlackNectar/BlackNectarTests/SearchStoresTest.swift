@@ -42,11 +42,10 @@ class SearchStoresTest: XCTestCase {
         let usersLongitude: CLLocationDegrees = -73.9442
         let userLocation = CLLocationCoordinate2D(latitude: usersLatitude, longitude: usersLongitude)
         
-        let storeDistance: Double = 1500
         
         let promise = expectation(description: "Callback will be called")
         
-        let testCallback: ([StoresInfo]) -> Void = { stores in
+        let testCallback: ([Store]) -> Void = { stores in
             
             if !stores.isEmpty {
                 promise.fulfill()
@@ -54,7 +53,7 @@ class SearchStoresTest: XCTestCase {
             
         }
         
-        SearchStores.searchForStoresLocations(near: userLocation, with: storeDistance, callback: testCallback)
+        SearchStores.searchForStoresLocations(near: userLocation,  callback: testCallback)
         
         waitForExpectations(timeout: 3, handler: nil)
         
@@ -66,7 +65,7 @@ class SearchStoresTest: XCTestCase {
         
         let promise = expectation(description: "Callback will be called")
         
-        let testCallback: ([StoresInfo]) -> Void = { stores in
+        let testCallback: ([Store]) -> Void = { stores in
             
             if !stores.isEmpty {
                 promise.fulfill()

@@ -32,33 +32,33 @@ class UserPreferences {
         
     }
     
-    var isFarmersMarket: Bool {
+    var showFarmersMarkets: Bool {
         
         get {
             
-            return defaultPreferences.object(forKey: "isFarmersMarket") as? Bool ?? true
+            return defaultPreferences.object(forKey: "showFarmersMarkets") as? Bool ?? true
             
         }
         
         set (value){
             
-            defaultPreferences.set(value, forKey: "isFarmersMarket")
+            defaultPreferences.set(value, forKey: "showFarmersMarkets")
             
         }
         
     }
     
-    var isStore: Bool {
+    var showStores: Bool {
         
         get {
             
-            return defaultPreferences.object(forKey: "isStore") as? Bool ?? true
+            return defaultPreferences.object(forKey: "showStores") as? Bool ?? true
             
         }
         
         set (value){
             
-            defaultPreferences.set(value, forKey: "isStore")
+            defaultPreferences.set(value, forKey: "showStores")
             
         }
         
@@ -75,45 +75,6 @@ class UserPreferences {
         set (value) {
             
             defaultPreferences.set(value, forKey: "isOpenNow")
-            
-        }
-        
-    }
-
-    func setSideMenuDefaults(in viewController: SideMenuFilterViewController, distanceFilter: Double, isFarmersMarket: Bool, isOpenNow: Bool, isStore: Bool) {
-        
-        let roundedNumber = (round(defaultPreferences.double(forKey: "distanceFilter") * 100)/100)
-        
-        viewController.slider.value = Float(defaultPreferences.double(forKey: "distanceFilter"))
-        viewController.slideValueLabel.text = "\(roundedNumber)"
-        
-        if isFarmersMarket {
-            
-            viewController.styleButtonOn(button: viewController.farmersMarketButton)
-            
-        } else {
-            
-            viewController.styleButtonOff(button: viewController.farmersMarketButton)
-            
-        }
-        
-        if isOpenNow {
-            
-            viewController.openNowSwitch.isOn = true
-            
-        } else {
-            
-            viewController.openNowSwitch.isOn = false
-            
-        }
-        
-        if isStore {
-            
-            viewController.styleButtonOn(button: viewController.storesButton)
-            
-        } else {
-            
-            viewController.styleButtonOff(button: viewController.storesButton)
             
         }
         

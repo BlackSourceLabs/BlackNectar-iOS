@@ -80,7 +80,7 @@ class SearchStoresTest: XCTestCase {
     
     func testSearchForStoresByZipCode() {
         
-        let storeZipCode: Int = 91403
+        let storeZipCode = "91403"
         
         let promise = expectation(description: "Callback will be called")
         

@@ -24,6 +24,14 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         return UserPreferences.instance.showStores
     }
     
+    var showMyLocationSwitch: Bool {
+        return UserPreferences.instance.showMyLocationSwitch
+    }
+    
+    var showUseZipCodeSwitch: Bool {
+        return UserPreferences.instance.showUseZipeCodeSwitch
+    }
+    
     var stores: [Store] = []
     var panningWasTriggered = false
     let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()

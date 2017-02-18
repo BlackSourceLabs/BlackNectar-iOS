@@ -271,6 +271,30 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         }
         
     }
+    
+    func calculateRegionForMapView(withZipCode zipCode: String) {
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(zipCode) { (placemarks, error) in
+            
+            if error != nil {
+                
+                return
+            }
+            
+            if let placemark = placemarks?.first, let location = placemark.location {
+                
+                if var region = self.mapView?.region {
+                    region.center = location.coordinate
+                    region.span.longitudeDelta = 0.07
+                    region.span.latitudeDelta = 0.07
+                    self.mapView.setRegion(region, animated: true)
+                    
+                }
+                
+            }
+            
+        }
         
     }
     

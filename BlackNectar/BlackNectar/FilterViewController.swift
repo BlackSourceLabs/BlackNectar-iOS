@@ -303,13 +303,13 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
 //MARK: Loads Stores into Map View and when User Pans
 extension FilterViewController {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    fileprivate func loadStores() {
         
-        let center = mapView.centerCoordinate
-        
-        LOG.debug("User dragged Map Screen to: \(center)")
-        
-        self.loadStoresInMapView(at: center)
+        UserLocation.instance.requestLocation { coordinate in
+            
+            self.loadStoresInMapView(at: coordinate)
+            
+        }
         
     }
     
@@ -338,7 +338,7 @@ extension FilterViewController {
         
     }
     
-    private func filterStores(from stores: [Store]) -> [Store] {
+    fileprivate func filterStores(from stores: [Store]) -> [Store] {
         
         if showFarmersMarkets == showGroceryStores {
             return stores
@@ -353,6 +353,31 @@ extension FilterViewController {
         }
         
         return stores
+        
+    }
+    
+    func prepareMapView() {
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        
+        guard let region = UserLocation.instance.currentRegion else {
+            
+            LOG.error("Failed to load the Users Current Region")
+            return
+        }
+        
+        self.mapView.setRegion(region, animated: true)
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let center = mapView.centerCoordinate
+        
+        LOG.debug("User dragged Map Screen to: \(center)")
+        
+        self.loadStoresInMapView(at: center)
         
     }
     

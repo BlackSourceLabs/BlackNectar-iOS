@@ -120,8 +120,12 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         styleGroceryStores()
         styleFarmersMarkets()
+        
+        styleMyLocation()
+        styleUseZipCode()
+        
     }
- 
+    
     
     //MARK: Cancel Button Code
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -182,20 +186,47 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    private func loadStores() {
+    //MARK: Filter Switches Code
+    @IBAction func onMyLocation(_ sender: UISwitch) {
         
-        UserLocation.instance.requestLocation { coordinate in
+        showMyLocationSwitch = !showMyLocationSwitch
+        styleMyLocation()
+        
+    }
+    
+    @IBAction func onUseZipeCode(_ sender: UISwitch) {
+        
+        showUseZipCodeSwitch = !showUseZipCodeSwitch
+        styleUseZipCode()
+        
+    }
+    
+    fileprivate func styleMyLocation() {
+        
+        if showMyLocationSwitch {
             
-            self.loadStoresInMapView(at: coordinate)
+            showMyLocationSwitch = true
+            
+        } else {
+            
+            showMyLocationSwitch = false
             
         }
         
     }
     
-    private func prepareMapView() {
+    fileprivate func styleUseZipCode() {
         
-        mapView.delegate = self
-        mapView.showsUserLocation = true
+        if showUseZipCodeSwitch {
+            
+            showUseZipCodeSwitch = true
+            enterZipCode()
+            
+        } else {
+            
+            showUseZipCodeSwitch = false
+            
+        }
         
         guard let region = UserLocation.instance.currentRegion else {
             

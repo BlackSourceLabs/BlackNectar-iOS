@@ -68,7 +68,7 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.bool(forKey: "showMyLocationSwitch")
+            return defaultPreferences.object(forKey: "showMyLocationSwitch") as? Bool ?? true
             
         }
         
@@ -84,7 +84,7 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.bool(forKey: "showUseZipCodeSwitch")
+            return defaultPreferences.object(forKey: "showUseZipCodeSwitch") as? Bool ?? true
             
         }
         

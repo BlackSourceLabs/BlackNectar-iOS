@@ -252,6 +252,25 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         self.present(zipCodeAlertController, animated: true, completion: nil)
         
     }
+    
+    func loadStoresInZipCode(at zipCode: String) {
+        
+        startSpinningIndicator()
+        
+        SearchStores.searchForStoresByZipCode(withZipCode: zipCode) { (stores) in
+            
+            self.stores = self.filterStores(from: stores)
+            
+            self.main.addOperation {
+                
+                self.populateStoreAnnotations()
+                self.stopSpinningIndicator()
+                
+            }
+            
+        }
+        
+    }
         
     }
     

@@ -228,13 +228,30 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             
         }
         
-        guard let region = UserLocation.instance.currentRegion else {
+    }
+    
+    func enterZipCode() {
+        
+        let zipCodeAlertController = UIAlertController(title: "Zip Code", message: "Enter the zip code", preferredStyle: .alert)
+        zipCodeAlertController.addTextField { (zipCode) in
             
-            LOG.error("Failed to load the Users Current Region")
-            return
+            zipCode.placeholder = " eg - 10455"
+            
+            zipCodeAlertController.addAction(UIAlertAction(title: "Go", style: .default, handler: { (action) in
+                
+                self.calculateRegionForMapView(withZipCode: zipCode.text!)
+                self.loadStoresInZipCode(at: zipCode.text!)
+            }))
         }
         
-        self.mapView.setRegion(region, animated: true)
+        zipCodeAlertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            
+            zipCodeAlertController.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(zipCodeAlertController, animated: true, completion: nil)
+        
+    }
         
     }
     

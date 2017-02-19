@@ -24,7 +24,7 @@ class UserPreferences {
         
         }
         
-        set (value){
+        set (value) {
         
             defaultPreferences.set(value, forKey: Keys.searchRadius)
             
@@ -40,7 +40,7 @@ class UserPreferences {
             
         }
         
-        set (value){
+        set (value) {
             
             defaultPreferences.set(value, forKey: Keys.showFarmersMarkets)
             
@@ -56,7 +56,7 @@ class UserPreferences {
             
         }
         
-        set (value){
+        set (value) {
             
             defaultPreferences.set(value, forKey: Keys.showStores)
             
@@ -72,7 +72,7 @@ class UserPreferences {
             
         }
         
-        set (value){
+        set (value) {
             
             defaultPreferences.set(value, forKey: Keys.useMyLocation)
             
@@ -88,7 +88,7 @@ class UserPreferences {
             
         }
         
-        set(value){
+        set(value) {
             
             defaultPreferences.set(value, forKey: Keys.useZipCode)
             
@@ -96,6 +96,16 @@ class UserPreferences {
         
     }
     
+    var zipCode: String? {
+        
+        get {
+            return defaultPreferences.object(forKey: Keys.zipCode) as? String
+        }
+        
+        set(value) {
+            defaultPreferences.set(value, forKey: Keys.zipCode)
+        }
+    }
 }
 
 fileprivate class Keys {

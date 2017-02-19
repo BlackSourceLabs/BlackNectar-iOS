@@ -24,6 +24,9 @@
         <array key="Uni Sans Light.ttf">
             <string>UniSansLight</string>
         </array>
+        <array key="Uni Sans.ttf">
+            <string>UniSansRegular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Stores Map View Controller-->
@@ -76,7 +79,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -290,7 +293,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24T-s2-CYd" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24T-s2-CYd" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                                     <rect key="frame" x="182" y="8" width="130" height="35"/>
                                                     <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -316,7 +319,7 @@
                                                         <action selector="onGroceryStores:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="uvq-vN-mvl"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liB-bH-UIF" customClass="RoundedButtonView" customModule="BlackNectar" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liB-bH-UIF" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                                     <rect key="frame" x="18" y="8" width="140" height="35"/>
                                                     <color key="backgroundColor" red="0.92549019607843142" green="0.75294117647058822" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -489,6 +492,14 @@
                                                         <action selector="onUseZipeCode:" destination="k9s-Gt-zGD" eventType="valueChanged" id="OdQ-Uh-gkh"/>
                                                     </connections>
                                                 </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90401" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvC-6i-bC5">
+                                                    <rect key="frame" x="139" y="20" width="56" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="5Sw-n9-Zrt" firstAttribute="top" secondItem="5vP-oK-Z4K" secondAttribute="topMargin" constant="10" id="RyX-gf-xsm"/>
@@ -526,7 +537,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Zxc-HX-K3f">
-                            <rect key="frame" x="103.5" y="5.5" width="168" height="33"/>
+                            <rect key="frame" x="104" y="6" width="168" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Huw-KN-cYv">
@@ -556,6 +567,7 @@
                         <outlet property="mapView" destination="97t-k7-OFi" id="SSM-V6-dF8"/>
                         <outlet property="useMyLocationSwitch" destination="Xr0-zo-RwH" id="cNQ-Lt-zJc"/>
                         <outlet property="useZipeCodeSwitch" destination="5ot-9v-86l" id="Vvd-z7-trj"/>
+                        <outlet property="zipCodeLabel" destination="5Sw-n9-Zrt" id="ch6-hb-kL7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tna-hs-Zie" userLabel="First Responder" sceneMemberID="firstResponder"/>

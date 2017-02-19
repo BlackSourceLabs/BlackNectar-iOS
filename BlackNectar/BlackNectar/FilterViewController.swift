@@ -420,6 +420,7 @@ fileprivate extension FilterViewController {
             
             self.calculateRegionForMapView(withZipCode: zipCode)
             self.loadStoresInZipCode(at: zipCode)
+            UserPreferences.instance.zipCode = zipCode
         }
         
         controller.addAction(cancel)
@@ -453,6 +454,30 @@ fileprivate extension FilterViewController {
         controller.addAction(ok)
         
         return controller
+    }
+    
+    func createAlertToRequestGPSPermissions() -> UIAlertController {
+        
+        let title = "Requesting GPS Access"
+        let message = "By granting us access, we can find EBT stores around you"
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
+            
+            self.requestGPSAccess()
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(ok)
+        
+        return controller
+    }
+    
+    func requestGPSAccess() {
+        
     }
 }
 

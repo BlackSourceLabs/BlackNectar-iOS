@@ -188,7 +188,7 @@ extension StoresTableViewController {
         cell.onGoButtonPressed = { cell in
             
             self.navigateWithDrivingDirections(toStore: store)
-            self.makeNoteThatUserTappedOnStore(cell: cell)
+            self.makeNoteThatUserTapped(on: store)
         }
         
         return cell
@@ -203,8 +203,9 @@ extension StoresTableViewController {
         let index = indexPath.row
         guard stores.isInBounds(index: index) else { return }
         
-        let store = stores[indexPath.row]
+        let store = stores[index]
         self.navigateWithDrivingDirections(toStore: store)
+        self.makeNoteThatUserTapped(on: store)
         
     }
     
@@ -367,20 +368,24 @@ fileprivate extension StoresTableViewController {
     func makeNoteThatFilterMenuOpened() {
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
-        LOG.info("Filter Opened")
+        LOG.debug("Filter Opened")
         
     }
     
     func makeNoteThatFilterMenuCancelled() {
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
-        LOG.info("Cancelling Filter")
+        LOG.debug("Cancelling Filter")
         
     }
     
-    func makeNoteThatUserTappedOnStore(cell: StoresTableViewCell) {
-        AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
-            .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
+    func makeNoteThatUserTapped(on store: Store) {
+        
+        LOG.debug("User tapped on Store: \(store)")
+        
+        AromaClient.beginMessage(withTitle: "User Tapped On Store ")
+            .addBody("From the StoresTableViewController").addLine(2)
+            .addBody("User navigated to \(store.storeName)\n\n\(store)")
             .withPriority(.medium)
             .send()
     }

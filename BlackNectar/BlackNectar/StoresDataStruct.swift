@@ -66,6 +66,13 @@ extension Store {
     }
 }
 
+extension Store : CustomStringConvertible {
+    
+    var description: String {
+        return "{storeName: \(storeName), address: \(address), location: \(location), isFarmersMarket: \(isFarmersMarket)}"
+    }
+}
+
 struct Address {
     
     let addressLineOne: String

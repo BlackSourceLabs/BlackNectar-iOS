@@ -59,7 +59,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    var showMyLocationSwitch: Bool {
+    var useMyLocation: Bool {
         
         get {
             
@@ -73,7 +73,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    var showUseZipCodeSwitch: Bool {
+    var useZipCode: Bool {
         
         get {
             
@@ -189,27 +189,27 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     //MARK: Filter Switches Code
     @IBAction func onMyLocation(_ sender: UISwitch) {
         
-        showMyLocationSwitch = !showMyLocationSwitch
+        useMyLocation = !useMyLocation
         styleMyLocation()
         
     }
     
     @IBAction func onUseZipeCode(_ sender: UISwitch) {
         
-        showUseZipCodeSwitch = !showUseZipCodeSwitch
+        useZipCode = !useZipCode
         styleUseZipCode()
         
     }
     
     fileprivate func styleMyLocation() {
         
-        if showMyLocationSwitch {
+        if useMyLocation {
             
-            showMyLocationSwitch = true
+            useMyLocation = true
             
         } else {
             
-            showMyLocationSwitch = false
+            useMyLocation = false
             
         }
         
@@ -217,14 +217,14 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
     fileprivate func styleUseZipCode() {
         
-        if showUseZipCodeSwitch {
+        if useZipCode {
             
-            showUseZipCodeSwitch = true
+            useZipCode = true
             enterZipCode()
             
         } else {
             
-            showUseZipCodeSwitch = false
+            useZipCode = false
             
         }
         

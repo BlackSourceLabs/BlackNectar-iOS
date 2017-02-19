@@ -190,45 +190,16 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func onMyLocation(_ sender: UISwitch) {
         
         useMyLocation = !useMyLocation
-        styleMyLocation()
         
     }
     
     @IBAction func onUseZipeCode(_ sender: UISwitch) {
         
         useZipCode = !useZipCode
-        styleUseZipCode()
         
     }
     
-    fileprivate func styleMyLocation() {
-        
-        if useMyLocation {
-            
-            useMyLocation = true
-            
-        } else {
-            
-            useMyLocation = false
-            
-        }
-        
-    }
-    
-    fileprivate func styleUseZipCode() {
-        
-        if useZipCode {
-            
-            useZipCode = true
-            enterZipCode()
-            
-        } else {
-            
-            useZipCode = false
-            
-        }
-        
-    }
+
     
     func enterZipCode() {
         

@@ -24,11 +24,11 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         return UserPreferences.instance.showStores
     }
     
-    var showMyLocationSwitch: Bool {
+    var useMyLocation: Bool {
         return UserPreferences.instance.useMyLocation
     }
     
-    var showUseZipCodeSwitch: Bool {
+    var useZipCode: Bool {
         return UserPreferences.instance.useZipCode
     }
     

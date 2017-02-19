@@ -38,7 +38,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set {
             
             UserPreferences.instance.showFarmersMarkets = newValue
-            
+            makeNoteThatUserUpdatedShowFarmersMarket(with: newValue)
         }
         
     }
@@ -52,6 +52,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         set {
             UserPreferences.instance.showStores = newValue
+            makeNoteThatUserUpdatedShowStore(with: newValue)
             
         }
         
@@ -81,7 +82,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         super.viewDidLoad()
         
         prepareMapView()
-        userLocationInfoForAroma()
         
     }
     
@@ -358,28 +358,39 @@ extension FilterViewController {
 }
 
 //MARK: Aroma Messages
-extension FilterViewController {
+fileprivate extension FilterViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location: \(UserLocation.instance.currentLocation)")
-        AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
+        LOG.warn("There are no stores around: \(self.mapView.centerCoordinate)")
+        
+        AromaClient.beginMessage(withTitle: "No Stores Loaded")
+            .addBody("No stores were found in the FilterViewController at: \(self.mapView.centerCoordinate)")
             .withPriority(.high)
             .send()
         
     }
     
-    func userLocationInfoForAroma() {
+    func makeNoteThatUserUpdatedShowStore(with value: Bool) {
         
-        guard let userLocationForAroma = UserLocation.instance.currentCoordinate else { return }
+        LOG.debug("User updated showStores with: \(value)")
         
-        AromaClient.beginMessage(withTitle: "User Entered Map View (Search Filter)")
-            .addBody("User Location is: \(userLocationForAroma)")
+        AromaClient.beginMessage(withTitle: "User Updated Filter")
+            .addBody("Show Stores: \(value)")
             .withPriority(.low)
             .send()
         
     }
     
+    func makeNoteThatUserUpdatedShowFarmersMarket(with value: Bool) {
+        
+        LOG.debug("User updated showFarmersMarket with: \(value)")
+        
+        AromaClient.beginMessage(withTitle: "User Updated Filter")
+            .addBody("Show Farmers Markets: \(value)")
+            .withPriority(.low)
+            .send()
+        
+    }
 }
 

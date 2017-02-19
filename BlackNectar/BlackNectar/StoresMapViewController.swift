@@ -55,7 +55,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         prepareMapView()
         loadStores()
-        userLocationInfoForAroma()
+        makeNoteThatUserEnteredMapView()
         
     }
     
@@ -111,9 +111,10 @@ extension StoresMapViewController {
                 
             }
             
+            
             if self.stores.isEmpty {
                 
-                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Map View")
+                self.makeNoteThatNoStoresFound(additionalMessage: "(MapView)")
                 
             }
             
@@ -215,19 +216,23 @@ extension StoresMapViewController {
         
         let appleMapslaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         
-        if let storeLocation = view.annotation {
+        if let storeAnnotation = view.annotation {
             
-            let storeName: String = (storeLocation.title ?? nil) ?? "Uknown"
+            let storeName: String = (storeAnnotation.title ?? nil) ?? "Uknown"
             
-            getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
+            if let store = findStore(withName: storeName, andLocation: storeAnnotation.coordinate) {
+                makeNoteThatUserTapped(on: store)
+            }
             
-            AromaClient.beginMessage(withTitle: "User tapped on \(storeName) map pin")
-                .addBody("User navigated to \(storeName)\nstore coordinates: \(storeLocation.coordinate)\n(Map View)")
-                .withPriority(.medium)
-                .send()
-            
+            getDrivingDirections(to: storeAnnotation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
         }
         
+    }
+    
+    private func findStore(withName name: String, andLocation location: CLLocationCoordinate2D) -> Store? {
+        
+        return stores.filter() { $0.storeName == name && $0.location == location }
+                     .first
     }
     
 }
@@ -237,6 +242,7 @@ extension StoresMapViewController {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         
         let center = mapView.centerCoordinate
+        self.currentCoordinates = center
         
         LOG.debug("User dragged Map Screen to: \(center)")
         
@@ -275,11 +281,14 @@ extension MKMapView {
     
 }
 
-extension StoresMapViewController {
+
+//MARK: Aroma Messages
+fileprivate extension StoresMapViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        LOG.warn("No stores found around the users location: \(currentCoordinates)")
+        
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
             .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
@@ -287,7 +296,7 @@ extension StoresMapViewController {
         
     }
     
-    func userLocationInfoForAroma() {
+    func makeNoteThatUserEnteredMapView() {
         
         guard let userLocationForAroma = UserLocation.instance.currentCoordinate else { return }
         
@@ -296,6 +305,27 @@ extension StoresMapViewController {
             .withPriority(.low)
             .send()
         
+    }
+    
+    func makeNoteThatUserTapped(on store: Store) {
+        
+        LOG.info("User tapped on Store: \(store)")
+        
+        AromaClient.beginMessage(withTitle: "User Tapped Store")
+            .addBody("From the MapView:").addLine(2)
+            .addBody("User navigated to \(store.storeName) at:\(store.location.shortDescription)")
+            .withPriority(.medium)
+            .send()
+    }
+    
+    func makeNoteThatStoresLoaded() {
+        
+        LOG.info("Loaded \(stores.count) stores")
+        
+        AromaClient.beginMessage(withTitle: "Stores Loaded")
+            .addBody("Loaded \(stores.count) stores")
+            .withPriority(.low)
+            .send()
     }
     
 }

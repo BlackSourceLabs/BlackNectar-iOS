@@ -67,8 +67,9 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             return UserPreferences.instance.useMyLocation
         }
         
-        set (newValue) {
+        set(newValue) {
             UserPreferences.instance.useMyLocation = newValue
+            useMyLocationSwitch.isOn = newValue
         }
     }
     
@@ -79,10 +80,10 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             return UserPreferences.instance.useZipCode
         }
         
-        set(newValue){
+        set(newValue) {
             
             UserPreferences.instance.useZipCode = newValue
-            styleLocationButtons()
+            useZipeCodeSwitch.isOn = newValue
         }
         
     }
@@ -154,17 +155,25 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func onMyLocation(_ sender: UISwitch) {
         
         useMyLocation = !useMyLocation
-        useZipCode = !useMyLocation
+        
+        if useMyLocation {
+            askForUserLocation()
+        }
     }
     
     @IBAction func onUseZipeCode(_ sender: UISwitch) {
         
         useZipCode = !useZipCode
-        useMyLocation = !useZipCode
         
         if useZipCode {
             askForZipCode()
         }
+    }
+    
+    private func askForUserLocation() {
+        
+        let alert = createAlertToRequestGPSPermissions()
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func askForZipCode() {
@@ -172,6 +181,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         let alert = createAlertToGetZipCode()
         self.present(alert, animated: true, completion: nil)
     }
+    
     
 }
 
@@ -311,7 +321,7 @@ fileprivate extension FilterViewController {
         
     }
     
-    func calculateRegionForMapView(withZipCode zipCode: String) {
+    func moveMapTo(zipCode: String) {
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(zipCode) { (placemarks, error) in
@@ -322,7 +332,7 @@ fileprivate extension FilterViewController {
             
             if let placemark = placemarks?.first, let location = placemark.location {
                 
-                self.mapView?.setCenter(location.coordinate, animated: true)
+                self.mapView?.setCenter(location.coordinate, animated: false)
             }
             
         }
@@ -416,9 +426,10 @@ fileprivate extension FilterViewController {
                 return
             }
             
-            self.calculateRegionForMapView(withZipCode: zipCode)
+            self.moveMapTo(withZipCode: zipCode)
             self.loadStoresInZipCode(at: zipCode)
             UserPreferences.instance.zipCode = zipCode
+            self.useMyLocation = false
         }
         
         controller.addAction(cancel)
@@ -457,11 +468,13 @@ fileprivate extension FilterViewController {
     func createAlertToRequestGPSPermissions() -> UIAlertController {
         
         let title = "Requesting GPS Access"
-        let message = "By granting us access, we can find EBT stores around you"
+        let message = "By granting us access, we can find EBT stores around you."
         
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.useMyLocation = false
+        }
         
         let ok = UIAlertAction(title: "Ok", style: .default) { _ in
             
@@ -476,6 +489,13 @@ fileprivate extension FilterViewController {
     
     func requestGPSAccess() {
         
+        UserLocation.instance.requestLocation() { location in
+            
+            self.loadStoresInMapView(at: location)
+            self.useMyLocation = true
+            self.mapView?.setCenter(location, animated: false)
+            self.useZipCode = false
+        }
     }
 }
 

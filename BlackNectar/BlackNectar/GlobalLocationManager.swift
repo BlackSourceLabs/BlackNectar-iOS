@@ -24,6 +24,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
     var currentRegion: MKCoordinateRegion?
+    var currentStatus: CLAuthorizationStatus?
     
     var currentCoordinate: CLLocationCoordinate2D? {
         return currentLocation?.coordinate
@@ -50,7 +51,12 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     
     func requestLocation(callback: @escaping ((CLLocationCoordinate2D) -> Void)) {
         
+        if !alreadyInitialized {
+            initialize()
+        }
+        
         self.onLocation = callback
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
     }
@@ -95,6 +101,8 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
                 makeNoteThatAccessIsUndetermined()
             
         }
+        
+        self.currentStatus = status
         
     }
     

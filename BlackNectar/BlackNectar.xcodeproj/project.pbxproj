@@ -70,6 +70,7 @@
 		36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */; };
 		DE80BFEE1E56926300449144 /* UITableViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFED1E56926300449144 /* UITableViewControllers+.swift */; };
 		DE80BFF11E5693A800449144 /* FilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFF01E5693A800449144 /* FilterViewControllerTests.swift */; };
+		DEA4E1AC1E591BC1004935BD /* Strings+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4E1AB1E591BC1004935BD /* Strings+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		DE80BFED1E56926300449144 /* UITableViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewControllers+.swift"; sourceTree = "<group>"; };
 		DE80BFF01E5693A800449144 /* FilterViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewControllerTests.swift; sourceTree = "<group>"; };
+		DEA4E1AB1E591BC1004935BD /* Strings+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,9 +408,10 @@
 			children = (
 				3297A36B1E39AF090055BC89 /* Arrays+.swift */,
 				32E134511E160E5500FD65DC /* Integers+.swift */,
+				DEA4E1AB1E591BC1004935BD /* Strings+.swift */,
 				32E134541E160EAF00FD65DC /* TimeIntervals+.swift */,
-				32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */,
 				DE80BFED1E56926300449144 /* UITableViewControllers+.swift */,
+				32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */,
 				DE80BFEE1E56926300449144 /* UITableViewControllers+.swift in Sources */,
 				32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */,
+				DEA4E1AC1E591BC1004935BD /* Strings+.swift in Sources */,
 				3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */,
 				32E134551E160EAF00FD65DC /* TimeIntervals+.swift in Sources */,
 				0A9CE6371E1D98B7008860BA /* Integers+.swift in Sources */,

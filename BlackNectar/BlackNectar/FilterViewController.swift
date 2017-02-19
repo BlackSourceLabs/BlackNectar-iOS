@@ -25,7 +25,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var farmersMarketsButton: UIButton!
     @IBOutlet weak var groceryStoresButton: UIButton!
-    @IBOutlet weak var myLocationSwitch: UISwitch!
+    @IBOutlet weak var useMyLocationSwitch: UISwitch!
     @IBOutlet weak var useZipeCodeSwitch: UISwitch!
     
     
@@ -69,8 +69,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set(newValue) {
             
             UserPreferences.instance.useMyLocation = newValue
+            styleLocationButtons()
         }
-        
     }
     
     var useZipCode: Bool {
@@ -83,6 +83,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set(newValue){
             
             UserPreferences.instance.useZipCode = newValue
+            styleLocationButtons()
         }
         
     }
@@ -120,10 +121,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         styleGroceryStores()
         styleFarmersMarkets()
-        
-        styleMyLocation()
-        styleUseZipCode()
-        
+        styleLocationButtons()
     }
     
     
@@ -154,119 +152,27 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    fileprivate func styleFarmersMarkets() {
-        
-        if showFarmersMarkets {
-            
-            showFarmersMarkets = true
-            styleButtonOn(button: farmersMarketsButton)
-            
-        } else {
-            
-            showFarmersMarkets = false
-            styleButtonOff(button: farmersMarketsButton)
-            
-        }
-        
-    }
-    
-    fileprivate func styleGroceryStores() {
-        
-        if showGroceryStores {
-            
-            showGroceryStores = true
-            styleButtonOn(button: groceryStoresButton)
-            
-        } else {
-            
-            showGroceryStores = false
-            styleButtonOff(button: groceryStoresButton)
-            
-        }
-        
-    }
-    
-    //MARK: Filter Switches Code
+    //MARK: Location Switches
     @IBAction func onMyLocation(_ sender: UISwitch) {
         
         useMyLocation = !useMyLocation
-        
+        useZipCode = !useMyLocation
     }
     
     @IBAction func onUseZipeCode(_ sender: UISwitch) {
         
         useZipCode = !useZipCode
+        useMyLocation = !useZipCode
         
+        if useZipCode {
+            askForZipCode()
+        }
     }
     
-
-    
-    func enterZipCode() {
+    private func askForZipCode() {
         
-        let zipCodeAlertController = UIAlertController(title: "Zip Code", message: "Enter the zip code", preferredStyle: .alert)
-        zipCodeAlertController.addTextField { (zipCode) in
-            
-            zipCode.placeholder = " eg - 10455"
-            
-            zipCodeAlertController.addAction(UIAlertAction(title: "Go", style: .default, handler: { (action) in
-                
-                self.calculateRegionForMapView(withZipCode: zipCode.text!)
-                self.loadStoresInZipCode(at: zipCode.text!)
-            }))
-        }
-        
-        zipCodeAlertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
-            
-            zipCodeAlertController.dismiss(animated: true, completion: nil)
-        }))
-        
-        self.present(zipCodeAlertController, animated: true, completion: nil)
-        
-    }
-    
-    func loadStoresInZipCode(at zipCode: String) {
-        
-        startSpinningIndicator()
-        
-        SearchStores.searchForStoresByZipCode(withZipCode: zipCode) { (stores) in
-            
-            self.stores = self.filterStores(from: stores)
-            
-            self.main.addOperation {
-                
-                self.populateStoreAnnotations()
-                self.stopSpinningIndicator()
-                
-            }
-            
-        }
-        
-    }
-    
-    func calculateRegionForMapView(withZipCode zipCode: String) {
-        
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(zipCode) { (placemarks, error) in
-            
-            if error != nil {
-                
-                return
-            }
-            
-            if let placemark = placemarks?.first, let location = placemark.location {
-                
-                if var region = self.mapView?.region {
-                    region.center = location.coordinate
-                    region.span.longitudeDelta = 0.07
-                    region.span.latitudeDelta = 0.07
-                    self.mapView.setRegion(region, animated: true)
-                    
-                }
-                
-            }
-            
-        }
-        
+        let alert = createAlertToGetZipCode()
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
@@ -383,6 +289,49 @@ extension FilterViewController {
     
 }
 
+//MARK: Zip Code
+
+fileprivate extension FilterViewController {
+    
+    func loadStoresInZipCode(at zipCode: String) {
+        
+        startSpinningIndicator()
+        
+        SearchStores.searchForStoresByZipCode(withZipCode: zipCode) { (stores) in
+            
+            self.stores = self.filterStores(from: stores)
+            
+            self.main.addOperation {
+                
+                self.stopSpinningIndicator()
+                self.populateStoreAnnotations()
+                
+            }
+            
+        }
+        
+    }
+    
+    func calculateRegionForMapView(withZipCode zipCode: String) {
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(zipCode) { (placemarks, error) in
+            
+            if let error = error {
+                self.makeNoteThatGeoCodingFailed(zipCode: zipCode, error: error)
+            }
+            
+            if let placemark = placemarks?.first, let location = placemark.location {
+                
+                self.mapView?.setCenter(location.coordinate, animated: true)
+            }
+            
+        }
+        
+    }
+    
+}
+
 //MARK: Map View Delegate Code
 extension FilterViewController {
     
@@ -446,8 +395,68 @@ extension FilterViewController {
     
 }
 
+//MARK: Create Alert Views
+fileprivate extension FilterViewController {
+    
+    func createAlertToGetZipCode() -> UIAlertController {
+        
+        let title = "Enter Zip Code"
+        let message = "Please enter a valid zip code.(eg - 90401)"
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let go = UIAlertAction(title: "Go", style: .default) { _ in
+            
+            guard let zipCode = controller.textFields?.first?.text, zipCode.notEmpty else {
+                
+                self.makeNoteThatNoZipCodeEntered()
+                let warning = self.createAlertToWarnOfInvalidZip(zip: "")
+                self.present(warning, animated: true, completion: nil)
+                
+                return
+            }
+            
+            self.calculateRegionForMapView(withZipCode: zipCode)
+            self.loadStoresInZipCode(at: zipCode)
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(go)
+        controller.addTextField() { zipCode in
+            zipCode.placeholder = "(eg - 10455)"
+        }
+        
+        return controller
+    }
+    
+    func createAlertToWarnOfInvalidZip(zip: String) -> UIAlertController {
+        
+        let title = "Invalid Zip Code."
+        let message = "Please enter a valid zip code"
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            
+        }
+        
+        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
+            
+            let newAlert = self.createAlertToGetZipCode()
+            
+            self.present(newAlert, animated: true, completion: nil)
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(ok)
+        
+        return controller
+    }
+}
+
 //MARK: Style Menu Code
-extension FilterViewController {
+fileprivate extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {
         
@@ -469,6 +478,40 @@ extension FilterViewController {
         }
         
         UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)
+        
+    }
+    
+    func styleFarmersMarkets() {
+        
+        if showFarmersMarkets {
+            
+            styleButtonOn(button: farmersMarketsButton)
+            
+        } else {
+            
+            styleButtonOff(button: farmersMarketsButton)
+            
+        }
+        
+    }
+    
+    func styleGroceryStores() {
+        
+        if showGroceryStores {
+            
+            styleButtonOn(button: groceryStoresButton)
+            
+        } else {
+            
+            styleButtonOff(button: groceryStoresButton)
+            
+        }
+        
+    }
+    
+    func styleLocationButtons() {
+        useMyLocationSwitch.isOn = useMyLocation
+        useZipeCodeSwitch.isOn = useZipCode
         
     }
     
@@ -496,6 +539,24 @@ extension FilterViewController {
             .withPriority(.low)
             .send()
         
+    }
+    
+    func makeNoteThatNoZipCodeEntered() {
+        
+        let message = "The user entered an empty zip code"
+        LOG.info(message)
+        AromaClient.beginMessage(withTitle: "Invalid Zip Code")
+            .addBody(message)
+            .withPriority(.medium)
+            .send()
+    }
+    
+    func makeNoteThatGeoCodingFailed(zipCode: String, error: Error) {
+        
+        let message = "Failed to reverse-geocode ZipCode [\(zipCode)]. | \(error)"
+        
+        LOG.error(message)
+        AromaClient.sendHighPriorityMessage(withTitle: "ZipCode Geocode Failed", withBody: message)
     }
     
 }

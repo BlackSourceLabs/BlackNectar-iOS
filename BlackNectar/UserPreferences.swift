@@ -84,13 +84,13 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.object(forKey: Keys.useZipCode) as? Bool ?? true
+            return defaultPreferences.object(forKey: Keys.useZipCode) as? Bool ?? false
             
         }
         
         set(value){
             
-            defaultPreferences.set(value, forKey: "showUseZipCodeSwitch")
+            defaultPreferences.set(value, forKey: Keys.useZipCode)
             
         }
         

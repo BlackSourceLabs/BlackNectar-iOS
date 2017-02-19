@@ -445,6 +445,9 @@
                                                         <constraint firstAttribute="height" constant="31" id="gKM-9k-guf"/>
                                                     </constraints>
                                                     <color key="onTintColor" red="0.94064009189605713" green="0.82357114553451538" blue="0.48407512903213501" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="onMyLocation:" destination="k9s-Gt-zGD" eventType="valueChanged" id="3nc-J6-Yi9"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -482,6 +485,9 @@
                                                         <constraint firstAttribute="height" constant="31" id="pVz-n9-2kt"/>
                                                     </constraints>
                                                     <color key="onTintColor" red="0.94064009189999997" green="0.82357114549999999" blue="0.48407512899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="onUseZipeCode:" destination="k9s-Gt-zGD" eventType="valueChanged" id="OdQ-Uh-gkh"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -520,7 +526,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Zxc-HX-K3f">
-                            <rect key="frame" x="104" y="6" width="168" height="33"/>
+                            <rect key="frame" x="103.5" y="5.5" width="168" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Huw-KN-cYv">
@@ -548,6 +554,8 @@
                         <outlet property="farmersMarketsButton" destination="liB-bH-UIF" id="LiL-7W-Ow5"/>
                         <outlet property="groceryStoresButton" destination="24T-s2-CYd" id="7BA-xA-HvY"/>
                         <outlet property="mapView" destination="97t-k7-OFi" id="SSM-V6-dF8"/>
+                        <outlet property="useMyLocationSwitch" destination="Xr0-zo-RwH" id="cNQ-Lt-zJc"/>
+                        <outlet property="useZipeCodeSwitch" destination="5ot-9v-86l" id="Vvd-z7-trj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tna-hs-Zie" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -560,7 +568,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -580,7 +588,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfi-dD-UoL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="i7J-TN-6qe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="i7J-TN-6qe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

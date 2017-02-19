@@ -64,7 +64,7 @@ class UserPreferences {
         
     }
     
-    var showMyLocationSwitch: Bool {
+    var useMyLocation: Bool {
         
         get {
             
@@ -80,7 +80,7 @@ class UserPreferences {
         
     }
     
-    var showUseZipeCodeSwitch: Bool {
+    var useZipCode: Bool {
         
         get {
             

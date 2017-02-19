@@ -63,12 +63,12 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         get {
             
-            return UserPreferences.instance.showMyLocationSwitch
+            return UserPreferences.instance.useMyLocation
         }
         
         set(newValue) {
             
-            UserPreferences.instance.showMyLocationSwitch = newValue
+            UserPreferences.instance.useMyLocation = newValue
         }
         
     }
@@ -77,12 +77,12 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         get {
             
-            return UserPreferences.instance.showUseZipeCodeSwitch
+            return UserPreferences.instance.useZipCode
         }
         
         set(newValue){
             
-            UserPreferences.instance.showUseZipeCodeSwitch = newValue
+            UserPreferences.instance.useZipCode = newValue
         }
         
     }

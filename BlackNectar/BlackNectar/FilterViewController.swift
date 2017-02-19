@@ -300,6 +300,7 @@ fileprivate extension FilterViewController {
         SearchStores.searchForStoresByZipCode(withZipCode: zipCode) { (stores) in
             
             self.stores = self.filterStores(from: stores)
+            self.makeNoteThatLoadedStoresFromZipCode(stores: stores, zipCode: zipCode)
             
             self.main.addOperation {
                 
@@ -559,5 +560,11 @@ extension FilterViewController {
         AromaClient.sendHighPriorityMessage(withTitle: "ZipCode Geocode Failed", withBody: message)
     }
     
+    func makeNoteThatLoadedStoresFromZipCode(stores: [Store], zipCode: String) {
+        
+        let message = "Loaded \(stores.count) stores from Zip Code [\(zipCode)]"
+        LOG.info(message)
+        AromaClient.sendLowPriorityMessage(withTitle: "Loaded Store From Zip Code", withBody: message)
+    }
 }
 

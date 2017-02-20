@@ -153,6 +153,12 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
+    @IBAction func zipCodeButtonTapped(_ sender: CustomButtonView) {
+        
+        askForZipCode()
+        
+    }
+    
     //MARK: Location Switches
     @IBAction func onMyLocation(_ sender: UISwitch) {
         

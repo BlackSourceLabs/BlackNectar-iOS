@@ -175,6 +175,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         if useZipCode {
             askForZipCode()
+            zipCodeLabel.text? = "Zip Code: "
         }
     }
     

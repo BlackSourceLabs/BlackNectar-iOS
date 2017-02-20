@@ -447,7 +447,7 @@ fileprivate extension FilterViewController {
         controller.addTextField() { zipCode in
             zipCode.placeholder = "(eg - 10455)"
         }
-        
+    
         return controller
     }
     

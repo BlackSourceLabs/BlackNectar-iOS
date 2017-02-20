@@ -471,20 +471,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sw-n9-Zrt">
-                                                    <rect key="frame" x="28" y="18" width="98" height="25"/>
+                                                    <rect key="frame" x="28" y="18" width="96" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="6q5-5P-lOs"/>
-                                                        <constraint firstAttribute="width" constant="98" id="6rO-Xp-Xfe"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="98" id="Qol-6g-iAX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Oxygen-Regular" family="Oxygen" pointSize="16"/>
                                                     <color key="textColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5ot-9v-86l">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5ot-9v-86l">
                                                     <rect key="frame" x="275" y="15" width="51" height="31"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="49" id="9qk-s5-2Ql"/>
                                                         <constraint firstAttribute="height" constant="31" id="pVz-n9-2kt"/>
                                                     </constraints>
                                                     <color key="onTintColor" red="0.94064009189999997" green="0.82357114549999999" blue="0.48407512899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -492,10 +489,13 @@
                                                         <action selector="onUseZipeCode:" destination="k9s-Gt-zGD" eventType="valueChanged" id="OdQ-Uh-gkh"/>
                                                     </connections>
                                                 </switch>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJ5-VO-FOQ" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                    <rect key="frame" x="142" y="18" width="63" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJ5-VO-FOQ" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
+                                                    <rect key="frame" x="140" y="18" width="60" height="26"/>
                                                     <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="1i8-uZ-3PF"/>
+                                                        <constraint firstAttribute="height" constant="26" id="mgH-g6-War"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="15"/>
                                                     <state key="normal" title="90401">
                                                         <color key="titleColor" red="0.11762935670000001" green="0.1176572666" blue="0.1176275685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -506,11 +506,14 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="5ot-9v-86l" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JJ5-VO-FOQ" secondAttribute="trailing" id="2gs-E7-4HM"/>
                                                 <constraint firstItem="5Sw-n9-Zrt" firstAttribute="top" secondItem="5vP-oK-Z4K" secondAttribute="topMargin" constant="10" id="RyX-gf-xsm"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="5ot-9v-86l" secondAttribute="trailing" constant="43" id="gG5-Pp-0fh"/>
+                                                <constraint firstItem="5ot-9v-86l" firstAttribute="centerY" secondItem="5vP-oK-Z4K" secondAttribute="centerY" id="abY-eu-WQh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5ot-9v-86l" secondAttribute="trailing" constant="43" id="gG5-Pp-0fh"/>
                                                 <constraint firstItem="5Sw-n9-Zrt" firstAttribute="leading" secondItem="5vP-oK-Z4K" secondAttribute="leadingMargin" constant="20" id="gSY-c8-H2A"/>
-                                                <constraint firstItem="5Sw-n9-Zrt" firstAttribute="centerY" relation="greaterThanOrEqual" secondItem="5vP-oK-Z4K" secondAttribute="centerY" id="t6S-oy-gqZ"/>
-                                                <constraint firstItem="5ot-9v-86l" firstAttribute="centerY" secondItem="5Sw-n9-Zrt" secondAttribute="centerY" id="xsa-Ln-auD"/>
+                                                <constraint firstItem="JJ5-VO-FOQ" firstAttribute="leading" secondItem="5Sw-n9-Zrt" secondAttribute="trailing" constant="16" id="gUH-43-1Iv"/>
+                                                <constraint firstItem="5Sw-n9-Zrt" firstAttribute="centerY" secondItem="5vP-oK-Z4K" secondAttribute="centerY" id="t6S-oy-gqZ"/>
+                                                <constraint firstItem="JJ5-VO-FOQ" firstAttribute="centerY" secondItem="5ot-9v-86l" secondAttribute="centerY" id="uDj-o9-B6J"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1058658436" green="0.105891861" blue="0.1058642045" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

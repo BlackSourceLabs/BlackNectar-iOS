@@ -437,6 +437,7 @@ fileprivate extension FilterViewController {
             
             self.moveMapTo(zipCode: zipCode)
             self.loadStoresInZipCode(at: zipCode)
+            self.zipCodeButton.setTitle(zipCode, for: .normal)
             UserPreferences.instance.zipCode = zipCode
             self.useMyLocation = false
         }

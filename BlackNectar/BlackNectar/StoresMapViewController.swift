@@ -34,10 +34,6 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         return UserPreferences.instance.showStores
     }
     
-    var onlyShowOpenStores = true
-    
-    var mapViewLoaded = false
-    
     
     fileprivate let async: OperationQueue = {
         

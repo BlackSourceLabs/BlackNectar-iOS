@@ -166,7 +166,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func onGroceryStores(_ sender: UIButton) {
         
         showGroceryStores = !showGroceryStores
-        
         mapView.removeVisibleAnnotations()
         loadStores()
         
@@ -252,11 +251,14 @@ extension FilterViewController {
     
     fileprivate func loadStores() {
         
-        UserLocation.instance.requestLocation { coordinate in
+        if useMyLocation {
             
-            self.loadStoresInMapView(at: coordinate)
-            
+            UserLocation.instance.requestLocation(callback: self.loadStoresInMapView)
         }
+        else if useZipCode, zipCode.notEmpty {
+            self.loadStoresInZipCode(at: zipCode)
+        }
+        
         
     }
     

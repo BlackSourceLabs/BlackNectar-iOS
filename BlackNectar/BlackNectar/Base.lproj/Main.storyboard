@@ -486,7 +486,7 @@
                                                     </constraints>
                                                     <color key="onTintColor" red="0.94064009189999997" green="0.82357114549999999" blue="0.48407512899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
-                                                        <action selector="onUseZipeCode:" destination="k9s-Gt-zGD" eventType="valueChanged" id="OdQ-Uh-gkh"/>
+                                                        <action selector="onUseZipCode:" destination="k9s-Gt-zGD" eventType="valueChanged" id="xIX-J7-v7T"/>
                                                     </connections>
                                                 </switch>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJ5-VO-FOQ" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
@@ -573,7 +573,7 @@
                         <outlet property="groceryStoresButton" destination="24T-s2-CYd" id="7BA-xA-HvY"/>
                         <outlet property="mapView" destination="97t-k7-OFi" id="SSM-V6-dF8"/>
                         <outlet property="useMyLocationSwitch" destination="Xr0-zo-RwH" id="cNQ-Lt-zJc"/>
-                        <outlet property="useZipeCodeSwitch" destination="5ot-9v-86l" id="Vvd-z7-trj"/>
+                        <outlet property="useZipCodeSwitch" destination="5ot-9v-86l" id="Omw-YF-5yG"/>
                         <outlet property="zipCodeButton" destination="JJ5-VO-FOQ" id="7bU-z9-7gT"/>
                         <outlet property="zipCodeLabel" destination="5Sw-n9-Zrt" id="Hfs-Rg-2c8"/>
                     </connections>

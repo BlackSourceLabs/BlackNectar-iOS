@@ -42,6 +42,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set(newValue) {
             
             UserPreferences.instance.showFarmersMarkets = newValue
+            styleFarmersMarkets()
             makeNoteThatUserUpdatedShowFarmersMarket(with: newValue)
         }
     }
@@ -56,6 +57,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set(newValue) {
             
             UserPreferences.instance.showStores = newValue
+            styleGroceryStores()
             makeNoteThatUserUpdatedShowStore(with: newValue)
             
         }
@@ -156,7 +158,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func onFarmersMarkets(_ sender: UIButton) {
         
         showFarmersMarkets = !showFarmersMarkets
-        styleFarmersMarkets()
         mapView.removeVisibleAnnotations()
         loadStores()
         
@@ -165,7 +166,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func onGroceryStores(_ sender: UIButton) {
         
         showGroceryStores = !showGroceryStores
-        styleGroceryStores()
+        
         mapView.removeVisibleAnnotations()
         loadStores()
         

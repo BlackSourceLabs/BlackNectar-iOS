@@ -184,18 +184,39 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         useMyLocation = !useMyLocation
         
         if useMyLocation {
+            
             askForUserLocation()
+            zipCodeLabel.text? = "Use Zip Code"
+            zipCodeButton.isHidden = true
+            
+        } else if !useMyLocation && !useZipCode {
+            
+            askForLocationOrZipCode()
+            
         }
     }
     
-    @IBAction func onUseZipeCode(_ sender: UISwitch) {
+    @IBAction func onUseZipCode(_ sender: UISwitch) {
         
         useZipCode = !useZipCode
         
         if useZipCode {
+            
             askForZipCode()
             zipCodeLabel.text? = "Zip Code: "
+            zipCodeButton.isHidden = false
+            
+        } else if !useMyLocation && !useZipCode {
+            
+            askForLocationOrZipCode()
+            
         }
+    }
+    
+    private func askForLocationOrZipCode() {
+        
+        let alert = createAlertToSelectAnOption()
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func askForUserLocation() {

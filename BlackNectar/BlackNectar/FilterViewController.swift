@@ -393,23 +393,14 @@ fileprivate extension FilterViewController {
     
     func moveMapTo(zipCode: String) {
         
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(zipCode) { (placemarks, error) in
+        ZipCodes.locationForZipCode(zipCode: zipCode) { location in
             
-            if let error = error {
-                self.makeNoteThatGeoCodingFailed(zipCode: zipCode, error: error)
-            }
+            guard let location = location else { return }
             
-            //Pick the first placemark and center the map there.
-            if let placemark = placemarks?.first, let location = placemark.location?.coordinate {
-                
-                let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-                let region = MKCoordinateRegion(center: location, span: span)
-                self.mapView?.setRegion(region, animated: false)
-            }
-            
+            let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+            let region = MKCoordinateRegion(center: location, span: span)
+            self.mapView?.setRegion(region, animated: false)
         }
-        
     }
     
 }
@@ -729,6 +720,7 @@ fileprivate extension FilterViewController {
             .send()
         
     }
+    
     func makeNoteThatNoZipCodeEntered() {
         
         let message = "The user entered an empty zip code"
@@ -737,14 +729,6 @@ fileprivate extension FilterViewController {
             .addBody(message)
             .withPriority(.medium)
             .send()
-    }
-    
-    func makeNoteThatGeoCodingFailed(zipCode: String, error: Error) {
-        
-        let message = "Failed to reverse-geocode ZipCode [\(zipCode)]. | \(error)"
-        
-        LOG.error(message)
-        AromaClient.sendHighPriorityMessage(withTitle: "ZipCode Geocode Failed", withBody: message)
     }
     
     func makeNoteThatLoadedStoresFromZipCode(stores: [Store], zipCode: String) {

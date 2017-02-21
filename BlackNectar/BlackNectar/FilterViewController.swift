@@ -93,7 +93,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         get {
             
-            return UserPreferences.instance.zipCode!
+            return UserPreferences.instance.zipCode ?? ""
         }
         
         set(newValue) {
@@ -172,9 +172,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func zipCodeButtonTapped(_ sender: CustomButtonView) {
         
         if useZipCode {
-            
             askForZipCode()
-            
         }
     }
     
@@ -186,14 +184,13 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         if useMyLocation {
             
             askForUserLocation()
-            zipCodeLabel.text? = "Use Zip Code"
-            zipCodeButton.isHidden = true
             
         } else if !useMyLocation && !useZipCode {
             
             askForLocationOrZipCode()
-            
         }
+        
+        styleLocationButtons()
     }
     
     @IBAction func onUseZipCode(_ sender: UISwitch) {
@@ -203,14 +200,14 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         if useZipCode {
             
             askForZipCode()
-            zipCodeLabel.text? = "Zip Code: "
-            zipCodeButton.isHidden = false
             
         } else if !useMyLocation && !useZipCode {
             
             askForLocationOrZipCode()
             
         }
+        
+        styleZipCodeButton()
     }
     
     private func askForLocationOrZipCode() {
@@ -294,19 +291,27 @@ extension FilterViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        guard let region = UserLocation.instance.currentRegion else {
+        if useMyLocation, let region = UserLocation.instance.currentRegion {
             
-            LOG.error("Failed to load the Users Current Region")
+            self.mapView.setRegion(region, animated: true)
+            
+        }
+        else if useZipCode, zipCode.notEmpty {
+            
+            moveMapTo(zipCode: zipCode)
+        }
+        else {
+            LOG.warn("Could not adjust map to either Zip Code or User's Location")
             return
         }
         
-        self.mapView.setRegion(region, animated: true)
         
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         let center = mapView.centerCoordinate
+        self.currentCoordinates = center
         
         LOG.debug("User dragged Map Screen to: \(center)")
         
@@ -361,7 +366,6 @@ fileprivate extension FilterViewController {
                 
                 self.stopSpinningIndicator()
                 self.populateStoreAnnotations()
-                
             }
             
         }
@@ -377,9 +381,12 @@ fileprivate extension FilterViewController {
                 self.makeNoteThatGeoCodingFailed(zipCode: zipCode, error: error)
             }
             
-            if let placemark = placemarks?.first, let location = placemark.location {
+            //Pick the first placemark and center the map there.
+            if let placemark = placemarks?.first, let location = placemark.location?.coordinate {
                 
-                self.mapView?.setCenter(location.coordinate, animated: false)
+                let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+                let region = MKCoordinateRegion(center: location, span: span)
+                self.mapView?.setRegion(region, animated: false)
             }
             
         }
@@ -456,8 +463,8 @@ fileprivate extension FilterViewController {
     
     func createAlertToSelectAnOption() -> UIAlertController {
         
-        let title = "Select One Option"
-        let message = "You must select at least one option. By selecting an option, we can find EBT stores around you."
+        let title = "Select An Option"
+        let message = "You must select at least one option. We need a location to find EBT stores around you."
         
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -529,17 +536,18 @@ fileprivate extension FilterViewController {
             
             self.moveMapTo(zipCode: zipCode)
             self.loadStoresInZipCode(at: zipCode)
-            self.zipCodeButton.setTitle(zipCode, for: .normal)
-            UserPreferences.instance.zipCode = zipCode
+            self.zipCode = zipCode
             self.useZipCode = true
             self.useMyLocation = false
-            
+            self.styleZipCodeButton()
         }
         
         controller.addAction(cancel)
         controller.addAction(go)
+        
         controller.addTextField() { zipCode in
             zipCode.placeholder = "(eg - 10455)"
+            zipCode.keyboardType = .numberPad
         }
         
         return controller
@@ -646,12 +654,17 @@ fileprivate extension FilterViewController {
     
     func styleZipCodeButton() {
         
-        zipCodeButton.setTitle(zipCode, for: .normal)
+        useZipCodeSwitch.isOn = useZipCode
         
-        if useZipCode {
+        if useZipCode, zipCode.notEmpty {
             
-            moveMapTo(zipCode: zipCode)
-            
+            zipCodeLabel.text? = "Zip Code: "
+            zipCodeButton.isHidden = false
+            zipCodeButton.setTitle(zipCode, for: .normal)
+        }
+        else {
+            zipCodeLabel.text? = "Use Zip Code"
+            zipCodeButton.isHidden = true
         }
         
     }

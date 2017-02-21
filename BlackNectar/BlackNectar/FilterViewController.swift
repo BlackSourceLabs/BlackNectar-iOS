@@ -70,7 +70,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set(newValue) {
             
             UserPreferences.instance.useMyLocation = newValue
-            useMyLocationSwitch.isOn = newValue
+            UserPreferences.instance.useZipCode = !newValue
+            self.styleLocationButtons()
         }
     }
     
@@ -84,7 +85,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set(newValue) {
             
             UserPreferences.instance.useZipCode = newValue
-            useZipCodeSwitch.isOn = newValue
+            UserPreferences.instance.useMyLocation = !newValue
+            self.styleLocationButtons()
             
         }
     }
@@ -177,7 +179,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     }
     
     //MARK: Location Switches
-    @IBAction func onMyLocation(_ sender: UISwitch) {
+    @IBAction func onUseMyLocation(_ sender: UISwitch) {
         
         useMyLocation = !useMyLocation
         
@@ -185,12 +187,15 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             
             askForUserLocation()
             
-        } else if !useMyLocation && !useZipCode {
+        }
+        else if useZipCode {
+            refreshUsingZipCode()
+        }
+        else {
             
             askForLocationOrZipCode()
         }
         
-        styleLocationButtons()
     }
     
     @IBAction func onUseZipCode(_ sender: UISwitch) {
@@ -198,16 +203,27 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         useZipCode = !useZipCode
         
         if useZipCode {
-            
-            askForZipCode()
-            
-        } else if !useMyLocation && !useZipCode {
+            refreshUsingZipCode()
+        }
+        else if useMyLocation {
+            self.askForUserLocation()
+        }
+        else { //Neither are set
             
             askForLocationOrZipCode()
             
         }
         
-        styleZipCodeButton()
+    }
+    
+    private func refreshUsingZipCode() {
+        
+        if zipCode.isEmpty {
+            askForZipCode()
+        }
+        else {
+            self.moveMapTo(zipCode: zipCode)
+        }
     }
     
     private func askForLocationOrZipCode() {
@@ -468,7 +484,7 @@ fileprivate extension FilterViewController {
         
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let myLocationOption = UIAlertAction(title: "My Location", style: .default) { _ in
+        let myLocationOption = UIAlertAction(title: "Use My Location", style: .default) { _ in
             let alert = self.createAlertToRequestGPSPermissions()
             self.present(alert, animated: true, completion: nil)
             
@@ -646,10 +662,12 @@ fileprivate extension FilterViewController {
     }
     
     func styleLocationButtons() {
-        
+        styleMyLocationButton()
+        styleZipCodeButton()
+    }
+    
+    func styleMyLocationButton() {
         useMyLocationSwitch.isOn = useMyLocation
-        useZipCodeSwitch.isOn = useZipCode
-        
     }
     
     func styleZipCodeButton() {

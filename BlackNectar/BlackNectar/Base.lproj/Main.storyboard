@@ -430,7 +430,7 @@
                                                     <rect key="frame" x="294" y="15" width="51" height="31"/>
                                                     <color key="onTintColor" red="0.94064009189605713" green="0.82357114553451538" blue="0.48407512903213501" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
-                                                        <action selector="onMyLocation:" destination="k9s-Gt-zGD" eventType="valueChanged" id="3nc-J6-Yi9"/>
+                                                        <action selector="onUseMyLocation:" destination="k9s-Gt-zGD" eventType="valueChanged" id="ll1-eF-AA6"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>

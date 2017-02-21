@@ -613,8 +613,9 @@ fileprivate extension FilterViewController {
     func styleButtonOn(button: UIButton) {
         
         let animations = {
-            button.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77)
-            button.titleLabel?.font = Fonts.oxygenBold
+            
+            button.setTitleColor(Colors.darkSecondary, for: .normal)
+            button.backgroundColor = Colors.primaryAccent
             
         }
         
@@ -625,8 +626,9 @@ fileprivate extension FilterViewController {
     func styleButtonOff(button: UIButton) {
         
         let animations = {
+            
+            button.setTitleColor(Colors.white, for: .normal)
             button.backgroundColor = UIColor.clear
-            button.titleLabel?.font = Fonts.oxygenRegular
         }
         
         UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)

@@ -65,55 +65,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
     }
     
-    func loadStores(atZipCode zipCode: String) {
-        
-        startSpinningIndicator()
-        SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
-        
-    }
-    
-    func loadStores(atCoordinate coordinate: CLLocationCoordinate2D) {
-        
-        startSpinningIndicator()
-        SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
-        
-    }
-    
-    private func populateStores(stores: [Store]) {
-        
-        self.stores = self.filterStores(from: stores)
-        
-        self.main.addOperation {
-            
-            self.reloadSection(0)
-            self.stopSpinningIndicator()
-            self.refreshControl?.endRefreshing()
-        }
-        
-        if self.stores.isEmpty {
-
-            self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
-            
-        }
-    }
-    
-    private func filterStores(from stores: [Store]) -> [Store] {
-        
-        if showStores == showFarmersMarkets {
-            return stores
-        }
-        
-        if showStores {
-            return stores.filter() { $0.notFarmersMarket }
-        }
-        
-        if showFarmersMarkets {
-            return stores.filter() { $0.isFarmersMarket }
-        }
-        
-        return stores
-    }
-    
 }
 
 //MARK: Filter Delegate Code
@@ -224,6 +175,12 @@ extension StoresTableViewController {
     
     private func insertDistance(toStore store: Store, into cell: StoresTableViewCell) {
         
+        guard !useZipCode else {
+            cell.storeDistance.isHidden = true
+            return
+        }
+        
+        
         if let currentLocation = UserLocation.instance.currentCoordinate {
             
             var distance = 0.0
@@ -231,14 +188,16 @@ extension StoresTableViewController {
             distance = DistanceCalculation.metersToMiles(meters: distance)
             let doubleDown = Double(round(distance * 100)/100)
             
+            cell.storeDistance.isHidden = false
             cell.storeDistance.text = "\(doubleDown) miles"
+
         }
         
     }
     
 }
 
-//MARK: Pull to Refresh Code
+//MARK: Refresh Code
 extension StoresTableViewController {
     
     func setupRefreshControl() {
@@ -253,13 +212,67 @@ extension StoresTableViewController {
     
     func reloadStoreData() {
         
-        if useMyLocation, let usersCurrentLocation = UserLocation.instance.currentCoordinate {
-            loadStores(atCoordinate: usersCurrentLocation)
+        if useMyLocation {
+
+            UserLocation.instance.requestLocation(callback: self.loadStores)
         }
         else if useZipCode, zipCode.notEmpty {
             loadStores(atZipCode: zipCode)
         }
+        else {
+            //GoToFilter
+            self.goToFilters()
+        }
         
+    }
+    
+    func loadStores(atZipCode zipCode: String) {
+        
+        startSpinningIndicator()
+        SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
+        
+    }
+    
+    func loadStores(atCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        startSpinningIndicator()
+        SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
+        
+    }
+    
+    private func populateStores(stores: [Store]) {
+        
+        self.stores = self.filterStores(from: stores)
+        
+        self.main.addOperation {
+            
+            self.reloadSection(0)
+            self.stopSpinningIndicator()
+            self.refreshControl?.endRefreshing()
+        }
+        
+        if self.stores.isEmpty {
+            
+            self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
+            
+        }
+    }
+    
+    private func filterStores(from stores: [Store]) -> [Store] {
+        
+        if showStores == showFarmersMarkets {
+            return stores
+        }
+        
+        if showStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
     }
     
 }
@@ -309,8 +322,13 @@ extension StoresTableViewController {
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         
-        performSegue(withIdentifier: "filterSegue", sender: nil)
+        goToFilters()
         
+    }
+    
+    func goToFilters() {
+        
+        performSegue(withIdentifier: "filterSegue", sender: nil)
     }
     
 }

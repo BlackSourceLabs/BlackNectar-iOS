@@ -564,8 +564,21 @@ fileprivate extension FilterViewController {
     }
     
     func styleLocationButtons() {
+        
         useMyLocationSwitch.isOn = useMyLocation
-        useZipeCodeSwitch.isOn = useZipCode
+        useZipCodeSwitch.isOn = useZipCode
+        
+    }
+    
+    func styleZipCodeButton() {
+        
+        zipCodeButton.setTitle(zipCode, for: .normal)
+        
+        if useZipCode {
+            
+            moveMapTo(zipCode: zipCode)
+            
+        }
         
     }
     

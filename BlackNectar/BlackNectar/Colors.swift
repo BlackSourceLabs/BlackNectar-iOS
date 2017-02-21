@@ -12,6 +12,12 @@ import UIKit
 //TODO: Replace this class with RedRomaColors to minimize Code Duplication
 public class Colors {
     
+    
+    static let primaryAccent = from(hexString: "#EBBF4D")!
+    static let darkPrimary = from(hexString: "#222222")!
+    static let darkSecondary = from(hexString: "#1B1B1B")!
+    static let white = fromRGB(red: 255, green: 255, blue: 255)
+    
     static func fromRGB(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         
         return fromRGBA(red: red, green: green, blue: blue, alpha: 100)

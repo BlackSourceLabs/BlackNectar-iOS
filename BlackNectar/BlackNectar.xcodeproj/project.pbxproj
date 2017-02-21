@@ -69,6 +69,7 @@
 		32FE5A4D1E597E0700B61709 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE5A4C1E597E0700B61709 /* CustomLabelView.swift */; };
 		36289FB81E2FEEA300FCA6E1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36289FB71E2FEEA300FCA6E1 /* UserPreferences.swift */; };
 		36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */; };
+		DE05FFC91E5CF825005BADEB /* ZipCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE05FFC81E5CF825005BADEB /* ZipCodes.swift */; };
 		DE80BFEE1E56926300449144 /* UITableViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFED1E56926300449144 /* UITableViewControllers+.swift */; };
 		DE80BFF11E5693A800449144 /* FilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFF01E5693A800449144 /* FilterViewControllerTests.swift */; };
 		DE80BFF31E57689D00449144 /* Locations+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFF21E57689D00449144 /* Locations+.swift */; };

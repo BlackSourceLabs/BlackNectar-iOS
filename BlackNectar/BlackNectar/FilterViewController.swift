@@ -26,7 +26,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var farmersMarketsButton: UIButton!
     @IBOutlet weak var groceryStoresButton: UIButton!
     @IBOutlet weak var useMyLocationSwitch: UISwitch!
-    @IBOutlet weak var useZipeCodeSwitch: UISwitch!
+    @IBOutlet weak var useZipCodeSwitch: UISwitch!
     @IBOutlet weak var zipCodeButton: CustomButtonView!
     @IBOutlet weak var zipCodeLabel: UILabel!
     

@@ -30,7 +30,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var zipCodeButton: CustomButtonView!
     @IBOutlet weak var zipCodeLabel: UILabel!
     
-    
     var currentCoordinates: CLLocationCoordinate2D?
     
     var showFarmersMarkets: Bool {
@@ -45,7 +44,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             UserPreferences.instance.showFarmersMarkets = newValue
             makeNoteThatUserUpdatedShowFarmersMarket(with: newValue)
         }
-        
     }
     
     var showGroceryStores: Bool {
@@ -59,7 +57,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             
             UserPreferences.instance.showStores = newValue
             makeNoteThatUserUpdatedShowStore(with: newValue)
-        
+            
         }
     }
     
@@ -70,6 +68,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         }
         
         set(newValue) {
+            
             UserPreferences.instance.useMyLocation = newValue
             useMyLocationSwitch.isOn = newValue
         }
@@ -85,9 +84,24 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         set(newValue) {
             
             UserPreferences.instance.useZipCode = newValue
-            useZipeCodeSwitch.isOn = newValue
+            useZipCodeSwitch.isOn = newValue
+            
+        }
+    }
+    
+    var zipCode: String {
+        
+        get {
+            
+            return UserPreferences.instance.zipCode!
         }
         
+        set(newValue) {
+            
+            UserPreferences.instance.zipCode = newValue
+            zipCodeButton.setTitle(newValue, for: .normal)
+            
+        }
     }
     
     var delegate: FilterDelegate?

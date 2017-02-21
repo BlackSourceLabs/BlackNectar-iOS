@@ -16,7 +16,7 @@ import UIKit
 
 protocol FilterDelegate {
     
-    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool)
+    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String)
     
 }
 
@@ -145,7 +145,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     //MARK: Cancel Button Code
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         
-        self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores)
+        self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores, zipCode: self.zipCode)
         self.dismiss(animated: true, completion: nil)
         
     }

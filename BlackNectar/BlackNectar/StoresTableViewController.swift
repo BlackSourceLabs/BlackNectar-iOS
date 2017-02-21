@@ -135,7 +135,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
 //MARK: Filter Delegate Code
 extension StoresTableViewController {
     
-    func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool) {
+    func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String) {
         
         if let currentLocation = UserLocation.instance.currentCoordinate {
             loadStores(at: currentLocation)

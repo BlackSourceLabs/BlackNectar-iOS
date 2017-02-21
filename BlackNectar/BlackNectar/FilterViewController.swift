@@ -137,6 +137,8 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         styleGroceryStores()
         styleFarmersMarkets()
         styleLocationButtons()
+        styleZipCodeButton()
+        
     }
     
     
@@ -169,8 +171,11 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
     @IBAction func zipCodeButtonTapped(_ sender: CustomButtonView) {
         
-        askForZipCode()
-        
+        if useZipCode {
+            
+            askForZipCode()
+            
+        }
     }
     
     //MARK: Location Switches

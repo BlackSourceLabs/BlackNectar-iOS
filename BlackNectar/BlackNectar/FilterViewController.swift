@@ -191,7 +191,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         self.present(alert, animated: true, completion: nil)
     }
     
-    
 }
 
 //MARK: Loads Stores into Map View and when User Pans
@@ -307,7 +306,6 @@ extension FilterViewController {
 }
 
 //MARK: Zip Code
-
 fileprivate extension FilterViewController {
     
     func loadStoresInZipCode(at zipCode: String) {
@@ -416,6 +414,55 @@ extension FilterViewController {
 //MARK: Create Alert Views
 fileprivate extension FilterViewController {
     
+    func createAlertToSelectAnOption() -> UIAlertController {
+        
+        let title = "Select One Option"
+        let message = "You must select at least one option. By selecting an option, we can find EBT stores around you."
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let myLocationOption = UIAlertAction(title: "My Location", style: .default) { _ in
+            let alert = self.createAlertToRequestGPSPermissions()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        let zipCodeOption = UIAlertAction(title: "Use Zip Code", style: .default) { _ in
+            let alert = self.createAlertToGetZipCode()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        controller.addAction(myLocationOption)
+        controller.addAction(zipCodeOption)
+        
+        return controller
+    }
+    
+    func createAlertToRequestGPSPermissions() -> UIAlertController {
+        
+        let title = "Requesting GPS Access"
+        let message = "By granting us access, we can find EBT stores around you."
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            let alert = self.createAlertToSelectAnOption()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
+            
+            self.requestGPSAccess()
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(ok)
+        
+        return controller
+    }
+    
     func createAlertToGetZipCode() -> UIAlertController {
         
         let title = "Enter Zip Code"
@@ -423,7 +470,12 @@ fileprivate extension FilterViewController {
         
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            let alert = self.createAlertToSelectAnOption()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
         let go = UIAlertAction(title: "Go", style: .default) { _ in
             
             guard let zipCode = controller.textFields?.first?.text, zipCode.notEmpty else {
@@ -439,7 +491,9 @@ fileprivate extension FilterViewController {
             self.loadStoresInZipCode(at: zipCode)
             self.zipCodeButton.setTitle(zipCode, for: .normal)
             UserPreferences.instance.zipCode = zipCode
+            self.useZipCode = true
             self.useMyLocation = false
+            
         }
         
         controller.addAction(cancel)
@@ -447,7 +501,7 @@ fileprivate extension FilterViewController {
         controller.addTextField() { zipCode in
             zipCode.placeholder = "(eg - 10455)"
         }
-    
+        
         return controller
     }
     
@@ -459,6 +513,7 @@ fileprivate extension FilterViewController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.useZipCode = false
             
         }
         
@@ -475,28 +530,6 @@ fileprivate extension FilterViewController {
         return controller
     }
     
-    func createAlertToRequestGPSPermissions() -> UIAlertController {
-        
-        let title = "Requesting GPS Access"
-        let message = "By granting us access, we can find EBT stores around you."
-        
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.useMyLocation = false
-        }
-        
-        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
-            
-            self.requestGPSAccess()
-        }
-        
-        controller.addAction(cancel)
-        controller.addAction(ok)
-        
-        return controller
-    }
-    
     func requestGPSAccess() {
         
         UserLocation.instance.requestLocation() { location in
@@ -505,6 +538,7 @@ fileprivate extension FilterViewController {
             self.useMyLocation = true
             self.mapView?.setCenter(location, animated: false)
             self.useZipCode = false
+            
         }
     }
 }
@@ -643,5 +677,6 @@ fileprivate extension FilterViewController {
         LOG.info(message)
         AromaClient.sendLowPriorityMessage(withTitle: "Loaded Store From Zip Code", withBody: message)
     }
+    
 }
 

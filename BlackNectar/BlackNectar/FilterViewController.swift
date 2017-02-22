@@ -627,18 +627,28 @@ fileprivate extension FilterViewController {
         return controller
     }
     
+    func createAlertToSendUserToSettings() -> UIAlertController {
+        
+        let title = "Requesting GPS Access"
+        let message = "Please go to \"Location\" and enable \"While Using the App\""
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "Open Settings", style: .default) { _ in
+            self.senduserToSettings()
+        }
+        
+        controller.addAction(ok)
+        
+        return controller
+    }
+    
     func requestGPSAccess() {
         
         if let status = UserLocation.instance.currentStatus, status == .denied {
             
-            let link = UIApplicationOpenSettingsURLString
-            
-            guard let url = URL(string: link) else {
-                LOG.error("Failed to create URL to \(link)")
-                return
-            }
-            
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            let alert = createAlertToSendUserToSettings()
+            self.present(alert, animated: true, completion: nil)
             useMyLocation = false
             return
         }
@@ -651,6 +661,19 @@ fileprivate extension FilterViewController {
             self.useZipCode = false
             
         }
+    }
+    
+    private func senduserToSettings() {
+        
+        let link = UIApplicationOpenSettingsURLString
+        
+        guard let url = URL(string: link) else {
+            LOG.error("Failed to create URL to \(link)")
+            return
+        }
+        
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
     }
 }
 

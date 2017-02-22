@@ -77,7 +77,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -396,6 +396,9 @@
                                                         <constraint firstAttribute="height" constant="44" id="AbF-hV-qPy"/>
                                                     </constraints>
                                                     <state key="normal" image="GPS-Full@3x.png"/>
+                                                    <connections>
+                                                        <action selector="findMeButton:" destination="k9s-Gt-zGD" eventType="touchUpInside" id="nhx-ih-NSN"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

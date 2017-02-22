@@ -160,6 +160,19 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
+    //MARK: Map Button Code
+    @IBAction func findMeButton(_ sender: UIButton) {
+        
+        if useMyLocation {
+            
+            requestGPSAccess()
+        }
+        else if useZipCode {
+            
+            askForUserLocation()
+        }
+    }
+    
     //MARK: Filter Buttons Code
     @IBAction func onFarmersMarkets(_ sender: UIButton) {
         

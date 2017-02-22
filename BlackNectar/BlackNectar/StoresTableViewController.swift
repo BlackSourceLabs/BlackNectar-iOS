@@ -209,6 +209,7 @@ extension StoresTableViewController {
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
+   
     
     func reloadStoreData() {
         

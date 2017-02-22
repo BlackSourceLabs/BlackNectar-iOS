@@ -218,7 +218,9 @@ extension StoresTableViewController {
             UserLocation.instance.requestLocation(callback: self.loadStores)
         }
         else if useZipCode, zipCode.notEmpty {
+            
             loadStores(atZipCode: zipCode)
+            
         }
         else {
             //GoToFilter
@@ -317,7 +319,7 @@ extension StoresTableViewController {
     
     @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
         
-        performSegue(withIdentifier: "mapViewSegue", sender: nil)
+        goToMapView()
         
     }
     
@@ -330,6 +332,10 @@ extension StoresTableViewController {
     func goToFilters() {
         
         performSegue(withIdentifier: "filterSegue", sender: nil)
+    }
+    
+    func goToMapView() {
+        performSegue(withIdentifier: "mapViewSegue", sender: nil)
     }
     
 }

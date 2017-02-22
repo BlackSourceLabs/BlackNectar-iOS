@@ -147,7 +147,13 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
     
     //MARK: Cancel Button Code
-    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
+        
+        guard useZipCode || useMyLocation else {
+            let alert = createAlertToSelectAnOption()
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         
         self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores, zipCode: self.zipCode)
         self.dismiss(animated: true, completion: nil)

@@ -339,7 +339,7 @@ extension FilterViewController {
         
         if useMyLocation, let region = UserLocation.instance.currentRegion {
             
-            self.mapView.setRegion(region, animated: true)
+            self.mapView.setRegion(region, animated: false)
             
         }
         else if useZipCode, zipCode.notEmpty {
@@ -347,8 +347,15 @@ extension FilterViewController {
             moveMapTo(zipCode: zipCode)
         }
         else {
-            LOG.warn("Could not adjust map to either Zip Code or User's Location")
-            return
+            
+            UserLocation.instance.requestLocation() { location in
+                
+                if let region = UserLocation.instance.currentRegion {
+                    self.mapView.setRegion(region, animated: false)
+                }
+                
+                self.useMyLocation = true
+            }
         }
         
         

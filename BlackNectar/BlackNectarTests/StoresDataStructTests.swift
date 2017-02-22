@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 1/17/17.
-//  Copyright © 2017 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 @testable import BlackNectar
@@ -48,7 +48,7 @@ class StoresDataStructTests: XCTestCase {
                                             restaurantAddress : "11943 W Ventura blvd",
                                             storeImage : "What a beautiful picture"]
         
-        let result = StoresInfo.fromJson(dictionary: restaurantInfo)
+        let result = Store.getStoreJsonData(from: restaurantInfo)
         XCTAssertTrue(result != nil)
     }
     

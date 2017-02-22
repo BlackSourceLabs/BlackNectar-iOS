@@ -3,7 +3,7 @@
 //  BlackNectarUITests
 //
 //  Created by Cordero Hernandez on 11/19/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import XCTest

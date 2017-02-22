@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 11/28/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Archeota
@@ -12,24 +12,31 @@ import CoreLocation
 import Foundation
 import Kingfisher
 import MapKit
-import SWRevealController
 import UIKit
 
-
-//TODO: Integrate with Carthage
-
-class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, UIGestureRecognizerDelegate {
+class StoresTableViewController: UITableViewController, FilterDelegate, UIGestureRecognizerDelegate {
     
-    var stores: [StoresInfo] = []
+    var showFarmersMarkets: Bool {
+        return UserPreferences.instance.showFarmersMarkets
+    }
     
-    var filteredStores: [StoresInfo] = []
+    var showStores: Bool {
+        return UserPreferences.instance.showStores
+    }
     
-    var distanceFilter = 0.0
-    var showFarmersMarkets = true
-    var showStores = true
-    var onlyShowOpenStores = true
-    var panningWasTriggered = false
-    let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
+    var useMyLocation: Bool {
+        return UserPreferences.instance.useMyLocation
+    }
+    
+    var useZipCode: Bool {
+        return UserPreferences.instance.useZipCode
+    }
+    
+    var zipCode: String {
+        return UserPreferences.instance.zipCode ?? ""
+    }
+    
+    var stores: [Store] = []
     
     let async: OperationQueue = {
         
@@ -46,147 +53,27 @@ class StoresTableViewController: UITableViewController, SideMenuFilterDelegate, 
         super.viewDidLoad()
         
         UserLocation.instance.initialize()
-        configureSideMenu()
         setupRefreshControl()
-        loadDefaultValues()
-        
-        UserLocation.instance.requestLocation() { coordinate in
-            self.loadStores(at: coordinate)
-        }
-        
+        reloadStoreData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        setEdgeGesture()
-        
+        super.viewDidAppear(animated)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func onFilterTapped(_ sender: Any) {
-        
-        if let revealController = self.revealViewController() {
-            revealController.revealToggle(animated: true)
-        }
-    }
-    
-    func loadStores(at coordinate: CLLocationCoordinate2D) {
-        
-        networkLoadingIndicatorIsSpinning()
-        
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: distanceFilter)
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
-            
-            self.stores = self.filterStoresFrom(stores: stores)
-            
-            self.main.addOperation {
-                
-                self.tableView.reloadData()
-                
-                self.networkLoadingIndicatorIsNotSpinning()
-                self.refreshControl?.endRefreshing()
-                
-            }
-            
-            if self.stores.isEmpty {
-                
-                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
-                
-            }
-            
-        }
-        
-    }
-    
-    private func filterStoresFrom(stores: [StoresInfo]) -> [StoresInfo] {
-        
-        if showStores == showFarmersMarkets {
-            return stores
-        }
-        
-        if showStores {
-            return stores.filter() { $0.notFarmersMarket }
-        }
-        
-        if showFarmersMarkets {
-            return stores.filter() { $0.isFarmersMarket }
-        }
-        
-        return stores
-    }
-    
-    func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
-        
-        let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
-        let scale = KingfisherOptionsInfoItem.scaleFactor(UIScreen.main.scale * 2)
-        let options: KingfisherOptionsInfo = [fade, scale]
-        
-        cell.storeImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
-        
-    }
 }
 
-//MARK: Side Menu Filter Delegate Code
+//MARK: Filter Delegate Code
 extension StoresTableViewController {
     
-    fileprivate func configureSideMenu() {
-        
-        guard let menu = self.revealViewController() else { return }
-        adjustWidth(menu: menu)
-        
-        if let gesture = menu.panGestureRecognizer() {
-            self.view.addGestureRecognizer(gesture)
-            
-        }
-        
-        guard let sideMenu = menu.rearViewController as? SideMenuFilterViewController else { return }
-        sideMenu.delegate = self
+    func didDismissFilter(_: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String) {
         
     }
     
-    private func adjustWidth(menu: SWRevealViewController) {
-        let width = self.view.frame.width * 0.85
-        menu.rearViewRevealWidth = width
-    }
-    
-    func didOpenFilterMenu() {
-        disconnectEdgeGesture()
-        makeNoteThatFilterMenuOpened()
-    }
-    
-    func didCloseFilterMenu() {
-        reconnectEdgeGesture()
-    }
-    
-    func didApplyFilters(_ filter: SideMenuFilterViewController, farmersMarkets: Bool, stores: Bool, openNow: Bool, distanceInMiles: Int) {
+    func didUpdateFilter(_: FilterViewController, farmersMarket: Bool, groceryStores: Bool, useMyLocation: Bool, useZipCode: Bool, zipCode: String?) {
         
-        showFarmersMarkets = farmersMarkets
-        showStores = stores
-        onlyShowOpenStores = openNow
-        distanceFilter = Double(distanceInMiles)
+        reloadStoreData()
         
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            loadStores(at: currentLocation)
-            
-        }
-        
-    }
-    
-    func didCancelFilters() {
-        makeNoteThatFilterMenuCancelled()
-    }
-    
-    private func disconnectEdgeGesture() {
-        self.view.removeGestureRecognizer(edgePanGestureRecognizer)
-    }
-    
-    private func reconnectEdgeGesture() {
-        self.view.addGestureRecognizer(edgePanGestureRecognizer)
     }
     
 }
@@ -214,38 +101,24 @@ extension StoresTableViewController {
             
         }
         
-        let store = stores[indexPath.row]
-        var addressString = ""
+        let row = indexPath.row
         
-        
-        if let currentLocation = UserLocation.instance.currentCoordinate {
-            
-            var distance = 0.0
-            distance = DistanceCalculation.getDistance(userLocation: currentLocation, storeLocation: store.location)
-            distance = DistanceCalculation.metersToMiles(meters: distance)
-            let doubleDown = Double(round(distance * 100)/100)
-            
-            cell.storeDistance.text = "\(doubleDown) miles"
+        guard stores.isInBounds(index: row) else {
+            LOG.warn("Received Out of Bounds Index: \(row)")
+            return cell
         }
         
+        let store = stores[row]
         
-        //WTF IS THIS? FUNCTION PLEASE
-        //Call it, combine addresses
-        //PLEASE 🙏🏽
-        addressString = (store.address["address_line_1"] as? String)! + "\n" + (store.address["city"] as? String)! + ", " + (store.address["state"] as? String)!
-        
+        insertDistance(toStore: store, into: cell)
         goLoadImage(into: cell, withStore: store.storeImage)
+        insertAddress(into: cell, withStore: store)
+        
         cell.storeName.text = store.storeName
-        cell.storeAddress.text = addressString
         cell.onGoButtonPressed = { cell in
             
             self.navigateWithDrivingDirections(toStore: store)
-            
-            AromaClient.beginMessage(withTitle: "User tapped on \(cell.storeName.text ?? "") go button")
-                .addBody("User navigated to \(cell.storeName.text ?? "")\n\(cell.storeAddress.text ?? "")\n(Table View)")
-                .withPriority(.medium)
-                .send()
-            
+            self.makeNoteThatUserTapped(on: store)
         }
         
         return cell
@@ -260,8 +133,9 @@ extension StoresTableViewController {
         let index = indexPath.row
         guard stores.isInBounds(index: index) else { return }
         
-        let store = stores[indexPath.row]
+        let store = stores[index]
         self.navigateWithDrivingDirections(toStore: store)
+        self.makeNoteThatUserTapped(on: store)
         
     }
     
@@ -269,44 +143,139 @@ extension StoresTableViewController {
         
         let cellAnimation = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)
         cell.alpha = 0
+        cell.layer.transform = cellAnimation
         
-        self.main.addOperation {
+        UIView.animate(withDuration: 0.5) {
+            cell.alpha = 1.0
+            cell.layer.transform = CATransform3DIdentity
             
-            cell.layer.transform = cellAnimation
+        }
+        
+    }
+    
+    private func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
+        
+        let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
+        let scale = KingfisherOptionsInfoItem.scaleFactor(UIScreen.main.scale * 2)
+        let options: KingfisherOptionsInfo = [fade, scale]
+        
+        cell.storeImage.kf.setImage(with: url, placeholder: nil, options: options, progressBlock: nil, completionHandler: nil)
+        
+    }
+    
+    private func insertAddress(into cell: StoresTableViewCell, withStore store: Store) {
+        
+        let street = store.address.addressLineOne
+        let city = store.address.city
+        let state = store.address.state
+        
+        cell.storeAddress.text = street + "\n" + city + ", " + state
+        
+    }
+    
+    private func insertDistance(toStore store: Store, into cell: StoresTableViewCell) {
+        
+        guard !useZipCode else {
+            cell.storeDistance.isHidden = true
+            return
+        }
+        
+        
+        if let currentLocation = UserLocation.instance.currentCoordinate {
             
-            UIView.animate(withDuration: 0.5) {
-                cell.alpha = 1.0
-                cell.layer.transform = CATransform3DIdentity
-                
-            }
+            var distance = 0.0
+            distance = DistanceCalculation.getDistance(userLocation: currentLocation, storeLocation: store.location)
+            distance = DistanceCalculation.metersToMiles(meters: distance)
+            let doubleDown = Double(round(distance * 100)/100)
             
+            cell.storeDistance.isHidden = false
+            cell.storeDistance.text = "\(doubleDown) miles"
+
         }
         
     }
     
 }
 
-//MARK: Pull to Refresh Code
+//MARK: Refresh Code
 extension StoresTableViewController {
     
     func setupRefreshControl() {
         
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.black
-        refreshControl?.tintColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
+        refreshControl?.tintColor = UIColor .init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
         
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
+   
     
     func reloadStoreData() {
         
-        if let usersCurrentLocation = UserLocation.instance.currentCoordinate {
+        if useMyLocation {
+
+            UserLocation.instance.requestLocation(callback: self.loadStores)
+        }
+        else if useZipCode, zipCode.notEmpty {
             
-            loadStores(at: usersCurrentLocation)
+            loadStores(atZipCode: zipCode)
             
         }
+        else {
+            //GoToFilter
+            self.goToFilters()
+        }
         
+    }
+    
+    func loadStores(atZipCode zipCode: String) {
+        
+        startSpinningIndicator()
+        SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
+        
+    }
+    
+    func loadStores(atCoordinate coordinate: CLLocationCoordinate2D) {
+        
+        startSpinningIndicator()
+        SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
+        
+    }
+    
+    private func populateStores(stores: [Store]) {
+        
+        self.stores = self.filterStores(from: stores)
+        
+        self.main.addOperation {
+            
+            self.reloadSection(0)
+            self.stopSpinningIndicator()
+            self.refreshControl?.endRefreshing()
+        }
+        
+        if self.stores.isEmpty {
+            
+            self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
+            
+        }
+    }
+    
+    private func filterStores(from stores: [Store]) -> [Store] {
+        
+        if showStores == showFarmersMarkets {
+            return stores
+        }
+        
+        if showStores {
+            return stores.filter() { $0.notFarmersMarket }
+        }
+        
+        if showFarmersMarkets {
+            return stores.filter() { $0.isFarmersMarket }
+        }
+        
+        return stores
     }
     
 }
@@ -314,7 +283,7 @@ extension StoresTableViewController {
 //MARK: Navigation Code
 extension StoresTableViewController {
     
-    internal func navigateWithDrivingDirections(toStore store: StoresInfo) {
+    internal func navigateWithDrivingDirections(toStore store: Store) {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         
@@ -333,105 +302,41 @@ extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "mapViewSegue" {
+        if let destination = segue.destination as? UINavigationController {
             
-            let destination = segue.destination as? StoresMapViewController
-            
-            destination?.distance = distanceFilter
-            destination?.onlyShowOpenStores = self.onlyShowOpenStores
-            destination?.showFarmersMarkets = self.showFarmersMarkets
-            destination?.showStores = self.showStores
-            destination?.stores = self.stores
+            let storesMapViewController = destination.topViewController as? StoresMapViewController
+            storesMapViewController?.stores = self.stores
             
         }
+        
+        if let destination = segue.destination as? UINavigationController {
+            
+            let filterViewController = destination.topViewController as? FilterViewController
+            filterViewController?.delegate = self
+            
+        }
+        
     }
     
-    @IBAction func mapButtonTapped(_ sender: Any) {
+    @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
         
+        goToMapView()
+        
+    }
+    
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
+        
+        goToFilters()
+        
+    }
+    
+    func goToFilters() {
+        
+        performSegue(withIdentifier: "filterSegue", sender: nil)
+    }
+    
+    func goToMapView() {
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
-        
-    }
-    
-}
-
-//MARK: User Preferences Code
-extension StoresTableViewController {
-    
-    func loadDefaultValues() {
-        
-        onlyShowOpenStores = UserPreferences.instance.isOpenNow
-        showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        distanceFilter = UserPreferences.instance.distanceFilter
-        showStores = UserPreferences.instance.isStore
-        
-    }
-    
-}
-
-//MARK: UI Screen Pan Gesture Code
-extension StoresTableViewController {
-    
-    func setEdgeGesture() {
-        
-        edgePanGestureRecognizer.addTarget(self, action: #selector(self.handleRightEdge(gesture:)))
-        edgePanGestureRecognizer.edges = .right
-        edgePanGestureRecognizer.delegate = self
-        
-        self.view.addGestureRecognizer(edgePanGestureRecognizer)
-        
-    }
-    
-    func handleRightEdge(gesture: UIScreenEdgePanGestureRecognizer) {
-        
-        switch gesture.state {
-            
-            case .began, .changed:
-                setGestureProperties()
-            
-            case .cancelled, .failed:
-                panningWasTriggered = false
-            
-        default: break
-            
-        }
-        
-    }
-    
-    func setGestureProperties() {
-        
-        if !panningWasTriggered {
-            
-            let threshold: CGFloat = 30
-            let translation = abs(edgePanGestureRecognizer.translation(in: view).x)
-            
-            if translation >= threshold {
-                
-                performSegue(withIdentifier: "mapViewSegue", sender: nil)
-                
-                panningWasTriggered = true
-                
-            }
-            
-        }
-        
-    }
-
-}
-
-//MARK: Network Loading Indicator Code
-fileprivate extension StoresTableViewController {
-    
-    
-    func networkLoadingIndicatorIsSpinning() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-    }
-    
-    func networkLoadingIndicatorIsNotSpinning() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
     }
     
 }
@@ -442,9 +347,9 @@ fileprivate extension StoresTableViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        LOG.warn("There are no stores around the users location")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("There are no stores around the users location (Stores loading result is 0 :\(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         
@@ -453,15 +358,26 @@ fileprivate extension StoresTableViewController {
     func makeNoteThatFilterMenuOpened() {
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
-        LOG.info("Filter Opened")
+        LOG.debug("Filter Opened")
         
     }
     
     func makeNoteThatFilterMenuCancelled() {
         
         AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
-        LOG.info("Cancelling Filter")
+        LOG.debug("Cancelling Filter")
         
+    }
+    
+    func makeNoteThatUserTapped(on store: Store) {
+        
+        LOG.debug("User tapped on Store: \(store)")
+        
+        AromaClient.beginMessage(withTitle: "User Tapped On Store ")
+            .addBody("From the StoresTableViewController").addLine(2)
+            .addBody("User navigated to \(store.storeName)\n\n\(store)")
+            .withPriority(.medium)
+            .send()
     }
     
 }

@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 11/19/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Archeota
@@ -21,19 +21,31 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     var currentCoordinates: CLLocationCoordinate2D?
     
-    var stores: [StoresInfo] = []
+    var stores: [Store] = []
     
     var selectedPin: MKPlacemark?
     var distance = 0.0
     
-    var showFarmersMarkets = true
-    var showStores = true
-    var onlyShowOpenStores = true
+    var showFarmersMarkets: Bool {
+        return UserPreferences.instance.showFarmersMarkets
+    }
     
-    var mapViewLoaded = false
+    var showStores: Bool {
+        return UserPreferences.instance.showStores
+    }
     
+    var useMyLocation: Bool {
+        return UserPreferences.instance.useMyLocation
+    }
     
-    typealias Callback = ([StoresInfo]) -> ()
+    var useZipCode: Bool {
+        return UserPreferences.instance.useZipCode
+    }
+    
+    var zipCode: String {
+        return UserPreferences.instance.zipCode ?? ""
+    }
+    
     
     fileprivate let async: OperationQueue = {
         
@@ -51,28 +63,18 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
         prepareMapView()
         loadStores()
-        userLocationInfoForAroma()
+        makeNoteThatUserEnteredMapView()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadUserDefaults()
     }
     
-    private func loadUserDefaults() {
-        self.showFarmersMarkets = UserPreferences.instance.isFarmersMarket
-        self.showStores = UserPreferences.instance.isStore
-    }
-    
-    private func loadStores() {
+    @IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
         
-        UserLocation.instance.requestLocation() { coordinate in
-            
-            self.loadStoresInMapView(at: coordinate)
-            
-        }
+        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -81,50 +83,80 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        guard let region = UserLocation.instance.currentRegion else {
+        if useMyLocation, let region = UserLocation.instance.currentRegion {
             
-            LOG.error("Failed to Update the Users Current Region")
-            return
+            self.mapView.setRegion(region, animated: true)
+        }
+        else if useZipCode {
+            
+            ZipCodes.locationForZipCode(zipCode: zipCode) { location in
+                
+                guard let location = location else { return }
+                
+                let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+                let region = MKCoordinateRegion(center: location, span: span)
+                self.mapView?.setRegion(region, animated: false)
+            }
             
         }
+        else {
+            //Let the user explore the map on their own
+        }
         
-        self.mapView.setRegion(region, animated: true)
         
     }
     
 }
 
 //MARK: Loading Stores Into mapView
-extension StoresMapViewController {
+fileprivate extension StoresMapViewController {
     
-    func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
+    func loadStores() {
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        let distanceInMeters = DistanceCalculation.milesToMeters(miles: Double(distance))
-        
-        SearchStores.searchForStoresLocations(near: coordinate, with: distanceInMeters) { stores in
+        if useMyLocation {
             
-            self.stores = self.filterStores(stores: stores)
+            UserLocation.instance.requestLocation(callback: self.loadStoresAtCoordinate)
+       
+        }
+        else if useZipCode, zipCode.notEmpty {
             
-            self.main.addOperation {
-                
-                self.populateStoreAnnotations()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                
-            }
-            
-            if self.stores.isEmpty {
-                
-                self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Map View")
-                
-            }
+            self.loadStoresAtZipCode(zipCode: zipCode)
             
         }
+    }
+    
+    func loadStoresAtCoordinate(coordinate: CLLocationCoordinate2D) {
+        
+        startSpinningIndicator()
+        SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
         
     }
     
-    private func filterStores(stores: [StoresInfo]) -> [StoresInfo] {
+    func loadStoresAtZipCode(zipCode: String) {
+        
+        startSpinningIndicator()
+        SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
+    }
+    
+    private func populateStores(stores: [Store]) {
+        
+        self.stores = self.filterStores(from: stores)
+        
+        self.main.addOperation {
+            
+            self.populateStoreAnnotations()
+            self.stopSpinningIndicator()
+            
+        }
+        
+        if self.stores.isEmpty {
+            
+            self.makeNoteThatNoStoresFound(additionalMessage: "(MapView)")
+            
+        }
+    }
+    
+    private func filterStores(from stores: [Store]) -> [Store] {
         
         if showStores == showFarmersMarkets {
             return stores
@@ -139,6 +171,7 @@ extension StoresMapViewController {
         }
         
         return stores
+        
     }
     
     func populateStoreAnnotations() {
@@ -153,12 +186,12 @@ extension StoresMapViewController {
         
         mapView.addAnnotations(annotations)
         mapView.removeNonVisibleAnnotations()
+        
     }
     
-    func createAnnotation(forStore store: StoresInfo) -> CustomAnnotation {
+    func createAnnotation(forStore store: Store) -> CustomAnnotation {
         
         let storeName = store.storeName
-        let address = store.address.allValues
         let location = store.location
         
         let latitude = location.latitude
@@ -167,8 +200,8 @@ extension StoresMapViewController {
         let annotation = CustomAnnotation(name: storeName, latitude: latitude, longitude: longitude)
         
         return annotation
+        
     }
-    
     
 }
 
@@ -200,7 +233,7 @@ extension StoresMapViewController {
     
 }
 
-//MARK: Geting Directions
+//MARK: Gets Directions
 extension StoresMapViewController {
     
     func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
@@ -217,21 +250,24 @@ extension StoresMapViewController {
         
         let appleMapslaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         
-        if let storeLocation = view.annotation {
+        if let storeAnnotation = view.annotation {
             
-            let storeName: String = (storeLocation.title ?? nil) ?? "Uknown"
+            let storeName: String = (storeAnnotation.title ?? nil) ?? "Uknown"
             
-            getDrivingDirections(to: storeLocation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
+            if let store = findStore(withName: storeName, andLocation: storeAnnotation.coordinate) {
+                makeNoteThatUserTapped(on: store)
+            }
             
-            AromaClient.beginMessage(withTitle: "User tapped on \(storeName) map pin")
-                .addBody("User navigated to \(storeName)\nstore coordinates: \(storeLocation.coordinate)\n(Map View)")
-                .withPriority(.medium)
-                .send()
-            
+            getDrivingDirections(to: storeAnnotation.coordinate, with: storeName).openInMaps(launchOptions: appleMapslaunchOptions)
         }
         
     }
     
+    private func findStore(withName name: String, andLocation location: CLLocationCoordinate2D) -> Store? {
+        
+        return stores.filter() { $0.storeName == name && $0.location == location }
+                     .first
+    }
     
 }
 
@@ -240,17 +276,16 @@ extension StoresMapViewController {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated: Bool) {
         
         let center = mapView.centerCoordinate
+        self.currentCoordinates = center
         
-        LOG.debug("User dragged Map Screen to: \(center)")
-        
-        self.loadStoresInMapView(at: center)
+        self.loadStoresAtCoordinate(coordinate: center)
         
     }
     
 }
 
 
-fileprivate extension MKMapView {
+extension MKMapView {
     
     func isVisible(annotation: MKAnnotation) -> Bool {
         
@@ -263,26 +298,37 @@ fileprivate extension MKMapView {
     func removeNonVisibleAnnotations() {
         
         self.annotations
-            .filter({ !isVisible(annotation: $0)})
+            .filter({ !isVisible(annotation: $0) })
+            .forEach({ self.removeAnnotation($0) })
+        
+    }
+    
+    func removeVisibleAnnotations() {
+        
+        self.annotations
+            .filter({ isVisible(annotation: $0) })
             .forEach({ self.removeAnnotation($0) })
         
     }
     
 }
 
-extension StoresMapViewController {
+
+//MARK: Aroma Messages
+fileprivate extension StoresMapViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("There are no stores around the users location (Stores loading result is 0)")
+        LOG.warn("No stores found around the users location: \(currentCoordinates)")
+        
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("There are no stores around the users location (Stores loading result is 0 :\(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         
     }
     
-    func userLocationInfoForAroma() {
+    func makeNoteThatUserEnteredMapView() {
         
         guard let userLocationForAroma = UserLocation.instance.currentCoordinate else { return }
         
@@ -293,7 +339,29 @@ extension StoresMapViewController {
         
     }
     
+    func makeNoteThatUserTapped(on store: Store) {
+        
+        LOG.info("User tapped on Store: \(store)")
+        
+        AromaClient.beginMessage(withTitle: "User Tapped Store")
+            .addBody("From the MapView:").addLine(2)
+            .addBody("User navigated to \(store.storeName) at:\(store.location.shortDescription)")
+            .withPriority(.medium)
+            .send()
+    }
+    
+    func makeNoteThatStoresLoaded() {
+        
+        LOG.info("Loaded \(stores.count) stores")
+        
+        AromaClient.beginMessage(withTitle: "Stores Loaded")
+            .addBody("Loaded \(stores.count) stores")
+            .withPriority(.low)
+            .send()
+    }
+    
 }
+
 
 
 

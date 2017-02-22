@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 11/19/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Archeota
@@ -14,25 +14,28 @@ import UIKit
 
 class SearchStores {
     
-    typealias Callback = ([StoresInfo]) -> ()
+    typealias Callback = ([Store]) -> ()
     
     // API Call
-    static func searchForStoresLocations(near point: CLLocationCoordinate2D, with radius: Double, callback: @escaping Callback) {
+    static func searchForStoresLocations(near point: CLLocationCoordinate2D, callback: @escaping Callback) {
         
-        var distance = 0.0
-        
-        if radius >= 0.25 {
-            
-            distance = radius
-
-        } else {
-        
-            distance = 1500
-        
+        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)"
+        guard let url = URL(string: storesAPI) else {
+            callback([])
+            return
         }
         
-        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)&radius=\(distance)"
-        guard let url = URL(string: storesAPI) else { return }
+        getStoresFrom(url: url, callback: callback)
+        
+    }
+    
+    static func searchForStoresByZipCode(withZipCode zipCode: String, callback: @escaping Callback) {
+        
+        let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?zipCode=\(zipCode)"
+        guard let url = URL(string: storesAPI) else {
+            callback([])
+            return
+        }
         
         getStoresFrom(url: url, callback: callback)
         
@@ -41,7 +44,10 @@ class SearchStores {
     static func searchForStoresByName(withName name: String, callback: @escaping Callback) {
         
         let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?searchTerm=\(name)"
-        guard let url = URL(string: storesAPI) else { return }
+        guard let url = URL(string: storesAPI) else {
+            callback([])
+            return
+        }
         
         getStoresFrom(url: url, callback: callback)
         
@@ -59,43 +65,29 @@ class SearchStores {
             //If I have data, parse the stores from it
             if error != nil {
                 
-                LOG.error("Failed to download stores from: \(url)")
-                AromaClient.beginMessage(withTitle: "Failed to down stores from url")
-                    .addBody("Failed to download stores from: \(url)")
-                    .withPriority(.high)
-                    .send()
-                
+                noteThatFailedToDownloadStores(from: url, error: error)
                 return
                 
             }
             
             guard let data = data else {
                 
-                LOG.error("Failed to load stores from: \(url)")
-                AromaClient.beginMessage(withTitle: "Failed to load stores from url")
-                    .addBody("Failed to load stores from: \(url)")
-                    .withPriority(.high)
-                    .send()
-                
+                noteThatFailedToDownloadStores(from: url, error: error)
                 return
                 
             }
             
-            let stores: [StoresInfo] = parseStores(from: data)
+            let stores: [Store] = parseStores(from: data)
             
             //We have contact. Here are the stores
             callback(stores)
+            makeNoteThatStoresLoaded(stores: stores, using: url)
             
-            let time = now.timeIntervalSinceNow
+            let time = abs(now.timeIntervalSinceNow)
             
-            if abs(time) > 3.0 {
+            if time > 3.0 {
                 
-                LOG.warn("Loading stores took longer than 3 seconds")
-                AromaClient.beginMessage(withTitle: "Loading stores took longer than 3 seconds")
-                    .addBody("Loading stores took \(abs(time)) seconds long")
-                    .withPriority(.medium)
-                    .send()
-                
+                noteThatLoadingStoreTookLongerThan3Seconds(time: time)
             }
 
         }
@@ -105,9 +97,9 @@ class SearchStores {
     }
     
     
-    private static func parseStores(from data: Data) -> [StoresInfo] {
+    private static func parseStores(from data: Data) -> [Store] {
         
-        var storesArray: [StoresInfo] = []
+        var storesArray: [Store] = []
         
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
               let jsonArray = json as? NSArray else {
@@ -124,13 +116,65 @@ class SearchStores {
                 
             }
             
-            guard let store = StoresInfo.fromJson(dictionary: object) else { continue }
+            guard let store = Store.getStoreJsonData(from: object) else {
+                makeNoteThatStoreCouldNotBeParsed(json: object)
+                continue
+            }
+            
             storesArray.append(store)
             
         }
         
         return storesArray
         
+    }
+    
+}
+
+//MARK: Aroma Messages
+fileprivate extension SearchStores {
+    
+    static func noteThatFailedToDownloadStores(from url: URL, error: Error? = nil) {
+        
+        LOG.error("Failed to download stores from: \(url) | \(error)")
+        
+        AromaClient.beginMessage(withTitle: "Failed to download stores from url")
+            .addBody("Failed to download stores from: \(url)").addLine(2)
+            .addBody("\(error)")
+            .withPriority(.high)
+            .send()
+    }
+    
+    static func noteThatLoadingStoreTookLongerThan3Seconds(time: TimeInterval) {
+        
+        LOG.warn("Loading stores took longer than 3 seconds: \(time)s")
+        
+        AromaClient.beginMessage(withTitle: "High Latency Loading Stores")
+            .addBody("Loading stores took \(time)s long")
+            .withPriority(.medium)
+            .send()
+    }
+    
+    static func makeNoteThatStoresLoaded(stores: [Store], using url: URL) {
+        
+        let message =  "Loaded \(stores.count) stores using URL | \(url)"
+        LOG.debug(message)
+        
+        AromaClient.beginMessage(withTitle: "Stores Loaded")
+            .addBody(message)
+            .withPriority(.low)
+            .send()
+    }
+    
+    static func makeNoteThatStoreCouldNotBeParsed(json: NSDictionary) {
+        
+        let message = "Could not parse store from JSON: \(json)"
+        LOG.warn(message)
+        
+        AromaClient.beginMessage(withTitle: "JSON Parse Failed")
+            .addBody(message)
+            .withPriority(.medium)
+            .send()
     }
     
 }

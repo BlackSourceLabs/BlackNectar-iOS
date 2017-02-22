@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 1/25/17.
-//  Copyright © 2017 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Foundation
@@ -21,5 +21,7 @@ extension Array {
     func isInBounds(index: Int) -> Bool {
         
         return index >= 0 && index < self.count
+        
     }
+    
 }

@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Kevin Bradbury on 1/18/17.
-//  Copyright © 2017 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Foundation
@@ -20,103 +20,102 @@ class UserPreferences {
         
         get {
         
-            return defaultPreferences.double(forKey: "distanceFilter")
+            return defaultPreferences.double(forKey: Keys.searchRadius)
         
         }
         
-        set (value){
+        set (value) {
         
-            defaultPreferences.set(value, forKey: "distanceFilter")
-            
-        }
-        
-    }
-    
-    var isFarmersMarket: Bool {
-        
-        get {
-            
-            return defaultPreferences.object(forKey: "isFarmersMarket") as? Bool ?? true
-            
-        }
-        
-        set (value){
-            
-            defaultPreferences.set(value, forKey: "isFarmersMarket")
+            defaultPreferences.set(value, forKey: Keys.searchRadius)
             
         }
         
     }
     
-    var isStore: Bool {
+    var showFarmersMarkets: Bool {
         
         get {
             
-            return defaultPreferences.object(forKey: "isStore") as? Bool ?? true
-            
-        }
-        
-        set (value){
-            
-            defaultPreferences.set(value, forKey: "isStore")
-            
-        }
-        
-    }
-    
-    var isOpenNow: Bool {
-        
-        get {
-            
-            return defaultPreferences.bool(forKey: "isOpenNow")
+            return defaultPreferences.object(forKey: Keys.showFarmersMarkets) as? Bool ?? true
             
         }
         
         set (value) {
             
-            defaultPreferences.set(value, forKey: "isOpenNow")
-            
-        }
-        
-    }
-
-    func setSideMenuDefaults(in viewController: SideMenuFilterViewController, distanceFilter: Double, isFarmersMarket: Bool, isOpenNow: Bool, isStore: Bool) {
-        
-        let roundedNumber = (round(defaultPreferences.double(forKey: "distanceFilter") * 100)/100)
-        
-        viewController.slider.value = Float(defaultPreferences.double(forKey: "distanceFilter"))
-        viewController.slideValueLabel.text = "\(roundedNumber)"
-        
-        if isFarmersMarket {
-            
-            viewController.styleButtonOn(button: viewController.farmersMarketButton)
-            
-        } else {
-            
-            viewController.styleButtonOff(button: viewController.farmersMarketButton)
-            
-        }
-        
-        if isOpenNow {
-            
-            viewController.openNowSwitch.isOn = true
-            
-        } else {
-            
-            viewController.openNowSwitch.isOn = false
-            
-        }
-        
-        if isStore {
-            
-            viewController.styleButtonOn(button: viewController.storesButton)
-            
-        } else {
-            
-            viewController.styleButtonOff(button: viewController.storesButton)
+            defaultPreferences.set(value, forKey: Keys.showFarmersMarkets)
             
         }
         
     }
     
+    var showStores: Bool {
+        
+        get {
+            
+            return defaultPreferences.object(forKey: Keys.showStores) as? Bool ?? true
+            
+        }
+        
+        set (value) {
+            
+            defaultPreferences.set(value, forKey: Keys.showStores)
+            
+        }
+        
+    }
+    
+    var useMyLocation: Bool {
+        
+        get {
+            
+            return defaultPreferences.object(forKey: Keys.useMyLocation) as? Bool ?? false
+            
+        }
+        
+        set (value) {
+            
+            defaultPreferences.set(value, forKey: Keys.useMyLocation)
+            
+        }
+        
+    }
+    
+    var useZipCode: Bool {
+        
+        get {
+            
+            return defaultPreferences.object(forKey: Keys.useZipCode) as? Bool ?? false
+            
+        }
+        
+        set(value) {
+            
+            defaultPreferences.set(value, forKey: Keys.useZipCode)
+            
+        }
+        
+    }
+    
+    var zipCode: String? {
+        
+        get {
+            return defaultPreferences.object(forKey: Keys.zipCode) as? String
+        }
+        
+        set(value) {
+            defaultPreferences.set(value, forKey: Keys.zipCode)
+        }
+    }
+}
+
+fileprivate class Keys {
+    
+    private static let namespace = "tech.blacksource.blacknectar"
+    
+    static let searchRadius = namespace + "searchRadius"
+    static let showStores = namespace + "showStores"
+    static let showFarmersMarkets = namespace + "showFarmersMarkets"
+    static let useMyLocation = namespace + "useMyLocation"
+    static let useZipCode = namespace + "useZipCode"
+    static let zipCode = namespace + "zipCode"
 }

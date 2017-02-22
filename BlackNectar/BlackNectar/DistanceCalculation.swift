@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by K on 12/29/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Archeota
@@ -14,13 +14,13 @@ class DistanceCalculation {
     
     static func getDistance(userLocation: CLLocationCoordinate2D, storeLocation: CLLocationCoordinate2D) -> Double {
         
-        let userCoordinateToLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        let userCoordinate = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         
-        let storeCoordinateToLocation = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
+        let storeCoordinate = CLLocation(latitude: storeLocation.latitude, longitude: storeLocation.longitude)
         
-        let calculatedMeters = userCoordinateToLocation.distance(from: storeCoordinateToLocation)
+        let distanceInMeters = userCoordinate.distance(from: storeCoordinate)
         
-        return calculatedMeters
+        return distanceInMeters
     
     }
     

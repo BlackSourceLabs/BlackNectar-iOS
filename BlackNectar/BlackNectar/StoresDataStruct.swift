@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 11/19/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Archeota
@@ -11,64 +11,103 @@ import CoreLocation
 import Foundation
 import UIKit
 
-// Creating data structure for JSON Request
-struct StoresInfo {
+// Creates data structure for JSON Request
+struct Store {
     
     let storeName: String
     let location: CLLocationCoordinate2D
-    let address: NSDictionary
+    let address: Address
     let storeImage: URL
     let isFarmersMarket: Bool
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
     
-    static func fromJson(dictionary: NSDictionary) -> StoresInfo? {
+    
+    static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
         
-        guard let storeName = dictionary ["store_name"] as? String,
-            let location = dictionary ["location"] as? NSDictionary,
-            let address = dictionary ["address"] as? NSDictionary,
-            let storeType = dictionary ["main_image_url"] as? String,
-            let storeImage = URL(string: storeType)
-
-            else {
-                
-                LOG.error("Guard Failed on fromJson method")
-                return nil
-                
-        }
-        
-        guard let coordinatesDictionary = dictionary ["location"] as? NSDictionary else { return nil }
-        guard let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees else { return nil }
-        guard let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees else { return nil }
-        let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        let isFarmersMarket: Bool = dictionary["is_farmers_market"] as? Bool ?? false
-        
-        return StoresInfo(storeName: storeName, location: coordinatesObject, address: address, storeImage: storeImage, isFarmersMarket: isFarmersMarket)
-        
+        return Store(json: storeDictionary)
     }
     
 }
 
-struct AddressInfo {
+extension Store {
     
-    let street: String
-    let city: String
-    let state: String
-    
-    static func addressToString(dictionary: NSDictionary) -> AddressInfo? {
+    init?(json: NSDictionary) {
         
-        guard let street = dictionary["address_line_1"] as? String,
-            let city = dictionary["city"] as? String,
-            let state = dictionary["state"] as? String else {
-                
-                LOG.error("Guard Failed on addressToString method")
+        guard let storeName = json["store_name"] as? String,
+            let addressJSON = json["address"] as? NSDictionary,
+            let storeImageString = json["main_image_url"] as? String,
+            let storeImageURL = URL(string: storeImageString)
+            else {
+                LOG.error("Failed to parse Store: \(json)")
                 return nil
-                
         }
         
-        return AddressInfo(street: street, city: city, state: state)
+        guard let address = Address(from: addressJSON) else { return nil }
         
+        guard let coordinatesDictionary = json["location"] as? NSDictionary,
+            let latitude = coordinatesDictionary["latitude"] as? CLLocationDegrees,
+            let longitude = coordinatesDictionary["longitude"] as? CLLocationDegrees
+            else {
+                LOG.warn("Failed to get Store location information: \(json)")
+                return nil
+        }
+        
+        let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        let isFarmersMarket: Bool = json["is_farmers_market"] as? Bool ?? false
+        
+        self.storeName = storeName
+        self.address = address
+        self.location = coordinatesObject
+        self.storeImage = storeImageURL
+        self.isFarmersMarket = isFarmersMarket
+        
+    }
+}
+
+extension Store : CustomStringConvertible {
+    
+    var description: String {
+        return "{storeName: \(storeName), address: \(address), location: \(location), isFarmersMarket: \(isFarmersMarket)}"
+    }
+}
+
+struct Address {
+    
+    let addressLineOne: String
+    let addressLineTwo: String?
+    let city: String
+    let state: String
+    let county: String
+    let zipCode: String
+    let localZipCode: String?
+    
+}
+
+extension Address {
+    
+    init?(from storeDictionary: NSDictionary) {
+        
+        guard let addressLineOne = storeDictionary ["address_line_1"] as? String else { return nil }
+        
+        let addressLineTwo = storeDictionary ["address_line_2"] as? String
+        
+        guard let city = storeDictionary ["city"] as? String else { return nil }
+        guard let state = storeDictionary ["state"] as? String else { return nil }
+        guard let county = storeDictionary ["county"] as? String else { return nil }
+        guard let zipCode = storeDictionary ["zip_code"] as? String else { return nil }
+        
+        let localZipCode = storeDictionary ["local_zip_code"] as? String
+        
+        self.addressLineOne = addressLineOne
+        self.addressLineTwo = addressLineTwo
+        
+        self.city = city
+        self.state = state
+        self.county = county
+        self.zipCode = zipCode
+        self.localZipCode = localZipCode
     }
     
 }

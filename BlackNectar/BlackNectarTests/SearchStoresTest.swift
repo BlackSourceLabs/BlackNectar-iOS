@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 1/17/17.
-//  Copyright © 2017 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 @testable import BlackNectar
@@ -42,11 +42,10 @@ class SearchStoresTest: XCTestCase {
         let usersLongitude: CLLocationDegrees = -73.9442
         let userLocation = CLLocationCoordinate2D(latitude: usersLatitude, longitude: usersLongitude)
         
-        let storeDistance: Double = 1500
         
         let promise = expectation(description: "Callback will be called")
         
-        let testCallback: ([StoresInfo]) -> Void = { stores in
+        let testCallback: ([Store]) -> Void = { stores in
             
             if !stores.isEmpty {
                 promise.fulfill()
@@ -54,7 +53,7 @@ class SearchStoresTest: XCTestCase {
             
         }
         
-        SearchStores.searchForStoresLocations(near: userLocation, with: storeDistance, callback: testCallback)
+        SearchStores.searchForStoresLocations(near: userLocation,  callback: testCallback)
         
         waitForExpectations(timeout: 3, handler: nil)
         
@@ -66,7 +65,7 @@ class SearchStoresTest: XCTestCase {
         
         let promise = expectation(description: "Callback will be called")
         
-        let testCallback: ([StoresInfo]) -> Void = { stores in
+        let testCallback: ([Store]) -> Void = { stores in
             
             if !stores.isEmpty {
                 promise.fulfill()
@@ -77,6 +76,26 @@ class SearchStoresTest: XCTestCase {
         SearchStores.searchForStoresByName(withName: storeName, callback: testCallback)
         
         waitForExpectations(timeout: 3.0, handler: nil)
+    }
+    
+    func testSearchForStoresByZipCode() {
+        
+        let storeZipCode = "91403"
+        
+        let promise = expectation(description: "Callback will be called")
+        
+        let testCallback: ([Store]) -> Void = { stores in
+            
+            if !stores.isEmpty {
+                promise.fulfill()
+            }
+            
+        }
+        
+        SearchStores.searchForStoresByZipCode(withZipCode: storeZipCode, callback: testCallback)
+        
+        waitForExpectations(timeout: 3.0, handler: nil)
+        
     }
     
 }

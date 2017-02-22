@@ -3,7 +3,7 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 11/28/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Archeota
@@ -24,6 +24,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
     var currentRegion: MKCoordinateRegion?
+    var currentStatus: CLAuthorizationStatus?
     
     var currentCoordinate: CLLocationCoordinate2D? {
         return currentLocation?.coordinate
@@ -33,7 +34,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         if alreadyInitialized {
             
-            LOG.error("Failed to Initialize locationManager")
+            LOG.info("Location Manager already initialized")
             return
             
         }
@@ -45,11 +46,17 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         locationManager.requestWhenInUseAuthorization()
         
         alreadyInitialized = true
+        
     }
     
     func requestLocation(callback: @escaping ((CLLocationCoordinate2D) -> Void)) {
         
+        if !alreadyInitialized {
+            initialize()
+        }
+        
         self.onLocation = callback
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
     }
@@ -58,7 +65,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         guard let location: CLLocation = locations.first else {
             
-            LOG.error("Failed to Update First Location")
+            makeNoteThatFailedToGetLocation()
             return
         }
         
@@ -81,39 +88,21 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
         switch status {
             
-        case CLAuthorizationStatus.restricted:
-            
-            LOG.warn("User restricted access to Location")
-            AromaClient.beginMessage(withTitle: "User restricted access to Location")
-                .addBody("The User has restricted access to their locaiton")
-                .withPriority(.high)
-                .send()
-            
-        case CLAuthorizationStatus.denied:
-            
-            LOG.warn("User denied access to location")
-            AromaClient.beginMessage(withTitle: "User denied access to location")
-                .addBody("User denied permission to access their location")
-                .withPriority(.high)
-                .send()
-            
-        case CLAuthorizationStatus.authorizedWhenInUse:
-            
-            LOG.warn("User allowed access to location")
-            AromaClient.beginMessage(withTitle: "User allowed access to location")
-                .addBody("User granted authorization to use their location only when your app is visible to them (authorized when in use)")
-                .withPriority(.medium)
-                .send()
-            
-        default:
-            
-            LOG.warn("User status not determined")
-            AromaClient.beginMessage(withTitle: "User status not determined")
-                .addBody("The user has not yet made a choice regarding whether this app can use location services")
-                .withPriority(.medium)
-                .send()
+            case .restricted:
+                makeNoteThatAccessIsRestricted()
+                
+            case .denied:
+                makeNoteThatAccessIsDenied()
+                
+            case .authorizedWhenInUse, .authorizedAlways:
+                makeNoteThatAccessGranted(status)
+                
+            default:
+                makeNoteThatAccessIsUndetermined()
             
         }
+        
+        self.currentStatus = status
         
     }
     
@@ -131,4 +120,73 @@ class UserLocation: NSObject, CLLocationManagerDelegate, MKMapViewDelegate  {
         
     }
     
+}
+
+
+fileprivate extension UserLocation {
+    
+    func makeNoteThatFailedToGetLocation() {
+        
+        LOG.error("Failed to load the user's location")
+        
+        AromaClient.beginMessage(withTitle: "Failed To Load Location")
+            .addBody("Failed to load the user's location")
+            .withPriority(.high)
+            .send()
+    }
+    
+    func makeNoteThatAccessIsRestricted() {
+        
+        LOG.warn("User restricted access to Location")
+        
+        AromaClient.beginMessage(withTitle: "User Location Access Restricted")
+            .addBody("The User has restricted access to their locaiton")
+            .withPriority(.high)
+            .send()
+    }
+    
+    func makeNoteThatAccessIsDenied() {
+        
+        LOG.warn("User denied access to location")
+        
+        AromaClient.beginMessage(withTitle: "User Location Access Denied")
+            .addBody("User denied permission to access their location")
+            .withPriority(.medium)
+            .send()
+    }
+    
+    func makeNoteThatAccessGranted(_ status: CLAuthorizationStatus) {
+        
+        LOG.warn("User allowed access to location: \(status.name)")
+        
+        AromaClient.beginMessage(withTitle: "User Location Access Granted")
+            .addBody("User granted authorization to use their location: \(status)")
+            .withPriority(.low)
+            .send()
+    }
+    
+    func makeNoteThatAccessIsUndetermined() {
+        
+        LOG.warn("User status not determined")
+        
+        AromaClient.beginMessage(withTitle: "User Location Access Undetermined")
+            .addBody("The user has not yet made a choice regarding whether this app can use location services")
+            .withPriority(.medium)
+            .send()
+    }
+    
+}
+
+fileprivate extension CLAuthorizationStatus {
+    
+    var name: String {
+        
+        switch self {
+            case .authorizedAlways : return "(authorizedAlways)"
+            case .authorizedWhenInUse : return "(authorizedWhenInUse)"
+            case .denied : return "(denied)"
+            case .notDetermined : return "(notDetermined)"
+            case .restricted : return "(restricted)"
+        }
+    }
 }

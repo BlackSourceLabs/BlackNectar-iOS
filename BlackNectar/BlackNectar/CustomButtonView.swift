@@ -3,13 +3,13 @@
 //  BlackNectar
 //
 //  Created by Cordero Hernandez on 12/8/16.
-//  Copyright © 2016 Black Whole. All rights reserved.
+//  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-@IBDesignable class RoundedButtonView: UIButton {
+@IBDesignable class CustomButtonView: UIButton {
     
     override init(frame: CGRect) {
         
@@ -36,7 +36,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var borderThickness: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 1 {
         
         didSet
         {
@@ -44,7 +44,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.black {
+    @IBInspectable var borderColor: UIColor = UIColor.white {
         
         didSet
         {
@@ -67,9 +67,11 @@ import UIKit
             updateView()
         }
     }
-    @IBInspectable var cornerRadius: CGFloat = 10 {
+    
+    @IBInspectable var cornerRadius: CGFloat = 5 {
         
-        didSet{
+        didSet
+        {
             updateView()
         }
     }
@@ -77,7 +79,8 @@ import UIKit
     func updateView() {
         
         layer.cornerRadius = cornerRadius
-        layer.backgroundColor = UIColor.init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1).cgColor
+        layer.borderWidth = borderWidth
+        layer.borderColor = borderColor.cgColor
         layer.masksToBounds = true
         
         if shouldRasterize
@@ -89,12 +92,14 @@ import UIKit
         }
         
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         updateView()
         
     }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         

@@ -16,7 +16,9 @@ import UIKit
 
 protocol FilterDelegate {
     
-    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String)
+    func didUpdateFilter(_ : FilterViewController, farmersMarket: Bool, groceryStores: Bool, useMyLocation: Bool, useZipCode: Bool, zipCode: String?)
+    
+    func didDismissFilter(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String)
     
 }
 
@@ -30,6 +32,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var zipCodeButton: CustomButtonView!
     @IBOutlet weak var zipCodeLabel: UILabel!
     
+    var didChangeFilterOptions = false
     var currentCoordinates: CLLocationCoordinate2D?
     
     var showFarmersMarkets: Bool {
@@ -44,6 +47,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             UserPreferences.instance.showFarmersMarkets = newValue
             styleFarmersMarkets()
             makeNoteThatUserUpdatedShowFarmersMarket(with: newValue)
+            didChangeFilterOptions = true
         }
     }
     
@@ -59,7 +63,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             UserPreferences.instance.showStores = newValue
             styleGroceryStores()
             makeNoteThatUserUpdatedShowStore(with: newValue)
-            
+            didChangeFilterOptions = true
         }
     }
     
@@ -74,6 +78,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             UserPreferences.instance.useMyLocation = newValue
             UserPreferences.instance.useZipCode = !newValue
             self.styleLocationButtons()
+            didChangeFilterOptions = true
         }
     }
     
@@ -89,6 +94,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             UserPreferences.instance.useZipCode = newValue
             UserPreferences.instance.useMyLocation = !newValue
             self.styleLocationButtons()
+            didChangeFilterOptions = true
             
         }
     }
@@ -104,7 +110,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             
             UserPreferences.instance.zipCode = newValue
             zipCodeButton.setTitle(newValue, for: .normal)
-            
+            didChangeFilterOptions = true
         }
     }
     
@@ -155,7 +161,26 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             return
         }
         
-        self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores, zipCode: self.zipCode)
+        if didChangeFilterOptions {
+            
+            self.delegate?.didUpdateFilter(self,
+                                           farmersMarket: self.showFarmersMarkets,
+                                           groceryStores: self.showGroceryStores,
+                                           useMyLocation: self.useMyLocation,
+                                           useZipCode: self.useZipCode,
+                                           zipCode: self.zipCode)
+            
+        }
+        else {
+            
+            self.delegate?.didDismissFilter(self,
+                                            farmersMarkets: self.showFarmersMarkets,
+                                            groceryStores: self.showGroceryStores,
+                                            zipCode: self.zipCode)
+            
+        }
+        
+        
         self.dismiss(animated: true, completion: nil)
         
     }

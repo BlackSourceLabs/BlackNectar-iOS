@@ -70,7 +70,11 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
 //MARK: Filter Delegate Code
 extension StoresTableViewController {
     
-    func didSelectFilters(_ filter: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String) {
+    func didDismissFilter(_: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String) {
+        
+    }
+    
+    func didUpdateFilter(_: FilterViewController, farmersMarket: Bool, groceryStores: Bool, useMyLocation: Bool, useZipCode: Bool, zipCode: String?) {
         
         reloadStoreData()
         

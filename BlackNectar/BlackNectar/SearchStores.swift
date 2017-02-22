@@ -20,7 +20,10 @@ class SearchStores {
     static func searchForStoresLocations(near point: CLLocationCoordinate2D, callback: @escaping Callback) {
         
         let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?latitude=\(point.latitude)&longitude=\(point.longitude)"
-        guard let url = URL(string: storesAPI) else { return }
+        guard let url = URL(string: storesAPI) else {
+            callback([])
+            return
+        }
         
         getStoresFrom(url: url, callback: callback)
         
@@ -29,7 +32,10 @@ class SearchStores {
     static func searchForStoresByZipCode(withZipCode zipCode: String, callback: @escaping Callback) {
         
         let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?zipCode=\(zipCode)"
-        guard let url = URL(string: storesAPI) else { return }
+        guard let url = URL(string: storesAPI) else {
+            callback([])
+            return
+        }
         
         getStoresFrom(url: url, callback: callback)
         
@@ -38,7 +44,10 @@ class SearchStores {
     static func searchForStoresByName(withName name: String, callback: @escaping Callback) {
         
         let storesAPI = "https://blacknectar-api.blacksource.tech:9102/stores?searchTerm=\(name)"
-        guard let url = URL(string: storesAPI) else { return }
+        guard let url = URL(string: storesAPI) else {
+            callback([])
+            return
+        }
         
         getStoresFrom(url: url, callback: callback)
         
@@ -144,7 +153,6 @@ fileprivate extension SearchStores {
             .addBody("Loading stores took \(time)s long")
             .withPriority(.medium)
             .send()
-        
     }
     
     static func makeNoteThatStoresLoaded(stores: [Store], using url: URL) {
@@ -168,6 +176,7 @@ fileprivate extension SearchStores {
             .withPriority(.medium)
             .send()
     }
+    
 }
 
 

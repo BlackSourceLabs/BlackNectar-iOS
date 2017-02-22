@@ -165,7 +165,9 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         if useMyLocation {
             
-            requestGPSAccess()
+            let location = self.mapView.userLocation.coordinate
+            centerMapAround(location: location)
+            
         }
         else if useZipCode {
             
@@ -337,9 +339,9 @@ extension FilterViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        if useMyLocation, let region = UserLocation.instance.currentRegion {
+        if useMyLocation, let userLocation = UserLocation.instance.currentLocation {
             
-            self.mapView.setRegion(region, animated: false)
+            self.centerMapAround(location: userLocation.coordinate)
             
         }
         else if useZipCode, zipCode.notEmpty {
@@ -350,14 +352,19 @@ extension FilterViewController {
             
             UserLocation.instance.requestLocation() { location in
                 
-                if let region = UserLocation.instance.currentRegion {
-                    self.mapView.setRegion(region, animated: false)
-                }
+                self.centerMapAround(location: location)
                 
                 self.useMyLocation = true
             }
         }
         
+    }
+    
+    func centerMapAround(location: CLLocationCoordinate2D) {
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+        let region = MKCoordinateRegion(center: location, span: span)
+        self.mapView.setRegion(region, animated: false)
         
     }
     
@@ -430,10 +437,8 @@ fileprivate extension FilterViewController {
         ZipCodes.locationForZipCode(zipCode: zipCode) { location in
             
             guard let location = location else { return }
+            self.centerMapAround(location: location)
             
-            let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-            let region = MKCoordinateRegion(center: location, span: span)
-            self.mapView?.setRegion(region, animated: false)
         }
     }
     
@@ -662,10 +667,9 @@ fileprivate extension FilterViewController {
         
         UserLocation.instance.requestLocation() { location in
             
-            self.loadStoresInMapView(at: location)
             self.useMyLocation = true
-            self.mapView?.setCenter(location, animated: false)
-            self.useZipCode = false
+            self.loadStoresInMapView(at: location)
+            self.centerMapAround(location: location)
             
         }
     }

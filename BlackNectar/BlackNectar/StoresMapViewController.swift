@@ -72,6 +72,12 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
+    @IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     private func prepareMapView() {
         
         mapView.delegate = self

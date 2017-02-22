@@ -298,9 +298,10 @@ extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let destination = segue.destination as? StoresMapViewController {
+        if let destination = segue.destination as? UINavigationController {
             
-            destination.stores = self.stores
+            let storesMapViewController = destination.topViewController as? StoresMapViewController
+            storesMapViewController?.stores = self.stores
             
         }
         

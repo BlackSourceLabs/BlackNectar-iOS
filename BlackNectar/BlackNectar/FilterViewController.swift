@@ -154,6 +154,11 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
+    //MARK: Map Button Code
+    @IBAction func findMeButton(_ sender: UIButton) {
+    }
+    
+    
     //MARK: Filter Buttons Code
     @IBAction func onFarmersMarkets(_ sender: UIButton) {
         

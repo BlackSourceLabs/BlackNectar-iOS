@@ -56,12 +56,32 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iqF-ZB-A9h">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="Cancel-White@3x.png" id="n2g-gH-tAx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="didTapDismissButton:" destination="BYZ-38-t0r" id="luF-Hq-byW"/>
                             </connections>
                         </barButtonItem>
+                        <view key="titleView" userInteractionEnabled="NO" contentMode="scaleToFill" id="b6N-4u-HAF">
+                            <rect key="frame" x="113" y="6" width="150" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rA-o4-umH">
+                                    <rect key="frame" x="44" y="3" width="63" height="27"/>
+                                    <fontDescription key="fontDescription" name="UniSansLight" family="UniSansLight" pointSize="30"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="8rA-o4-umH" firstAttribute="leading" secondItem="b6N-4u-HAF" secondAttribute="leading" constant="44" id="JiB-Gl-2J3"/>
+                                <constraint firstItem="8rA-o4-umH" firstAttribute="top" secondItem="b6N-4u-HAF" secondAttribute="top" constant="3" id="MNe-Zr-RiH"/>
+                                <constraint firstItem="8rA-o4-umH" firstAttribute="centerX" secondItem="b6N-4u-HAF" secondAttribute="centerX" id="YAL-IR-9GU"/>
+                                <constraint firstItem="8rA-o4-umH" firstAttribute="centerY" secondItem="b6N-4u-HAF" secondAttribute="centerY" id="sd4-21-6OA"/>
+                            </constraints>
+                        </view>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="VMa-3U-as9" id="9zW-aD-7Zo"/>
@@ -88,7 +108,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>

@@ -37,8 +37,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     }
     
     var stores: [Store] = []
-    var panningWasTriggered = false
-    let edgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
     
     let async: OperationQueue = {
         
@@ -60,9 +58,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        setEdgeGesture()
-        
+        super.viewDidAppear(animated)
     }
     
 }
@@ -336,56 +332,6 @@ extension StoresTableViewController {
     
     func goToMapView() {
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
-    }
-    
-}
-
-//MARK: UI Screen Pan Gesture Code
-extension StoresTableViewController {
-    
-    func setEdgeGesture() {
-        
-        edgePanGestureRecognizer.addTarget(self, action: #selector(self.handleRightEdge(gesture:)))
-        edgePanGestureRecognizer.edges = .right
-        edgePanGestureRecognizer.delegate = self
-        
-        self.view.addGestureRecognizer(edgePanGestureRecognizer)
-        
-    }
-    
-    func handleRightEdge(gesture: UIScreenEdgePanGestureRecognizer) {
-        
-        switch gesture.state {
-            
-            case .began, .changed:
-                setGestureProperties()
-                
-            case .cancelled, .failed:
-                panningWasTriggered = false
-                
-            default: break
-            
-        }
-        
-    }
-    
-    func setGestureProperties() {
-        
-        if !panningWasTriggered {
-            
-            let threshold: CGFloat = 30
-            let translation = abs(edgePanGestureRecognizer.translation(in: view).x)
-            
-            if translation >= threshold {
-                
-                performSegue(withIdentifier: "mapViewSegue", sender: nil)
-                
-                panningWasTriggered = true
-                
-            }
-            
-        }
-        
     }
     
 }

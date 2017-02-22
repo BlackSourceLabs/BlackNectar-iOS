@@ -564,8 +564,11 @@ fileprivate extension FilterViewController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            let alert = self.createAlertToSelectAnOption()
-            self.present(alert, animated: true, completion: nil)
+            
+            if !self.useZipCode {
+                let alert = self.createAlertToSelectAnOption()
+                self.present(alert, animated: true, completion: nil)
+            }
             
         }
         
@@ -625,6 +628,20 @@ fileprivate extension FilterViewController {
     }
     
     func requestGPSAccess() {
+        
+        if let status = UserLocation.instance.currentStatus, status == .denied {
+            
+            let link = UIApplicationOpenSettingsURLString
+            
+            guard let url = URL(string: link) else {
+                LOG.error("Failed to create URL to \(link)")
+                return
+            }
+            
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            useMyLocation = false
+            return
+        }
         
         UserLocation.instance.requestLocation() { location in
             

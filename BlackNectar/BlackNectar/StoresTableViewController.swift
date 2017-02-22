@@ -209,6 +209,9 @@ extension StoresTableViewController {
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
+    //Go here:
+    /// Location -> While Using the App
+    // Make sure "While Using the App" is selected
     
     func reloadStoreData() {
         

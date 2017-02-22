@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CustomThumbView: UIView {
+@IBDesignable class CustomThumbView: UIView {
     
     fileprivate(set) var thumbImageView = UIImageView(frame: CGRect.zero)
     

@@ -634,11 +634,11 @@ fileprivate extension FilterViewController {
         
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let ok = UIAlertAction(title: "Open Settings", style: .default) { _ in
+        let openSettings = UIAlertAction(title: "Open Settings", style: .default) { _ in
             self.senduserToSettings()
         }
         
-        controller.addAction(ok)
+        controller.addAction(openSettings)
         
         return controller
     }

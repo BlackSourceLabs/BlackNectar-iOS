@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable class RoundedButtonView: UIButton {
+@IBDesignable class CustomButtonView: UIButton {
     
     override init(frame: CGRect) {
         

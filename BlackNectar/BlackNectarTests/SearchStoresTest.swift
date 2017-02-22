@@ -78,4 +78,24 @@ class SearchStoresTest: XCTestCase {
         waitForExpectations(timeout: 3.0, handler: nil)
     }
     
+    func testSearchForStoresByZipCode() {
+        
+        let storeZipCode = "91403"
+        
+        let promise = expectation(description: "Callback will be called")
+        
+        let testCallback: ([Store]) -> Void = { stores in
+            
+            if !stores.isEmpty {
+                promise.fulfill()
+            }
+            
+        }
+        
+        SearchStores.searchForStoresByZipCode(withZipCode: storeZipCode, callback: testCallback)
+        
+        waitForExpectations(timeout: 3.0, handler: nil)
+        
+    }
+    
 }

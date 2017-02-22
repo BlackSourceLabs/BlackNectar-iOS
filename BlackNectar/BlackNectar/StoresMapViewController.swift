@@ -34,9 +34,17 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         return UserPreferences.instance.showStores
     }
     
-    var onlyShowOpenStores = true
+    var useMyLocation: Bool {
+        return UserPreferences.instance.useMyLocation
+    }
     
-    var mapViewLoaded = false
+    var useZipCode: Bool {
+        return UserPreferences.instance.useZipCode
+    }
+    
+    var zipCode: String {
+        return UserPreferences.instance.zipCode ?? ""
+    }
     
     
     fileprivate let async: OperationQueue = {
@@ -64,62 +72,82 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         
     }
     
-    
-    private func loadStores() {
-        
-        UserLocation.instance.requestLocation() { coordinate in
-            
-            self.loadStoresInMapView(at: coordinate)
-            
-        }
-        
-    }
-    
     private func prepareMapView() {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
         
-        guard let region = UserLocation.instance.currentRegion else {
+        if useMyLocation, let region = UserLocation.instance.currentRegion {
             
-            LOG.error("Failed to Update the Users Current Region")
-            return
+            self.mapView.setRegion(region, animated: true)
+        }
+        else if useZipCode {
+            
+            ZipCodes.locationForZipCode(zipCode: zipCode) { location in
+                
+                guard let location = location else { return }
+                
+                let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+                let region = MKCoordinateRegion(center: location, span: span)
+                self.mapView?.setRegion(region, animated: false)
+            }
             
         }
+        else {
+            //Let the user explore the map on their own
+        }
         
-        self.mapView.setRegion(region, animated: true)
         
     }
     
 }
 
 //MARK: Loading Stores Into mapView
-extension StoresMapViewController {
+fileprivate extension StoresMapViewController {
     
-    func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
+    func loadStores() {
+        
+        if useMyLocation {
+            
+            UserLocation.instance.requestLocation(callback: self.loadStoresAtCoordinate)
+       
+        }
+        else if useZipCode, zipCode.notEmpty {
+            
+            self.loadStoresAtZipCode(zipCode: zipCode)
+            
+        }
+    }
+    
+    func loadStoresAtCoordinate(coordinate: CLLocationCoordinate2D) {
         
         startSpinningIndicator()
+        SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
         
-        SearchStores.searchForStoresLocations(near: coordinate) { stores in
+    }
+    
+    func loadStoresAtZipCode(zipCode: String) {
+        
+        startSpinningIndicator()
+        SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
+    }
+    
+    private func populateStores(stores: [Store]) {
+        
+        self.stores = self.filterStores(from: stores)
+        
+        self.main.addOperation {
             
-            self.stores = self.filterStores(from: stores)
-            
-            self.main.addOperation {
-                
-                self.populateStoreAnnotations()
-                self.stopSpinningIndicator()
-                
-            }
-            
-            
-            if self.stores.isEmpty {
-                
-                self.makeNoteThatNoStoresFound(additionalMessage: "(MapView)")
-                
-            }
+            self.populateStoreAnnotations()
+            self.stopSpinningIndicator()
             
         }
         
+        if self.stores.isEmpty {
+            
+            self.makeNoteThatNoStoresFound(additionalMessage: "(MapView)")
+            
+        }
     }
     
     private func filterStores(from stores: [Store]) -> [Store] {
@@ -244,9 +272,7 @@ extension StoresMapViewController {
         let center = mapView.centerCoordinate
         self.currentCoordinates = center
         
-        LOG.debug("User dragged Map Screen to: \(center)")
-        
-        self.loadStoresInMapView(at: center)
+        self.loadStoresAtCoordinate(coordinate: center)
         
     }
     

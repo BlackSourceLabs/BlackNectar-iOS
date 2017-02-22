@@ -16,7 +16,7 @@ import UIKit
 
 protocol FilterDelegate {
     
-    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool)
+    func didSelectFilters(_ : FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String)
     
 }
 
@@ -25,6 +25,10 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var farmersMarketsButton: UIButton!
     @IBOutlet weak var groceryStoresButton: UIButton!
+    @IBOutlet weak var useMyLocationSwitch: UISwitch!
+    @IBOutlet weak var useZipCodeSwitch: UISwitch!
+    @IBOutlet weak var zipCodeButton: CustomButtonView!
+    @IBOutlet weak var zipCodeLabel: UILabel!
     
     var currentCoordinates: CLLocationCoordinate2D?
     
@@ -35,27 +39,73 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             return UserPreferences.instance.showFarmersMarkets
         }
         
-        set {
+        set(newValue) {
             
             UserPreferences.instance.showFarmersMarkets = newValue
+            styleFarmersMarkets()
             makeNoteThatUserUpdatedShowFarmersMarket(with: newValue)
         }
-        
     }
     
     var showGroceryStores: Bool {
         
         get {
-            return UserPreferences.instance.showStores
             
+            return UserPreferences.instance.showStores
         }
         
-        set {
+        set(newValue) {
+            
             UserPreferences.instance.showStores = newValue
+            styleGroceryStores()
             makeNoteThatUserUpdatedShowStore(with: newValue)
             
         }
+    }
+    
+    var useMyLocation: Bool {
         
+        get {
+            return UserPreferences.instance.useMyLocation
+        }
+        
+        set(newValue) {
+            
+            UserPreferences.instance.useMyLocation = newValue
+            UserPreferences.instance.useZipCode = !newValue
+            self.styleLocationButtons()
+        }
+    }
+    
+    var useZipCode: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.useZipCode
+        }
+        
+        set(newValue) {
+            
+            UserPreferences.instance.useZipCode = newValue
+            UserPreferences.instance.useMyLocation = !newValue
+            self.styleLocationButtons()
+            
+        }
+    }
+    
+    var zipCode: String {
+        
+        get {
+            
+            return UserPreferences.instance.zipCode ?? ""
+        }
+        
+        set(newValue) {
+            
+            UserPreferences.instance.zipCode = newValue
+            zipCodeButton.setTitle(newValue, for: .normal)
+            
+        }
     }
     
     var delegate: FilterDelegate?
@@ -90,13 +140,16 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
         styleGroceryStores()
         styleFarmersMarkets()
+        styleLocationButtons()
+        styleZipCodeButton()
+        
     }
- 
+    
     
     //MARK: Cancel Button Code
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         
-        self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores)
+        self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores, zipCode: self.zipCode)
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -105,7 +158,6 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func onFarmersMarkets(_ sender: UIButton) {
         
         showFarmersMarkets = !showFarmersMarkets
-        styleFarmersMarkets()
         mapView.removeVisibleAnnotations()
         loadStores()
         
@@ -114,67 +166,82 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     @IBAction func onGroceryStores(_ sender: UIButton) {
         
         showGroceryStores = !showGroceryStores
-        styleGroceryStores()
         mapView.removeVisibleAnnotations()
         loadStores()
         
     }
     
-    fileprivate func styleFarmersMarkets() {
+    @IBAction func zipCodeButtonTapped(_ sender: CustomButtonView) {
         
-        if showFarmersMarkets {
+        if useZipCode {
+            askForZipCode()
+        }
+    }
+    
+    //MARK: Location Switches
+    @IBAction func onUseMyLocation(_ sender: UISwitch) {
+        
+        useMyLocation = !useMyLocation
+        
+        if useMyLocation {
             
-            showFarmersMarkets = true
-            styleButtonOn(button: farmersMarketsButton)
+            askForUserLocation()
             
-        } else {
+        }
+        else if useZipCode {
+            refreshUsingZipCode()
+        }
+        else {
             
-            showFarmersMarkets = false
-            styleButtonOff(button: farmersMarketsButton)
+            askForLocationOrZipCode()
+        }
+        
+    }
+    
+    @IBAction func onUseZipCode(_ sender: UISwitch) {
+        
+        useZipCode = !useZipCode
+        
+        if useZipCode {
+            refreshUsingZipCode()
+        }
+        else if useMyLocation {
+            self.askForUserLocation()
+        }
+        else { //Neither are set
+            
+            askForLocationOrZipCode()
             
         }
         
     }
     
-    fileprivate func styleGroceryStores() {
+    private func refreshUsingZipCode() {
         
-        if showGroceryStores {
-            
-            showGroceryStores = true
-            styleButtonOn(button: groceryStoresButton)
-            
-        } else {
-            
-            showGroceryStores = false
-            styleButtonOff(button: groceryStoresButton)
-            
+        if zipCode.isEmpty {
+            askForZipCode()
         }
-        
+        else {
+            self.moveMapTo(zipCode: zipCode)
+        }
     }
     
-    private func loadStores() {
+    private func askForLocationOrZipCode() {
         
-        UserLocation.instance.requestLocation { coordinate in
-            
-            self.loadStoresInMapView(at: coordinate)
-            
-        }
-        
+        let alert = createAlertToSelectAnOption()
+        self.present(alert, animated: true, completion: nil)
     }
     
-    private func prepareMapView() {
+    private func askForUserLocation() {
         
-        mapView.delegate = self
-        mapView.showsUserLocation = true
+        let alert = createAlertToRequestGPSPermissions()
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func askForZipCode() {
         
-        guard let region = UserLocation.instance.currentRegion else {
-            
-            LOG.error("Failed to load the Users Current Region")
-            return
-        }
-        
-        self.mapView.setRegion(region, animated: true)
-        
+        let alert = createAlertToGetZipCode()
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
@@ -182,13 +249,16 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
 //MARK: Loads Stores into Map View and when User Pans
 extension FilterViewController {
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    fileprivate func loadStores() {
         
-        let center = mapView.centerCoordinate
+        if useMyLocation {
+            
+            UserLocation.instance.requestLocation(callback: self.loadStoresInMapView)
+        }
+        else if useZipCode, zipCode.notEmpty {
+            self.loadStoresInZipCode(at: zipCode)
+        }
         
-        LOG.debug("User dragged Map Screen to: \(center)")
-        
-        self.loadStoresInMapView(at: center)
         
     }
     
@@ -217,7 +287,7 @@ extension FilterViewController {
         
     }
     
-    private func filterStores(from stores: [Store]) -> [Store] {
+    fileprivate func filterStores(from stores: [Store]) -> [Store] {
         
         if showFarmersMarkets == showGroceryStores {
             return stores
@@ -232,6 +302,39 @@ extension FilterViewController {
         }
         
         return stores
+        
+    }
+    
+    func prepareMapView() {
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        
+        if useMyLocation, let region = UserLocation.instance.currentRegion {
+            
+            self.mapView.setRegion(region, animated: true)
+            
+        }
+        else if useZipCode, zipCode.notEmpty {
+            
+            moveMapTo(zipCode: zipCode)
+        }
+        else {
+            LOG.warn("Could not adjust map to either Zip Code or User's Location")
+            return
+        }
+        
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        let center = mapView.centerCoordinate
+        self.currentCoordinates = center
+        
+        LOG.debug("User dragged Map Screen to: \(center)")
+        
+        self.loadStoresInMapView(at: center)
         
     }
     
@@ -262,6 +365,42 @@ extension FilterViewController {
         
         return annotation
         
+    }
+    
+}
+
+//MARK: Zip Code
+fileprivate extension FilterViewController {
+    
+    func loadStoresInZipCode(at zipCode: String) {
+        
+        startSpinningIndicator()
+        
+        SearchStores.searchForStoresByZipCode(withZipCode: zipCode) { (stores) in
+            
+            self.stores = self.filterStores(from: stores)
+            self.makeNoteThatLoadedStoresFromZipCode(stores: stores, zipCode: zipCode)
+            
+            self.main.addOperation {
+                
+                self.stopSpinningIndicator()
+                self.populateStoreAnnotations()
+            }
+            
+        }
+        
+    }
+    
+    func moveMapTo(zipCode: String) {
+        
+        ZipCodes.locationForZipCode(zipCode: zipCode) { location in
+            
+            guard let location = location else { return }
+            
+            let span = MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+            let region = MKCoordinateRegion(center: location, span: span)
+            self.mapView?.setRegion(region, animated: false)
+        }
     }
     
 }
@@ -329,14 +468,148 @@ extension FilterViewController {
     
 }
 
+//MARK: Create Alert Views
+fileprivate extension FilterViewController {
+    
+    func createAlertToSelectAnOption() -> UIAlertController {
+        
+        let title = "Select An Option"
+        let message = "You must select at least one option. We need a location to find EBT stores around you."
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let myLocationOption = UIAlertAction(title: "Use My Location", style: .default) { _ in
+            let alert = self.createAlertToRequestGPSPermissions()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        let zipCodeOption = UIAlertAction(title: "Use Zip Code", style: .default) { _ in
+            let alert = self.createAlertToGetZipCode()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        controller.addAction(myLocationOption)
+        controller.addAction(zipCodeOption)
+        
+        return controller
+    }
+    
+    func createAlertToRequestGPSPermissions() -> UIAlertController {
+        
+        let title = "Requesting GPS Access"
+        let message = "By granting us access, we can find EBT stores around you."
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            let alert = self.createAlertToSelectAnOption()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
+            
+            self.requestGPSAccess()
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(ok)
+        
+        return controller
+    }
+    
+    func createAlertToGetZipCode() -> UIAlertController {
+        
+        let title = "Enter Zip Code"
+        let message = "Please enter a valid zip code.(eg - 90401)"
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            let alert = self.createAlertToSelectAnOption()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        let go = UIAlertAction(title: "Go", style: .default) { _ in
+            
+            guard let zipCode = controller.textFields?.first?.text, zipCode.notEmpty else {
+                
+                self.makeNoteThatNoZipCodeEntered()
+                let warning = self.createAlertToWarnOfInvalidZip(zip: "")
+                self.present(warning, animated: true, completion: nil)
+                
+                return
+            }
+            
+            self.moveMapTo(zipCode: zipCode)
+            self.loadStoresInZipCode(at: zipCode)
+            self.zipCode = zipCode
+            self.useZipCode = true
+            self.useMyLocation = false
+            self.styleZipCodeButton()
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(go)
+        
+        controller.addTextField() { zipCode in
+            zipCode.placeholder = "(eg - 10455)"
+            zipCode.keyboardType = .numberPad
+        }
+        
+        return controller
+    }
+    
+    func createAlertToWarnOfInvalidZip(zip: String) -> UIAlertController {
+        
+        let title = "Invalid Zip Code."
+        let message = "Please enter a valid zip code"
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.useZipCode = false
+            
+        }
+        
+        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
+            
+            let newAlert = self.createAlertToGetZipCode()
+            
+            self.present(newAlert, animated: true, completion: nil)
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(ok)
+        
+        return controller
+    }
+    
+    func requestGPSAccess() {
+        
+        UserLocation.instance.requestLocation() { location in
+            
+            self.loadStoresInMapView(at: location)
+            self.useMyLocation = true
+            self.mapView?.setCenter(location, animated: false)
+            self.useZipCode = false
+            
+        }
+    }
+}
+
 //MARK: Style Menu Code
-extension FilterViewController {
+fileprivate extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {
         
         let animations = {
-            button.backgroundColor = Colors.fromRGB(red: 235, green: 191, blue: 77)
-            button.titleLabel?.font = Fonts.oxygenBold
+            
+            button.setTitleColor(Colors.darkSecondary, for: .normal)
+            button.backgroundColor = Colors.primaryAccent
             
         }
         
@@ -347,11 +620,66 @@ extension FilterViewController {
     func styleButtonOff(button: UIButton) {
         
         let animations = {
+            
+            button.setTitleColor(Colors.white, for: .normal)
             button.backgroundColor = UIColor.clear
-            button.titleLabel?.font = Fonts.oxygenRegular
         }
         
         UIView.transition(with: button, duration: 0.4, options: .transitionCrossDissolve, animations: animations, completion: nil)
+        
+    }
+    
+    func styleFarmersMarkets() {
+        
+        if showFarmersMarkets {
+            
+            styleButtonOn(button: farmersMarketsButton)
+            
+        } else {
+            
+            styleButtonOff(button: farmersMarketsButton)
+            
+        }
+        
+    }
+    
+    func styleGroceryStores() {
+        
+        if showGroceryStores {
+            
+            styleButtonOn(button: groceryStoresButton)
+            
+        } else {
+            
+            styleButtonOff(button: groceryStoresButton)
+            
+        }
+        
+    }
+    
+    func styleLocationButtons() {
+        styleMyLocationButton()
+        styleZipCodeButton()
+    }
+    
+    func styleMyLocationButton() {
+        useMyLocationSwitch.isOn = useMyLocation
+    }
+    
+    func styleZipCodeButton() {
+        
+        useZipCodeSwitch.isOn = useZipCode
+        
+        if useZipCode, zipCode.notEmpty {
+            
+            zipCodeLabel.text? = "Zip Code: "
+            zipCodeButton.isHidden = false
+            zipCodeButton.setTitle(zipCode, for: .normal)
+        }
+        else {
+            zipCodeLabel.text? = "Use Zip Code"
+            zipCodeButton.isHidden = true
+        }
         
     }
     
@@ -392,5 +720,23 @@ fileprivate extension FilterViewController {
             .send()
         
     }
+    
+    func makeNoteThatNoZipCodeEntered() {
+        
+        let message = "The user entered an empty zip code"
+        LOG.info(message)
+        AromaClient.beginMessage(withTitle: "Invalid Zip Code")
+            .addBody(message)
+            .withPriority(.medium)
+            .send()
+    }
+    
+    func makeNoteThatLoadedStoresFromZipCode(stores: [Store], zipCode: String) {
+        
+        let message = "Loaded \(stores.count) stores from Zip Code [\(zipCode)]"
+        LOG.info(message)
+        AromaClient.sendLowPriorityMessage(withTitle: "Loaded Store From Zip Code", withBody: message)
+    }
+    
 }
 

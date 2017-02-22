@@ -147,7 +147,13 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
     
     //MARK: Cancel Button Code
-    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
+        
+        guard useZipCode || useMyLocation else {
+            let alert = createAlertToSelectAnOption()
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         
         self.delegate?.didSelectFilters(self, farmersMarkets: self.showFarmersMarkets, groceryStores: self.showGroceryStores, zipCode: self.zipCode)
         self.dismiss(animated: true, completion: nil)
@@ -189,7 +195,9 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             
         }
         else if useZipCode {
+            
             refreshUsingZipCode()
+            
         }
         else {
             
@@ -206,7 +214,9 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
             refreshUsingZipCode()
         }
         else if useMyLocation {
+            
             self.askForUserLocation()
+            
         }
         else { //Neither are set
             
@@ -219,10 +229,14 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     private func refreshUsingZipCode() {
         
         if zipCode.isEmpty {
+            
             askForZipCode()
+            
         }
         else {
+            
             self.moveMapTo(zipCode: zipCode)
+            
         }
     }
     
@@ -504,8 +518,17 @@ fileprivate extension FilterViewController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            let alert = self.createAlertToSelectAnOption()
-            self.present(alert, animated: true, completion: nil)
+            
+            if self.zipCode.notEmpty {
+                self.useZipCode = true
+                return
+            }
+            else {
+            
+                let alert = self.createAlertToSelectAnOption()
+                self.present(alert, animated: true, completion: nil)
+                
+            }
             
         }
         

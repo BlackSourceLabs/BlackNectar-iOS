@@ -68,7 +68,7 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.object(forKey: Keys.useMyLocation) as? Bool ?? true
+            return defaultPreferences.object(forKey: Keys.useMyLocation) as? Bool ?? false
             
         }
         

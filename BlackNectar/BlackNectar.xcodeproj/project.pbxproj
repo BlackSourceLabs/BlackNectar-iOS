@@ -67,6 +67,7 @@
 		32FE5A491E578A8400B61709 /* CustomSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE5A481E578A8400B61709 /* CustomSwitchView.swift */; };
 		32FE5A4B1E57E1C100B61709 /* CustomThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE5A4A1E57E1C100B61709 /* CustomThumbView.swift */; };
 		32FE5A4D1E597E0700B61709 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FE5A4C1E597E0700B61709 /* CustomLabelView.swift */; };
+		32FE5A501E5F529400B61709 /* WelcomeScreens.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32FE5A4F1E5F529400B61709 /* WelcomeScreens.storyboard */; };
 		36289FB81E2FEEA300FCA6E1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36289FB71E2FEEA300FCA6E1 /* UserPreferences.swift */; };
 		36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */; };
 		DE05FFC91E5CF825005BADEB /* ZipCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE05FFC81E5CF825005BADEB /* ZipCodes.swift */; };
@@ -161,6 +162,7 @@
 		32FE5A481E578A8400B61709 /* CustomSwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSwitchView.swift; sourceTree = "<group>"; };
 		32FE5A4A1E57E1C100B61709 /* CustomThumbView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomThumbView.swift; sourceTree = "<group>"; };
 		32FE5A4C1E597E0700B61709 /* CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabelView.swift; sourceTree = "<group>"; };
+		32FE5A4F1E5F529400B61709 /* WelcomeScreens.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeScreens.storyboard; sourceTree = "<group>"; };
 		36289FB71E2FEEA300FCA6E1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPreferences.swift; path = ../UserPreferences.swift; sourceTree = "<group>"; };
 		36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		DE05FFC81E5CF825005BADEB /* ZipCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipCodes.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		3213193C1DE0F61500FB1774 /* BlackNectar */ = {
 			isa = PBXGroup;
 			children = (
+				32FE5A511E5F57FE00B61709 /* WelcomeScreens */,
 				324500771E4BFDF200A3CE63 /* Fonts */,
 				324500741E4BA78200A3CE63 /* Colors */,
 				327BAD621DF44BC5000EA25E /* APICall */,
@@ -270,6 +273,7 @@
 				327A75A71E43AD2000FE4619 /* Resources */,
 				327A75EA1E451C8800FE4619 /* Info.plist */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
+				32FE5A4F1E5F529400B61709 /* WelcomeScreens.storyboard */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				327BAD611DF44B8B000EA25E /* MapView */,
 				327BAD631DF44BEA000EA25E /* Model */,
@@ -424,6 +428,13 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		32FE5A511E5F57FE00B61709 /* WelcomeScreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = WelcomeScreens;
+			sourceTree = "<group>";
+		};
 		369843871E3166E30048D8B1 /* UserPreferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +554,7 @@
 				321319481DE0F61500FB1774 /* LaunchScreen.storyboard in Resources */,
 				327A75D81E451BAD00FE4619 /* Uni Sans Bold Italic.ttf in Resources */,
 				327A75E61E451BAD00FE4619 /* Uni Sans Thin Italic.ttf in Resources */,
+				32FE5A501E5F529400B61709 /* WelcomeScreens.storyboard in Resources */,
 				327A75E11E451BAD00FE4619 /* Uni Sans Light Italic.ttf in Resources */,
 				321319451DE0F61500FB1774 /* Assets.xcassets in Resources */,
 				321319431DE0F61500FB1774 /* Main.storyboard in Resources */,

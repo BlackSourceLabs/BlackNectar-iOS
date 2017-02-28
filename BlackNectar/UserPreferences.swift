@@ -106,16 +106,34 @@ class UserPreferences {
             defaultPreferences.set(value, forKey: Keys.zipCode)
         }
     }
-}
-
-fileprivate class Keys {
     
-    private static let namespace = "tech.blacksource.blacknectar"
+    var isFirstTimeUser: Bool {
+        
+        get {
+            
+            return defaultPreferences.object(forKey: Keys.isFirstTimeUser) as? Bool ?? false
+            
+        }
+        
+        set(value) {
+            
+            defaultPreferences.set(value, forKey: Keys.isFirstTimeUser)
+            
+        }
+        
+    }
     
-    static let searchRadius = namespace + "searchRadius"
-    static let showStores = namespace + "showStores"
-    static let showFarmersMarkets = namespace + "showFarmersMarkets"
-    static let useMyLocation = namespace + "useMyLocation"
-    static let useZipCode = namespace + "useZipCode"
-    static let zipCode = namespace + "zipCode"
+    fileprivate class Keys {
+        
+        private static let namespace = "tech.blacksource.blacknectar"
+        
+        static let searchRadius = namespace + "searchRadius"
+        static let showStores = namespace + "showStores"
+        static let showFarmersMarkets = namespace + "showFarmersMarkets"
+        static let useMyLocation = namespace + "useMyLocation"
+        static let useZipCode = namespace + "useZipCode"
+        static let zipCode = namespace + "zipCode"
+        static let isFirstTimeUser = namespace + "isFirstTimeUser"
+    }
+    
 }

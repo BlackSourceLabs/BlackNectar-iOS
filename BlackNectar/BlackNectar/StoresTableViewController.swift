@@ -36,6 +36,16 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         return UserPreferences.instance.zipCode ?? ""
     }
     
+    var isFirstTimeUser: Bool {
+        
+        get {
+            return UserPreferences.instance.isFirstTimeUser
+        }
+        set(newValue) {
+            UserPreferences.instance.isFirstTimeUser = newValue
+        }
+    }
+    
     var stores: [Store] = []
     
     let async: OperationQueue = {

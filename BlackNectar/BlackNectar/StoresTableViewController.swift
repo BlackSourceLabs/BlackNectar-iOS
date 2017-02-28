@@ -88,6 +88,16 @@ extension StoresTableViewController {
     
 }
 
+    fileprivate func goToWelcomeScreen() {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "WelcomeScreens", bundle: nil)
+        guard let welcomeScreenOne = storyBoard.instantiateViewController(withIdentifier: "welcomeScreenNavigationController") as? UINavigationController else { return }
+        self.present(welcomeScreenOne, animated: true, completion: nil)
+        
+    }
+    
+}
+
 //MARK: Table View Code
 extension StoresTableViewController {
     

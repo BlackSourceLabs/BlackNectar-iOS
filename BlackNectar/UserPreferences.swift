@@ -19,13 +19,13 @@ class UserPreferences {
     var distanceFilter: Double {
         
         get {
-        
+            
             return defaultPreferences.double(forKey: Keys.searchRadius)
-        
+            
         }
         
         set (value) {
-        
+            
             defaultPreferences.set(value, forKey: Keys.searchRadius)
             
         }
@@ -103,7 +103,9 @@ class UserPreferences {
         }
         
         set(value) {
+            
             defaultPreferences.set(value, forKey: Keys.zipCode)
+            
         }
     }
     

@@ -70,6 +70,13 @@ import UIKit
         }
     }
     
+    @IBInspectable var rotation: CGFloat = 0 {
+        
+        didSet {
+            updateView()
+        }
+    }
+    
     func updateView() {
         
         layer.cornerRadius = cornerRadius
@@ -79,7 +86,24 @@ import UIKit
         
         if shouldRasterize {
             layer.rasterizationScale = UIScreen.main.scale
-            
+        }
+        
+        var rotationDegrees = Int(rotation)
+        
+        if rotationDegrees > 360 {
+            rotationDegrees = rotationDegrees % 360
+        }
+        
+        if rotationDegrees < -360 {
+            rotationDegrees = rotationDegrees % -360
+        }
+        
+        if rotationDegrees != 0 {
+            let rotationAngle = Double(rotationDegrees) * (M_PI / 180.0)
+            self.transform = CGAffineTransform(rotationAngle: CGFloat(rotationAngle))
+        }
+        else {
+            self.transform = CGAffineTransform.identity
         }
         
     }

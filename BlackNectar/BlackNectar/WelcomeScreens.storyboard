@@ -50,25 +50,38 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-Ol-OPt">
-                                <rect key="frame" x="0.0" y="237" width="375" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-Ol-OPt" userLabel="Diagonal Bar" customClass="CustomView" customModule="BlackNectar" customModuleProvider="target">
+                                <rect key="frame" x="-195.75187540310878" y="-11.25187540310867" width="766.50375080621757" height="766.50375080621745"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="nvw-sm-JN8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rotation">
+                                        <real key="value" value="-45"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-Ik-Tqx">
-                                <rect key="frame" x="56.5" y="171" width="262.5" height="262.5"/>
+                                <rect key="frame" x="75" y="189.5" width="225" height="225"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BnJ-Ik-Tqx" secondAttribute="height" multiplier="1:1" id="Xbv-tY-Xmm"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLACKNECTAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl">
-                                <rect key="frame" x="100" y="465.5" width="175.5" height="27"/>
-                                <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
+                                <rect key="frame" x="90.5" y="438.5" width="195" height="30"/>
+                                <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
-                                <rect key="frame" x="103.5" y="42" width="169.5" height="37"/>
+                                <rect key="frame" x="103" y="32" width="169.5" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Zwq-2F-cpP"/>
                                 </constraints>
@@ -77,23 +90,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="width" secondItem="LU9-hy-gUj" secondAttribute="height" multiplier="1.3" id="07y-Di-sLu"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="centerY" secondItem="LU9-hy-gUj" secondAttribute="centerY" id="4Ql-j1-H5i"/>
                             <constraint firstAttribute="trailing" secondItem="hgp-In-BeZ" secondAttribute="trailing" id="6db-uR-D2C"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="bottom" secondItem="29M-yt-GTe" secondAttribute="top" id="72r-LC-Wi7"/>
-                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="top" secondItem="ZdA-ZJ-otm" secondAttribute="bottom" constant="42" id="9J0-ec-XSo"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="centerY" secondItem="LU9-hy-gUj" secondAttribute="centerY" id="9py-I1-wLR"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="top" secondItem="ZdA-ZJ-otm" secondAttribute="bottom" id="E2k-eY-M3p"/>
-                            <constraint firstItem="mKr-iI-KJl" firstAttribute="top" secondItem="BnJ-Ik-Tqx" secondAttribute="bottom" constant="32" id="I2u-8e-ovk"/>
+                            <constraint firstItem="mKr-iI-KJl" firstAttribute="top" secondItem="BnJ-Ik-Tqx" secondAttribute="bottom" constant="24" id="I2u-8e-ovk"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="Jh2-pE-xi3"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="LwN-4e-xvp"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="leading" secondItem="LU9-hy-gUj" secondAttribute="leading" id="X4A-FO-Edy"/>
+                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="top" secondItem="LU9-hy-gUj" secondAttribute="topMargin" constant="32" id="dJz-vV-G0D"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="width" secondItem="LU9-hy-gUj" secondAttribute="width" id="eWe-0t-NxK"/>
                             <constraint firstItem="mKr-iI-KJl" firstAttribute="centerX" secondItem="4KV-2F-31T" secondAttribute="centerX" id="fHa-jK-Wgs"/>
                             <constraint firstItem="4RI-0L-Bhq" firstAttribute="centerX" secondItem="hgp-In-BeZ" secondAttribute="centerX" id="gpd-4R-Ljp"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="lTN-ou-179"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="height" id="qml-84-Twi"/>
-                            <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="width" secondItem="4KV-2F-31T" secondAttribute="width" multiplier="0.7" id="zcj-r3-set"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerY" secondItem="BnJ-Ik-Tqx" secondAttribute="centerY" constant="70" id="s1g-On-Wzk"/>
+                            <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="width" secondItem="4KV-2F-31T" secondAttribute="width" multiplier="0.6" id="zcj-r3-set"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YNu-7I-Z1x"/>

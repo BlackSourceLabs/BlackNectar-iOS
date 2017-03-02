@@ -39,9 +39,12 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     var isFirstTimeUser: Bool {
         
         get {
+            
             return UserPreferences.instance.isFirstTimeUser
         }
+        
         set(newValue) {
+            
             UserPreferences.instance.isFirstTimeUser = newValue
         }
     }
@@ -67,8 +70,16 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         reloadStoreData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.goToWelcomeScreenOrFilterScreen()
+
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
     
 }
@@ -88,6 +99,22 @@ extension StoresTableViewController {
     
 }
 
+//MARK: Welcome Screen Code
+extension StoresTableViewController {
+    
+    func goToWelcomeScreenOrFilterScreen() {
+        
+        if isFirstTimeUser {
+            
+            goToWelcomeScreen()
+            
+        } else {
+            
+            self.goToFilters()
+            
+        }
+    }
+    
     fileprivate func goToWelcomeScreen() {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "WelcomeScreens", bundle: nil)
@@ -210,7 +237,7 @@ extension StoresTableViewController {
             
             cell.storeDistance.isHidden = false
             cell.storeDistance.text = "\(doubleDown) miles"
-
+            
         }
         
     }
@@ -229,12 +256,12 @@ extension StoresTableViewController {
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
-   
+    
     
     func reloadStoreData() {
         
         if useMyLocation {
-
+            
             UserLocation.instance.requestLocation(callback: self.loadStores)
         }
         else if useZipCode, zipCode.notEmpty {
@@ -358,6 +385,7 @@ extension StoresTableViewController {
     func goToMapView() {
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
     }
+    
     
 }
 

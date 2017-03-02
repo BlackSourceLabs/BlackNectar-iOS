@@ -51,6 +51,7 @@
 		3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297A36B1E39AF090055BC89 /* Arrays+.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
+		32D86DD31E5F87E400C8837D /* WelcomeScreenOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */; };
 		32E134411E15FE6700FD65DC /* AromaSwiftClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */; };
 		32E134431E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
 		32E134441E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
@@ -153,6 +154,7 @@
 		3297A36B1E39AF090055BC89 /* Arrays+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Arrays+.swift"; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
 		32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+.swift"; sourceTree = "<group>"; };
+		32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenOne.swift; sourceTree = "<group>"; };
 		32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaSwiftClient.framework; path = Carthage/Build/iOS/AromaSwiftClient.framework; sourceTree = "<group>"; };
 		32E1343D1E15FE6700FD65DC /* AromaThrift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaThrift.framework; path = Carthage/Build/iOS/AromaThrift.framework; sourceTree = "<group>"; };
 		32E1343E1E15FE6700FD65DC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		32FE5A511E5F57FE00B61709 /* WelcomeScreens */ = {
 			isa = PBXGroup;
 			children = (
+				32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */,
 			);
 			name = WelcomeScreens;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				3213196C1DE105AF00FB1774 /* StoresDataStruct.swift in Sources */,
 				324500761E4BA79F00A3CE63 /* Colors.swift in Sources */,
 				3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */,
+				32D86DD31E5F87E400C8837D /* WelcomeScreenOne.swift in Sources */,
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
 				36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */,

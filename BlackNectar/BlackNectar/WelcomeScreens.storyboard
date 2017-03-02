@@ -48,7 +48,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-Ik-Tqx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-Ik-Tqx">
                                 <rect key="frame" x="85" y="202" width="206" height="200"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLACKNECTAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl">
@@ -120,7 +120,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLACKNECTAR HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2V-0p-NsP">
-                                        <rect key="frame" x="19" y="130.5" width="337" height="194"/>
+                                        <rect key="frame" x="19" y="133" width="337" height="194"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="194" id="NhJ-9v-z3v"/>
                                         </constraints>
@@ -129,7 +129,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdt-mx-Kg5" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                        <rect key="frame" x="50" y="357.5" width="275" height="50"/>
+                                        <rect key="frame" x="50" y="360" width="275" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="roB-Yq-2c6"/>
                                         </constraints>
@@ -139,7 +139,7 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designed and created by people who really give a damn." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGY-d0-uDY">
-                                        <rect key="frame" x="47" y="470.5" width="281" height="47"/>
+                                        <rect key="frame" x="47" y="473" width="281" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="47" id="IF2-Tt-42K"/>
                                         </constraints>
@@ -148,7 +148,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLACK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7">
-                                        <rect key="frame" x="112" y="559.5" width="45" height="17.5"/>
+                                        <rect key="frame" x="112" y="562" width="45" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="45" id="oFG-Bf-7Gz"/>
                                         </constraints>
@@ -157,7 +157,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOURCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ma-zn-Exn">
-                                        <rect key="frame" x="157" y="559.5" width="58" height="17.5"/>
+                                        <rect key="frame" x="157" y="562" width="58" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="58" id="xBu-J5-2hH"/>
                                         </constraints>
@@ -251,10 +251,10 @@
                                 <rect key="frame" x="210" y="185" width="126" height="111"/>
                                 <state key="normal" image="Grocery Stores"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-Ht-Au8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-Ht-Au8">
                                 <rect key="frame" x="60" y="206" width="75" height="68"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="7Fs-z6-j3L">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="7Fs-z6-j3L">
                                 <rect key="frame" x="240" y="206" width="67" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="67" id="D6f-7c-0T3"/>
@@ -427,10 +427,10 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3">
                                 <rect key="frame" x="65" y="280" width="44" height="43"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="jnb-D3-0wH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="jnb-D3-0wH">
                                 <rect key="frame" x="265" y="280" width="44" height="43"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xb-sb-wfB" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
@@ -532,8 +532,7 @@
     <resources>
         <image name="Farmer's Markets" width="1000" height="714"/>
         <image name="Grocery Stores" width="800" height="533"/>
-        <image name="Icon-60" width="60" height="60"/>
-        <image name="SplashScreen" width="500" height="500"/>
+        <image name="Icon-Transparent" width="500" height="500"/>
         <image name="wallhaven-179935" width="1080" height="1920"/>
         <image name="wallhaven-312625" width="1200" height="1920"/>
         <image name="wallhaven-478155" width="2160" height="3840"/>

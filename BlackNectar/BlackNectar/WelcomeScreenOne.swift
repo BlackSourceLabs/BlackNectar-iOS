@@ -37,7 +37,7 @@ fileprivate extension WelcomeScreenOne {
     
     func goToNextScreen() {
         
-        self.performSegue(withIdentifier: "Next", sender: self)
+        self.performSegue(withIdentifier: "next", sender: self)
         
     }
 }

@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallhaven-312625" translatesAutoresizingMaskIntoConstraints="NO" id="hgp-In-BeZ" userLabel="Background">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4KV-2F-31T" userLabel="Transparency">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -76,7 +76,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="85" y="470" width="205" height="30"/>
+                                <rect key="frame" x="86" y="470" width="203" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
@@ -89,15 +89,12 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="kearning">
-                                        <real key="value" value="1.2"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
-                                <rect key="frame" x="103.5" y="32" width="169.5" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="Zwq-2F-cpP"/>
-                                </constraints>
+                                <rect key="frame" x="103.5" y="72" width="169.5" height="27"/>
                                 <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -108,21 +105,21 @@
                             <constraint firstItem="2pg-Ol-OPt" firstAttribute="width" secondItem="LU9-hy-gUj" secondAttribute="height" multiplier="1.3" id="07y-Di-sLu"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="centerY" secondItem="LU9-hy-gUj" secondAttribute="centerY" id="4Ql-j1-H5i"/>
                             <constraint firstAttribute="trailing" secondItem="hgp-In-BeZ" secondAttribute="trailing" id="6db-uR-D2C"/>
-                            <constraint firstItem="hgp-In-BeZ" firstAttribute="bottom" secondItem="29M-yt-GTe" secondAttribute="top" id="72r-LC-Wi7"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="centerY" secondItem="LU9-hy-gUj" secondAttribute="centerY" id="9py-I1-wLR"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="height" multiplier="0.4" id="CYh-Sf-2ve"/>
-                            <constraint firstItem="hgp-In-BeZ" firstAttribute="top" secondItem="ZdA-ZJ-otm" secondAttribute="bottom" id="E2k-eY-M3p"/>
                             <constraint firstItem="mKr-iI-KJl" firstAttribute="top" secondItem="BnJ-Ik-Tqx" secondAttribute="bottom" constant="24" id="I2u-8e-ovk"/>
+                            <constraint firstItem="hgp-In-BeZ" firstAttribute="top" secondItem="LU9-hy-gUj" secondAttribute="top" id="Inu-Hm-QV0"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="Jh2-pE-xi3"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="LwN-4e-xvp"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="leading" secondItem="LU9-hy-gUj" secondAttribute="leading" id="X4A-FO-Edy"/>
-                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="top" secondItem="LU9-hy-gUj" secondAttribute="topMargin" constant="32" id="dJz-vV-G0D"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="width" secondItem="LU9-hy-gUj" secondAttribute="width" id="eWe-0t-NxK"/>
+                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="efA-Md-WXH"/>
                             <constraint firstItem="mKr-iI-KJl" firstAttribute="centerX" secondItem="4KV-2F-31T" secondAttribute="centerX" id="fHa-jK-Wgs"/>
-                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="centerX" secondItem="hgp-In-BeZ" secondAttribute="centerX" id="gpd-4R-Ljp"/>
+                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="top" secondItem="ZdA-ZJ-otm" secondAttribute="bottom" constant="8" id="h7I-U6-W0A"/>
                             <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="lTN-ou-179"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="height" id="qml-84-Twi"/>
                             <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerY" secondItem="BnJ-Ik-Tqx" secondAttribute="centerY" constant="70" id="s1g-On-Wzk"/>
+                            <constraint firstAttribute="bottom" secondItem="hgp-In-BeZ" secondAttribute="bottom" id="wiG-Bb-eeb"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="width" secondItem="4KV-2F-31T" secondAttribute="width" multiplier="0.6" id="zcj-r3-set"/>
                         </constraints>
                         <variation key="default">
@@ -136,7 +133,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="YNu-7I-Z1x"/>
+                    <navigationItem key="navigationItem" id="YNu-7I-Z1x">
+                        <barButtonItem key="backBarButtonItem" title=" " id="rsV-ho-Qpg"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="9tm-el-8CS" kind="show" identifier="next" id="A9e-PE-IR2"/>
                     </connections>
@@ -158,21 +157,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallhaven-312625" translatesAutoresizingMaskIntoConstraints="NO" id="cKd-b7-Ina" userLabel="Background">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="onC-st-zwp" userLabel="Opacity Layer">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="F2V-0p-NsP" userLabel="Intro">
-                                <rect key="frame" x="24" y="112" width="343" height="195"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2V-0p-NsP" userLabel="Intro">
+                                <rect key="frame" x="24" y="72" width="343" height="215"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="BLACKNECTAR HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
+                                    <fragment content="BLACKNECTAR">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="30" name="UniSansLight"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.98958333333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="30" name="UniSansLight"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -180,18 +186,25 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                                 <variation key="heightClass=compact">
                                     <attributedString key="attributedText">
-                                        <fragment content="BLACKNECTAR HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
+                                        <fragment content="BLACKNECTAR">
                                             <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="24" name="UniSansLight"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <font key="NSFont" size="24" name="UniSansLight"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGY-d0-uDY" userLabel="Subtitle">
-                                <rect key="frame" x="75" y="543.5" width="225" height="39"/>
+                                <rect key="frame" x="75" y="544" width="225" height="39"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Designed and created by people who really give a damn.">
                                         <attributes>
@@ -203,28 +216,38 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7">
-                                <rect key="frame" x="121" y="622.5" width="133" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
+                                <rect key="frame" x="115" y="623" width="145" height="20"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACK">
                                         <attributes>
+                                            <color key="NSBackgroundColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="20" name="UniSansLight"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="charWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="SOURCE">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="20" name="UniSansSemiBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="0.97931338028169013" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="20" name="UniSansBold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="charWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="kearning">
+                                        <real key="value" value="1.2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdt-mx-Kg5" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="62" y="371" width="251" height="50"/>
+                                <rect key="frame" x="62" y="351" width="251" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="roB-Yq-2c6"/>
                                 </constraints>
@@ -264,6 +287,7 @@
                             <constraint firstItem="sdt-mx-Kg5" firstAttribute="top" secondItem="F2V-0p-NsP" secondAttribute="bottom" constant="64" id="QOB-UC-t4T">
                                 <variation key="heightClass=compact" constant="24"/>
                             </constraint>
+                            <constraint firstItem="cKd-b7-Ina" firstAttribute="top" secondItem="2K9-qS-QlJ" secondAttribute="top" id="Sxx-bS-i75"/>
                             <constraint firstItem="fRP-nL-k7K" firstAttribute="top" secondItem="bY4-Nf-GM7" secondAttribute="bottom" constant="24" id="TUi-GQ-sdm">
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
@@ -276,11 +300,13 @@
                             <constraint firstItem="bY4-Nf-GM7" firstAttribute="top" secondItem="lGY-d0-uDY" secondAttribute="bottom" constant="40" id="g0H-vM-moO">
                                 <variation key="heightClass=compact" constant="8"/>
                             </constraint>
-                            <constraint firstItem="F2V-0p-NsP" firstAttribute="top" secondItem="61V-UW-9GB" secondAttribute="bottom" constant="48" id="lJo-x0-qfa"/>
-                            <constraint firstItem="cKd-b7-Ina" firstAttribute="top" secondItem="61V-UW-9GB" secondAttribute="bottom" id="rOr-BJ-S7O"/>
+                            <constraint firstItem="F2V-0p-NsP" firstAttribute="top" secondItem="61V-UW-9GB" secondAttribute="bottom" constant="8" id="lJo-x0-qfa"/>
                             <constraint firstItem="cKd-b7-Ina" firstAttribute="leading" secondItem="2K9-qS-QlJ" secondAttribute="leading" id="uyV-Bk-0BD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="15Y-lv-ce7">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Qfd-BA-7bV"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5G0-aL-wxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -299,7 +325,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallhaven-478155" translatesAutoresizingMaskIntoConstraints="NO" id="jN2-PR-DDz" userLabel="Background">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ebf-ey-r2E">
                                 <rect key="frame" x="93" y="112" width="190" height="64"/>
@@ -339,10 +365,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSo-n1-15i">
-                                                <rect key="frame" x="22" y="136" width="76" height="36"/>
+                                                <rect key="frame" x="24" y="136" width="72.5" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
-                                                        <string key="content">FARMERS''
+                                                        <string key="content">FARMERS'
 MARKETS</string>
                                                         <attributes>
                                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -425,11 +451,10 @@ STORES</string>
                             <constraint firstItem="zq6-Ht-Au8" firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="width" multiplier="0.5" id="2cU-Wy-tpX"/>
                             <constraint firstItem="zq6-Ht-Au8" firstAttribute="centerY" secondItem="hn3-XB-hzv" secondAttribute="centerY" id="4iN-Xz-D3A"/>
                             <constraint firstItem="PtQ-JV-P8M" firstAttribute="top" secondItem="tad-Rl-Zuy" secondAttribute="bottom" constant="16" id="6Du-fm-OVu"/>
-                            <constraint firstItem="PtQ-JV-P8M" firstAttribute="top" secondItem="jN2-PR-DDz" secondAttribute="bottom" id="HP1-xX-m0f"/>
                             <constraint firstItem="jN2-PR-DDz" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leading" id="Ijg-vh-hIz"/>
+                            <constraint firstItem="jN2-PR-DDz" firstAttribute="top" secondItem="RzB-lW-V4D" secondAttribute="top" id="PLP-rQ-hDB"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerY" secondItem="HpP-rA-YrN" secondAttribute="centerY" id="VAX-k7-hDc"/>
                             <constraint firstItem="ebf-ey-r2E" firstAttribute="top" secondItem="7m4-sU-le6" secondAttribute="bottom" constant="48" id="XYF-WM-bt0"/>
-                            <constraint firstItem="jN2-PR-DDz" firstAttribute="top" secondItem="7m4-sU-le6" secondAttribute="bottom" id="b6v-Qk-6Ay"/>
                             <constraint firstAttribute="trailing" secondItem="jN2-PR-DDz" secondAttribute="trailing" id="erT-j4-Ae8"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="width" secondItem="HpP-rA-YrN" secondAttribute="width" multiplier="0.5" id="hDr-mG-hfN"/>
                             <constraint firstItem="Lyl-U6-BJS" firstAttribute="top" secondItem="ebf-ey-r2E" secondAttribute="bottom" constant="64" id="hE2-dT-pJy"/>
@@ -438,12 +463,14 @@ STORES</string>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerX" secondItem="HpP-rA-YrN" secondAttribute="centerX" id="o7h-X4-nC7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lyl-U6-BJS" secondAttribute="trailing" constant="16" id="rcr-fe-fCH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tad-Rl-Zuy" secondAttribute="trailing" constant="16" id="ud9-1q-JmV"/>
+                            <constraint firstAttribute="bottom" secondItem="jN2-PR-DDz" secondAttribute="bottom" id="vIO-60-jDq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KTh-Yw-vrz">
                         <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="7ZS-uq-JE8"/>
                         <view key="titleView" contentMode="scaleToFill" id="hHs-UW-cae">
-                            <rect key="frame" x="71" y="6" width="234" height="33"/>
+                            <rect key="frame" x="70.5" y="5.5" width="234" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLACKNECTAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ria-bV-sdp">
@@ -616,10 +643,10 @@ CODE</string>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="CfE-Re-0ct" secondAttribute="bottom" id="HxH-Bx-HFt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2Xb-sb-wfB" secondAttribute="trailing" constant="16" id="KqL-Ka-IV5"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="top" secondItem="Q3x-8k-t2L" secondAttribute="bottom" constant="48" id="Nb2-Ay-kxr"/>
+                            <constraint firstAttribute="bottom" secondItem="ZSP-3r-4yi" secondAttribute="bottom" id="WeP-bd-h8B"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="centerX" secondItem="VQ9-u6-xz5" secondAttribute="centerX" id="bN4-O0-DlR"/>
                             <constraint firstItem="L5i-9v-P2s" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leadingMargin" constant="16" id="f71-eQ-yy5"/>
                             <constraint firstAttribute="trailing" secondItem="m98-hy-8Xy" secondAttribute="trailing" id="glR-W3-d0H"/>
-                            <constraint firstItem="1Tq-hF-8jT" firstAttribute="top" secondItem="ZSP-3r-4yi" secondAttribute="bottom" id="lj6-bH-eRE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="L5i-9v-P2s" secondAttribute="trailing" constant="16" id="pFN-Ar-kgK"/>
                             <constraint firstAttribute="bottom" secondItem="m98-hy-8Xy" secondAttribute="bottom" id="tnv-CP-dOY"/>
                             <constraint firstItem="jnb-D3-0wH" firstAttribute="centerX" secondItem="Nyb-lR-mJ9" secondAttribute="centerX" id="v0l-fi-vN9"/>
@@ -632,8 +659,9 @@ CODE</string>
                     </view>
                     <navigationItem key="navigationItem" id="kS8-ve-UHI">
                         <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="tmz-fg-RIy"/>
                         <view key="titleView" contentMode="scaleToFill" id="eNd-7b-uMv">
-                            <rect key="frame" x="76" y="6" width="223" height="33"/>
+                            <rect key="frame" x="76" y="5.5" width="223" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLACKNECTAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbn-0V-s0T">
@@ -661,7 +689,7 @@ CODE</string>
             <objects>
                 <navigationController storyboardIdentifier="welcomeScreenNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ypk-I6-KIw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gWg-9r-p4r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gWg-9r-p4r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

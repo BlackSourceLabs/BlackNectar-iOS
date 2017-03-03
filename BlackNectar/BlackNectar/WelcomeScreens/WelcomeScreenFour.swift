@@ -17,6 +17,8 @@ class WelcomeScreenFour: UIViewController {
     @IBOutlet weak var zipCodeButton: CustomButtonView!
     @IBOutlet weak var nextButton: CustomButtonView!
     
+    fileprivate var originalZipCodeText: NSAttributedString!
+    
     @IBOutlet weak var locationPin: UIImageView!
     @IBOutlet weak var locationPinCenterXMyLocation: NSLayoutConstraint!
     @IBOutlet weak var locationPinCenterYMyLocation: NSLayoutConstraint!
@@ -44,6 +46,11 @@ class WelcomeScreenFour: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        if let title = self.zipCodeButton.attributedTitle(for: .normal) {
+            self.originalZipCodeText = title
+        }
+        
         updateButtons(animated: false)
     }
    
@@ -255,11 +262,13 @@ fileprivate extension WelcomeScreenFour {
     func selectZipCodeButton(animated: Bool = true) {
         
         uncloakZipCode()
-        disableZipCodeButton()
+//        disableZipCodeButton()
+        updateZipCodeText()
         movePinToZipCode(animated: animated)
         
         enableMyLocationButton()
         cloakMyLocationButton()
+        
     }
     
     func selectGPSButton(animated: Bool = true) {
@@ -269,6 +278,7 @@ fileprivate extension WelcomeScreenFour {
         movePinToMyLocation(animated: animated)
         
         enableZipCodeButton()
+        updateZipCodeText()
         cloakZipCode()
     }
 
@@ -280,6 +290,24 @@ fileprivate extension WelcomeScreenFour {
     func disableZipCodeButton() {
         
         zipCodeButton.isEnabled = false
+    }
+    
+    func updateZipCodeText() {
+        
+        if useZipCode {
+            
+            let text = NSMutableAttributedString(string: zipCode, attributes: originalZipCodeText.attributes(at: 0, effectiveRange: nil))
+            
+            if let font = Fonts.uniSansSemiBold(size: 24) {
+                
+                text.addAttribute(NSFontAttributeName, value: font, range: NSRange.init(location: 0, length: text.string.characters.count))
+                zipCodeButton.setAttributedTitle(text, for: .normal)
+            }
+        
+        }
+        else {
+            zipCodeButton.setAttributedTitle(originalZipCodeText, for: .normal)
+        }
     }
     
     func cloakZipCode() {
@@ -345,10 +373,7 @@ fileprivate extension WelcomeScreenFour {
             self.locationPinCenterXZipCode.isActive = true
             self.locationPinCenterYZipCode.isActive = true
             
-//            if animated {
-            
-                self.view.layoutIfNeeded()
-//            }
+            self.view.layoutIfNeeded()
         }
         
         if animated {
@@ -371,10 +396,7 @@ fileprivate extension WelcomeScreenFour {
             self.locationPinCenterXMyLocation.isActive = true
             self.locationPinCenterYMyLocation.isActive = true
             
-//            if animated {
-            
-                self.view.layoutIfNeeded()
-//            }
+            self.view.layoutIfNeeded()
         }
         
         if animated {
@@ -425,7 +447,6 @@ fileprivate extension WelcomeScreenFour {
     func animate(withView view: UIView, animations: @escaping () -> ()) {
         
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: animations, completion: nil)
-//        UIView.transition(with: self.view, duration: 0.4, options: .curveEaseInOut, animations: animations, completion: nil)
     }
     
 }

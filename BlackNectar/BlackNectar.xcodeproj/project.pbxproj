@@ -519,7 +519,6 @@
 				TargetAttributes = {
 					321319391DE0F61500FB1774 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 5E82HJH2N5;
 						ProvisioningStyle = Automatic;
 					};
 					3213194D1DE0F61500FB1774 = {
@@ -646,6 +645,7 @@
 				DE05FFC91E5CF825005BADEB /* ZipCodes.swift in Sources */,
 				36289FB81E2FEEA300FCA6E1 /* UserPreferences.swift in Sources */,
 				32FE5A4B1E57E1C100B61709 /* CustomThumbView.swift in Sources */,
+				DE4AB57C1E68DB8B00F678D4 /* CustomView.swift in Sources */,
 				324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */,
 				DE80BFF31E57689D00449144 /* Locations+.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,
@@ -795,7 +795,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5E82HJH2N5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -815,7 +815,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5E82HJH2N5;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -21,4 +21,19 @@ class WelcomeScreenTwo : UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        goToNext()
+        
+    }
+}
+
+//MARK: Segues 
+fileprivate extension WelcomeScreenTwo {
+    
+    func goToNext() {
+        
+        self.performSegue(withIdentifier: "next", sender: self)
+    }
 }

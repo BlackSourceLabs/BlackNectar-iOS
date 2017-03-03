@@ -67,7 +67,13 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
         UserLocation.instance.initialize()
         setupRefreshControl()
-        reloadStoreData()
+        
+        if isFirstTimeUser {
+            goToWelcomeScreen()
+        }
+        else {
+            reloadStoreData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +84,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        goToWelcomeScreen()
     }
     
 }
@@ -99,23 +104,15 @@ extension StoresTableViewController {
 }
 
 //MARK: Welcome Screen Code
-extension StoresTableViewController {
-    
-    func goToWelcomeScreenOrFilterScreen() {
-        
-        if isFirstTimeUser {
-    
-            goToWelcomeScreen()
-            
-        } else {
-            
-            isFirstTimeUser = false
-        }
-    }
+extension StoresTableViewController: WelcomeScreenDelegate {
     
     func goToWelcomeScreen() {
         
         performSegue(withIdentifier: "toWelcome", sender: nil)
+    }
+    
+    func didDismissWelcomeScreens() {
+        self.reloadStoreData()
     }
 }
 
@@ -350,12 +347,19 @@ extension StoresTableViewController {
             
         }
         
-        if let destination = segue.destination as? UINavigationController {
+        if let destination = segue.destination as? UINavigationController,
+           let filterViewController = destination.topViewController as? FilterViewController {
             
-            let filterViewController = destination.topViewController as? FilterViewController
-            filterViewController?.delegate = self
+            filterViewController.delegate = self
             
         }
+        
+        if let destination = segue.destination as? UINavigationController,
+           let welcomeScreen = destination.topViewController as? WelcomeScreenOne {
+           
+            welcomeScreen.delegate = self
+        }
+        
         
     }
     

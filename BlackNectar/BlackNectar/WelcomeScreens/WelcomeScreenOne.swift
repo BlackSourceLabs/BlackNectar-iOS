@@ -11,7 +11,7 @@ import UIKit
 
 class WelcomeScreenOne: UIViewController {
 
-    
+    var delegate: WelcomeScreenDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +33,18 @@ class WelcomeScreenOne: UIViewController {
 
 
 //MARK: Segues
-fileprivate extension WelcomeScreenOne {
+extension WelcomeScreenOne {
     
     func goToNextScreen() {
         
         self.performSegue(withIdentifier: "next", sender: self)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let next = segue.destination as? WelcomeScreenTwo {
+            next.delegate = self.delegate
+        }
     }
 }

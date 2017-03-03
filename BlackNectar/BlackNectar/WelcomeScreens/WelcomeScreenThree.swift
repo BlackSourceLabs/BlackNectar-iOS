@@ -32,6 +32,8 @@ class WelcomeScreenThree: UIViewController {
                UserPreferences.instance.showStores
     }
     
+    var delegate: WelcomeScreenDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,10 +67,19 @@ extension WelcomeScreenThree {
 }
 
 //MARK: Segues 
-fileprivate extension WelcomeScreenThree {
+extension WelcomeScreenThree {
     
     func goToNext() {
+        
         self.performSegue(withIdentifier: "next", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let next = segue.destination as? WelcomeScreenFour {
+            
+            next.delegate = self.delegate
+        }
     }
 }
 
@@ -76,30 +87,37 @@ fileprivate extension WelcomeScreenThree {
 fileprivate extension WelcomeScreenThree {
     
     private var neitherSelected: Bool {
+        
         return !UserPreferences.instance.showFarmersMarkets &&
-            !UserPreferences.instance.showStores
+                !UserPreferences.instance.showStores
     }
     
     func updateButtons() {
         
         if UserPreferences.instance.showFarmersMarkets {
+            
             selectFarmersMarket()
         }
         else {
+            
             deselectFarmersMarket()
         }
         
         if UserPreferences.instance.showStores {
+            
             selectGroceryStores()
         }
         else {
+            
             deselectGroceryStores()
         }
         
         if neitherSelected {
+            
             disableNextButton()
         }
         else {
+            
             enableNextButton()
         }
     }
@@ -107,6 +125,7 @@ fileprivate extension WelcomeScreenThree {
     func selectFarmersMarket() {
         
         let animations = {
+            
             self.farmersMarketOpacity.isHidden = false
             self.farmersMarketPin.isHidden = false
         }
@@ -117,6 +136,7 @@ fileprivate extension WelcomeScreenThree {
     func deselectFarmersMarket() {
         
         let animations = {
+            
             self.farmersMarketOpacity.isHidden = true
             self.farmersMarketPin.isHidden = true
         }
@@ -128,6 +148,7 @@ fileprivate extension WelcomeScreenThree {
     func selectGroceryStores() {
         
         let animations = {
+            
             self.groceryStoresOpacity.isHidden = false
             self.groceryStoresPin.isHidden = false
         }
@@ -138,6 +159,7 @@ fileprivate extension WelcomeScreenThree {
     func deselectGroceryStores() {
         
         let animations = {
+            
             self.groceryStoresOpacity.isHidden = true
             self.groceryStoresPin.isHidden = true
         }

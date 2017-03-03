@@ -204,12 +204,12 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGY-d0-uDY" userLabel="Subtitle">
-                                <rect key="frame" x="75" y="543" width="225" height="39"/>
+                                <rect key="frame" x="56.5" y="539" width="262.5" height="43"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Designed and created by people who really give a damn.">
                                         <attributes>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="UniSansLight"/>
+                                            <font key="NSFont" size="20" name="UniSansLight"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -282,7 +282,7 @@
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
                             <constraint firstItem="lGY-d0-uDY" firstAttribute="centerX" secondItem="2K9-qS-QlJ" secondAttribute="centerX" id="Fng-9i-JWC"/>
-                            <constraint firstItem="lGY-d0-uDY" firstAttribute="width" secondItem="2K9-qS-QlJ" secondAttribute="width" multiplier="0.6" id="HI2-bo-na1"/>
+                            <constraint firstItem="lGY-d0-uDY" firstAttribute="width" secondItem="2K9-qS-QlJ" secondAttribute="width" multiplier="0.7" id="HI2-bo-na1"/>
                             <constraint firstItem="onC-st-zwp" firstAttribute="leading" secondItem="2K9-qS-QlJ" secondAttribute="leading" id="PNf-9M-07N"/>
                             <constraint firstItem="sdt-mx-Kg5" firstAttribute="top" secondItem="F2V-0p-NsP" secondAttribute="bottom" constant="64" id="QOB-UC-t4T">
                                 <variation key="heightClass=compact" constant="24"/>
@@ -324,9 +324,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallhaven-478155" translatesAutoresizingMaskIntoConstraints="NO" id="jN2-PR-DDz" userLabel="Background">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallhaven-478155" translatesAutoresizingMaskIntoConstraints="NO" id="jN2-PR-DDz" userLabel="Background">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <view alpha="0.60000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZi-dk-erf" userLabel="Opacity Layer">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ebf-ey-r2E">
                                 <rect key="frame" x="93" y="80" width="190" height="64"/>
                                 <subviews>
@@ -470,6 +474,7 @@ STORES</string>
                             <constraint firstItem="jN2-PR-DDz" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leading" id="Ijg-vh-hIz"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="width" id="L44-4J-UiY"/>
                             <constraint firstItem="jN2-PR-DDz" firstAttribute="top" secondItem="RzB-lW-V4D" secondAttribute="top" id="PLP-rQ-hDB"/>
+                            <constraint firstAttribute="bottom" secondItem="rZi-dk-erf" secondAttribute="bottom" id="Q7R-5g-8mg"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="centerX" secondItem="hn3-XB-hzv" secondAttribute="centerX" id="R2X-rb-RGk"/>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="centerX" secondItem="HpP-rA-YrN" secondAttribute="centerX" id="TBt-Cf-qwX"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerY" secondItem="HpP-rA-YrN" secondAttribute="centerY" id="VAX-k7-hDc"/>
@@ -477,8 +482,11 @@ STORES</string>
                             <constraint firstAttribute="trailing" secondItem="jN2-PR-DDz" secondAttribute="trailing" id="erT-j4-Ae8"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="width" secondItem="HpP-rA-YrN" secondAttribute="width" multiplier="0.5" id="hDr-mG-hfN"/>
                             <constraint firstItem="Lyl-U6-BJS" firstAttribute="top" secondItem="ebf-ey-r2E" secondAttribute="bottom" constant="64" id="hE2-dT-pJy"/>
+                            <constraint firstAttribute="trailing" secondItem="rZi-dk-erf" secondAttribute="trailing" id="jYA-R7-Fz9"/>
                             <constraint firstItem="ebf-ey-r2E" firstAttribute="centerX" secondItem="RzB-lW-V4D" secondAttribute="centerX" id="jZC-xh-nKb"/>
+                            <constraint firstItem="rZi-dk-erf" firstAttribute="top" secondItem="RzB-lW-V4D" secondAttribute="top" id="juF-2g-lk2"/>
                             <constraint firstItem="Lyl-U6-BJS" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leadingMargin" constant="16" id="luu-KQ-RYY"/>
+                            <constraint firstItem="rZi-dk-erf" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leading" id="nXp-Gy-Tbr"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerX" secondItem="HpP-rA-YrN" secondAttribute="centerX" id="o7h-X4-nC7"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="height" secondItem="hn3-XB-hzv" secondAttribute="height" id="pkG-Sa-f7a"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lyl-U6-BJS" secondAttribute="trailing" constant="16" id="rcr-fe-fCH"/>
@@ -492,7 +500,7 @@ STORES</string>
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="7ZS-uq-JE8"/>
                         <view key="titleView" contentMode="scaleToFill" id="hHs-UW-cae">
-                            <rect key="frame" x="70.5" y="5.5" width="234" height="33"/>
+                            <rect key="frame" x="71" y="6" width="234" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ria-bV-sdp">
@@ -703,7 +711,7 @@ CODE</string>
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="tmz-fg-RIy"/>
                         <view key="titleView" contentMode="scaleToFill" id="eNd-7b-uMv">
-                            <rect key="frame" x="76" y="5.5" width="223" height="33"/>
+                            <rect key="frame" x="76" y="6" width="223" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbn-0V-s0T">

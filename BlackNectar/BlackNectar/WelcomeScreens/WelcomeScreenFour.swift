@@ -35,6 +35,8 @@ class WelcomeScreenFour: UIViewController {
         return !eitherOneSelected
     }
     
+    var delegate: WelcomeScreenDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      
@@ -48,6 +50,7 @@ class WelcomeScreenFour: UIViewController {
     
     fileprivate func dismiss() {
         
+        self.delegate?.didDismissWelcomeScreens()
         self.dismiss(animated: true, completion: nil)
     }
 }

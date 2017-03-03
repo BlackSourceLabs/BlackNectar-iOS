@@ -91,6 +91,14 @@
             </objects>
             <point key="canvasLocation" x="3261.5999999999999" y="1563.8680659670167"/>
         </scene>
+        <!--WelcomeScreens-->
+        <scene sceneID="Ubw-Et-ytC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WelcomeScreens" id="22n-XT-EVi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8wx-L2-AoR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1273" y="936"/>
+        </scene>
         <!--Stores Table View Controller-->
         <scene sceneID="PI3-SW-0Qh">
             <objects>
@@ -269,6 +277,7 @@
                     <connections>
                         <segue destination="JwV-va-qRH" kind="presentation" identifier="mapViewSegue" id="xdh-tm-f6B"/>
                         <segue destination="kfi-dD-UoL" kind="presentation" identifier="filterSegue" id="Ki5-qi-7Nm"/>
+                        <segue destination="22n-XT-EVi" kind="presentation" identifier="toWelcome" id="6oR-RE-0nu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -599,7 +608,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -619,7 +628,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfi-dD-UoL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="i7J-TN-6qe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="i7J-TN-6qe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -638,7 +647,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JwV-va-qRH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Nbt-gz-8Pe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Nbt-gz-8Pe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -656,7 +665,7 @@
     <resources>
         <image name="Cancel-White@3x.png" width="24" height="24"/>
         <image name="GPS-Full@3x.png" width="66" height="68"/>
-        <image name="Icon-60" width="60" height="60"/>
+        <image name="Icon-60" width="512" height="512"/>
         <image name="SplashScreen" width="500" height="500"/>
     </resources>
 </document>

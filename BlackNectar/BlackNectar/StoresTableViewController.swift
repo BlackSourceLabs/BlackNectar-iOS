@@ -72,14 +72,13 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.goToWelcomeScreenOrFilterScreen()
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        goToWelcomeScreen()
     }
     
 }
@@ -105,24 +104,19 @@ extension StoresTableViewController {
     func goToWelcomeScreenOrFilterScreen() {
         
         if isFirstTimeUser {
-            
+    
             goToWelcomeScreen()
             
         } else {
             
-            self.goToFilters()
-            
+            isFirstTimeUser = false
         }
     }
     
-    fileprivate func goToWelcomeScreen() {
+    func goToWelcomeScreen() {
         
-        let storyBoard: UIStoryboard = UIStoryboard(name: "WelcomeScreens", bundle: nil)
-        guard let welcomeScreenOne = storyBoard.instantiateViewController(withIdentifier: "welcomeScreenNavigationController") as? UINavigationController else { return }
-        self.present(welcomeScreenOne, animated: true, completion: nil)
-        
+        performSegue(withIdentifier: "toWelcome", sender: nil)
     }
-    
 }
 
 //MARK: Table View Code
@@ -344,7 +338,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Prepare and Perform Segue Code
+//MARK: Segue Code
 extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -383,9 +377,10 @@ extension StoresTableViewController {
     }
     
     func goToMapView() {
+        
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
     }
-    
+  
     
 }
 

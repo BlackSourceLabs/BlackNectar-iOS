@@ -117,7 +117,7 @@ class UserPreferences {
             
         }
         
-        set(value) {
+        set (value) {
             
             defaultPreferences.set(value, forKey: Keys.isFirstTimeUser)
             

@@ -45,6 +45,11 @@ class WelcomeScreenFour: UIViewController {
         updateButtons(animated: false)
     }
    
+    
+    fileprivate func dismiss() {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 //MARK: IB Actions
@@ -60,6 +65,11 @@ extension WelcomeScreenFour {
         
         let alert = createAlertToRequestZipCode()
         presentAlert(alert)
+    }
+    
+    @IBAction func didSelectNext(_ sender: Any) {
+        
+        self.dismiss()
     }
     
 }

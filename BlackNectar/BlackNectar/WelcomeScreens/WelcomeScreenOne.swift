@@ -11,17 +11,27 @@ import UIKit
 
 class WelcomeScreenOne: UIViewController {
 
+    private var timer: Timer!
+    
     var delegate: WelcomeScreenDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+            self.goToNextScreen()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         hideNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        timer?.invalidate()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

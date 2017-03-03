@@ -175,6 +175,18 @@ fileprivate extension WelcomeScreenFour {
         }
     }
     
+    var gpsAuthorized: Bool {
+        
+        if let status = UserLocation.instance.currentStatus, status == .authorizedWhenInUse || status == .authorizedAlways {
+            
+            return true
+        }
+        else {
+            
+            return false
+        }
+    }
+    
     var useZipCode: Bool {
         
         get {
@@ -241,7 +253,7 @@ fileprivate extension WelcomeScreenFour {
     
     func updateButtons(animated: Bool = true) {
 
-        if useGPS {
+        if useGPS && gpsAuthorized {
             
             showPin(animated: animated)
             selectGPSButton(animated: animated)

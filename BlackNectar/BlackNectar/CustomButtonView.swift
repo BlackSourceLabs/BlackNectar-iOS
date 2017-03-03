@@ -107,6 +107,8 @@ import UIKit
                 label.lineBreakMode = .byTruncatingTail
             }
         }
+        
+        self.imageView?.contentMode = .scaleAspectFill
     }
     
     override func layoutSubviews() {

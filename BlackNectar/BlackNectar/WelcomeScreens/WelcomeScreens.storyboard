@@ -47,11 +47,8 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-Ol-OPt" userLabel="Diagonal Bar" customClass="CustomView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="-225.09680682235052" y="-8.5968068223504588" width="825.19361364470114" height="825.19361364470092"/>
+                                <rect key="frame" x="-225.09680682235052" y="-16.596806822350459" width="825.19361364470114" height="825.19361364470092"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="nvw-sm-JN8"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,7 +91,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
-                                <rect key="frame" x="103" y="72" width="170" height="27"/>
+                                <rect key="frame" x="102.5" y="72" width="170" height="27"/>
                                 <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -109,6 +106,7 @@
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="height" multiplier="0.4" id="CYh-Sf-2ve"/>
                             <constraint firstItem="mKr-iI-KJl" firstAttribute="top" secondItem="BnJ-Ik-Tqx" secondAttribute="bottom" constant="24" id="I2u-8e-ovk"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="top" secondItem="LU9-hy-gUj" secondAttribute="top" id="Inu-Hm-QV0"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="width" multiplier="0.8" id="Jgm-a1-mSc"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="Jh2-pE-xi3"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="LwN-4e-xvp"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="leading" secondItem="LU9-hy-gUj" secondAttribute="leading" id="X4A-FO-Edy"/>
@@ -118,7 +116,7 @@
                             <constraint firstItem="4RI-0L-Bhq" firstAttribute="top" secondItem="ZdA-ZJ-otm" secondAttribute="bottom" constant="8" id="h7I-U6-W0A"/>
                             <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="lTN-ou-179"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="height" id="qml-84-Twi"/>
-                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerY" secondItem="BnJ-Ik-Tqx" secondAttribute="centerY" constant="70" id="s1g-On-Wzk"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerY" secondItem="BnJ-Ik-Tqx" secondAttribute="bottom" constant="-50" id="s1g-On-Wzk"/>
                             <constraint firstAttribute="bottom" secondItem="hgp-In-BeZ" secondAttribute="bottom" id="wiG-Bb-eeb"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="width" secondItem="4KV-2F-31T" secondAttribute="width" multiplier="0.6" id="zcj-r3-set"/>
                         </constraints>
@@ -217,7 +215,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="115.5" y="622" width="144.5" height="21"/>
+                                <rect key="frame" x="115" y="622" width="145" height="21"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACK">
                                         <attributes>
@@ -349,16 +347,15 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-U6-BJS">
-                                <rect key="frame" x="32" y="208" width="311" height="172"/>
+                                <rect key="frame" x="32" y="208" width="311" height="184"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dyd-K3-M1f" userLabel="Farmers Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="172"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="132" height="184"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hn3-XB-hzv" userLabel="FARMERS MARKETS BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="SCr-LC-6H2"/>
-                                                    <constraint firstAttribute="width" constant="120" id="XnN-4H-1f2"/>
+                                                    <constraint firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="height" multiplier="1:1" id="56o-a9-rdv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal" image="Farmer's Markets"/>
@@ -366,13 +363,16 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="didSelectFarmersMarket:" destination="3Tx-EV-OKE" eventType="touchUpInside" id="XSO-v2-uJl"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSo-n1-15i">
-                                                <rect key="frame" x="24" y="136" width="72.5" height="36"/>
+                                                <rect key="frame" x="30" y="148" width="72.5" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">FARMERS'
@@ -389,18 +389,17 @@ MARKETS</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-ds-WBe" userLabel="Grocery Stack">
-                                        <rect key="frame" x="191" y="0.0" width="120" height="172"/>
+                                        <rect key="frame" x="179" y="0.0" width="132" height="184"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-rA-YrN" userLabel="GROCERY STORES BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="8yY-IK-Pkb"/>
-                                                    <constraint firstAttribute="width" constant="120" id="QxV-Lj-3CW"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                                                 <state key="normal" image="Grocery Stores"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -408,7 +407,7 @@ MARKETS</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lg-BN-oIU">
-                                                <rect key="frame" x="25.5" y="136" width="69" height="36"/>
+                                                <rect key="frame" x="31.5" y="148" width="69" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">GROCERY
@@ -425,24 +424,28 @@ STORES</string>
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="HpP-rA-YrN" firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="width" id="0ef-Rp-Zvy"/>
+                                    <constraint firstItem="HpP-rA-YrN" firstAttribute="height" secondItem="hn3-XB-hzv" secondAttribute="height" id="b6x-CZ-8wG"/>
+                                </constraints>
                             </stackView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-r9-lGo" userLabel="Farmers Market Opacity">
-                                <rect key="frame" x="32" y="208" width="120" height="120"/>
+                                <rect key="frame" x="32" y="208" width="132" height="132"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGA-ac-Eh9" userLabel="Grocery Stores Opacity">
-                                <rect key="frame" x="223" y="208" width="120" height="120"/>
+                                <rect key="frame" x="211" y="208" width="132" height="132"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-Ht-Au8" userLabel="Farmers Market Pin">
-                                <rect key="frame" x="62" y="238" width="60" height="60"/>
+                                <rect key="frame" x="65" y="241" width="66" height="66"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zq6-Ht-Au8" secondAttribute="height" multiplier="1:1" id="B0w-sQ-Ggf"/>
                                 </constraints>
                             </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="7Fs-z6-j3L" userLabel="Grocery Stores Pin">
-                                <rect key="frame" x="253" y="238" width="60" height="60"/>
+                                <rect key="frame" x="244" y="241" width="66" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7Fs-z6-j3L" secondAttribute="height" multiplier="1:1" id="FVK-Zh-qMe"/>
                                 </constraints>
@@ -494,6 +497,7 @@ STORES</string>
                             <constraint firstAttribute="bottom" secondItem="jN2-PR-DDz" secondAttribute="bottom" id="vIO-60-jDq"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="centerY" secondItem="hn3-XB-hzv" secondAttribute="centerY" id="wtr-tV-VPI"/>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="height" secondItem="HpP-rA-YrN" secondAttribute="height" id="x2E-hz-PDs"/>
+                            <constraint firstItem="hn3-XB-hzv" firstAttribute="width" secondItem="RzB-lW-V4D" secondAttribute="width" multiplier="0.35" id="zKp-jt-gSf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KTh-Yw-vrz">
@@ -618,7 +622,7 @@ LOCATION</string>
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
                                                 <integer key="value" value="2"/>
@@ -658,7 +662,7 @@ CODE</string>
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
                                                 <integer key="value" value="2"/>

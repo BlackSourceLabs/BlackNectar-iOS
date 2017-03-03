@@ -73,7 +73,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="86" y="470" width="203" height="30"/>
+                                <rect key="frame" x="86.5" y="470" width="203" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
@@ -91,7 +91,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
-                                <rect key="frame" x="102.5" y="72" width="170" height="27"/>
+                                <rect key="frame" x="103" y="72" width="169" height="27"/>
                                 <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -162,21 +162,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2V-0p-NsP" userLabel="Intro">
-                                <rect key="frame" x="24" y="88" width="343" height="215"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="F2V-0p-NsP" userLabel="Intro">
+                                <rect key="frame" x="24" y="88" width="343" height="200"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
                                             <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="30" name="UniSansLight"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
                                         <attributes>
                                             <color key="NSColor" red="0.98958333333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="30" name="UniSansLight"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -188,21 +188,39 @@
                                             <attributes>
                                                 <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="24" name="UniSansLight"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
                                             <attributes>
                                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <font key="NSFont" size="24" name="UniSansLight"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <attributedString key="attributedText">
+                                        <fragment content="BLACKNECTAR">
+                                            <attributes>
+                                                <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="40" name="UniSansLight"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
+                                            <attributes>
+                                                <color key="NSColor" red="0.98958333333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="40" name="UniSansLight"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGY-d0-uDY" userLabel="Subtitle">
-                                <rect key="frame" x="57" y="539" width="262" height="43"/>
+                                <rect key="frame" x="56.5" y="539.5" width="262.5" height="43"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Designed and created by people who really give a damn.">
                                         <attributes>
@@ -215,14 +233,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="115.5" y="622" width="144.5" height="21"/>
+                                <rect key="frame" x="115.5" y="622.5" width="144" height="20.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACK">
                                         <attributes>
                                             <color key="NSBackgroundColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="20" name="UniSansLight"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="charWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="SOURCE">
@@ -230,7 +248,7 @@
                                             <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="0.97931338028169013" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="20" name="UniSansBold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="charWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -243,9 +261,29 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="widthClass=regular">
+                                    <attributedString key="attributedText">
+                                        <fragment content="BLACK">
+                                            <attributes>
+                                                <color key="NSBackgroundColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="36" name="UniSansLight"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="SOURCE">
+                                            <attributes>
+                                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="36" name="UniSansBold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdt-mx-Kg5" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="62" y="367" width="251" height="50"/>
+                                <rect key="frame" x="62" y="312" width="251" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="roB-Yq-2c6"/>
                                 </constraints>
@@ -282,17 +320,16 @@
                             <constraint firstItem="lGY-d0-uDY" firstAttribute="centerX" secondItem="2K9-qS-QlJ" secondAttribute="centerX" id="Fng-9i-JWC"/>
                             <constraint firstItem="lGY-d0-uDY" firstAttribute="width" secondItem="2K9-qS-QlJ" secondAttribute="width" multiplier="0.7" id="HI2-bo-na1"/>
                             <constraint firstItem="onC-st-zwp" firstAttribute="leading" secondItem="2K9-qS-QlJ" secondAttribute="leading" id="PNf-9M-07N"/>
-                            <constraint firstItem="sdt-mx-Kg5" firstAttribute="top" secondItem="F2V-0p-NsP" secondAttribute="bottom" constant="64" id="QOB-UC-t4T">
-                                <variation key="heightClass=compact" constant="24"/>
-                            </constraint>
                             <constraint firstItem="cKd-b7-Ina" firstAttribute="top" secondItem="2K9-qS-QlJ" secondAttribute="top" id="Sxx-bS-i75"/>
                             <constraint firstItem="fRP-nL-k7K" firstAttribute="top" secondItem="bY4-Nf-GM7" secondAttribute="bottom" constant="24" id="TUi-GQ-sdm">
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
+                            <constraint firstItem="sdt-mx-Kg5" firstAttribute="top" secondItem="F2V-0p-NsP" secondAttribute="bottom" constant="24" id="UrO-rk-WnH"/>
                             <constraint firstAttribute="trailing" secondItem="onC-st-zwp" secondAttribute="trailing" id="aDb-6y-H7n"/>
                             <constraint firstItem="F2V-0p-NsP" firstAttribute="trailing" secondItem="2K9-qS-QlJ" secondAttribute="trailingMargin" constant="8" id="bkR-oO-pHv">
                                 <variation key="heightClass=compact" constant="16"/>
                             </constraint>
+                            <constraint firstItem="F2V-0p-NsP" firstAttribute="height" secondItem="2K9-qS-QlJ" secondAttribute="height" multiplier="0.3" id="eoq-tF-au5"/>
                             <constraint firstItem="fRP-nL-k7K" firstAttribute="top" secondItem="cKd-b7-Ina" secondAttribute="bottom" id="f2w-ai-zFx"/>
                             <constraint firstItem="bY4-Nf-GM7" firstAttribute="centerX" secondItem="2K9-qS-QlJ" secondAttribute="centerX" id="fp3-XH-CJ0"/>
                             <constraint firstItem="bY4-Nf-GM7" firstAttribute="top" secondItem="lGY-d0-uDY" secondAttribute="bottom" constant="40" id="g0H-vM-moO">
@@ -308,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5G0-aL-wxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2156.25" y="1523.2394366197184"/>
+            <point key="canvasLocation" x="2156.25" y="1522.5"/>
         </scene>
         <!--Welcome Screen Three-->
         <scene sceneID="7qj-FF-Slu">
@@ -330,30 +367,36 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ebf-ey-r2E">
-                                <rect key="frame" x="93" y="80" width="190" height="64"/>
+                                <rect key="frame" x="92.5" y="80" width="190" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am looking for..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fa-cY-IPA">
                                         <rect key="frame" x="0.0" y="0.0" width="190" height="28"/>
                                         <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="28"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="36"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select one or more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqg-LG-6rX">
                                         <rect key="frame" x="31" y="36" width="128.5" height="28"/>
                                         <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="17"/>
                                         <color key="textColor" red="0.9096001387" green="0.91379851099999998" blue="0.91366225479999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="22"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-U6-BJS">
-                                <rect key="frame" x="32" y="208" width="311" height="184"/>
+                                <rect key="frame" x="32" y="208" width="311" height="183.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dyd-K3-M1f" userLabel="Farmers Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="132" height="184"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="131.5" height="183.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hn3-XB-hzv" userLabel="FARMERS MARKETS BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="131.5" height="131.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="height" multiplier="1:1" id="56o-a9-rdv"/>
                                                 </constraints>
@@ -372,7 +415,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSo-n1-15i">
-                                                <rect key="frame" x="30" y="148" width="72.5" height="36"/>
+                                                <rect key="frame" x="29.5" y="147.5" width="72.5" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">FARMERS'
@@ -385,14 +428,27 @@ MARKETS</string>
                                                     </fragment>
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="widthClass=regular">
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">FARMERS'
+MARKETS</string>
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="30" name="UniSansSemiBold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </variation>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-ds-WBe" userLabel="Grocery Stack">
-                                        <rect key="frame" x="179" y="0.0" width="132" height="184"/>
+                                        <rect key="frame" x="180.5" y="0.0" width="130.5" height="183.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-rA-YrN" userLabel="GROCERY STORES BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="131.5"/>
                                                 <state key="normal" image="Grocery Stores"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -407,7 +463,7 @@ MARKETS</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lg-BN-oIU">
-                                                <rect key="frame" x="31.5" y="148" width="69" height="36"/>
+                                                <rect key="frame" x="30.5" y="147.5" width="69" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">GROCERY
@@ -420,6 +476,19 @@ STORES</string>
                                                     </fragment>
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="widthClass=regular">
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">GROCERY
+STORES</string>
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="30" name="UniSansSemiBold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </variation>
                                             </label>
                                         </subviews>
                                     </stackView>
@@ -430,32 +499,28 @@ STORES</string>
                                 </constraints>
                             </stackView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-r9-lGo" userLabel="Farmers Market Opacity">
-                                <rect key="frame" x="32" y="208" width="132" height="132"/>
+                                <rect key="frame" x="32" y="208" width="131.5" height="131.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGA-ac-Eh9" userLabel="Grocery Stores Opacity">
-                                <rect key="frame" x="211" y="208" width="132" height="132"/>
+                                <rect key="frame" x="212.5" y="208" width="130.5" height="131.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-Ht-Au8" userLabel="Farmers Market Pin">
-                                <rect key="frame" x="65" y="241" width="66" height="66"/>
+                                <rect key="frame" x="65" y="241" width="65.5" height="65.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zq6-Ht-Au8" secondAttribute="height" multiplier="1:1" id="B0w-sQ-Ggf"/>
                                 </constraints>
                             </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="7Fs-z6-j3L" userLabel="Grocery Stores Pin">
-                                <rect key="frame" x="244" y="241" width="66" height="66"/>
+                                <rect key="frame" x="245" y="241" width="66" height="65.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7Fs-z6-j3L" secondAttribute="height" multiplier="1:1" id="FVK-Zh-qMe"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tad-Rl-Zuy" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="263" y="611" width="80" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Sbu-rl-aAk"/>
-                                    <constraint firstAttribute="width" constant="80" id="fTu-hU-eEE"/>
-                                </constraints>
+                                <rect key="frame" x="264" y="607" width="79" height="44"/>
                                 <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="24"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="NEXT">
@@ -568,6 +633,9 @@ STORES</string>
                                         <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="28"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="36"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select one" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqX-B9-6LG">
                                         <rect key="frame" x="32" y="36" width="72.5" height="28"/>
@@ -575,15 +643,14 @@ STORES</string>
                                         <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="17"/>
                                         <color key="textColor" red="0.75296235079999996" green="0.74905139210000005" blue="0.74888247249999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="22"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xb-sb-wfB" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="263" y="611" width="80" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="5vo-nh-8CE"/>
-                                    <constraint firstAttribute="width" constant="80" id="euU-TL-1nv"/>
-                                </constraints>
+                                <rect key="frame" x="264" y="607" width="79" height="44"/>
                                 <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="24"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="NEXT">
@@ -593,14 +660,13 @@ STORES</string>
                                     <action selector="didSelectNext:" destination="BOh-jh-D2E" eventType="touchUpInside" id="zJR-YV-YIx"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="L5i-9v-P2s">
-                                <rect key="frame" x="32" y="208" width="311" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="L5i-9v-P2s">
+                                <rect key="frame" x="30" y="208" width="315.5" height="131.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-Re-0ct" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="131.5"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="agG-99-nG4"/>
-                                            <constraint firstAttribute="height" constant="120" id="v7Q-Mu-IZY"/>
+                                            <constraint firstAttribute="width" secondItem="CfE-Re-0ct" secondAttribute="height" multiplier="1:1" id="Dol-bU-6iG"/>
                                         </constraints>
                                         <state key="normal">
                                             <string key="title">MY 
@@ -633,17 +699,13 @@ LOCATION</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WV1-ht-uvh">
-                                        <rect key="frame" x="140" y="52" width="31" height="16"/>
+                                        <rect key="frame" x="147" y="57.5" width="21" height="16"/>
                                         <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nyb-lR-mJ9" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                        <rect key="frame" x="191" y="0.0" width="120" height="120"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="776-eO-qVO"/>
-                                            <constraint firstAttribute="width" constant="120" id="jSb-65-GP1"/>
-                                        </constraints>
+                                        <rect key="frame" x="184" y="0.0" width="131.5" height="131.5"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment>
@@ -673,30 +735,49 @@ CODE</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Nyb-lR-mJ9" firstAttribute="height" secondItem="CfE-Re-0ct" secondAttribute="height" id="hpq-8C-GQC"/>
+                                    <constraint firstItem="Nyb-lR-mJ9" firstAttribute="width" secondItem="CfE-Re-0ct" secondAttribute="width" id="vhP-FE-yLv"/>
+                                </constraints>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3" userLabel="My Location Pin">
-                                <rect key="frame" x="67" y="303" width="50" height="50"/>
+                                <rect key="frame" x="70.5" y="314.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="COD-YR-Bkm"/>
+                                    <constraint firstAttribute="width" secondItem="a2Y-bk-oH3" secondAttribute="height" multiplier="1:1" id="L7E-fs-CA8"/>
                                     <constraint firstAttribute="width" constant="50" id="oEC-XF-gwK"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="L7E-fs-CA8"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <exclude reference="COD-YR-Bkm"/>
+                                        <include reference="L7E-fs-CA8"/>
+                                        <exclude reference="oEC-XF-gwK"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="L5i-9v-P2s" firstAttribute="top" secondItem="1qB-lk-MoK" secondAttribute="bottom" constant="64" id="1h6-HU-Oy1"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerX" secondItem="CfE-Re-0ct" secondAttribute="centerX" id="8WW-Rd-ZH1"/>
+                            <constraint firstItem="CfE-Re-0ct" firstAttribute="width" secondItem="VQ9-u6-xz5" secondAttribute="width" multiplier="0.25" id="Cxz-HP-bgT"/>
                             <constraint firstItem="m98-hy-8Xy" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leading" id="D9Y-pW-H7y"/>
+                            <constraint firstItem="CfE-Re-0ct" firstAttribute="width" secondItem="VQ9-u6-xz5" secondAttribute="width" multiplier="0.35" id="GJB-9H-nlW"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="CfE-Re-0ct" secondAttribute="bottom" id="HxH-Bx-HFt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2Xb-sb-wfB" secondAttribute="trailing" constant="16" id="KqL-Ka-IV5"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="top" secondItem="Q3x-8k-t2L" secondAttribute="bottom" constant="16" id="Nb2-Ay-kxr"/>
                             <constraint firstAttribute="bottom" secondItem="ZSP-3r-4yi" secondAttribute="bottom" id="WeP-bd-h8B"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="Nyb-lR-mJ9" secondAttribute="bottom" id="Y4a-xm-zC7"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="centerX" secondItem="VQ9-u6-xz5" secondAttribute="centerX" id="bN4-O0-DlR"/>
-                            <constraint firstItem="L5i-9v-P2s" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leadingMargin" constant="16" id="f71-eQ-yy5"/>
+                            <constraint firstItem="a2Y-bk-oH3" firstAttribute="width" secondItem="CfE-Re-0ct" secondAttribute="width" multiplier="0.5" id="ccS-Sk-LXl"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerX" secondItem="Nyb-lR-mJ9" secondAttribute="centerX" id="gis-LO-3aH"/>
                             <constraint firstAttribute="trailing" secondItem="m98-hy-8Xy" secondAttribute="trailing" id="glR-W3-d0H"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="L5i-9v-P2s" secondAttribute="trailing" constant="16" id="pFN-Ar-kgK"/>
+                            <constraint firstItem="L5i-9v-P2s" firstAttribute="centerX" secondItem="VQ9-u6-xz5" secondAttribute="centerX" id="jT4-x7-TXF"/>
                             <constraint firstAttribute="bottom" secondItem="m98-hy-8Xy" secondAttribute="bottom" id="tnv-CP-dOY"/>
                             <constraint firstItem="ZSP-3r-4yi" firstAttribute="top" secondItem="VQ9-u6-xz5" secondAttribute="top" id="wsa-ab-5pr"/>
                             <constraint firstItem="1Tq-hF-8jT" firstAttribute="top" secondItem="2Xb-sb-wfB" secondAttribute="bottom" constant="16" id="x93-z5-bP2"/>
@@ -706,8 +787,17 @@ CODE</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Cxz-HP-bgT"/>
                                 <exclude reference="Y4a-xm-zC7"/>
+                                <exclude reference="ccS-Sk-LXl"/>
                                 <exclude reference="gis-LO-3aH"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="Cxz-HP-bgT"/>
+                                <exclude reference="GJB-9H-nlW"/>
+                                <include reference="ccS-Sk-LXl"/>
                             </mask>
                         </variation>
                     </view>
@@ -753,11 +843,11 @@ CODE</string>
             <objects>
                 <navigationController storyboardIdentifier="welcomeScreenNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ypk-I6-KIw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gWg-9r-p4r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gWg-9r-p4r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.91853255033493042" green="0.7338484525680542" blue="0.23051616549491882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

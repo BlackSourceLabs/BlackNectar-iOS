@@ -112,6 +112,8 @@ extension StoresTableViewController: WelcomeScreenDelegate {
     }
     
     func didDismissWelcomeScreens() {
+        
+        isFirstTimeUser = false
         self.reloadStoreData()
     }
 }

@@ -22,5 +22,17 @@ extension UIViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
     }
+
     
+    func hideNavigationBar() {
+        guard let nav = self.navigationController?.navigationBar else { return }
+        nav.setBackgroundImage(UIImage(), for: .default)
+        nav.shadowImage = UIImage()
+        nav.isTranslucent = true
+    }
+    
+    func showNavigationBar() {
+        guard let nav = self.navigationController?.navigationBar else { return }
+        nav.isTranslucent = false
+    }
 }

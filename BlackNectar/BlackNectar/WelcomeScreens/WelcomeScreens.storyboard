@@ -47,7 +47,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-Ol-OPt" userLabel="Diagonal Bar" customClass="CustomView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="-225.09680682235052" y="-9.0968068223504588" width="825.19361364470114" height="825.19361364470092"/>
+                                <rect key="frame" x="-225.09680682235052" y="-8.5968068223504588" width="825.19361364470114" height="825.19361364470092"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="nvw-sm-JN8"/>
@@ -76,7 +76,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="86" y="470" width="203" height="30"/>
+                                <rect key="frame" x="86.5" y="470" width="203" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
@@ -217,7 +217,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="115.5" y="622.5" width="144.5" height="20.5"/>
+                                <rect key="frame" x="116" y="622.5" width="144.5" height="20.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACK">
                                         <attributes>
@@ -492,7 +492,7 @@ STORES</string>
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="7ZS-uq-JE8"/>
                         <view key="titleView" contentMode="scaleToFill" id="hHs-UW-cae">
-                            <rect key="frame" x="71" y="6" width="234" height="33"/>
+                            <rect key="frame" x="70.5" y="5.5" width="234" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ria-bV-sdp">
@@ -613,6 +613,9 @@ LOCATION</string>
                                                 <integer key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didSelectMyLocation:" destination="BOh-jh-D2E" eventType="touchUpInside" id="I8b-P8-H2s"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WV1-ht-uvh">
                                         <rect key="frame" x="140" y="52" width="31" height="16"/>
@@ -650,21 +653,17 @@ CODE</string>
                                                 <integer key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didSelectZipCode:" destination="BOh-jh-D2E" eventType="touchUpInside" id="XG1-r1-WFG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3" userLabel="My Location Pin">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3" userLabel="My Location Pin">
                                 <rect key="frame" x="67" y="303" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="COD-YR-Bkm"/>
                                     <constraint firstAttribute="width" constant="50" id="oEC-XF-gwK"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="jnb-D3-0wH" userLabel="Zip Code Pin">
-                                <rect key="frame" x="258" y="303" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="caE-sy-jCi"/>
-                                    <constraint firstAttribute="width" constant="50" id="znF-Wp-YOZ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -673,29 +672,35 @@ CODE</string>
                             <constraint firstItem="L5i-9v-P2s" firstAttribute="top" secondItem="1qB-lk-MoK" secondAttribute="bottom" constant="64" id="1h6-HU-Oy1"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerX" secondItem="CfE-Re-0ct" secondAttribute="centerX" id="8WW-Rd-ZH1"/>
                             <constraint firstItem="m98-hy-8Xy" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leading" id="D9Y-pW-H7y"/>
-                            <constraint firstItem="jnb-D3-0wH" firstAttribute="centerY" secondItem="Nyb-lR-mJ9" secondAttribute="bottom" id="Dbe-EO-12a"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="CfE-Re-0ct" secondAttribute="bottom" id="HxH-Bx-HFt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2Xb-sb-wfB" secondAttribute="trailing" constant="16" id="KqL-Ka-IV5"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="top" secondItem="Q3x-8k-t2L" secondAttribute="bottom" constant="16" id="Nb2-Ay-kxr"/>
                             <constraint firstAttribute="bottom" secondItem="ZSP-3r-4yi" secondAttribute="bottom" id="WeP-bd-h8B"/>
+                            <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="Nyb-lR-mJ9" secondAttribute="bottom" id="Y4a-xm-zC7"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="centerX" secondItem="VQ9-u6-xz5" secondAttribute="centerX" id="bN4-O0-DlR"/>
                             <constraint firstItem="L5i-9v-P2s" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leadingMargin" constant="16" id="f71-eQ-yy5"/>
+                            <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerX" secondItem="Nyb-lR-mJ9" secondAttribute="centerX" id="gis-LO-3aH"/>
                             <constraint firstAttribute="trailing" secondItem="m98-hy-8Xy" secondAttribute="trailing" id="glR-W3-d0H"/>
                             <constraint firstAttribute="trailingMargin" secondItem="L5i-9v-P2s" secondAttribute="trailing" constant="16" id="pFN-Ar-kgK"/>
                             <constraint firstAttribute="bottom" secondItem="m98-hy-8Xy" secondAttribute="bottom" id="tnv-CP-dOY"/>
-                            <constraint firstItem="jnb-D3-0wH" firstAttribute="centerX" secondItem="Nyb-lR-mJ9" secondAttribute="centerX" id="v0l-fi-vN9"/>
                             <constraint firstItem="ZSP-3r-4yi" firstAttribute="top" secondItem="VQ9-u6-xz5" secondAttribute="top" id="wsa-ab-5pr"/>
                             <constraint firstItem="1Tq-hF-8jT" firstAttribute="top" secondItem="2Xb-sb-wfB" secondAttribute="bottom" constant="16" id="x93-z5-bP2"/>
                             <constraint firstAttribute="trailing" secondItem="ZSP-3r-4yi" secondAttribute="trailing" id="xov-Pj-wha"/>
                             <constraint firstItem="m98-hy-8Xy" firstAttribute="top" secondItem="VQ9-u6-xz5" secondAttribute="top" id="y4A-rP-3pk"/>
                             <constraint firstItem="ZSP-3r-4yi" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leading" id="yeZ-dX-fiP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Y4a-xm-zC7"/>
+                                <exclude reference="gis-LO-3aH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="kS8-ve-UHI">
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="tmz-fg-RIy"/>
                         <view key="titleView" contentMode="scaleToFill" id="eNd-7b-uMv">
-                            <rect key="frame" x="76" y="6" width="223" height="33"/>
+                            <rect key="frame" x="76" y="5.5" width="223" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbn-0V-s0T">
@@ -713,6 +718,16 @@ CODE</string>
                             </constraints>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="locationPin" destination="a2Y-bk-oH3" id="Tph-u1-wxC"/>
+                        <outlet property="locationPinCenterXMyLocation" destination="8WW-Rd-ZH1" id="lQC-Ew-Kbe"/>
+                        <outlet property="locationPinCenterXZipCode" destination="gis-LO-3aH" id="o5K-wz-Rjl"/>
+                        <outlet property="locationPinCenterYMyLocation" destination="HxH-Bx-HFt" id="rfv-uz-eaX"/>
+                        <outlet property="locationPinCenterYZipCode" destination="Y4a-xm-zC7" id="BLm-ZE-knW"/>
+                        <outlet property="myLocationButton" destination="CfE-Re-0ct" id="wCL-2k-3r9"/>
+                        <outlet property="nextButton" destination="2Xb-sb-wfB" id="UW0-jq-MNR"/>
+                        <outlet property="zipCodeButton" destination="Nyb-lR-mJ9" id="vvS-MJ-R1Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VmH-TB-Qja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -36,7 +36,7 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.object(forKey: Keys.showFarmersMarkets) as? Bool ?? true
+            return defaultPreferences.object(forKey: Keys.showFarmersMarkets) as? Bool ?? false
             
         }
         
@@ -52,7 +52,7 @@ class UserPreferences {
         
         get {
             
-            return defaultPreferences.object(forKey: Keys.showStores) as? Bool ?? true
+            return defaultPreferences.object(forKey: Keys.showStores) as? Bool ?? false
             
         }
         

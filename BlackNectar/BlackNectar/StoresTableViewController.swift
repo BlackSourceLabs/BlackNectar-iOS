@@ -65,13 +65,13 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserLocation.instance.initialize()
         setupRefreshControl()
         
         if isFirstTimeUser {
             goToWelcomeScreen()
         }
         else {
+            UserLocation.instance.initialize()
             reloadStoreData()
         }
     }

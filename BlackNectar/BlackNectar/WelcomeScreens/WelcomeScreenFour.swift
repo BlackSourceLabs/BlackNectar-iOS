@@ -241,16 +241,17 @@ fileprivate extension WelcomeScreenFour {
     
     func updateButtons(animated: Bool = true) {
 
-        
         if useGPS {
             
             showPin(animated: animated)
             selectGPSButton(animated: animated)
+            enableNextButton()
         }
         else if useZipCode {
             
             showPin(animated: animated)
             selectZipCodeButton(animated: animated)
+            enableNextButton()
         }
         else {
             
@@ -262,7 +263,6 @@ fileprivate extension WelcomeScreenFour {
     func selectZipCodeButton(animated: Bool = true) {
         
         uncloakZipCode()
-//        disableZipCodeButton()
         updateZipCodeText()
         movePinToZipCode(animated: animated)
         

@@ -78,6 +78,8 @@
 		DE80BFF31E57689D00449144 /* Locations+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80BFF21E57689D00449144 /* Locations+.swift */; };
 		DEA4E1AE1E592CE2004935BD /* Strings+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4E1AD1E592CE2004935BD /* Strings+.swift */; };
 		DECA74BD1E69C6A6004BD3BE /* WelcomeScreenTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA74BC1E69C6A6004BD3BE /* WelcomeScreenTwo.swift */; };
+		DEF458DE1E69EB7A0035934F /* WelcomeScreenThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF458DD1E69EB7A0035934F /* WelcomeScreenThree.swift */; };
+		DEF458E01E69EBEA0035934F /* WelcomeScreenFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF458DF1E69EBEA0035934F /* WelcomeScreenFour.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,7 +168,7 @@
 		32FE5A481E578A8400B61709 /* CustomSwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSwitchView.swift; sourceTree = "<group>"; };
 		32FE5A4A1E57E1C100B61709 /* CustomThumbView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomThumbView.swift; sourceTree = "<group>"; };
 		32FE5A4C1E597E0700B61709 /* CustomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabelView.swift; sourceTree = "<group>"; };
-		32FE5A4F1E5F529400B61709 /* WelcomeScreens.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeScreens.storyboard; sourceTree = "<group>"; };
+		32FE5A4F1E5F529400B61709 /* WelcomeScreens.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = WelcomeScreens.storyboard; path = BlackNectar/WelcomeScreens/WelcomeScreens.storyboard; sourceTree = SOURCE_ROOT; };
 		36289FB71E2FEEA300FCA6E1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPreferences.swift; path = ../UserPreferences.swift; sourceTree = "<group>"; };
 		36E2FA641E299666001F1FB9 /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		DE05FFC81E5CF825005BADEB /* ZipCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipCodes.swift; sourceTree = "<group>"; };
@@ -176,6 +178,8 @@
 		DE80BFF21E57689D00449144 /* Locations+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Locations+.swift"; sourceTree = "<group>"; };
 		DEA4E1AD1E592CE2004935BD /* Strings+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+.swift"; sourceTree = "<group>"; };
 		DECA74BC1E69C6A6004BD3BE /* WelcomeScreenTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenTwo.swift; sourceTree = "<group>"; };
+		DEF458DD1E69EB7A0035934F /* WelcomeScreenThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenThree.swift; sourceTree = "<group>"; };
+		DEF458DF1E69EBEA0035934F /* WelcomeScreenFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenFour.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,7 +283,6 @@
 				327A75A71E43AD2000FE4619 /* Resources */,
 				327A75EA1E451C8800FE4619 /* Info.plist */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
-				32FE5A4F1E5F529400B61709 /* WelcomeScreens.storyboard */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				327BAD611DF44B8B000EA25E /* MapView */,
 				327BAD631DF44BEA000EA25E /* Model */,
@@ -438,10 +441,13 @@
 		32FE5A511E5F57FE00B61709 /* WelcomeScreens */ = {
 			isa = PBXGroup;
 			children = (
+				32FE5A4F1E5F529400B61709 /* WelcomeScreens.storyboard */,
 				32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */,
 				DECA74BC1E69C6A6004BD3BE /* WelcomeScreenTwo.swift */,
+				DEF458DD1E69EB7A0035934F /* WelcomeScreenThree.swift */,
+				DEF458DF1E69EBEA0035934F /* WelcomeScreenFour.swift */,
 			);
-			name = WelcomeScreens;
+			path = WelcomeScreens;
 			sourceTree = "<group>";
 		};
 		369843871E3166E30048D8B1 /* UserPreferences */ = {
@@ -629,8 +635,10 @@
 				324500761E4BA79F00A3CE63 /* Colors.swift in Sources */,
 				3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */,
 				32D86DD31E5F87E400C8837D /* WelcomeScreenOne.swift in Sources */,
+				DEF458E01E69EBEA0035934F /* WelcomeScreenFour.swift in Sources */,
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
+				DEF458DE1E69EB7A0035934F /* WelcomeScreenThree.swift in Sources */,
 				36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */,
 				DE80BFEE1E56926300449144 /* UITableViewControllers+.swift in Sources */,
 				32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */,

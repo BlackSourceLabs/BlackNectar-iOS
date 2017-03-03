@@ -26,9 +26,11 @@ extension UIViewController {
     
     func hideNavigationBar() {
         guard let nav = self.navigationController?.navigationBar else { return }
+        
+        nav.isTranslucent = true
         nav.setBackgroundImage(UIImage(), for: .default)
         nav.shadowImage = UIImage()
-        nav.isTranslucent = true
+        nav.backgroundColor = UIColor.clear
     }
     
     func showNavigationBar() {

@@ -12,33 +12,32 @@ import UIKit
 class WelcomeScreenOne: UIViewController {
 
     
-    private var isNavBarHidden = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        isNavBarHidden = self.navigationController?.isNavigationBarHidden ?? true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        self.navigationController?.isNavigationBarHidden = true
-        guard let nav = self.navigationController?.navigationBar else { return }
-        nav.setBackgroundImage(UIImage(), for: .default)
-        nav.shadowImage = UIImage()
-        nav.isTranslucent = true
-        
+        hideNavigationBar()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-//        self.navigationController?.isNavigationBarHidden = isNavBarHidden
+        goToNextScreen()
+        
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+//MARK: Segues
+fileprivate extension WelcomeScreenOne {
+    
+    func goToNextScreen() {
+        
+        self.performSegue(withIdentifier: "Next", sender: self)
         
     }
-    
 }

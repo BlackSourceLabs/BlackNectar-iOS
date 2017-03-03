@@ -30,48 +30,55 @@ import UIKit
    
     @IBInspectable var circular: Bool = false {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var borderWidth: CGFloat = 1 {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var borderColor: UIColor = UIColor.white {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var shouldRasterize: Bool = false {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var shadowOffSet: CGSize = CGSize(width: 3, height: 0) {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var cornerRadius: CGFloat = 5 {
         
-        didSet
-        {
+        didSet {
+            updateView()
+        }
+    }
+    
+    @IBInspectable var numberOfLines: Int = 1 {
+        
+        didSet {
+            
+            guard numberOfLines > 0 else {
+                numberOfLines = 1
+                return
+            }
+            
             updateView()
         }
     }
@@ -83,14 +90,23 @@ import UIKit
         layer.borderColor = borderColor.cgColor
         layer.masksToBounds = true
         
-        if shouldRasterize
-            
-        {
+        if shouldRasterize {
             
             layer.rasterizationScale = UIScreen.main.scale
         
         }
         
+        if let label = self.titleLabel {
+            
+            label.numberOfLines = self.numberOfLines
+            
+            if numberOfLines > 1 {
+                label.lineBreakMode = .byWordWrapping
+            }
+            else {
+                label.lineBreakMode = .byTruncatingTail
+            }
+        }
     }
     
     override func layoutSubviews() {

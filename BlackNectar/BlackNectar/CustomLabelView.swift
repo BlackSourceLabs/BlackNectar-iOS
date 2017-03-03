@@ -30,48 +30,49 @@ import UIKit
     
     @IBInspectable var circular: Bool = false {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat = 1 {
+    @IBInspectable var borderWidth: CGFloat = 0 {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var borderColor: UIColor = UIColor.white {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var shouldRasterize: Bool = false {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var shadowOffSet: CGSize = CGSize(width: 3, height: 0) {
         
-        didSet
-        {
+        didSet {
             updateView()
         }
     }
     
     @IBInspectable var cornerRadius: CGFloat = 5 {
         
-        didSet
-        {
+        didSet {
+            updateView()
+        }
+    }
+    
+    @IBInspectable var kearning: CGFloat = 0 {
+        
+        didSet {
             updateView()
         }
     }
@@ -83,14 +84,11 @@ import UIKit
         layer.borderColor = borderColor.cgColor
         layer.masksToBounds = true
         
-        if shouldRasterize
-            
-        {
-            
+        if shouldRasterize {
             layer.rasterizationScale = UIScreen.main.scale
-            
         }
         
+        setKearning(self.kearning)
     }
     
     override func layoutSubviews() {
@@ -107,4 +105,21 @@ import UIKit
         
     }    
     
+    
+    private func setKearning(_ kearning: CGFloat) {
+        
+        var mutableText: NSMutableAttributedString
+        
+        if let attributedText = self.attributedText {
+            
+            mutableText = NSMutableAttributedString.init(attributedString: attributedText)
+            
+        }
+        else {
+            mutableText = NSMutableAttributedString.init(string: self.text ?? "")
+        }
+        
+        mutableText.addAttribute(NSKernAttributeName, value: kearning, range: NSRange(location: 0, length: mutableText.length - 1))
+        self.attributedText = mutableText
+    }
 }

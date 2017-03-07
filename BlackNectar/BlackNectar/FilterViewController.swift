@@ -664,27 +664,13 @@ fileprivate extension FilterViewController {
         return controller
     }
     
-    func createAlertToSendUserToSettings() -> UIAlertController {
-        
-        let title = "Requesting GPS Access"
-        let message = "Please go to \"Location\" and enable \"While Using the App\""
-        
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let openSettings = UIAlertAction(title: "Open Settings", style: .default) { _ in
-            self.senduserToSettings()
-        }
-        
-        controller.addAction(openSettings)
-        
-        return controller
-    }
+    
     
     func requestGPSAccess() {
         
         if let status = UserLocation.instance.currentStatus, status == .denied {
             
-            let alert = createAlertToSendUserToSettings()
+            let alert = createAlertToSendUserToLocationSettings()
             self.present(alert, animated: true, completion: nil)
             useMyLocation = false
             return
@@ -699,18 +685,7 @@ fileprivate extension FilterViewController {
         }
     }
     
-    private func senduserToSettings() {
-        
-        let link = UIApplicationOpenSettingsURLString
-        
-        guard let url = URL(string: link) else {
-            LOG.error("Failed to create URL to \(link)")
-            return
-        }
-        
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        
-    }
+    
 }
 
 //MARK: Style Menu Code

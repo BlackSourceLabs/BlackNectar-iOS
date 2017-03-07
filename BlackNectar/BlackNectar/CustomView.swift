@@ -1,15 +1,15 @@
 //
-//  RoundedButtonView.swift
+//  CustomerView.swift
 //  BlackNectar
 //
-//  Created by Cordero Hernandez on 12/8/16.
+//  Created by Wellington Moreno on 3/2/17.
 //  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-@IBDesignable class CustomButtonView: UIButton {
+@IBDesignable class CustomView : UIView {
     
     override init(frame: CGRect) {
         
@@ -17,17 +17,17 @@ import UIKit
     }
     
     required init?(coder aDecoder: NSCoder) {
-       
+        
         super.init(coder: aDecoder)
-    
+        
     }
     
     override func prepareForInterfaceBuilder() {
-       
+        
         updateView()
-   
+        
     }
-   
+    
     @IBInspectable var circular: Bool = false {
         
         didSet {
@@ -70,14 +70,9 @@ import UIKit
         }
     }
     
-    @IBInspectable var numberOfLines: Int = 1 {
+    @IBInspectable var rotation: CGFloat = 0 {
         
         didSet {
-            
-            if numberOfLines < 1 {
-                numberOfLines = 1
-            }
-            
             updateView()
         }
     }
@@ -90,24 +85,21 @@ import UIKit
         layer.masksToBounds = true
         
         if shouldRasterize {
-            
             layer.rasterizationScale = UIScreen.main.scale
-        
         }
         
-        if let label = self.titleLabel {
+        let rotationDegrees = Int(rotation) % 360
+        
+        if rotationDegrees != 0 {
             
-            label.numberOfLines = self.numberOfLines
+            let rotationAngleRadians = Double(rotationDegrees) * (M_PI / 180.0)
+            self.transform = CGAffineTransform(rotationAngle: CGFloat(rotationAngleRadians))
+        }
+        else {
             
-            if numberOfLines > 1 {
-                label.lineBreakMode = .byWordWrapping
-            }
-            else {
-                label.lineBreakMode = .byTruncatingTail
-            }
+            self.transform = CGAffineTransform.identity
         }
         
-        self.imageView?.contentMode = .scaleAspectFill
     }
     
     override func layoutSubviews() {

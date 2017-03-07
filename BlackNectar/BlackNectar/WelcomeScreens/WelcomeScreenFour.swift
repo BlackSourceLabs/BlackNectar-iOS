@@ -177,6 +177,10 @@ fileprivate extension WelcomeScreenFour {
         set (newValue) {
             UserPreferences.instance.useMyLocation = newValue
             UserPreferences.instance.useZipCode = !newValue
+            
+            if newValue == true {
+                makeNoteThatUserSelectedGPS()
+            }
         }
     }
     
@@ -201,6 +205,10 @@ fileprivate extension WelcomeScreenFour {
         set (newValue) {
             UserPreferences.instance.useZipCode = newValue
             UserPreferences.instance.useMyLocation = !newValue
+            
+            if newValue == true {
+                makeNoteThatUserSelectedZipCode()
+            }
         }
     }
     

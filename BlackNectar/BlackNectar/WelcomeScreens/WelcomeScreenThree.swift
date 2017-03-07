@@ -199,33 +199,35 @@ fileprivate extension WelcomeScreenThree {
 //MARK: Aroma Messages
 fileprivate extension WelcomeScreenThree {
     
+    var aromaTitle: String { return "Welcome Screen 3" }
+    
     func makeNoteThatScreenLaunched() {
         
         let message = "This is where the user selects the Store Type"
-        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3 Loaded", withBody: message)
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
     }
     
     func makeNoteThatUserTappedOnBackgroundWithoutSelectingOption() {
         
         let message = "User tapped on background, but has not yet made a selection on Store Type."
-        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
     }
     
     func makeNoteThatUserIsProceeding() {
         
         let message = "User has made their selection: Farmers' Markets [\(UserPreferences.instance.showFarmersMarkets)], Grocery Store [\(UserPreferences.instance.showStores)]"
-        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
     }
     
     func makeNoteThatUserSelectedFarmersMarkets() {
         
         let message = "User selected Farmers Markets: \(UserPreferences.instance.showFarmersMarkets)"
-        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
     }
     
     func makeNoteThatUserSelectedGroceryStores() {
         
         let message = "User selected Grocery Stores: \(UserPreferences.instance.showStores)"
-        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
     }
 }

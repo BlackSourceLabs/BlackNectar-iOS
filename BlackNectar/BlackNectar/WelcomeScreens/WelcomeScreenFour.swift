@@ -462,3 +462,9 @@ fileprivate extension WelcomeScreenFour {
     }
     
 }
+
+
+//MARK: Aroma Messages
+fileprivate extension WelcomeScreenFour {
+    
+}

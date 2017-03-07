@@ -6,6 +6,7 @@
 //  Copyright © 2017 BlackSource. All rights reserved.
 //
 
+import AromaSwiftClient
 import Foundation
 import UIKit
 
@@ -37,6 +38,7 @@ class WelcomeScreenThree: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        makeNoteThatScreenLaunched()
         updateButtons()
     }
     
@@ -44,6 +46,12 @@ class WelcomeScreenThree: UIViewController {
         
         if eitherOneSelected {
             self.goToNext()
+            
+            makeNoteThatUserIsProceeding()
+        }
+        else {
+            
+            makeNoteThatUserTappedOnBackgroundWithoutSelectingOption()
         }
     }
 }
@@ -55,6 +63,7 @@ extension WelcomeScreenThree {
         
         UserPreferences.instance.showFarmersMarkets = !UserPreferences.instance.showFarmersMarkets
         updateButtons()
+        makeNoteThatUserSelectedFarmersMarkets()
         
     }
     
@@ -62,6 +71,7 @@ extension WelcomeScreenThree {
         
         UserPreferences.instance.showStores = !UserPreferences.instance.showStores
         updateButtons()
+        makeNoteThatUserSelectedGroceryStores()
     }
     
 }
@@ -182,5 +192,40 @@ fileprivate extension WelcomeScreenThree {
     func animate(withView view: UIView, animations: @escaping () -> ()) {
         
         UIView.transition(with: self.farmersMarketButton, duration: 0.3, options: .transitionCrossDissolve, animations: animations, completion: nil)
+    }
+}
+
+
+//MARK: Aroma Messages
+fileprivate extension WelcomeScreenThree {
+    
+    func makeNoteThatScreenLaunched() {
+        
+        let message = "This is where the user selects the Store Type"
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3 Loaded", withBody: message)
+    }
+    
+    func makeNoteThatUserTappedOnBackgroundWithoutSelectingOption() {
+        
+        let message = "User tapped on background, but has not yet made a selection on Store Type."
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
+    }
+    
+    func makeNoteThatUserIsProceeding() {
+        
+        let message = "User has made their selection: Farmers' Markets [\(UserPreferences.instance.showFarmersMarkets)], Grocery Store [\(UserPreferences.instance.showStores)]"
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
+    }
+    
+    func makeNoteThatUserSelectedFarmersMarkets() {
+        
+        let message = "User selected Farmers Markets: \(UserPreferences.instance.showFarmersMarkets)"
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
+    }
+    
+    func makeNoteThatUserSelectedGroceryStores() {
+        
+        let message = "User selected Grocery Stores: \(UserPreferences.instance.showStores)"
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 3", withBody: message)
     }
 }

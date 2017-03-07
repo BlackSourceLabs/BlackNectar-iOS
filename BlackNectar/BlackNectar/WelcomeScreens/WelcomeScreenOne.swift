@@ -6,6 +6,7 @@
 //  Copyright © 2017 BlackSource. All rights reserved.
 //
 
+import AromaSwiftClient
 import Foundation
 import UIKit
 
@@ -18,8 +19,12 @@ class WelcomeScreenOne: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Flow Launched")
+        
         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
             self.goToNextScreen()
+            
+            AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 1", withBody: "Proceeding to next screen after time out")
         }
     }
     
@@ -36,6 +41,7 @@ class WelcomeScreenOne: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 1", withBody: "Proceeding to next screen after user tapped screen")
         goToNextScreen()
         
     }

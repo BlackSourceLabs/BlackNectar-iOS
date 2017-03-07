@@ -18,6 +18,7 @@ class WelcomeScreenTwo : UIViewController {
     
     override func viewDidLoad() {
         
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 2 Loaded")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -26,6 +27,7 @@ class WelcomeScreenTwo : UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        AromaClient.sendLowPriorityMessage(withTitle: "Welcome Screen 2", withBody: "Proceeding to Welcome Screen 3 after user tapped background")
         goToNext()
         
     }

@@ -7,6 +7,7 @@
 //
 
 import Archeota
+import AromaSwiftClient
 import Foundation
 import UIKit
 
@@ -71,6 +72,7 @@ extension UIViewController {
         
         let openSettings = UIAlertAction(title: "Open Settings", style: .default) { _ in
             self.senduserToSettings()
+            self.makeNoteThatSendingUserToSettings()
         }
         
         controller.addAction(openSettings)
@@ -98,4 +100,15 @@ extension UIAlertController {
         
         actions.forEach(self.addAction)
     }
+}
+
+//MARK: Aroma Messages
+fileprivate extension UIViewController {
+
+    func makeNoteThatSendingUserToSettings() {
+        
+        let message = "Sending User to 'Settings' so they can enable Location Services"
+        AromaClient.sendMediumPriorityMessage(withTitle: "Sending User To Settings", withBody: message)
+    }
+    
 }

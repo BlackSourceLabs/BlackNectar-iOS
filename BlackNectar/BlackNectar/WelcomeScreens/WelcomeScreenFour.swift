@@ -7,6 +7,7 @@
 //
 
 import Archeota
+import AromaSwiftClient
 import CoreLocation
 import Foundation
 import UIKit
@@ -42,6 +43,7 @@ class WelcomeScreenFour: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        makeNoteThatScreenLaunched()
     }
     
     
@@ -69,12 +71,15 @@ extension WelcomeScreenFour {
         
         let alert = createAlertToRequestGPS()
         presentAlert(alert)
+        makeNoteThatUserTappedGPS()
+        
     }
     
     @IBAction func didSelectZipCode(_ sender: Any) {
         
         let alert = createAlertToRequestZipCode()
         presentAlert(alert)
+        makeNoteThatUserTappedZipCode()
     }
     
     @IBAction func didSelectNext(_ sender: Any) {
@@ -467,4 +472,35 @@ fileprivate extension WelcomeScreenFour {
 //MARK: Aroma Messages
 fileprivate extension WelcomeScreenFour {
     
+    var aromaTitle: String { return "Welcome Screen 4" }
+    
+    func makeNoteThatScreenLaunched() {
+        
+        let message = "This is where the user selects the location type"
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
+    }
+    
+    func makeNoteThatUserTappedGPS() {
+        
+        let message = "User tapped on 'My Location'"
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
+    }
+    
+    func makeNoteThatUserSelectedGPS() {
+        
+        let message = "User selected 'My Location'"
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
+    }
+    
+    func makeNoteThatUserTappedZipCode() {
+        
+        let message = "User tapped on 'Zip Code' option"
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
+    }
+    
+    func makeNoteThatUserSelectedZipCode() {
+        
+        let message = "User selected Zip Code: \(zipCode)"
+        AromaClient.sendLowPriorityMessage(withTitle: aromaTitle, withBody: message)
+    }
 }

@@ -406,9 +406,9 @@
 			isa = PBXGroup;
 			children = (
 				327BAD651DFA26AE000EA25E /* CustomButtonView.swift */,
+				32FE5A4C1E597E0700B61709 /* CustomLabelView.swift */,
 				32FE5A481E578A8400B61709 /* CustomSwitchView.swift */,
 				32FE5A4A1E57E1C100B61709 /* CustomThumbView.swift */,
-				32FE5A4C1E597E0700B61709 /* CustomLabelView.swift */,
 				DE4AB57B1E68DB8B00F678D4 /* CustomView.swift */,
 			);
 			name = Views;

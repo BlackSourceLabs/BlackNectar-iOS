@@ -74,9 +74,8 @@ import UIKit
         
         didSet {
             
-            guard numberOfLines > 0 else {
+            if numberOfLines < 1 {
                 numberOfLines = 1
-                return
             }
             
             updateView()

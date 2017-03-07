@@ -112,11 +112,11 @@ import UIKit
         
         if let attributedText = self.attributedText {
             
-            mutableText = NSMutableAttributedString.init(attributedString: attributedText)
+            mutableText = NSMutableAttributedString(attributedString: attributedText)
             
         }
         else {
-            mutableText = NSMutableAttributedString.init(string: self.text ?? "")
+            mutableText = NSMutableAttributedString(string: self.text ?? "")
         }
         
         mutableText.addAttribute(NSKernAttributeName, value: kearning, range: NSRange(location: 0, length: mutableText.length - 1))

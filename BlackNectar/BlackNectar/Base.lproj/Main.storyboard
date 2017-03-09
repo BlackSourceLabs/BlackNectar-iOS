@@ -35,7 +35,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -64,7 +64,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" userInteractionEnabled="NO" contentMode="scaleToFill" id="b6N-4u-HAF">
-                            <rect key="frame" x="113" y="6" width="150" height="33"/>
+                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rA-o4-umH">
@@ -91,11 +91,19 @@
             </objects>
             <point key="canvasLocation" x="3261.5999999999999" y="1563.8680659670167"/>
         </scene>
+        <!--WelcomeScreens-->
+        <scene sceneID="Ubw-Et-ytC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WelcomeScreens" id="22n-XT-EVi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8wx-L2-AoR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1273" y="936"/>
+        </scene>
         <!--Stores Table View Controller-->
         <scene sceneID="PI3-SW-0Qh">
             <objects>
                 <tableViewController id="7dd-Vg-sa8" customClass="StoresTableViewController" customModule="BlackNectar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="hhb-k9-YPD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="hhb-k9-YPD">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -108,7 +116,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="-1" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>
@@ -240,7 +248,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
-                            <rect key="frame" x="113" y="6" width="150" height="33"/>
+                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="T0k-sW-weX">
@@ -269,6 +277,7 @@
                     <connections>
                         <segue destination="JwV-va-qRH" kind="presentation" identifier="mapViewSegue" id="xdh-tm-f6B"/>
                         <segue destination="kfi-dD-UoL" kind="presentation" identifier="filterSegue" id="Ki5-qi-7Nm"/>
+                        <segue destination="22n-XT-EVi" kind="presentation" identifier="toWelcome" id="6oR-RE-0nu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -555,7 +564,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="Zxc-HX-K3f">
-                            <rect key="frame" x="104" y="6" width="168" height="33"/>
+                            <rect key="frame" x="103.5" y="5.5" width="168" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Huw-KN-cYv">
@@ -656,7 +665,7 @@
     <resources>
         <image name="Cancel-White@3x.png" width="24" height="24"/>
         <image name="GPS-Full@3x.png" width="66" height="68"/>
-        <image name="Icon-60" width="60" height="60"/>
+        <image name="Icon-60" width="512" height="512"/>
         <image name="SplashScreen" width="500" height="500"/>
     </resources>
 </document>

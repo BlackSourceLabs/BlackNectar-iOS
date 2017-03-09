@@ -36,6 +36,19 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         return UserPreferences.instance.zipCode ?? ""
     }
     
+    var isFirstTimeUser: Bool {
+        
+        get {
+            
+            return UserPreferences.instance.isFirstTimeUser
+        }
+        
+        set(newValue) {
+            
+            UserPreferences.instance.isFirstTimeUser = newValue
+        }
+    }
+    
     var stores: [Store] = []
     
     let async: OperationQueue = {
@@ -52,13 +65,25 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserLocation.instance.initialize()
         setupRefreshControl()
-        reloadStoreData()
+        
+        if isFirstTimeUser {
+            goToWelcomeScreen()
+        }
+        else {
+            UserLocation.instance.initialize()
+            reloadStoreData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
     
 }
@@ -76,6 +101,21 @@ extension StoresTableViewController {
         
     }
     
+}
+
+//MARK: Welcome Screen Code
+extension StoresTableViewController: WelcomeScreenDelegate {
+    
+    func goToWelcomeScreen() {
+        
+        performSegue(withIdentifier: "toWelcome", sender: nil)
+    }
+    
+    func didDismissWelcomeScreens() {
+        
+        isFirstTimeUser = false
+        self.reloadStoreData()
+    }
 }
 
 //MARK: Table View Code
@@ -190,7 +230,7 @@ extension StoresTableViewController {
             
             cell.storeDistance.isHidden = false
             cell.storeDistance.text = "\(doubleDown) miles"
-
+            
         }
         
     }
@@ -209,12 +249,12 @@ extension StoresTableViewController {
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
-   
+    
     
     func reloadStoreData() {
         
         if useMyLocation {
-
+            
             UserLocation.instance.requestLocation(callback: self.loadStores)
         }
         else if useZipCode, zipCode.notEmpty {
@@ -297,7 +337,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Prepare and Perform Segue Code
+//MARK: Segue Code
 extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -309,12 +349,19 @@ extension StoresTableViewController {
             
         }
         
-        if let destination = segue.destination as? UINavigationController {
+        if let destination = segue.destination as? UINavigationController,
+           let filterViewController = destination.topViewController as? FilterViewController {
             
-            let filterViewController = destination.topViewController as? FilterViewController
-            filterViewController?.delegate = self
+            filterViewController.delegate = self
             
         }
+        
+        if let destination = segue.destination as? UINavigationController,
+           let welcomeScreen = destination.topViewController as? WelcomeScreenOne {
+           
+            welcomeScreen.delegate = self
+        }
+        
         
     }
     
@@ -336,8 +383,10 @@ extension StoresTableViewController {
     }
     
     func goToMapView() {
+        
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
     }
+  
     
 }
 

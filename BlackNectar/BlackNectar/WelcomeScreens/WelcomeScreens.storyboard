@@ -91,7 +91,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
-                                <rect key="frame" x="103.5" y="72" width="169.5" height="27"/>
+                                <rect key="frame" x="103" y="72" width="169.5" height="27"/>
                                 <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -661,7 +661,7 @@ STORES</string>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="L5i-9v-P2s">
-                                <rect key="frame" x="30" y="208" width="315.5" height="131.5"/>
+                                <rect key="frame" x="30.5" y="208" width="315.5" height="131.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-Re-0ct" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="131" height="131.5"/>
@@ -741,7 +741,7 @@ CODE</string>
                                 </constraints>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3" userLabel="My Location Pin">
-                                <rect key="frame" x="70.5" y="314.5" width="50" height="50"/>
+                                <rect key="frame" x="71" y="314.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="COD-YR-Bkm"/>
                                     <constraint firstAttribute="width" secondItem="a2Y-bk-oH3" secondAttribute="height" multiplier="1:1" id="L7E-fs-CA8"/>
@@ -843,7 +843,7 @@ CODE</string>
             <objects>
                 <navigationController storyboardIdentifier="welcomeScreenNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ypk-I6-KIw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gWg-9r-p4r">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gWg-9r-p4r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

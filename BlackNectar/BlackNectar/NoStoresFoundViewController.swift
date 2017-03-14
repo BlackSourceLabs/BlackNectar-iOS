@@ -18,6 +18,22 @@ protocol NoStoresFoundDelegate {
     
 }
 
+    //MARK: Present Filter View Controller
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
+        
+        presentFilterViewController()
+        
+    }
+    
+    fileprivate func presentFilterViewController() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let filterViewController = storyboard.instantiateViewController(withIdentifier: "FilterViewController")
+        
+        present(filterViewController, animated: true, completion: nil)
+        
+    }
+    
     //MARK: Setup MFMailCompose and Send Email
     @IBAction func letUsKnowButtonTapped(_ sender: UIButton) {
         

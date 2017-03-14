@@ -18,6 +18,26 @@ protocol NoStoresFoundDelegate {
     
 }
 
+    //MARK: MFMailCompose Delegate
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        if error != nil {
+            
+            makeNoteThatSendingEmailFailed(withError: "\(error)")
+            sendEmailErrorAlert()
+            return
+            
+        } else {
+            
+            makeNoteThatUserFinishedEmail(withResult: "\(result)")
+            controller.dismiss(animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+}
+
 //MARK: Alert View Code
 fileprivate extension NoStoresFoundViewController {
     

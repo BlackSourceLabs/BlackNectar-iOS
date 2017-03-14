@@ -11,3 +11,10 @@ import AromaSwiftClient
 import Foundation
 import UIKit
 import MessageUI
+
+protocol NoStoresFoundDelegate {
+    
+    func noStoresFound()
+    
+}
+

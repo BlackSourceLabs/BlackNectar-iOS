@@ -71,7 +71,7 @@ extension UIViewController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let openSettings = UIAlertAction(title: "Open Settings", style: .default) { _ in
-            self.senduserToSettings()
+            self.sendUserToSettings()
             self.makeNoteThatSendingUserToSettings()
         }
         
@@ -80,7 +80,7 @@ extension UIViewController {
         return controller
     }
     
-    private func senduserToSettings() {
+    func sendUserToSettings() {
         
         let link = UIApplicationOpenSettingsURLString
         
@@ -92,6 +92,7 @@ extension UIViewController {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
         
     }
+    
 }
 
 extension UIAlertController {

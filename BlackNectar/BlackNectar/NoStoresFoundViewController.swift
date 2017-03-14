@@ -165,7 +165,7 @@ fileprivate extension NoStoresFoundViewController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let openSettings = UIAlertAction(title: "Open Settings", style: .default) { _ in
-            self.senduserToSettings()
+            self.sendUserToSettings()
             self.makeNoteThatSendingUserToSettingsForMail()
         }
         

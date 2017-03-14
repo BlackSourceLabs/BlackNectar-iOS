@@ -18,6 +18,23 @@ protocol NoStoresFoundDelegate {
     
 }
 
+class NoStoresFoundViewController: UIViewController, MFMailComposeViewControllerDelegate {
+    
+    let mailComposeViewController = MFMailComposeViewController()
+    var delegate: NoStoresFoundDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        checkUsersEmailSettings()
+
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
+    
     //MARK: Present Filter View Controller
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         

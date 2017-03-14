@@ -18,6 +18,54 @@ protocol NoStoresFoundDelegate {
     
 }
 
+    //MARK: Setup MFMailCompose and Send Email
+    @IBAction func letUsKnowButtonTapped(_ sender: UIButton) {
+        
+        sendEmail()
+        
+    }
+    
+    fileprivate func sendEmail() {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            
+            sendUserToSettingsAlert()
+            makeNoteThatUserHasMailSettingsDisabled()
+            
+        } else {
+            
+            self.present(configureMailComposeViewController(), animated: true, completion: nil)
+            
+        } 
+        
+    }
+    
+    fileprivate func checkUsersEmailSettings() {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            
+            sendUserToSettingsAlert()
+            makeNoteThatUserHasMailSettingsDisabled()
+            
+        } else {
+            
+            return
+        }
+        
+    }
+    
+    fileprivate func configureMailComposeViewController() -> MFMailComposeViewController {
+        
+        mailComposeViewController.mailComposeDelegate = self
+        
+        mailComposeViewController.setToRecipients(["feedback@blacksource.tech"])
+        mailComposeViewController.setSubject("We love feeback - Place your comment below")
+        mailComposeViewController.setMessageBody("We are open to all feedback. Let us know if there are no stores in your area that accept EBT.", isHTML: false)
+        
+        return mailComposeViewController
+        
+    }
+    
     //MARK: MFMailCompose Delegate
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         

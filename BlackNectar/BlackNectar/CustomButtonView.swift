@@ -11,6 +11,8 @@ import UIKit
 
 @IBDesignable class CustomButtonView: UIButton {
     
+    private var label: UILabel? { return titleLabel }
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -82,6 +84,28 @@ import UIKit
         }
     }
     
+    @IBInspectable var enableAutoShrink: Bool = false {
+        
+        didSet {
+            
+            label?.adjustsFontSizeToFitWidth = enableAutoShrink
+        }
+    }
+    
+    @IBInspectable var minimumFontScaleFactor: CGFloat = 1.0 {
+        
+        didSet {
+            
+            if enableAutoShrink {
+                label?.minimumScaleFactor = minimumFontScaleFactor
+            }
+            else {
+                label?.minimumScaleFactor = 1.0
+            }
+            
+        }
+    }
+    
     func updateView() {
         
         layer.cornerRadius = cornerRadius
@@ -105,6 +129,7 @@ import UIKit
             else {
                 label.lineBreakMode = .byTruncatingTail
             }
+            
         }
         
         self.imageView?.contentMode = .scaleAspectFill

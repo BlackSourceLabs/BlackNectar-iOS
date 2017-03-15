@@ -282,7 +282,6 @@
 				321319441DE0F61500FB1774 /* Assets.xcassets */,
 				369843881E31928F0048D8B1 /* GeoFunctions */,
 				32E134501E160E3100FD65DC /* Extensions */,
-				327A75A71E43AD2000FE4619 /* Resources */,
 				327A75EA1E451C8800FE4619 /* Info.plist */,
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
@@ -339,13 +338,9 @@
 			isa = PBXGroup;
 			children = (
 				324500781E4BFDFC00A3CE63 /* Fonts.swift */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
-		327A75A71E43AD2000FE4619 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
+				327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */,
+				327A75A91E43AD8A00FE4619 /* Oxygen-Light.ttf */,
+				327A75AA1E43AD8A00FE4619 /* Oxygen-Regular.ttf */,
 				327A75C61E451BAD00FE4619 /* Uni Sans Bold Italic.ttf */,
 				327A75C71E451BAD00FE4619 /* Uni Sans Bold.ttf */,
 				327A75C81E451BAD00FE4619 /* Uni Sans Book Italic.ttf */,
@@ -360,11 +355,8 @@
 				327A75D41E451BAD00FE4619 /* Uni Sans Thin Italic.ttf */,
 				327A75D61E451BAD00FE4619 /* Uni Sans Thin.ttf */,
 				327A75D71E451BAD00FE4619 /* Uni Sans.ttf */,
-				327A75A81E43AD8A00FE4619 /* Oxygen-Bold.ttf */,
-				327A75A91E43AD8A00FE4619 /* Oxygen-Light.ttf */,
-				327A75AA1E43AD8A00FE4619 /* Oxygen-Regular.ttf */,
 			);
-			name = Resources;
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		327BAD5F1DF44B3F000EA25E /* StoresListTableView */ = {

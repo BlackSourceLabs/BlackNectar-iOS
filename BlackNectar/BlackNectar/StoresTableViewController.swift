@@ -409,7 +409,6 @@ extension StoresTableViewController {
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
     }
   
-    
 }
 
 //MARK: Aroma Messages Code

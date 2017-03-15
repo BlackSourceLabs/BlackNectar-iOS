@@ -16,13 +16,13 @@
         <array key="Oxygen-Regular.ttf">
             <string>Oxygen-Regular</string>
         </array>
-        <array key="Uni Sans Bold.ttf">
+        <array key="UniSans-Bold.ttf">
             <string>UniSansBold</string>
         </array>
-        <array key="Uni Sans Light.ttf">
+        <array key="UniSans-Light.ttf">
             <string>UniSansLight</string>
         </array>
-        <array key="Uni Sans.ttf">
+        <array key="UniSans-Regular.ttf">
             <string>UniSansRegular</string>
         </array>
     </customFonts>
@@ -35,7 +35,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -103,7 +103,7 @@
         <scene sceneID="PI3-SW-0Qh">
             <objects>
                 <tableViewController id="7dd-Vg-sa8" customClass="StoresTableViewController" customModule="BlackNectar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="hhb-k9-YPD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="236" sectionHeaderHeight="28" sectionFooterHeight="28" id="hhb-k9-YPD">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -116,7 +116,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
-                                            <rect key="frame" x="0.0" y="-1" width="375" height="244"/>
+                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="244"/>
                                         </imageView>
                                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-W4-jPB">
                                             <rect key="frame" x="0.0" y="142" width="375" height="93"/>

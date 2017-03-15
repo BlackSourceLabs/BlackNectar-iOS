@@ -35,4 +35,15 @@ class FontsTest : XCTestCase {
         uni = Fonts.uniSansSemiBold()!
         
     }
+    
+    func testPrintFontNames() {
+        
+        for family in UIFont.familyNames.sorted() {
+            
+            print("Font: \(family)", terminator: " | ")
+            
+            let name = UIFont.fontNames(forFamilyName: family)
+            print("Font Name: \(name)")
+        }
+    }
 }

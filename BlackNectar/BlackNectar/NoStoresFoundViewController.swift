@@ -102,18 +102,16 @@ class NoStoresFoundViewController: UIViewController, MFMailComposeViewController
     //MARK: MFMailCompose Delegate
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        if error != nil {
+        if let error = error {
             
             makeNoteThatSendingEmailFailed(withError: "\(error)")
             sendEmailErrorAlert()
             return
             
-        } else {
-            
-            makeNoteThatUserFinishedEmail(withResult: "\(result)")
-            controller.dismiss(animated: true, completion: nil)
-            
         }
+        
+        makeNoteThatUserFinishedEmail(withResult: "\(result)")
+        controller.dismiss(animated: true, completion: nil)
         
     }
     

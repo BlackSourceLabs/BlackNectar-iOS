@@ -109,9 +109,9 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 }
 
 //MARK: Loading Stores Into mapView
-fileprivate extension StoresMapViewController {
+internal extension StoresMapViewController {
     
-    func loadStores() {
+    fileprivate func loadStores() {
         
         if useMyLocation {
             

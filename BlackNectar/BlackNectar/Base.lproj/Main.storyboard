@@ -245,9 +245,10 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
-                                        <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8mc-ZS-zDS" userLabel="Opacity Layer">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
+                                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8mc-ZS-zDS" userLabel="Opacity Layer">
+                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="236"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qO-wu-Jcb" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
@@ -330,12 +331,12 @@
                                         <constraint firstItem="4qO-wu-Jcb" firstAttribute="trailing" secondItem="18x-pk-FJU" secondAttribute="trailing" id="y5q-yK-hm3"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ncw-Zf-bET" firstAttribute="height" secondItem="jTC-fs-IR7" secondAttribute="height" constant="-1" id="1ir-Uj-WP0"/>
                                     <constraint firstItem="8mc-ZS-zDS" firstAttribute="centerX" secondItem="jTC-fs-IR7" secondAttribute="centerX" id="8Td-cG-bFn"/>
                                     <constraint firstItem="Ncw-Zf-bET" firstAttribute="width" secondItem="jTC-fs-IR7" secondAttribute="width" id="RGx-dd-Tp2"/>
-                                    <constraint firstItem="8mc-ZS-zDS" firstAttribute="height" secondItem="jTC-fs-IR7" secondAttribute="height" constant="-1" id="XZN-P3-xiU"/>
+                                    <constraint firstItem="8mc-ZS-zDS" firstAttribute="height" secondItem="jTC-fs-IR7" secondAttribute="height" id="XZN-P3-xiU"/>
                                     <constraint firstItem="8mc-ZS-zDS" firstAttribute="width" secondItem="jTC-fs-IR7" secondAttribute="width" id="ZNC-OQ-hms"/>
                                     <constraint firstItem="Ncw-Zf-bET" firstAttribute="centerX" secondItem="jTC-fs-IR7" secondAttribute="centerX" id="nRF-KY-fuT"/>
                                     <constraint firstItem="Ncw-Zf-bET" firstAttribute="centerY" secondItem="jTC-fs-IR7" secondAttribute="centerY" id="xfW-Pg-oG9"/>

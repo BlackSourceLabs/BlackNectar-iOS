@@ -252,13 +252,13 @@
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qO-wu-Jcb" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="43" width="262" height="47.5"/>
+                                            <rect key="frame" x="12" y="43" width="263" height="47.5"/>
                                             <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="23"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Address" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18x-pk-FJU" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="146" width="262" height="67"/>
+                                            <rect key="frame" x="12" y="146" width="263" height="67"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="67" id="tXQ-BP-7dr"/>
                                             </constraints>
@@ -266,14 +266,13 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNA-N4-ZzW" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                            <rect key="frame" x="284" y="148" width="58" height="47"/>
-                                            <color key="backgroundColor" red="0.900626123" green="0.73430758709999999" blue="0.2481203079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNA-N4-ZzW" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
+                                            <rect key="frame" x="285" y="148" width="57" height="47"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="47" id="1Pg-RQ-lQ9"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                            <state key="normal" title="Go">
+                                            <state key="normal" image="Navigate Button">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
@@ -801,6 +800,7 @@
         <image name="Cancel-White@3x.png" width="24" height="24"/>
         <image name="GPS-Full@3x.png" width="66" height="68"/>
         <image name="Icon-60" width="512" height="512"/>
+        <image name="Navigate Button" width="37" height="37"/>
         <image name="No-Stores@1x" width="1001" height="668"/>
         <image name="SplashScreen" width="500" height="500"/>
     </resources>

@@ -241,14 +241,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Wq0-Aq-3dq">
-                        <barButtonItem key="leftBarButtonItem" title="Map" id="KP8-gl-9JL">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="mapButtonTapped:" destination="7dd-Vg-sa8" id="quW-KN-T8c"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="ZvB-FC-Lwb">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IVn-uG-QEd">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="18"/>
+                                <state key="normal" title="MAP"/>
+                                <connections>
+                                    <action selector="didTapMapButton:" destination="7dd-Vg-sa8" eventType="touchUpInside" id="Ce0-7Q-cuH"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
-                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
+                            <rect key="frame" x="113" y="6" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="T0k-sW-weX">

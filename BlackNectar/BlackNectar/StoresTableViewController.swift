@@ -209,6 +209,24 @@ extension StoresTableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+        guard tableView.cellForRow(at: indexPath) is StoresTableViewCell else { return }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        cell.contentView.backgroundColor = Colors.from(hexString: "ECC040")
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
+        guard tableView.cellForRow(at: indexPath) is StoresTableViewCell else { return }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        cell.contentView.backgroundColor = UIColor.clear
+        
+    }
+    
     private func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
         let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))

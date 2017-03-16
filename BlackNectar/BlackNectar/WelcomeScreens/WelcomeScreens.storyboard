@@ -47,7 +47,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-Ol-OPt" userLabel="Diagonal Bar" customClass="CustomView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="-225.09680682235052" y="-16.596806822350459" width="825.19361364470114" height="825.19361364470092"/>
+                                <rect key="frame" x="-225.09680682235052" y="-16.096806822350459" width="825.19361364470114" height="825.19361364470092"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -62,7 +62,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="BnJ-Ik-Tqx">
-                                <rect key="frame" x="75" y="221" width="225" height="225"/>
+                                <rect key="frame" x="74.5" y="220.5" width="226" height="226"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BnJ-Ik-Tqx" secondAttribute="height" multiplier="1:1" id="Xbv-tY-Xmm"/>
                                 </constraints>
@@ -73,7 +73,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="86" y="470" width="205" height="30"/>
+                                <rect key="frame" x="85" y="470.5" width="205" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
@@ -103,7 +103,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
-                                <rect key="frame" x="103" y="72" width="169.5" height="27"/>
+                                <rect key="frame" x="103" y="72" width="169" height="27"/>
                                 <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -145,11 +145,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="CYh-Sf-2ve"/>
                                 <exclude reference="Cww-0q-LfJ"/>
                                 <exclude reference="DWp-xP-3Of"/>
                                 <exclude reference="O6H-3P-gEb"/>
                                 <exclude reference="o7M-zG-w3j"/>
+                                <exclude reference="CYh-Sf-2ve"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -489,7 +489,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-U6-BJS">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-U6-BJS">
                                 <rect key="frame" x="32" y="208" width="311" height="183.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dyd-K3-M1f" userLabel="Farmers Stack">
@@ -523,7 +523,6 @@ MARKETS</string>
                                                         <attributes>
                                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="16" name="UniSansSemiBold"/>
-                                                            <font key="NSOriginalFont" size="16" name="UniSansSemiBold"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -550,20 +549,19 @@ MARKETS</string>
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <font key="NSFont" size="33" name="UniSansSemiBold"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="8" tighteningFactorForTruncation="0.0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
-                                                    <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="36"/>
                                                 </variation>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-ds-WBe" userLabel="Grocery Stack">
-                                        <rect key="frame" x="180" y="0.0" width="131" height="183.5"/>
+                                        <rect key="frame" x="180.5" y="0.0" width="130.5" height="183.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-rA-YrN" userLabel="GROCERY STORES BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="131" height="131.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="131.5"/>
                                                 <state key="normal" image="Grocery Stores"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -578,7 +576,7 @@ MARKETS</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lg-BN-oIU">
-                                                <rect key="frame" x="31" y="147.5" width="69" height="36"/>
+                                                <rect key="frame" x="30.5" y="147.5" width="69" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">GROCERY
@@ -628,13 +626,14 @@ STORES</string>
                                     <constraint firstItem="HpP-rA-YrN" firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="width" id="0ef-Rp-Zvy"/>
                                     <constraint firstItem="HpP-rA-YrN" firstAttribute="height" secondItem="hn3-XB-hzv" secondAttribute="height" id="b6x-CZ-8wG"/>
                                 </constraints>
+                                <variation key="heightClass=compact" distribution="fillProportionally"/>
                             </stackView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-r9-lGo" userLabel="Farmers Market Opacity">
                                 <rect key="frame" x="32" y="208" width="131.5" height="131.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGA-ac-Eh9" userLabel="Grocery Stores Opacity">
-                                <rect key="frame" x="212" y="208" width="131" height="131.5"/>
+                                <rect key="frame" x="212.5" y="208" width="130.5" height="131.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-Ht-Au8" userLabel="Farmers Market Pin">
@@ -645,7 +644,7 @@ STORES</string>
                                 </constraints>
                             </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="7Fs-z6-j3L" userLabel="Grocery Stores Pin">
-                                <rect key="frame" x="244" y="241" width="65.5" height="65.5"/>
+                                <rect key="frame" x="244.5" y="240.5" width="65.5" height="65.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7Fs-z6-j3L" secondAttribute="height" multiplier="1:1" id="FVK-Zh-qMe"/>
                                 </constraints>
@@ -675,29 +674,52 @@ STORES</string>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="width" secondItem="HpP-rA-YrN" secondAttribute="width" id="DyP-R9-ihy"/>
                             <constraint firstItem="jN2-PR-DDz" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leading" id="Ijg-vh-hIz"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="width" id="L44-4J-UiY"/>
+                            <constraint firstItem="hn3-XB-hzv" firstAttribute="height" secondItem="RzB-lW-V4D" secondAttribute="height" multiplier="0.3" id="Oxx-0T-gNn"/>
                             <constraint firstItem="jN2-PR-DDz" firstAttribute="top" secondItem="RzB-lW-V4D" secondAttribute="top" id="PLP-rQ-hDB"/>
                             <constraint firstAttribute="bottom" secondItem="rZi-dk-erf" secondAttribute="bottom" id="Q7R-5g-8mg"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="centerX" secondItem="hn3-XB-hzv" secondAttribute="centerX" id="R2X-rb-RGk"/>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="centerX" secondItem="HpP-rA-YrN" secondAttribute="centerX" id="TBt-Cf-qwX"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerY" secondItem="HpP-rA-YrN" secondAttribute="centerY" id="VAX-k7-hDc"/>
-                            <constraint firstItem="ebf-ey-r2E" firstAttribute="top" secondItem="7m4-sU-le6" secondAttribute="bottom" constant="16" id="XYF-WM-bt0"/>
+                            <constraint firstItem="ebf-ey-r2E" firstAttribute="top" secondItem="7m4-sU-le6" secondAttribute="bottom" constant="16" id="XYF-WM-bt0">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="jN2-PR-DDz" secondAttribute="trailing" id="erT-j4-Ae8"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="width" secondItem="HpP-rA-YrN" secondAttribute="width" multiplier="0.5" id="hDr-mG-hfN"/>
-                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="top" secondItem="ebf-ey-r2E" secondAttribute="bottom" constant="64" id="hE2-dT-pJy"/>
+                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="top" secondItem="ebf-ey-r2E" secondAttribute="bottom" constant="64" id="hE2-dT-pJy">
+                                <variation key="heightClass=compact" constant="24"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="rZi-dk-erf" secondAttribute="trailing" id="jYA-R7-Fz9"/>
                             <constraint firstItem="ebf-ey-r2E" firstAttribute="centerX" secondItem="RzB-lW-V4D" secondAttribute="centerX" id="jZC-xh-nKb"/>
                             <constraint firstItem="rZi-dk-erf" firstAttribute="top" secondItem="RzB-lW-V4D" secondAttribute="top" id="juF-2g-lk2"/>
-                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leadingMargin" constant="16" id="luu-KQ-RYY"/>
+                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leadingMargin" constant="16" id="luu-KQ-RYY">
+                                <variation key="heightClass=compact" constant="64"/>
+                            </constraint>
                             <constraint firstItem="rZi-dk-erf" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leading" id="nXp-Gy-Tbr"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerX" secondItem="HpP-rA-YrN" secondAttribute="centerX" id="o7h-X4-nC7"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="height" secondItem="hn3-XB-hzv" secondAttribute="height" id="pkG-Sa-f7a"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Lyl-U6-BJS" secondAttribute="trailing" constant="16" id="rcr-fe-fCH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lyl-U6-BJS" secondAttribute="trailing" constant="16" id="rcr-fe-fCH">
+                                <variation key="heightClass=compact" constant="64"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="tad-Rl-Zuy" secondAttribute="trailing" constant="16" id="ud9-1q-JmV"/>
                             <constraint firstAttribute="bottom" secondItem="jN2-PR-DDz" secondAttribute="bottom" id="vIO-60-jDq"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="centerY" secondItem="hn3-XB-hzv" secondAttribute="centerY" id="wtr-tV-VPI"/>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="height" secondItem="HpP-rA-YrN" secondAttribute="height" id="x2E-hz-PDs"/>
+                            <constraint firstItem="hn3-XB-hzv" firstAttribute="width" secondItem="RzB-lW-V4D" secondAttribute="width" id="xSl-0v-D8e"/>
                             <constraint firstItem="hn3-XB-hzv" firstAttribute="width" secondItem="RzB-lW-V4D" secondAttribute="width" multiplier="0.35" id="zKp-jt-gSf"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Oxx-0T-gNn"/>
+                                <exclude reference="xSl-0v-D8e"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="Oxx-0T-gNn"/>
+                                <exclude reference="xSl-0v-D8e"/>
+                                <exclude reference="zKp-jt-gSf"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="KTh-Yw-vrz">
                         <nil key="title"/>
@@ -804,10 +826,10 @@ STORES</string>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="L5i-9v-P2s">
-                                <rect key="frame" x="29.5" y="208" width="316" height="132"/>
+                                <rect key="frame" x="30" y="208" width="315.5" height="132"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-Re-0ct" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="131.5" height="132"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="132"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CfE-Re-0ct" secondAttribute="height" multiplier="1:1" id="Dol-bU-6iG"/>
                                         </constraints>
@@ -847,7 +869,7 @@ LOCATION</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WV1-ht-uvh">
-                                        <rect key="frame" x="147.5" y="58" width="21" height="16"/>
+                                        <rect key="frame" x="147" y="58" width="21" height="16"/>
                                         <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -856,7 +878,7 @@ LOCATION</string>
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nyb-lR-mJ9" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                        <rect key="frame" x="184.5" y="0.0" width="131.5" height="132"/>
+                                        <rect key="frame" x="184" y="0.0" width="131.5" height="132"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content=" ">
@@ -904,7 +926,7 @@ CODE</string>
                                 </constraints>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3" userLabel="My Location Pin">
-                                <rect key="frame" x="70" y="315" width="50" height="50"/>
+                                <rect key="frame" x="70.5" y="315" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="COD-YR-Bkm"/>
                                     <constraint firstAttribute="width" secondItem="a2Y-bk-oH3" secondAttribute="height" multiplier="1:1" id="L7E-fs-CA8"/>
@@ -926,14 +948,19 @@ CODE</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="L5i-9v-P2s" firstAttribute="top" secondItem="1qB-lk-MoK" secondAttribute="bottom" constant="64" id="1h6-HU-Oy1"/>
+                            <constraint firstItem="L5i-9v-P2s" firstAttribute="top" secondItem="1qB-lk-MoK" secondAttribute="bottom" constant="64" id="1h6-HU-Oy1">
+                                <variation key="heightClass=compact" constant="34"/>
+                            </constraint>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerX" secondItem="CfE-Re-0ct" secondAttribute="centerX" id="8WW-Rd-ZH1"/>
+                            <constraint firstItem="CfE-Re-0ct" firstAttribute="height" secondItem="VQ9-u6-xz5" secondAttribute="height" multiplier="0.3" id="AGe-BH-db3"/>
                             <constraint firstItem="CfE-Re-0ct" firstAttribute="width" secondItem="VQ9-u6-xz5" secondAttribute="width" multiplier="0.25" id="Cxz-HP-bgT"/>
                             <constraint firstItem="m98-hy-8Xy" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leading" id="D9Y-pW-H7y"/>
                             <constraint firstItem="CfE-Re-0ct" firstAttribute="width" secondItem="VQ9-u6-xz5" secondAttribute="width" multiplier="0.35" id="GJB-9H-nlW"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="CfE-Re-0ct" secondAttribute="bottom" id="HxH-Bx-HFt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2Xb-sb-wfB" secondAttribute="trailing" constant="16" id="KqL-Ka-IV5"/>
-                            <constraint firstItem="1qB-lk-MoK" firstAttribute="top" secondItem="Q3x-8k-t2L" secondAttribute="bottom" constant="16" id="Nb2-Ay-kxr"/>
+                            <constraint firstItem="1qB-lk-MoK" firstAttribute="top" secondItem="Q3x-8k-t2L" secondAttribute="bottom" constant="16" id="Nb2-Ay-kxr">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstAttribute="bottom" secondItem="ZSP-3r-4yi" secondAttribute="bottom" id="WeP-bd-h8B"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="Nyb-lR-mJ9" secondAttribute="bottom" id="Y4a-xm-zC7"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="centerX" secondItem="VQ9-u6-xz5" secondAttribute="centerX" id="bN4-O0-DlR"/>
@@ -950,10 +977,17 @@ CODE</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="AGe-BH-db3"/>
                                 <exclude reference="Cxz-HP-bgT"/>
                                 <exclude reference="Y4a-xm-zC7"/>
                                 <exclude reference="ccS-Sk-LXl"/>
                                 <exclude reference="gis-LO-3aH"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="AGe-BH-db3"/>
+                                <exclude reference="GJB-9H-nlW"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">

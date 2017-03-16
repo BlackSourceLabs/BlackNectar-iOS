@@ -86,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .withPriority(.medium)
             .addBody("Build #\(AppDelegate.buildNumber)")
             .send()
+        
         ImageCache.default.clearMemoryCache()
         
     }

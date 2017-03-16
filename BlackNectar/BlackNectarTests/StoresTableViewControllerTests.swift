@@ -28,7 +28,7 @@ class StoresTableViewControllerTests: XCTestCase {
         let cityLongitude: CLLocationDegrees = -73.9442
         let brooklynNY = CLLocationCoordinate2D(latitude: cityLatitude, longitude: cityLongitude)
         
-        XCTAssertNotNil(storesTableViewController.loadStores(at: brooklynNY))
+        XCTAssertNotNil(storesTableViewController.loadStores(atCoordinate: brooklynNY))
         
     }
     

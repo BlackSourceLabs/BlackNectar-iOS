@@ -334,6 +334,64 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
     
 }
 
+//MARK: Alert View Code
+fileprivate extension StoresTableViewController {
+    
+    fileprivate func sendEmailErrorAlert() {
+        
+        let alert = createAlertForEmailError()
+        self.presentAlert(alert)
+        
+    }
+    
+    fileprivate func sendUserToSettingsAlert() {
+        
+        let alert = createAlertToSendUserToSettings()
+        self.presentAlert(alert)
+        
+    }
+    
+    fileprivate func createAlertForEmailError() -> UIAlertController {
+        
+        let title = "Sending Email Failed"
+        let message = "Your device did not successfully send the Email. Please check your wi-fi settings or signal strength and try again."
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
+            
+            self.present(self.configureMailComposeViewController(), animated: true, completion: nil)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        controller.addAction(ok)
+        controller.addAction(cancel)
+        
+        return controller
+        
+    }
+    
+    fileprivate func createAlertToSendUserToSettings() -> UIAlertController {
+        
+        let title = "Requesting Mail Access"
+        let message = "Please go to \"Settings\" -> \"Mail\" -> \"Accounts\" -> \"Select your Account or add Account\" -> \"Enable Mail\""
+        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let openSettings = UIAlertAction(title: "Open Settings", style: .default) { _ in
+            self.sendUserToSettings()
+            self.makeNoteThatSendingUserToSettingsForMail()
+        }
+        
+        controller.addAction(openSettings)
+        
+        return controller
+        
+    }
+    
+}
+
 //MARK: Refresh Code
 extension StoresTableViewController {
     

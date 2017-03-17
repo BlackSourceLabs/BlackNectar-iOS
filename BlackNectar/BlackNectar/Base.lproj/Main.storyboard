@@ -119,7 +119,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="storeCell" rowHeight="236" id="jTC-fs-IR7" customClass="StoresTableViewCell" customModule="BlackNectar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="236"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="jTC-fs-IR7" id="Z8Q-oK-zQ1">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTC-fs-IR7" id="Z8Q-oK-zQ1">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -228,6 +228,89 @@
                                     <outlet property="storeName" destination="4qO-wu-Jcb" id="wb1-kO-bZG"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noResultsCell" rowHeight="340" id="Jmw-au-dyR" userLabel="noResultsCell">
+                                <rect key="frame" x="0.0" y="264" width="375" height="340"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jmw-au-dyR" id="GTG-Vr-VLd">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="339"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Stores Found " translatesAutoresizingMaskIntoConstraints="NO" id="jv3-gZ-STV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="339"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDX-BZ-WTS" userLabel="Blur Image">
+                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="340"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SUa-Oy-Dao">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="340"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eku-02-0qC" userLabel="Opacity Layer">
+                                                        <rect key="frame" x="0.0" y="0.5" width="375" height="340"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </view>
+                                                </subviews>
+                                            </view>
+                                            <blurEffect style="light"/>
+                                        </visualEffectView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO STORES FOUND" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fA1-WW-Ay2">
+                                            <rect key="frame" x="94" y="8" width="186" height="196"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="196" id="OIv-vt-80s"/>
+                                                <constraint firstAttribute="width" constant="186" id="mWj-6F-Fpo"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="UniSansLight" family="UniSansLight" pointSize="45"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know of any?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-KY-v1L">
+                                            <rect key="frame" x="82" y="234" width="198" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="iN7-6J-lnA"/>
+                                                <constraint firstAttribute="width" constant="198" id="xkF-1J-3wG"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="UniSansLight" family="UniSansLight" pointSize="20"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujJ-iL-HI5">
+                                            <rect key="frame" x="68" y="276" width="239" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="239" id="aKv-nO-HMx"/>
+                                                <constraint firstAttribute="height" constant="43" id="fx0-li-jWL"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="28"/>
+                                            <state key="normal" title="LET US KNOW">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ujJ-iL-HI5" secondAttribute="bottom" constant="12" id="0Ee-TN-xvu"/>
+                                        <constraint firstItem="ujJ-iL-HI5" firstAttribute="leading" secondItem="GTG-Vr-VLd" secondAttribute="leadingMargin" constant="60" id="6hc-LJ-1H3"/>
+                                        <constraint firstItem="fa2-KY-v1L" firstAttribute="top" secondItem="fA1-WW-Ay2" secondAttribute="bottom" constant="30" id="Lyi-tW-ZTE"/>
+                                        <constraint firstItem="fA1-WW-Ay2" firstAttribute="top" secondItem="GTG-Vr-VLd" secondAttribute="topMargin" id="R4o-Jn-tD9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ujJ-iL-HI5" secondAttribute="trailing" constant="60" id="ZdL-2b-2v3"/>
+                                        <constraint firstItem="fA1-WW-Ay2" firstAttribute="leading" secondItem="GTG-Vr-VLd" secondAttribute="leadingMargin" constant="86" id="aCs-dl-E53"/>
+                                        <constraint firstItem="fa2-KY-v1L" firstAttribute="leading" secondItem="GTG-Vr-VLd" secondAttribute="leadingMargin" constant="74" id="aDx-AS-B97"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fa2-KY-v1L" secondAttribute="trailing" constant="87" id="fOc-cK-Nej"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fA1-WW-Ay2" secondAttribute="trailing" constant="87" id="zf4-7g-5aO"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="dDX-BZ-WTS" firstAttribute="centerY" secondItem="Jmw-au-dyR" secondAttribute="centerY" id="1O8-d9-r4g"/>
+                                    <constraint firstItem="dDX-BZ-WTS" firstAttribute="centerX" secondItem="Jmw-au-dyR" secondAttribute="centerX" id="3mQ-2K-fgw"/>
+                                    <constraint firstItem="eku-02-0qC" firstAttribute="height" secondItem="Jmw-au-dyR" secondAttribute="height" id="55x-Xp-T24"/>
+                                    <constraint firstItem="eku-02-0qC" firstAttribute="width" secondItem="Jmw-au-dyR" secondAttribute="width" id="B0g-xh-ehJ"/>
+                                    <constraint firstItem="dDX-BZ-WTS" firstAttribute="height" secondItem="Jmw-au-dyR" secondAttribute="height" id="CEk-bB-m6O"/>
+                                    <constraint firstItem="eku-02-0qC" firstAttribute="centerY" secondItem="Jmw-au-dyR" secondAttribute="centerY" id="Kd8-rE-ph8"/>
+                                    <constraint firstItem="dDX-BZ-WTS" firstAttribute="width" secondItem="Jmw-au-dyR" secondAttribute="width" id="Kes-KL-ecH"/>
+                                    <constraint firstItem="eku-02-0qC" firstAttribute="centerX" secondItem="Jmw-au-dyR" secondAttribute="centerX" id="md7-Fz-b1l"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="backgroundView" destination="hhb-k9-YPD" id="3y0-Xh-MJW"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="7dd-Vg-sa8" id="npn-xZ-awf"/>
@@ -272,7 +355,6 @@
                         <segue destination="JwV-va-qRH" kind="presentation" identifier="mapViewSegue" id="xdh-tm-f6B"/>
                         <segue destination="kfi-dD-UoL" kind="presentation" identifier="filterSegue" id="Ki5-qi-7Nm"/>
                         <segue destination="22n-XT-EVi" kind="presentation" identifier="toWelcome" id="6oR-RE-0nu"/>
-                        <segue destination="8ZP-HJ-E2C" kind="presentation" identifier="noStoresFoundSegue" modalTransitionStyle="crossDissolve" id="g7g-p1-V6k"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHd-NS-udq" userLabel="First Responder" sceneMemberID="firstResponder"/>

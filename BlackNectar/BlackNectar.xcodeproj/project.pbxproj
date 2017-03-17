@@ -24,7 +24,6 @@
 		3213196E1DE1576900FB1774 /* SearchStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213196D1DE1576900FB1774 /* SearchStores.swift */; };
 		3213ABBF1DECDBB1004ECB92 /* StoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */; };
 		3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */; };
-		322B3E891E7736D8009876D2 /* NoStoresFoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322B3E881E7736D8009876D2 /* NoStoresFoundViewController.swift */; };
 		322BB1471E49143900867D13 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322BB1461E49143900867D13 /* FilterViewController.swift */; };
 		324500761E4BA79F00A3CE63 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324500751E4BA79F00A3CE63 /* Colors.swift */; };
 		324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324500781E4BFDFC00A3CE63 /* Fonts.swift */; };
@@ -134,7 +133,6 @@
 		3213196D1DE1576900FB1774 /* SearchStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStores.swift; sourceTree = "<group>"; };
 		3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewController.swift; sourceTree = "<group>"; };
 		3213ABC01DED0B4D004ECB92 /* GlobalLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManager.swift; sourceTree = "<group>"; };
-		322B3E881E7736D8009876D2 /* NoStoresFoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoStoresFoundViewController.swift; sourceTree = "<group>"; };
 		322BB1461E49143900867D13 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		324500751E4BA79F00A3CE63 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		324500781E4BFDFC00A3CE63 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 			children = (
 				3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */,
 				32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */,
-				322B3E881E7736D8009876D2 /* NoStoresFoundViewController.swift */,
 			);
 			name = StoresListTableView;
 			sourceTree = "<group>";
@@ -666,7 +663,6 @@
 				36289FB81E2FEEA300FCA6E1 /* UserPreferences.swift in Sources */,
 				32FE5A4B1E57E1C100B61709 /* CustomThumbView.swift in Sources */,
 				DE4AB57C1E68DB8B00F678D4 /* CustomView.swift in Sources */,
-				322B3E891E7736D8009876D2 /* NoStoresFoundViewController.swift in Sources */,
 				324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */,
 				DE80BFF31E57689D00449144 /* Locations+.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,

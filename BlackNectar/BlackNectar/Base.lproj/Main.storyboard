@@ -105,126 +105,6 @@
             </objects>
             <point key="canvasLocation" x="1273" y="936"/>
         </scene>
-        <!--No Stores Found View Controller-->
-        <scene sceneID="yTx-2J-QcL">
-            <objects>
-                <viewController id="zeb-el-kt5" customClass="NoStoresFoundViewController" customModule="BlackNectar" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Qcf-IZ-kuj"/>
-                        <viewControllerLayoutGuide type="bottom" id="gU1-4e-Kh9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SjI-az-mYk">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="No-Stores@1x" translatesAutoresizingMaskIntoConstraints="NO" id="hEJ-su-rEH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                            </imageView>
-                            <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bo5-EN-7nb" userLabel="Blur Image">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hPF-WI-Jo0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lu-aO-osG" userLabel="Opacity Layer">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </view>
-                                    </subviews>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujJ-iL-HI5">
-                                <rect key="frame" x="68.5" y="522" width="239" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="239" id="NRs-k8-biX"/>
-                                    <constraint firstAttribute="height" constant="43" id="wwm-SH-2j2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="28"/>
-                                <state key="normal" title="LET US KNOW">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="letUsKnowButtonTapped:" destination="zeb-el-kt5" eventType="touchUpInside" id="VmX-sa-Q4l"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know of any?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-KY-v1L">
-                                <rect key="frame" x="88.5" y="480" width="198" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="4Ta-7j-bbE"/>
-                                    <constraint firstAttribute="width" constant="198" id="DmF-lO-Ucz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="UniSansLight" family="UniSansLight" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO STORES FOUND" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fA1-WW-Ay2">
-                                <rect key="frame" x="85.5" y="183" width="204" height="237"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="204" id="Gr4-w9-6l7"/>
-                                    <constraint firstAttribute="height" constant="237" id="cs3-XX-7Eu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="UniSansLight" family="UniSansLight" pointSize="45"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hEJ-su-rEH" firstAttribute="centerX" secondItem="SjI-az-mYk" secondAttribute="centerX" id="0Ej-cE-sJ1"/>
-                            <constraint firstItem="bo5-EN-7nb" firstAttribute="centerX" secondItem="SjI-az-mYk" secondAttribute="centerX" id="5Lo-7a-dHv"/>
-                            <constraint firstItem="7lu-aO-osG" firstAttribute="centerX" secondItem="SjI-az-mYk" secondAttribute="centerX" id="8fJ-0q-ZV5"/>
-                            <constraint firstItem="hEJ-su-rEH" firstAttribute="width" secondItem="SjI-az-mYk" secondAttribute="width" id="8qm-QE-X1W"/>
-                            <constraint firstItem="fa2-KY-v1L" firstAttribute="top" secondItem="fA1-WW-Ay2" secondAttribute="bottom" constant="60" id="GuS-J6-UeI"/>
-                            <constraint firstItem="fA1-WW-Ay2" firstAttribute="centerX" secondItem="fa2-KY-v1L" secondAttribute="centerX" id="HQU-sO-hzb"/>
-                            <constraint firstItem="7lu-aO-osG" firstAttribute="centerY" secondItem="SjI-az-mYk" secondAttribute="centerY" id="JUY-kW-bFs"/>
-                            <constraint firstItem="fA1-WW-Ay2" firstAttribute="centerX" secondItem="SjI-az-mYk" secondAttribute="centerX" id="MWa-eK-kdK"/>
-                            <constraint firstItem="bo5-EN-7nb" firstAttribute="height" secondItem="SjI-az-mYk" secondAttribute="height" id="RMG-tp-Vbr"/>
-                            <constraint firstItem="hEJ-su-rEH" firstAttribute="height" secondItem="SjI-az-mYk" secondAttribute="height" id="Toq-Xi-0sk"/>
-                            <constraint firstItem="bo5-EN-7nb" firstAttribute="width" secondItem="SjI-az-mYk" secondAttribute="width" id="W4T-XW-yA4"/>
-                            <constraint firstItem="fA1-WW-Ay2" firstAttribute="top" secondItem="Qcf-IZ-kuj" secondAttribute="bottom" constant="183" id="WLO-zp-hqE"/>
-                            <constraint firstItem="bo5-EN-7nb" firstAttribute="centerY" secondItem="SjI-az-mYk" secondAttribute="centerY" id="Wna-dZ-Ef1"/>
-                            <constraint firstItem="fA1-WW-Ay2" firstAttribute="centerX" secondItem="ujJ-iL-HI5" secondAttribute="centerX" id="X0t-0W-fTJ"/>
-                            <constraint firstItem="7lu-aO-osG" firstAttribute="width" secondItem="SjI-az-mYk" secondAttribute="width" id="f24-Xq-6wm"/>
-                            <constraint firstItem="gU1-4e-Kh9" firstAttribute="top" secondItem="ujJ-iL-HI5" secondAttribute="bottom" constant="38" id="h8f-RO-2Oi"/>
-                            <constraint firstItem="7lu-aO-osG" firstAttribute="height" secondItem="SjI-az-mYk" secondAttribute="height" id="lDb-WM-oH7"/>
-                            <constraint firstItem="hEJ-su-rEH" firstAttribute="centerY" secondItem="SjI-az-mYk" secondAttribute="centerY" id="qfY-7k-4jb"/>
-                            <constraint firstItem="ujJ-iL-HI5" firstAttribute="top" secondItem="fa2-KY-v1L" secondAttribute="bottom" constant="8" id="x8U-Dl-CdE"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="wFf-3W-C2u">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="e8C-hn-zLp">
-                            <rect key="frame" x="98" y="6" width="180" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="yTL-Ol-nZw">
-                                    <rect key="frame" x="15" y="0.0" width="150" height="33"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="33" id="Gvy-Sx-Vn2"/>
-                                        <constraint firstAttribute="width" constant="150" id="KM5-my-yrV"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="yTL-Ol-nZw" firstAttribute="centerX" secondItem="e8C-hn-zLp" secondAttribute="centerX" id="Ic1-M9-wrL"/>
-                                <constraint firstItem="yTL-Ol-nZw" firstAttribute="top" secondItem="e8C-hn-zLp" secondAttribute="top" id="gCu-U2-WXM"/>
-                            </constraints>
-                        </view>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="CO4-cl-VOu">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="searchButtonTapped:" destination="zeb-el-kt5" id="pdd-xr-ALh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vRj-ZT-meQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3301.5999999999999" y="802.848575712144"/>
-        </scene>
         <!--Stores Table View Controller-->
         <scene sceneID="PI3-SW-0Qh">
             <objects>
@@ -776,32 +656,13 @@
             </objects>
             <point key="canvasLocation" x="2236" y="1564"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="RCc-pQ-tKK">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8ZP-HJ-E2C" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Zb7-8M-xYb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="zeb-el-kt5" kind="relationship" relationship="rootViewController" id="X3D-U1-Kde"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hoq-jS-xIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2236" y="803"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Cancel-White@3x.png" width="24" height="24"/>
         <image name="GPS-Full@3x.png" width="66" height="68"/>
         <image name="Icon-60" width="512" height="512"/>
         <image name="Navigate Button" width="37" height="37"/>
-        <image name="No-Stores@1x" width="1001" height="668"/>
+        <image name="No Stores Found " width="1001" height="668"/>
         <image name="SplashScreen" width="500" height="500"/>
     </resources>
 </document>

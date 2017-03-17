@@ -121,21 +121,6 @@ extension StoresTableViewController: WelcomeScreenDelegate {
     
 }
 
-//MARK: No Stores Found Code
-extension StoresTableViewController: NoStoresFoundDelegate {
-    
-    internal func goToNoStoresFoundViewController() {
-        
-        performSegue(withIdentifier: "noStoresFoundSegue", sender: nil)
-    }
-    
-    func noStoresFound() {
-        
-        makeNoteThatNoStoresFound()
-    }
-    
-}
-
 //MARK: Table View Code
 extension StoresTableViewController {
     
@@ -452,7 +437,6 @@ extension StoresTableViewController {
         if self.stores.isEmpty {
             
             self.makeNoteThatNoStoresFound(additionalMessage: "User is in Stores Table View")
-            goToNoStoresFoundViewController()
             
         }
     }
@@ -516,12 +500,6 @@ extension StoresTableViewController {
             let welcomeScreen = destination.topViewController as? WelcomeScreenOne {
             
             welcomeScreen.delegate = self
-        }
-        
-        if let destination = segue.destination as? UINavigationController,
-            let noStoresFoundViewController = destination.topViewController as? NoStoresFoundViewController {
-            
-            noStoresFoundViewController.delegate = self
         }
         
     }

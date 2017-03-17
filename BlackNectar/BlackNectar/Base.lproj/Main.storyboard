@@ -132,13 +132,13 @@
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qO-wu-Jcb" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="43" width="263" height="47.5"/>
+                                            <rect key="frame" x="12" y="43" width="263" height="46"/>
                                             <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="23"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Address" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18x-pk-FJU" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                            <rect key="frame" x="12" y="146" width="263" height="67"/>
+                                            <rect key="frame" x="12" y="145" width="263" height="67"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="67" id="tXQ-BP-7dr"/>
                                             </constraints>
@@ -185,7 +185,7 @@
                                             <size key="shadowOffset" width="1" height="1"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrU-Ge-y4j" userLabel="Space Bar">
-                                            <rect key="frame" x="20" y="105.5" width="45" height="4"/>
+                                            <rect key="frame" x="20" y="104" width="45" height="4"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="45" id="D0p-FA-skZ"/>
@@ -235,12 +235,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="339"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No-Stores-Found" translatesAutoresizingMaskIntoConstraints="NO" id="jv3-gZ-STV">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Stores Found " translatesAutoresizingMaskIntoConstraints="NO" id="jv3-gZ-STV" userLabel="noStoresFoundImage">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="339"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDX-BZ-WTS" userLabel="Blur Image">
-                                            <rect key="frame" x="0.0" y="-0.5" width="375" height="340"/>
+                                            <rect key="frame" x="-0.5" y="-0.5" width="375" height="340"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SUa-Oy-Dao">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="340"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -572,7 +572,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Zip Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sw-n9-Zrt">
-                                                    <rect key="frame" x="24" y="18" width="111.5" height="25"/>
+                                                    <rect key="frame" x="24" y="18" width="107.5" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="6q5-5P-lOs"/>
                                                     </constraints>
@@ -588,7 +588,7 @@
                                                     </connections>
                                                 </switch>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJ5-VO-FOQ" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                                    <rect key="frame" x="151.5" y="15" width="60" height="31"/>
+                                                    <rect key="frame" x="147.5" y="16.5" width="60" height="28"/>
                                                     <color key="backgroundColor" red="0.92220824956893921" green="0.7493787407875061" blue="0.30228972434997559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="1i8-uZ-3PF"/>
@@ -685,7 +685,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -705,7 +705,7 @@
             <objects>
                 <navigationController storyboardIdentifier="FilterViewController" automaticallyAdjustsScrollViewInsets="NO" id="kfi-dD-UoL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="i7J-TN-6qe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="i7J-TN-6qe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -724,7 +724,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JwV-va-qRH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Nbt-gz-8Pe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Nbt-gz-8Pe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -744,7 +744,7 @@
         <image name="GPS-Full@3x.png" width="66" height="68"/>
         <image name="Icon-60" width="512" height="512"/>
         <image name="Navigate Button" width="37" height="37"/>
-        <image name="No-Stores-Found" width="16" height="16"/>
+        <image name="No Stores Found " width="1001" height="668"/>
         <image name="SplashScreen" width="500" height="500"/>
     </resources>
 </document>

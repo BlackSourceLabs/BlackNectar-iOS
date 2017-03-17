@@ -51,6 +51,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     }
     
     var stores: [Store] = []
+    let mailComposeViewController = MFMailComposeViewController()
     
     let async: OperationQueue = {
         
@@ -79,7 +80,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -214,7 +215,7 @@ extension StoresTableViewController {
         
         guard tableView.cellForRow(at: indexPath) is StoresTableViewCell else { return }
         
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        guard let cell = tableView.cellForRow(at: indexPath) as? StoresTableViewCell else { return }
         cell.contentView.backgroundColor = Colors.from(hexString: "ECC040")
         
     }
@@ -267,6 +268,67 @@ extension StoresTableViewController {
             cell.storeDistance.text = "\(doubleDown) miles"
             
         }
+        
+    }
+    
+}
+
+//MARK: Mail Code
+extension StoresTableViewController: MFMailComposeViewControllerDelegate {
+    
+    fileprivate func sendEmail() {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            
+            sendUserToSettingsAlert()
+            makeNoteThatUserHasMailSettingsDisabled()
+            
+        } else {
+            
+            self.present(configureMailComposeViewController(), animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    fileprivate func checkUsersEmailSettings() {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            
+            sendUserToSettingsAlert()
+            makeNoteThatUserHasMailSettingsDisabled()
+            
+        } else {
+            
+            return
+        }
+        
+    }
+    
+    fileprivate func configureMailComposeViewController() -> MFMailComposeViewController {
+        
+        mailComposeViewController.mailComposeDelegate = self
+        
+        mailComposeViewController.setToRecipients(["feedback@blacksource.tech"])
+        mailComposeViewController.setSubject("We love feeback - Place your comment below")
+        mailComposeViewController.setMessageBody("We are open to all feedback. Let us know if there are no stores in your area that accept EBT.", isHTML: false)
+        
+        return mailComposeViewController
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        if let error = error {
+            
+            makeNoteThatSendingEmailFailed(withError: "\(error)")
+            sendEmailErrorAlert()
+            return
+            
+        }
+        
+        makeNoteThatUserFinishedEmail(withResult: "\(result)")
+        controller.dismiss(animated: true, completion: nil)
         
     }
     

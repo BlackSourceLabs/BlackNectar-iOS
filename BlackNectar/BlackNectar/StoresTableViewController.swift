@@ -265,27 +265,12 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
         
         if !MFMailComposeViewController.canSendMail() {
             
-            sendUserToSettingsAlert()
             makeNoteThatUserHasMailSettingsDisabled()
             
         } else {
             
             self.present(configureMailComposeViewController(), animated: true, completion: nil)
             
-        }
-        
-    }
-    
-    fileprivate func checkUsersEmailSettings() {
-        
-        if !MFMailComposeViewController.canSendMail() {
-            
-            sendUserToSettingsAlert()
-            makeNoteThatUserHasMailSettingsDisabled()
-            
-        } else {
-            
-            return
         }
         
     }
@@ -329,13 +314,6 @@ fileprivate extension StoresTableViewController {
         
     }
     
-    fileprivate func sendUserToSettingsAlert() {
-        
-        let alert = createAlertToSendUserToSettings()
-        self.presentAlert(alert)
-        
-    }
-    
     fileprivate func createAlertForEmailError() -> UIAlertController {
         
         let title = "Sending Email Failed"
@@ -352,24 +330,6 @@ fileprivate extension StoresTableViewController {
         
         controller.addAction(ok)
         controller.addAction(cancel)
-        
-        return controller
-        
-    }
-    
-    fileprivate func createAlertToSendUserToSettings() -> UIAlertController {
-        
-        let title = "Requesting Mail Access"
-        let message = "Please go to \"Settings\" -> \"Mail\" -> \"Accounts\" -> \"Select your Account or add Account\" -> \"Enable Mail\""
-        
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let openSettings = UIAlertAction(title: "Open Settings", style: .default) { _ in
-            self.sendUserToSettings()
-            self.makeNoteThatSendingUserToSettingsForMail()
-        }
-        
-        controller.addAction(openSettings)
         
         return controller
         

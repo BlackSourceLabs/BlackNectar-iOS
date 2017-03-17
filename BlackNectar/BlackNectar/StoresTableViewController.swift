@@ -506,15 +506,15 @@ extension StoresTableViewController {
         }
         
         if let destination = segue.destination as? UINavigationController,
-           let filterViewController = destination.topViewController as? FilterViewController {
+            let filterViewController = destination.topViewController as? FilterViewController {
             
             filterViewController.delegate = self
             
         }
         
         if let destination = segue.destination as? UINavigationController,
-           let welcomeScreen = destination.topViewController as? WelcomeScreenOne {
-           
+            let welcomeScreen = destination.topViewController as? WelcomeScreenOne {
+            
             welcomeScreen.delegate = self
         }
         
@@ -547,7 +547,7 @@ extension StoresTableViewController {
         
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
     }
-  
+    
 }
 
 //MARK: Aroma Messages Code

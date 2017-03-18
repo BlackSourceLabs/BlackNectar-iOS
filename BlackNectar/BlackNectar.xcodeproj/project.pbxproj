@@ -51,6 +51,7 @@
 		3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297A36B1E39AF090055BC89 /* Arrays+.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
+		32D576B01E7C608F00F72F95 /* NoResultsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D576AF1E7C608F00F72F95 /* NoResultsCustomCell.swift */; };
 		32D86DD31E5F87E400C8837D /* WelcomeScreenOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */; };
 		32E134411E15FE6700FD65DC /* AromaSwiftClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */; };
 		32E134431E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
@@ -159,6 +160,7 @@
 		3297A36B1E39AF090055BC89 /* Arrays+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Arrays+.swift"; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
 		32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+.swift"; sourceTree = "<group>"; };
+		32D576AF1E7C608F00F72F95 /* NoResultsCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoResultsCustomCell.swift; sourceTree = "<group>"; };
 		32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenOne.swift; sourceTree = "<group>"; };
 		32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaSwiftClient.framework; path = Carthage/Build/iOS/AromaSwiftClient.framework; sourceTree = "<group>"; };
 		32E1343D1E15FE6700FD65DC /* AromaThrift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaThrift.framework; path = Carthage/Build/iOS/AromaThrift.framework; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 			children = (
 				3213ABBE1DECDBB1004ECB92 /* StoresTableViewController.swift */,
 				32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */,
+				32D576AF1E7C608F00F72F95 /* NoResultsCustomCell.swift */,
 			);
 			name = StoresListTableView;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				DE4AB57C1E68DB8B00F678D4 /* CustomView.swift in Sources */,
 				324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */,
 				DE80BFF31E57689D00449144 /* Locations+.swift in Sources */,
+				32D576B01E7C608F00F72F95 /* NoResultsCustomCell.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -601,7 +601,7 @@ fileprivate extension StoresTableViewController {
         LOG.error("User has mail settings disabled")
         AromaClient.beginMessage(withTitle: "User has mail settings disabled")
             .addBody("User has mail settings disabled or doesn't have an account")
-            .withPriority(.medium)
+            .withPriority(.low)
             .send()
         
     }

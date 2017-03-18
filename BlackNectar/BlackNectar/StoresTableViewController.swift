@@ -137,34 +137,56 @@ extension StoresTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+        if stores.notEmpty {
             
-            LOG.error("Failed to dequeue StoresTableViewCell")
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+                
+                LOG.error("Failed to dequeue StoresTableViewCell")
+                return UITableViewCell()
+                
+            }
             
-        }
-        
-        let row = indexPath.row
-        
-        guard stores.isInBounds(index: row) else {
-            LOG.warn("Received Out of Bounds Index: \(row)")
+            let row = indexPath.row
+            
+            guard stores.isInBounds(index: row) else {
+                LOG.warn("Received Out of Bounds Index: \(row)")
+                return cell
+            }
+            
+            let store = stores[row]
+            
+            insertDistance(toStore: store, into: cell)
+            goLoadImage(into: cell, withStore: store.storeImage)
+            insertAddress(into: cell, withStore: store)
+            
+            cell.storeName.text = store.storeName
+            cell.onGoButtonPressed = { cell in
+                
+                self.navigateWithDrivingDirections(toStore: store)
+                self.makeNoteThatUserTapped(on: store)
+            }
+            
             return cell
-        }
-        
-        let store = stores[row]
-        
-        insertDistance(toStore: store, into: cell)
-        goLoadImage(into: cell, withStore: store.storeImage)
-        insertAddress(into: cell, withStore: store)
-        
-        cell.storeName.text = store.storeName
-        cell.onGoButtonPressed = { cell in
             
-            self.navigateWithDrivingDirections(toStore: store)
-            self.makeNoteThatUserTapped(on: store)
         }
-        
-        return cell
+        else {
+            
+            guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
+                
+                return UITableViewCell()
+                
+            }
+            
+            checkUserEmailSetting(in: noResultsCell)
+            
+            noResultsCell.onEmailButtonPressed = { noResultsCell in
+                
+                self.sendEmail()
+                
+            }
+            
+            return noResultsCell
+        }
         
     }
     

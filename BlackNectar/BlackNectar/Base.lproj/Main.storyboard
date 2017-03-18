@@ -116,11 +116,11 @@
                         <color key="separatorColor" red="0.92616897821426392" green="0.7535892128944397" blue="0.25315544009208679" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="storeCell" rowHeight="236" id="jTC-fs-IR7" customClass="StoresTableViewCell" customModule="BlackNectar" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="storeCell" rowHeight="236" id="jTC-fs-IR7" customClass="StoresTableViewCell" customModule="BlackNectar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="236"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTC-fs-IR7" id="Z8Q-oK-zQ1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="235.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-Zf-bET">
@@ -228,11 +228,11 @@
                                     <outlet property="storeName" destination="4qO-wu-Jcb" id="wb1-kO-bZG"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noResultsCell" rowHeight="340" id="Jmw-au-dyR" userLabel="noResultsCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="noResultsCell" rowHeight="340" id="Jmw-au-dyR" userLabel="noResultsCell" customClass="NoResultsCustomCell" customModule="BlackNectar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="264" width="375" height="340"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jmw-au-dyR" id="GTG-Vr-VLd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="339"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="339.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="No Stores Found " translatesAutoresizingMaskIntoConstraints="NO" id="jv3-gZ-STV" userLabel="noStoresFoundImage">
@@ -283,6 +283,9 @@
                                             <state key="normal" title="LET US KNOW">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="didTapEmailButton:" destination="Jmw-au-dyR" eventType="touchUpInside" id="mie-Kd-ELb"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -308,7 +311,10 @@
                                     <constraint firstItem="eku-02-0qC" firstAttribute="centerX" secondItem="Jmw-au-dyR" secondAttribute="centerX" id="md7-Fz-b1l"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="backgroundView" destination="hhb-k9-YPD" id="3y0-Xh-MJW"/>
+                                    <outlet property="knowOfAnyLabel" destination="fa2-KY-v1L" id="8dx-WG-gzH"/>
+                                    <outlet property="letUsKnowButton" destination="ujJ-iL-HI5" id="FMq-PR-uNX"/>
+                                    <outlet property="noStoresFoundImage" destination="jv3-gZ-STV" id="Dlg-tP-e9N"/>
+                                    <outlet property="noStoresFoundLabel" destination="fA1-WW-Ay2" id="9lt-jW-Sfe"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -325,7 +331,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="JUi-7B-lob">
-                            <rect key="frame" x="113" y="6" width="150" height="33"/>
+                            <rect key="frame" x="112.5" y="5.5" width="150" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="T0k-sW-weX">
@@ -685,7 +691,7 @@
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -705,7 +711,7 @@
             <objects>
                 <navigationController storyboardIdentifier="FilterViewController" automaticallyAdjustsScrollViewInsets="NO" id="kfi-dD-UoL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="i7J-TN-6qe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="i7J-TN-6qe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -724,7 +730,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JwV-va-qRH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Nbt-gz-8Pe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Nbt-gz-8Pe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

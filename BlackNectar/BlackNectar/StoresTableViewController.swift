@@ -131,7 +131,7 @@ extension StoresTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return stores.count
+        return stores.notEmpty ? stores.count : 1
         
     }
     

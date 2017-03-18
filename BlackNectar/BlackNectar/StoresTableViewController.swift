@@ -287,11 +287,31 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
         
         if !MFMailComposeViewController.canSendMail() {
             
-            makeNoteThatUserHasMailSettingsDisabled()
+            return
             
-        } else {
+        }
+            
+        else {
             
             self.present(configureMailComposeViewController(), animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    fileprivate func checkUserEmailSetting(in noResultsCell: NoResultsCustomCell) {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            
+            noResultsCell.knowOfAnyLabel.isHidden = true
+            noResultsCell.letUsKnowButton.isHidden = true
+            
+        }
+            
+        else {
+            
+            noResultsCell.knowOfAnyLabel.isHidden = false
+            noResultsCell.letUsKnowButton.isHidden = false
             
         }
         

@@ -76,6 +76,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
             UserLocation.instance.initialize()
             reloadStoreData()
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,6 +140,8 @@ extension StoresTableViewController {
         
         if stores.notEmpty {
             
+            tableView.rowHeight = 236
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
                 
                 LOG.error("Failed to dequeue StoresTableViewCell")
@@ -171,6 +174,8 @@ extension StoresTableViewController {
         }
         else {
             
+            tableView.rowHeight = 675
+            
             guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
                 
                 return UITableViewCell()
@@ -178,7 +183,6 @@ extension StoresTableViewController {
             }
             
             checkUserEmailSetting(in: noResultsCell)
-            
             noResultsCell.onEmailButtonPressed = { noResultsCell in
                 
                 self.sendEmail()
@@ -290,7 +294,6 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
             return
             
         }
-            
         else {
             
             self.present(configureMailComposeViewController(), animated: true, completion: nil)
@@ -305,9 +308,8 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
             
             noResultsCell.knowOfAnyLabel.isHidden = true
             noResultsCell.letUsKnowButton.isHidden = true
-            
+
         }
-            
         else {
             
             noResultsCell.knowOfAnyLabel.isHidden = false
@@ -607,5 +609,3 @@ fileprivate extension StoresTableViewController {
     }
     
 }
-
-

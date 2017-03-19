@@ -508,7 +508,7 @@ extension StoresTableViewController {
         
     }
     
-    @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func didTapMapButton(_ sender: Any) {
         
         goToMapView()
         

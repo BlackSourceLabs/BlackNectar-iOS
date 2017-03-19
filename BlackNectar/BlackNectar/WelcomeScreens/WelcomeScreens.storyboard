@@ -13,17 +13,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Uni Sans Book.ttf">
+        <array key="UniSans-Book.ttf">
             <string>UniSansBook</string>
         </array>
-        <array key="Uni Sans Light.ttf">
+        <array key="UniSans-Light.ttf">
             <string>UniSansLight</string>
         </array>
-        <array key="Uni Sans SemiBold.ttf">
-            <string>UniSansSemiBold</string>
-        </array>
-        <array key="Uni Sans.ttf">
+        <array key="UniSans-Regular.ttf">
             <string>UniSansRegular</string>
+        </array>
+        <array key="UniSans-SemiBold.ttf">
+            <string>UniSansSemiBold</string>
         </array>
     </customFonts>
     <scenes>
@@ -73,12 +73,12 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="80" y="470" width="215" height="35"/>
+                                <rect key="frame" x="90" y="470" width="195" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" metaFont="system" size="30"/>
+                                            <font key="NSFont" size="30" name="UniSansBook"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
@@ -89,12 +89,27 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <attributedString key="attributedText">
+                                        <fragment content="BLACKNECTAR">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="48" name="UniSansLight"/>
+                                                <font key="NSOriginalFont" size="36" name="UniSansBook"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
                                 <rect key="frame" x="103.5" y="72" width="169.5" height="27"/>
                                 <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="36"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,17 +119,25 @@
                             <constraint firstAttribute="trailing" secondItem="hgp-In-BeZ" secondAttribute="trailing" id="6db-uR-D2C"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="centerY" secondItem="LU9-hy-gUj" secondAttribute="centerY" id="9py-I1-wLR"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="height" multiplier="0.4" id="CYh-Sf-2ve"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerY" secondItem="BnJ-Ik-Tqx" secondAttribute="centerY" constant="120" id="Cww-0q-LfJ"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="width" secondItem="LU9-hy-gUj" secondAttribute="height" multiplier="1.5" id="DWp-xP-3Of"/>
                             <constraint firstItem="mKr-iI-KJl" firstAttribute="top" secondItem="BnJ-Ik-Tqx" secondAttribute="bottom" constant="24" id="I2u-8e-ovk"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="top" secondItem="LU9-hy-gUj" secondAttribute="top" id="Inu-Hm-QV0"/>
                             <constraint firstItem="2pg-Ol-OPt" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="width" multiplier="0.8" id="Jgm-a1-mSc"/>
                             <constraint firstItem="BnJ-Ik-Tqx" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="Jh2-pE-xi3"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="LwN-4e-xvp"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="width" multiplier="0.7" id="O6H-3P-gEb"/>
                             <constraint firstItem="hgp-In-BeZ" firstAttribute="leading" secondItem="LU9-hy-gUj" secondAttribute="leading" id="X4A-FO-Edy"/>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="width" secondItem="LU9-hy-gUj" secondAttribute="width" id="eWe-0t-NxK"/>
                             <constraint firstItem="4RI-0L-Bhq" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="efA-Md-WXH"/>
                             <constraint firstItem="mKr-iI-KJl" firstAttribute="centerX" secondItem="4KV-2F-31T" secondAttribute="centerX" id="fHa-jK-Wgs"/>
-                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="top" secondItem="ZdA-ZJ-otm" secondAttribute="bottom" constant="8" id="h7I-U6-W0A"/>
+                            <constraint firstItem="4RI-0L-Bhq" firstAttribute="top" secondItem="ZdA-ZJ-otm" secondAttribute="bottom" constant="8" id="h7I-U6-W0A">
+                                <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                            </constraint>
                             <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerX" secondItem="LU9-hy-gUj" secondAttribute="centerX" id="lTN-ou-179"/>
+                            <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerY" secondItem="BnJ-Ik-Tqx" secondAttribute="centerY" constant="50" id="o7M-zG-w3j">
+                                <variation key="heightClass=regular-widthClass=regular" constant="72"/>
+                            </constraint>
                             <constraint firstItem="4KV-2F-31T" firstAttribute="height" secondItem="LU9-hy-gUj" secondAttribute="height" id="qml-84-Twi"/>
                             <constraint firstItem="2pg-Ol-OPt" firstAttribute="centerY" secondItem="BnJ-Ik-Tqx" secondAttribute="bottom" constant="-50" id="s1g-On-Wzk"/>
                             <constraint firstAttribute="bottom" secondItem="hgp-In-BeZ" secondAttribute="bottom" id="wiG-Bb-eeb"/>
@@ -122,12 +145,27 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Cww-0q-LfJ"/>
+                                <exclude reference="DWp-xP-3Of"/>
+                                <exclude reference="O6H-3P-gEb"/>
+                                <exclude reference="o7M-zG-w3j"/>
                                 <exclude reference="CYh-Sf-2ve"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
                                 <include reference="CYh-Sf-2ve"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="07y-Di-sLu"/>
+                                <include reference="Cww-0q-LfJ"/>
+                                <include reference="DWp-xP-3Of"/>
+                                <exclude reference="Jgm-a1-mSc"/>
+                                <include reference="O6H-3P-gEb"/>
+                                <exclude reference="o7M-zG-w3j"/>
+                                <exclude reference="s1g-On-Wzk"/>
                             </mask>
                         </variation>
                     </view>
@@ -168,14 +206,16 @@
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
                                             <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" metaFont="system" size="30"/>
+                                            <font key="NSFont" size="30" name="UniSansLight"/>
+                                            <font key="NSOriginalFont" size="30" name="UniSansLight"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
                                         <attributes>
                                             <color key="NSColor" red="0.98958333333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" metaFont="system" size="30"/>
+                                            <font key="NSFont" size="30" name="UniSansLight"/>
+                                            <font key="NSOriginalFont" size="30" name="UniSansLight"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -187,14 +227,16 @@
                                         <fragment content="BLACKNECTAR">
                                             <attributes>
                                                 <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" metaFont="system" size="24"/>
+                                                <font key="NSFont" size="24" name="UniSansLight"/>
+                                                <font key="NSOriginalFont" size="24" name="UniSansLight"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
                                             <attributes>
                                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <font key="NSFont" metaFont="system" size="24"/>
+                                                <font key="NSFont" size="24" name="UniSansLight"/>
+                                                <font key="NSOriginalFont" size="24" name="UniSansLight"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -205,14 +247,16 @@
                                         <fragment content="BLACKNECTAR">
                                             <attributes>
                                                 <color key="NSColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" metaFont="system" size="40"/>
+                                                <font key="NSFont" size="40" name="UniSansLight"/>
+                                                <font key="NSOriginalFont" size="40" name="UniSansLight"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content=" HELPS YOU FIND GROCERY STORES, FARMERS' MARKETS, AND RESTAURANTS THAT ACCEPT EBT.">
                                             <attributes>
                                                 <color key="NSColor" red="0.98958333333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" metaFont="system" size="40"/>
+                                                <font key="NSFont" size="40" name="UniSansLight"/>
+                                                <font key="NSOriginalFont" size="40" name="UniSansLight"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="7" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -220,26 +264,37 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGY-d0-uDY" userLabel="Subtitle">
-                                <rect key="frame" x="56" y="503" width="263" height="76"/>
+                                <rect key="frame" x="56" y="539.5" width="263" height="43"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Designed and created by people who really give a damn.">
                                         <attributes>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" metaFont="system" size="20"/>
+                                            <font key="NSFont" size="20" name="UniSansLight"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <attributedString key="attributedText">
+                                        <fragment content="Designed and created by people who really give a damn.">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="30" name="UniSansLight"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="113" y="619" width="149" height="24"/>
+                                <rect key="frame" x="121.5" y="622.5" width="132.5" height="20.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACK">
                                         <attributes>
                                             <color key="NSBackgroundColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" metaFont="system" size="20"/>
+                                            <font key="NSFont" size="20" name="UniSansLight"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -247,7 +302,7 @@
                                         <attributes>
                                             <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="0.97931338028169013" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" metaFont="system" size="20"/>
+                                            <font key="NSFont" size="20" name="UniSansBold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -267,7 +322,7 @@
                                             <attributes>
                                                 <color key="NSBackgroundColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" metaFont="system" size="36"/>
+                                                <font key="NSFont" size="36" name="UniSansLight"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -275,7 +330,27 @@
                                             <attributes>
                                                 <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" metaFont="system" size="36"/>
+                                                <font key="NSFont" size="36" name="UniSansLight"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <attributedString key="attributedText">
+                                        <fragment content="BLACK">
+                                            <attributes>
+                                                <color key="NSBackgroundColor" red="0.92549019610000005" green="0.75294117650000003" blue="0.25098039220000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="48" name="UniSansLight"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="SOURCE">
+                                            <attributes>
+                                                <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="48" name="UniSansBold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -288,7 +363,7 @@
                                     <constraint firstAttribute="height" constant="50" id="roB-Yq-2c6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="25"/>
-                                <inset key="contentEdgeInsets" minX="16" minY="24" maxX="16" maxY="24"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="22" maxX="16" maxY="20"/>
                                 <state key="normal" title="LET'S GET STARTED">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -303,6 +378,12 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="36"/>
+                                    <mask key="constraints">
+                                        <exclude reference="roB-Yq-2c6"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="3Tx-EV-OKE" kind="show" identifier="next" id="qbi-0A-Lr3"/>
                                 </connections>
@@ -320,6 +401,7 @@
                             <constraint firstItem="lGY-d0-uDY" firstAttribute="centerX" secondItem="2K9-qS-QlJ" secondAttribute="centerX" id="Fng-9i-JWC"/>
                             <constraint firstItem="lGY-d0-uDY" firstAttribute="width" secondItem="2K9-qS-QlJ" secondAttribute="width" multiplier="0.7" id="HI2-bo-na1"/>
                             <constraint firstItem="onC-st-zwp" firstAttribute="leading" secondItem="2K9-qS-QlJ" secondAttribute="leading" id="PNf-9M-07N"/>
+                            <constraint firstItem="lGY-d0-uDY" firstAttribute="width" secondItem="2K9-qS-QlJ" secondAttribute="width" multiplier="0.9" id="RHY-x7-kFz"/>
                             <constraint firstItem="cKd-b7-Ina" firstAttribute="top" secondItem="2K9-qS-QlJ" secondAttribute="top" id="Sxx-bS-i75"/>
                             <constraint firstItem="fRP-nL-k7K" firstAttribute="top" secondItem="bY4-Nf-GM7" secondAttribute="bottom" constant="24" id="TUi-GQ-sdm">
                                 <variation key="heightClass=compact" constant="16"/>
@@ -334,10 +416,22 @@
                             <constraint firstItem="bY4-Nf-GM7" firstAttribute="centerX" secondItem="2K9-qS-QlJ" secondAttribute="centerX" id="fp3-XH-CJ0"/>
                             <constraint firstItem="bY4-Nf-GM7" firstAttribute="top" secondItem="lGY-d0-uDY" secondAttribute="bottom" constant="40" id="g0H-vM-moO">
                                 <variation key="heightClass=compact" constant="8"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                             </constraint>
                             <constraint firstItem="F2V-0p-NsP" firstAttribute="top" secondItem="61V-UW-9GB" secondAttribute="bottom" constant="24" id="lJo-x0-qfa"/>
                             <constraint firstItem="cKd-b7-Ina" firstAttribute="leading" secondItem="2K9-qS-QlJ" secondAttribute="leading" id="uyV-Bk-0BD"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RHY-x7-kFz"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="HI2-bo-na1"/>
+                                <include reference="RHY-x7-kFz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="15Y-lv-ce7">
                         <barButtonItem key="backBarButtonItem" title=" " id="Qfd-BA-7bV"/>
@@ -377,6 +471,9 @@
                                         <variation key="widthClass=regular">
                                             <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="36"/>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="48"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select one or more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqg-LG-6rX">
                                         <rect key="frame" x="31" y="36" width="128.5" height="28"/>
@@ -386,14 +483,17 @@
                                         <variation key="widthClass=regular">
                                             <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="22"/>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="26"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-U6-BJS">
-                                <rect key="frame" x="32" y="208" width="311" height="189.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-U6-BJS">
+                                <rect key="frame" x="32" y="208" width="311" height="183"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dyd-K3-M1f" userLabel="Farmers Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="131" height="189.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="183"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hn3-XB-hzv" userLabel="FARMERS MARKETS BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
@@ -415,14 +515,14 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSo-n1-15i">
-                                                <rect key="frame" x="27.5" y="147" width="76" height="42.5"/>
+                                                <rect key="frame" x="29.5" y="147" width="72.5" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">FARMERS'
 MARKETS</string>
                                                         <attributes>
                                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <font key="NSFont" metaFont="system" size="16"/>
+                                                            <font key="NSFont" size="16" name="UniSansSemiBold"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -435,7 +535,20 @@ MARKETS</string>
 MARKETS</string>
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="30"/>
+                                                                <font key="NSFont" size="30" name="UniSansSemiBold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">FARMERS'
+MARKETS</string>
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="33" name="UniSansSemiBold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -445,7 +558,7 @@ MARKETS</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-ds-WBe" userLabel="Grocery Stack">
-                                        <rect key="frame" x="180" y="0.0" width="131" height="189.5"/>
+                                        <rect key="frame" x="180" y="0.0" width="131" height="183"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-rA-YrN" userLabel="GROCERY STORES BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
@@ -463,14 +576,15 @@ MARKETS</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lg-BN-oIU">
-                                                <rect key="frame" x="28.5" y="147" width="74.5" height="42.5"/>
+                                                <rect key="frame" x="31" y="147" width="69" height="36"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">GROCERY
 STORES</string>
                                                         <attributes>
                                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <font key="NSFont" metaFont="system" size="16"/>
+                                                            <font key="NSFont" size="16" name="UniSansSemiBold"/>
+                                                            <font key="NSOriginalFont" size="16" name="UniSansSemiBold"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -483,8 +597,23 @@ STORES</string>
 STORES</string>
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="30"/>
+                                                                <font key="NSFont" size="30" name="UniSansSemiBold"/>
+                                                                <font key="NSOriginalFont" size="30" name="UniSansSemiBold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </variation>
+                                                <variation key="heightClass=regular-widthClass=regular">
+                                                    <attributedString key="attributedText">
+                                                        <fragment>
+                                                            <string key="content">GROCERY
+STORES</string>
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="33" name="UniSansSemiBold"/>
+                                                                <font key="NSOriginalFont" size="30" name="UniSansSemiBold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="8" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -497,6 +626,7 @@ STORES</string>
                                     <constraint firstItem="HpP-rA-YrN" firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="width" id="0ef-Rp-Zvy"/>
                                     <constraint firstItem="HpP-rA-YrN" firstAttribute="height" secondItem="hn3-XB-hzv" secondAttribute="height" id="b6x-CZ-8wG"/>
                                 </constraints>
+                                <variation key="heightClass=compact" distribution="fillProportionally"/>
                             </stackView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-r9-lGo" userLabel="Farmers Market Opacity">
                                 <rect key="frame" x="32" y="208" width="131" height="131"/>
@@ -507,14 +637,14 @@ STORES</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="zq6-Ht-Au8" userLabel="Farmers Market Pin">
-                                <rect key="frame" x="65" y="241" width="65" height="65"/>
+                                <rect key="frame" x="64" y="240" width="66" height="66"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zq6-Ht-Au8" secondAttribute="height" multiplier="1:1" id="B0w-sQ-Ggf"/>
                                 </constraints>
                             </imageView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="7Fs-z6-j3L" userLabel="Grocery Stores Pin">
-                                <rect key="frame" x="245" y="241" width="66" height="66"/>
+                                <rect key="frame" x="244" y="240" width="66" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7Fs-z6-j3L" secondAttribute="height" multiplier="1:1" id="FVK-Zh-qMe"/>
                                 </constraints>
@@ -526,6 +656,9 @@ STORES</string>
                                 <state key="normal" title="NEXT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="30"/>
+                                </variation>
                                 <connections>
                                     <segue destination="BOh-jh-D2E" kind="show" identifier="next" id="JtP-aZ-hDE"/>
                                 </connections>
@@ -541,29 +674,52 @@ STORES</string>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="width" secondItem="HpP-rA-YrN" secondAttribute="width" id="DyP-R9-ihy"/>
                             <constraint firstItem="jN2-PR-DDz" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leading" id="Ijg-vh-hIz"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="width" secondItem="hn3-XB-hzv" secondAttribute="width" id="L44-4J-UiY"/>
+                            <constraint firstItem="hn3-XB-hzv" firstAttribute="height" secondItem="RzB-lW-V4D" secondAttribute="height" multiplier="0.3" id="Oxx-0T-gNn"/>
                             <constraint firstItem="jN2-PR-DDz" firstAttribute="top" secondItem="RzB-lW-V4D" secondAttribute="top" id="PLP-rQ-hDB"/>
                             <constraint firstAttribute="bottom" secondItem="rZi-dk-erf" secondAttribute="bottom" id="Q7R-5g-8mg"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="centerX" secondItem="hn3-XB-hzv" secondAttribute="centerX" id="R2X-rb-RGk"/>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="centerX" secondItem="HpP-rA-YrN" secondAttribute="centerX" id="TBt-Cf-qwX"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerY" secondItem="HpP-rA-YrN" secondAttribute="centerY" id="VAX-k7-hDc"/>
-                            <constraint firstItem="ebf-ey-r2E" firstAttribute="top" secondItem="7m4-sU-le6" secondAttribute="bottom" constant="16" id="XYF-WM-bt0"/>
+                            <constraint firstItem="ebf-ey-r2E" firstAttribute="top" secondItem="7m4-sU-le6" secondAttribute="bottom" constant="16" id="XYF-WM-bt0">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="jN2-PR-DDz" secondAttribute="trailing" id="erT-j4-Ae8"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="width" secondItem="HpP-rA-YrN" secondAttribute="width" multiplier="0.5" id="hDr-mG-hfN"/>
-                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="top" secondItem="ebf-ey-r2E" secondAttribute="bottom" constant="64" id="hE2-dT-pJy"/>
+                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="top" secondItem="ebf-ey-r2E" secondAttribute="bottom" constant="64" id="hE2-dT-pJy">
+                                <variation key="heightClass=compact" constant="24"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="rZi-dk-erf" secondAttribute="trailing" id="jYA-R7-Fz9"/>
                             <constraint firstItem="ebf-ey-r2E" firstAttribute="centerX" secondItem="RzB-lW-V4D" secondAttribute="centerX" id="jZC-xh-nKb"/>
                             <constraint firstItem="rZi-dk-erf" firstAttribute="top" secondItem="RzB-lW-V4D" secondAttribute="top" id="juF-2g-lk2"/>
-                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leadingMargin" constant="16" id="luu-KQ-RYY"/>
+                            <constraint firstItem="Lyl-U6-BJS" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leadingMargin" constant="16" id="luu-KQ-RYY">
+                                <variation key="heightClass=compact" constant="64"/>
+                            </constraint>
                             <constraint firstItem="rZi-dk-erf" firstAttribute="leading" secondItem="RzB-lW-V4D" secondAttribute="leading" id="nXp-Gy-Tbr"/>
                             <constraint firstItem="7Fs-z6-j3L" firstAttribute="centerX" secondItem="HpP-rA-YrN" secondAttribute="centerX" id="o7h-X4-nC7"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="height" secondItem="hn3-XB-hzv" secondAttribute="height" id="pkG-Sa-f7a"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Lyl-U6-BJS" secondAttribute="trailing" constant="16" id="rcr-fe-fCH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lyl-U6-BJS" secondAttribute="trailing" constant="16" id="rcr-fe-fCH">
+                                <variation key="heightClass=compact" constant="64"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="tad-Rl-Zuy" secondAttribute="trailing" constant="16" id="ud9-1q-JmV"/>
                             <constraint firstAttribute="bottom" secondItem="jN2-PR-DDz" secondAttribute="bottom" id="vIO-60-jDq"/>
                             <constraint firstItem="TsW-r9-lGo" firstAttribute="centerY" secondItem="hn3-XB-hzv" secondAttribute="centerY" id="wtr-tV-VPI"/>
                             <constraint firstItem="SGA-ac-Eh9" firstAttribute="height" secondItem="HpP-rA-YrN" secondAttribute="height" id="x2E-hz-PDs"/>
+                            <constraint firstItem="hn3-XB-hzv" firstAttribute="width" secondItem="RzB-lW-V4D" secondAttribute="width" id="xSl-0v-D8e"/>
                             <constraint firstItem="hn3-XB-hzv" firstAttribute="width" secondItem="RzB-lW-V4D" secondAttribute="width" multiplier="0.35" id="zKp-jt-gSf"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Oxx-0T-gNn"/>
+                                <exclude reference="xSl-0v-D8e"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="Oxx-0T-gNn"/>
+                                <exclude reference="xSl-0v-D8e"/>
+                                <exclude reference="zKp-jt-gSf"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="KTh-Yw-vrz">
                         <nil key="title"/>
@@ -636,6 +792,9 @@ STORES</string>
                                         <variation key="widthClass=regular">
                                             <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="36"/>
                                         </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="48"/>
+                                        </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select one" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqX-B9-6LG">
                                         <rect key="frame" x="32" y="36" width="72.5" height="28"/>
@@ -645,6 +804,9 @@ STORES</string>
                                         <nil key="highlightedColor"/>
                                         <variation key="widthClass=regular">
                                             <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="22"/>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="26"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -656,6 +818,9 @@ STORES</string>
                                 <state key="normal" title="NEXT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="UniSansSemiBold" family="UniSansSemiBold" pointSize="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="didSelectNext:" destination="BOh-jh-D2E" eventType="touchUpInside" id="zJR-YV-YIx"/>
                                 </connections>
@@ -669,15 +834,16 @@ STORES</string>
                                             <constraint firstAttribute="width" secondItem="CfE-Re-0ct" secondAttribute="height" multiplier="1:1" id="Dol-bU-6iG"/>
                                         </constraints>
                                         <state key="normal">
-                                            <string key="title">MY 
+                                            <string key="title">MY
 LOCATION</string>
                                             <attributedString key="attributedTitle">
                                                 <fragment>
-                                                    <string key="content">MY 
+                                                    <string key="content">MY
 LOCATION</string>
                                                     <attributes>
                                                         <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSFont" size="18" name="UniSansSemiBold"/>
+                                                        <font key="NSOriginalFont" size="18" name="UniSansSemiBold"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -692,6 +858,10 @@ LOCATION</string>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
                                                 <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableAutoShrink" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumFontScaleFactor">
+                                                <real key="value" value="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -703,17 +873,28 @@ LOCATION</string>
                                         <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="UniSansRegular" family="UniSansRegular" pointSize="22"/>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nyb-lR-mJ9" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                         <rect key="frame" x="185" y="0.0" width="132" height="132"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
+                                                <fragment content=" ">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="18" name="UniSansSemiBold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
                                                 <fragment>
                                                     <string key="content">ZIP
 CODE</string>
                                                     <attributes>
                                                         <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" metaFont="system" size="18"/>
+                                                        <font key="NSFont" size="18" name="UniSansSemiBold"/>
+                                                        <font key="NSOriginalFont" size="18" name="UniSansSemiBold"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -728,6 +909,10 @@ CODE</string>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
                                                 <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableAutoShrink" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumFontScaleFactor">
+                                                <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -763,14 +948,19 @@ CODE</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="L5i-9v-P2s" firstAttribute="top" secondItem="1qB-lk-MoK" secondAttribute="bottom" constant="64" id="1h6-HU-Oy1"/>
+                            <constraint firstItem="L5i-9v-P2s" firstAttribute="top" secondItem="1qB-lk-MoK" secondAttribute="bottom" constant="64" id="1h6-HU-Oy1">
+                                <variation key="heightClass=compact" constant="34"/>
+                            </constraint>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerX" secondItem="CfE-Re-0ct" secondAttribute="centerX" id="8WW-Rd-ZH1"/>
+                            <constraint firstItem="CfE-Re-0ct" firstAttribute="height" secondItem="VQ9-u6-xz5" secondAttribute="height" multiplier="0.3" id="AGe-BH-db3"/>
                             <constraint firstItem="CfE-Re-0ct" firstAttribute="width" secondItem="VQ9-u6-xz5" secondAttribute="width" multiplier="0.25" id="Cxz-HP-bgT"/>
                             <constraint firstItem="m98-hy-8Xy" firstAttribute="leading" secondItem="VQ9-u6-xz5" secondAttribute="leading" id="D9Y-pW-H7y"/>
                             <constraint firstItem="CfE-Re-0ct" firstAttribute="width" secondItem="VQ9-u6-xz5" secondAttribute="width" multiplier="0.35" id="GJB-9H-nlW"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="CfE-Re-0ct" secondAttribute="bottom" id="HxH-Bx-HFt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2Xb-sb-wfB" secondAttribute="trailing" constant="16" id="KqL-Ka-IV5"/>
-                            <constraint firstItem="1qB-lk-MoK" firstAttribute="top" secondItem="Q3x-8k-t2L" secondAttribute="bottom" constant="16" id="Nb2-Ay-kxr"/>
+                            <constraint firstItem="1qB-lk-MoK" firstAttribute="top" secondItem="Q3x-8k-t2L" secondAttribute="bottom" constant="16" id="Nb2-Ay-kxr">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstAttribute="bottom" secondItem="ZSP-3r-4yi" secondAttribute="bottom" id="WeP-bd-h8B"/>
                             <constraint firstItem="a2Y-bk-oH3" firstAttribute="centerY" secondItem="Nyb-lR-mJ9" secondAttribute="bottom" id="Y4a-xm-zC7"/>
                             <constraint firstItem="1qB-lk-MoK" firstAttribute="centerX" secondItem="VQ9-u6-xz5" secondAttribute="centerX" id="bN4-O0-DlR"/>
@@ -787,10 +977,17 @@ CODE</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="AGe-BH-db3"/>
                                 <exclude reference="Cxz-HP-bgT"/>
                                 <exclude reference="Y4a-xm-zC7"/>
                                 <exclude reference="ccS-Sk-LXl"/>
                                 <exclude reference="gis-LO-3aH"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="AGe-BH-db3"/>
+                                <exclude reference="GJB-9H-nlW"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">

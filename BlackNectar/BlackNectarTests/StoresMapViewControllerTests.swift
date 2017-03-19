@@ -28,7 +28,7 @@ class StoresMapViewControllerTests: XCTestCase {
         let cityLongitude: CLLocationDegrees = -73.9442
         let brooklynNY = CLLocationCoordinate2D(latitude: cityLatitude, longitude: cityLongitude)
         
-        XCTAssertNotNil(storesMapViewController.loadStoresInMapView(at: brooklynNY))
+        XCTAssertNotNil(storesMapViewController.loadStoresAtCoordinate(coordinate: brooklynNY))
         
     }
     

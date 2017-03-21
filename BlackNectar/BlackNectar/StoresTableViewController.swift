@@ -137,60 +137,13 @@ extension StoresTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if stores.notEmpty {
+        if stores.isEmpty {
             
-            tableView.rowHeight = 236
-            
-            guard let storeCell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
-                
-                makeNoteThatCellFailedToDequeue(cell: "StoresTableViewCell")
-                return UITableViewCell()
-                
-            }
-            
-            let row = indexPath.row
-            
-            guard stores.isInBounds(index: row) else {
-                LOG.warn("Received Out of Bounds Index: \(row)")
-                return storeCell
-            }
-            
-            let store = stores[row]
-            
-            insertDistance(toStore: store, into: storeCell)
-            goLoadImage(into: storeCell, withStore: store.storeImage)
-            insertAddress(into: storeCell, withStore: store)
-            
-            storeCell.storeName.text = store.storeName
-            storeCell.onGoButtonPressed = { [weak self] cell in
-                
-                self?.navigateWithDrivingDirections(toStore: store)
-                self?.makeNoteThatUserTapped(on: store)
-            }
-            
-            return storeCell
+            return createNoResultsCell(with: tableView, at: indexPath)
             
         }
-        else {
-            
-            tableView.rowHeight = 675
-            
-            guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
-                
-                makeNoteThatCellFailedToDequeue(cell: "NoResultsCustomCell")
-                return UITableViewCell()
-                
-            }
-            
-            checkIfUserHasAnEmail(whenIn: noResultsCell)
-            noResultsCell.onEmailButtonPressed = { [weak self] noResultsCell in
-                
-                self?.sendEmail()
-                
-            }
-            
-            return noResultsCell
-        }
+        
+        return createStoreCell(with: tableView, at: indexPath)
         
     }
     
@@ -219,6 +172,63 @@ extension StoresTableViewController {
             cell.layer.transform = CATransform3DIdentity
             
         }
+        
+    }
+    
+    fileprivate func createNoResultsCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        
+        tableView.rowHeight = 675
+        
+        guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
+            
+            makeNoteThatCellFailedToDequeue(cell: "NoResultsCustomCell")
+            return UITableViewCell()
+            
+        }
+        
+        checkIfUserHasAnEmail(whenIn: noResultsCell)
+        noResultsCell.onEmailButtonPressed = { [weak self] noResultsCell in
+            
+            self?.sendEmail()
+            
+        }
+        
+        return noResultsCell
+        
+    }
+    
+    fileprivate func createStoreCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        
+        tableView.rowHeight = 236
+        
+        guard let storeCell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+            
+            makeNoteThatCellFailedToDequeue(cell: "StoresTableViewCell")
+            return UITableViewCell()
+            
+        }
+        
+        let row = indexPath.row
+        
+        guard stores.isInBounds(index: row) else {
+            LOG.warn("Received Out of Bounds Index: \(row)")
+            return storeCell
+        }
+        
+        let store = stores[row]
+        
+        insertDistance(toStore: store, into: storeCell)
+        goLoadImage(into: storeCell, withStore: store.storeImage)
+        insertAddress(into: storeCell, withStore: store)
+        
+        storeCell.storeName.text = store.storeName
+        storeCell.onGoButtonPressed = { [weak self] cell in
+            
+            self?.navigateWithDrivingDirections(toStore: store)
+            self?.makeNoteThatUserTapped(on: store)
+        }
+        
+        return storeCell
         
     }
     

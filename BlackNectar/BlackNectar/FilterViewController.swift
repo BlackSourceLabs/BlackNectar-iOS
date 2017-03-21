@@ -300,7 +300,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
 }
 
-//MARK: Loads Stores into Map View and when User Pans
+//MARK: Map View Code
 extension FilterViewController {
     
     fileprivate func loadStores() {
@@ -436,7 +436,7 @@ extension FilterViewController {
 }
 
 //MARK: Zip Code
-fileprivate extension FilterViewController {
+extension FilterViewController {
     
     func loadStoresInZipCode(at zipCode: String) {
         
@@ -532,139 +532,8 @@ extension FilterViewController {
     
 }
 
-//MARK: Create Alert Views
-fileprivate extension FilterViewController {
-    
-    func createAlertToSelectAnOption() -> UIAlertController {
-        
-        let title = "Select An Option"
-        let message = "You must select at least one option. We need a location to find EBT stores around you."
-        
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let myLocationOption = UIAlertAction(title: "Use My Location", style: .default) { _ in
-            let alert = self.createAlertToRequestGPSPermissions()
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        
-        let zipCodeOption = UIAlertAction(title: "Use Zip Code", style: .default) { _ in
-            let alert = self.createAlertToGetZipCode()
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        
-        controller.addAction(myLocationOption)
-        controller.addAction(zipCodeOption)
-        
-        return controller
-    }
-    
-    func createAlertToRequestGPSPermissions() -> UIAlertController {
-        
-        let title = "Requesting GPS Access"
-        let message = "By granting us access, we can find EBT stores around you."
-        
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            
-            if self.zipCode.notEmpty {
-                self.useZipCode = true
-                return
-            }
-            else {
-            
-                let alert = self.createAlertToSelectAnOption()
-                self.present(alert, animated: true, completion: nil)
-                
-            }
-            
-        }
-        
-        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
-            
-            self.requestGPSAccess()
-        }
-        
-        controller.addAction(cancel)
-        controller.addAction(ok)
-        
-        return controller
-    }
-    
-    func createAlertToGetZipCode() -> UIAlertController {
-        
-        let title = "Enter Zip Code"
-        let message = "Please enter a valid zip code.(eg - 90401)"
-        
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            
-            if !self.useZipCode {
-                let alert = self.createAlertToSelectAnOption()
-                self.present(alert, animated: true, completion: nil)
-            }
-            
-        }
-        
-        let go = UIAlertAction(title: "Go", style: .default) { _ in
-            
-            guard let zipCode = controller.textFields?.first?.text, zipCode.notEmpty else {
-                
-                self.makeNoteThatNoZipCodeEntered()
-                let warning = self.createAlertToWarnOfInvalidZip(zip: "")
-                self.present(warning, animated: true, completion: nil)
-                
-                return
-            }
-            
-            self.moveMapTo(zipCode: zipCode)
-            self.loadStoresInZipCode(at: zipCode)
-            self.zipCode = zipCode
-            self.useZipCode = true
-            self.useMyLocation = false
-            self.styleZipCodeButton()
-        }
-        
-        controller.addAction(cancel)
-        controller.addAction(go)
-        
-        controller.addTextField() { zipCode in
-            zipCode.placeholder = "(eg - 10455)"
-            zipCode.keyboardType = .numberPad
-        }
-        
-        return controller
-    }
-    
-    func createAlertToWarnOfInvalidZip(zip: String) -> UIAlertController {
-        
-        let title = "Invalid Zip Code."
-        let message = "Please enter a valid zip code"
-        
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            self.useZipCode = false
-            
-        }
-        
-        let ok = UIAlertAction(title: "Ok", style: .default) { _ in
-            
-            let newAlert = self.createAlertToGetZipCode()
-            
-            self.present(newAlert, animated: true, completion: nil)
-        }
-        
-        controller.addAction(cancel)
-        controller.addAction(ok)
-        
-        return controller
-    }
-    
-    
+//MARK: GPS Access Code
+extension FilterViewController {
     
     func requestGPSAccess() {
         
@@ -683,13 +552,13 @@ fileprivate extension FilterViewController {
             self.centerMapAround(location: location)
             
         }
+        
     }
-    
     
 }
 
 //MARK: Style Menu Code
-fileprivate extension FilterViewController {
+extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {
         
@@ -773,7 +642,7 @@ fileprivate extension FilterViewController {
 }
 
 //MARK: Aroma Messages
-fileprivate extension FilterViewController {
+extension FilterViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         

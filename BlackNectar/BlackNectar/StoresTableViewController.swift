@@ -152,23 +152,23 @@ extension StoresTableViewController {
             
             guard stores.isInBounds(index: row) else {
                 LOG.warn("Received Out of Bounds Index: \(row)")
-                return cell
+                return storeCell
             }
             
             let store = stores[row]
             
-            insertDistance(toStore: store, into: cell)
-            goLoadImage(into: cell, withStore: store.storeImage)
-            insertAddress(into: cell, withStore: store)
+            insertDistance(toStore: store, into: storeCell)
+            goLoadImage(into: storeCell, withStore: store.storeImage)
+            insertAddress(into: storeCell, withStore: store)
             
-            cell.storeName.text = store.storeName
-            cell.onGoButtonPressed = { cell in
+            storeCell.storeName.text = store.storeName
+            storeCell.onGoButtonPressed = { [weak self] cell in
                 
-                self.navigateWithDrivingDirections(toStore: store)
-                self.makeNoteThatUserTapped(on: store)
+                self?.navigateWithDrivingDirections(toStore: store)
+                self?.makeNoteThatUserTapped(on: store)
             }
             
-            return cell
+            return storeCell
             
         }
         else {

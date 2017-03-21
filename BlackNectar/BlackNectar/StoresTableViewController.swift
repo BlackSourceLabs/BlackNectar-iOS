@@ -68,6 +68,8 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
         setupRefreshControl()
         
+        //tableView.rowHeight = UITableViewAutomaticDimension
+        
         if isFirstTimeUser {
             goToWelcomeScreen()
         }
@@ -175,28 +177,6 @@ extension StoresTableViewController {
         
     }
     
-    fileprivate func createNoResultsCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        
-        tableView.rowHeight = 675
-        
-        guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
-            
-            makeNoteThatCellFailedToDequeue(cell: "NoResultsCustomCell")
-            return UITableViewCell()
-            
-        }
-        
-        checkIfUserHasAnEmail(whenIn: noResultsCell)
-        noResultsCell.onEmailButtonPressed = { [weak self] noResultsCell in
-            
-            self?.sendEmail()
-            
-        }
-        
-        return noResultsCell
-        
-    }
-    
     fileprivate func createStoreCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         
         tableView.rowHeight = 236
@@ -207,6 +187,8 @@ extension StoresTableViewController {
             return UITableViewCell()
             
         }
+        
+        //tableView.rowHeight = storeCell.frame.height
         
         let row = indexPath.row
         
@@ -229,6 +211,28 @@ extension StoresTableViewController {
         }
         
         return storeCell
+        
+    }
+    
+    fileprivate func createNoResultsCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        
+        tableView.rowHeight = tableView.frame.height
+        
+        guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
+            
+            makeNoteThatCellFailedToDequeue(cell: "NoResultsCustomCell")
+            return UITableViewCell()
+            
+        }
+        
+        checkIfUserHasAnEmail(whenIn: noResultsCell)
+        noResultsCell.onEmailButtonPressed = { [weak self] noResultsCell in
+            
+            self?.sendEmail()
+            
+        }
+        
+        return noResultsCell
         
     }
     

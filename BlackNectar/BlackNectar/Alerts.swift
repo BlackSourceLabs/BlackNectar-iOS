@@ -64,6 +64,82 @@ extension UIViewController {
     
 }
 
+//MARK: WelcomeScreenFour Alert View Code
+extension WelcomeScreenFour {
+    
+    func createAlertToRequestGPS() -> UIAlertController {
+        
+        let title = "Enable GPS?"
+        let message = "GPS is used to find EBT stores around you, and only while you are in the app"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let ok = UIAlertAction(title: "OK", style: .default) { _ in
+            
+            self.requestGPS()
+        }
+        
+        alert.addActions(cancel, ok)
+        
+        return alert
+    }
+    
+    func createAlertToRequestZipCode() -> UIAlertController {
+        
+        let title = "Enter Zip Code"
+        let message = "Enter the 5-digit Zip Code to search"
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let ok = createZipButtonOkButton(for: alert)
+        
+        alert.addActions(cancel, ok)
+        
+        alert.addTextField() { textField in
+            
+            textField.keyboardType = .numberPad
+            textField.becomeFirstResponder()
+        }
+        
+        return alert
+    }
+    
+    
+    func createZipButtonOkButton(for alert: UIAlertController) -> UIAlertAction {
+        
+        let ok = UIAlertAction(title: "OK", style: .default) { _ in
+            
+            guard let zipCode = alert.textFields?.first?.text, zipCode.notEmpty else {
+                
+                self.showAlertWithError(message: "Zip Code cannot be empty")
+                return
+            }
+            
+            let valid = self.isValidZipCode(zipCode)
+            
+            guard valid.isValid else {
+                
+                let message = valid.errorMessage
+                
+                LOG.warn("Invalid Zip Code: \(message)")
+                self.showAlertWithError(message: message)
+                
+                return
+            }
+            
+            self.useZipCode = true
+            self.zipCode = zipCode
+            self.updateButtons()
+        }
+        
+        return ok
+    }
+    
+}
+
 //MARK: StoresTableViewController Alert View Code
 extension StoresTableViewController {
     

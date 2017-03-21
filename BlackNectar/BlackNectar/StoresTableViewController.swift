@@ -498,15 +498,15 @@ fileprivate extension StoresTableViewController {
     
     func makeNoteThatFilterMenuOpened() {
         
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         LOG.debug("Filter Opened")
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         
     }
     
     func makeNoteThatFilterMenuCancelled() {
         
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
         LOG.debug("Cancelling Filter")
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
         
     }
     

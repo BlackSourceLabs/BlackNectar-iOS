@@ -47,7 +47,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-Ol-OPt" userLabel="Diagonal Bar" customClass="CustomView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="-246" y="246" width="867" height="300"/>
+                                <rect key="frame" x="-225.09680682235052" y="-16.596806822350459" width="825.19361364470114" height="825.19361364470092"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -73,7 +73,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="90" y="470" width="195" height="30"/>
+                                <rect key="frame" x="85.5" y="470" width="205" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>
@@ -103,7 +103,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-0L-Bhq">
-                                <rect key="frame" x="103.5" y="72" width="169.5" height="27"/>
+                                <rect key="frame" x="103" y="72" width="169.5" height="27"/>
                                 <fontDescription key="fontDescription" name="UniSansBook" family="UniSansBook" pointSize="27"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -145,11 +145,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="CYh-Sf-2ve"/>
                                 <exclude reference="Cww-0q-LfJ"/>
                                 <exclude reference="DWp-xP-3Of"/>
                                 <exclude reference="O6H-3P-gEb"/>
                                 <exclude reference="o7M-zG-w3j"/>
-                                <exclude reference="CYh-Sf-2ve"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -288,7 +288,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-Nf-GM7" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="121.5" y="622.5" width="132.5" height="20.5"/>
+                                <rect key="frame" x="116" y="622.5" width="144.5" height="20.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACK">
                                         <attributes>
@@ -562,7 +562,7 @@ MARKETS</string>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-rA-YrN" userLabel="GROCERY STORES BUTTON" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="131" height="131"/>
-                                                <state key="normal" image="Grocery Stores"/>
+                                                <state key="normal" image="GroceryStores"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="2"/>
@@ -826,7 +826,7 @@ STORES</string>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="L5i-9v-P2s">
-                                <rect key="frame" x="29.5" y="208" width="317" height="132"/>
+                                <rect key="frame" x="29" y="208" width="317" height="132"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-Re-0ct" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
@@ -926,7 +926,7 @@ CODE</string>
                                 </constraints>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="a2Y-bk-oH3" userLabel="My Location Pin">
-                                <rect key="frame" x="70.5" y="315" width="50" height="50"/>
+                                <rect key="frame" x="70" y="315" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="COD-YR-Bkm"/>
                                     <constraint firstAttribute="width" secondItem="a2Y-bk-oH3" secondAttribute="height" multiplier="1:1" id="L7E-fs-CA8"/>
@@ -1058,7 +1058,7 @@ CODE</string>
     </scenes>
     <resources>
         <image name="Farmer's Markets" width="1000" height="714"/>
-        <image name="Grocery Stores" width="800" height="533"/>
+        <image name="GroceryStores" width="800" height="533"/>
         <image name="Icon-Transparent" width="500" height="500"/>
         <image name="wallhaven-179935" width="1080" height="1920"/>
         <image name="wallhaven-312625" width="1200" height="1920"/>

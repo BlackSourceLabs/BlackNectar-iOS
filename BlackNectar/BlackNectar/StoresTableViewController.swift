@@ -182,10 +182,10 @@ extension StoresTableViewController {
                 
             }
             
-            checkUserEmailSetting(in: noResultsCell)
-            noResultsCell.onEmailButtonPressed = { noResultsCell in
+            checkIfUserHasAnEmail(whenIn: noResultsCell)
+            noResultsCell.onEmailButtonPressed = { [weak self] noResultsCell in
                 
-                self.sendEmail()
+                self?.sendEmail()
                 
             }
             

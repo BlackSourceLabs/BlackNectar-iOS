@@ -519,6 +519,17 @@ fileprivate extension StoresTableViewController {
             .addBody("User navigated to \(store.storeName)\n\n\(store)")
             .withPriority(.medium)
             .send()
+        
+    }
+    
+    func makeNoteThatCellFailedToDequeue(cell: String) {
+        
+        LOG.error("Failed to dequeue \(cell)")
+        AromaClient.beginMessage(withTitle: "Failed to dequeue \(cell)")
+            .addBody("Failed to dequeue \(cell)")
+            .withPriority(.medium)
+            .send()
+        
     }
     
     func makeNoteThatUserFinishedEmail(withResult result: String) {

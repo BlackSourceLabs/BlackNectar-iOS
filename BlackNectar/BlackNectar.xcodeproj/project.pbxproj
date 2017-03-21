@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A726B4A1E1D94B40031572D /* DistanceCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A726B491E1D94B40031572D /* DistanceCalculation.swift */; };
 		0A9CE6371E1D98B7008860BA /* Integers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E134511E160E5500FD65DC /* Integers+.swift */; };
+		3200E8CC1E80A5060025ABF7 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3200E8CB1E80A5060025ABF7 /* Alerts.swift */; };
 		320820511E2DC278009FFCB9 /* StoresTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820501E2DC278009FFCB9 /* StoresTableViewControllerTests.swift */; };
 		320820541E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820531E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift */; };
 		320820571E2DE525009FFCB9 /* GlobalLocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820561E2DE525009FFCB9 /* GlobalLocationManagerTests.swift */; };
@@ -119,6 +120,7 @@
 
 /* Begin PBXFileReference section */
 		0A726B491E1D94B40031572D /* DistanceCalculation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCalculation.swift; sourceTree = "<group>"; };
+		3200E8CB1E80A5060025ABF7 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		320820501E2DC278009FFCB9 /* StoresTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewControllerTests.swift; sourceTree = "<group>"; };
 		320820531E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresMapViewControllerTests.swift; sourceTree = "<group>"; };
 		320820561E2DE525009FFCB9 /* GlobalLocationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManagerTests.swift; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 				32E134541E160EAF00FD65DC /* TimeIntervals+.swift */,
 				DE80BFED1E56926300449144 /* UITableViewControllers+.swift */,
 				32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */,
+				3200E8CB1E80A5060025ABF7 /* Alerts.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */,
 				DE80BFF31E57689D00449144 /* Locations+.swift in Sources */,
 				32D576B01E7C608F00F72F95 /* NoResultsCustomCell.swift in Sources */,
+				3200E8CC1E80A5060025ABF7 /* Alerts.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

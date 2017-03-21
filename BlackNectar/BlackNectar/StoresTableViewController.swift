@@ -177,6 +177,7 @@ extension StoresTableViewController {
             
             guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
                 
+                makeNoteThatCellFailedToDequeue(cell: "NoResultsCustomCell")
                 return UITableViewCell()
                 
             }

@@ -51,7 +51,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     }
     
     var stores: [Store] = []
-    let mailComposeViewController = MFMailComposeViewController()
     
     let async: OperationQueue = {
         

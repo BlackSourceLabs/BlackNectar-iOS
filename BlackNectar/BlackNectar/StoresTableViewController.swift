@@ -141,9 +141,9 @@ extension StoresTableViewController {
             
             tableView.rowHeight = 236
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+            guard let storeCell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
                 
-                LOG.error("Failed to dequeue StoresTableViewCell")
+                makeNoteThatCellFailedToDequeue(cell: "StoresTableViewCell")
                 return UITableViewCell()
                 
             }

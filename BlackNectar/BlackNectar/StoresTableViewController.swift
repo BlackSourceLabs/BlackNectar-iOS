@@ -284,13 +284,13 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
         
     }
     
-    fileprivate func checkUserEmailSetting(in noResultsCell: NoResultsCustomCell) {
+    fileprivate func checkIfUserHasAnEmail(whenIn noResultsCell: NoResultsCustomCell) {
         
         if !MFMailComposeViewController.canSendMail() {
             
             noResultsCell.knowOfAnyLabel.isHidden = true
             noResultsCell.letUsKnowButton.isHidden = true
-
+            
         }
         else {
             

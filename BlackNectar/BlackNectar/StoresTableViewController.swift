@@ -301,8 +301,9 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
         
     }
     
-    fileprivate func configureMailComposeViewController() -> MFMailComposeViewController {
+    func configureMailComposeViewController() -> MFMailComposeViewController {
         
+        let mailComposeViewController = MFMailComposeViewController()
         mailComposeViewController.mailComposeDelegate = self
         
         mailComposeViewController.setToRecipients(["feedback@blacksource.tech"])

@@ -64,7 +64,7 @@ extension UIViewController {
     
 }
 
-//MARK: WelcomeScreenFour Alert View Code
+//MARK: WelcomeScreenFour Alert View
 extension WelcomeScreenFour {
     
     func createAlertToRequestGPS() -> UIAlertController {
@@ -140,7 +140,7 @@ extension WelcomeScreenFour {
     
 }
 
-//MARK: StoresTableViewController Alert View Code
+//MARK: StoresTableViewController Alert View
 extension StoresTableViewController {
     
     func sendEmailErrorAlert() {
@@ -173,7 +173,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: FilterViewController Alert View Code
+//MARK: FilterViewController Alert View 
 extension FilterViewController {
     
     func createAlertToSelectAnOption() -> UIAlertController {

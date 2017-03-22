@@ -179,7 +179,7 @@ extension StoresTableViewController {
     
     fileprivate func createStoreCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         
-        tableView.rowHeight = 236
+        tableView.rowHeight = 200
         
         guard let storeCell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
             

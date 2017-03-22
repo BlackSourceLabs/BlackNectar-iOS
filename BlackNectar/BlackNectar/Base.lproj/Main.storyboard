@@ -707,7 +707,7 @@ FOUND</string>
                 <navigationController storyboardIdentifier="StoresNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uUP-V3-9cw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="7RH-7Z-uU5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Num-tA-vBg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Num-tA-vBg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -727,7 +727,7 @@ FOUND</string>
             <objects>
                 <navigationController storyboardIdentifier="FilterViewController" automaticallyAdjustsScrollViewInsets="NO" id="kfi-dD-UoL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="i7J-TN-6qe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="i7J-TN-6qe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -746,7 +746,7 @@ FOUND</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JwV-va-qRH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Nbt-gz-8Pe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Nbt-gz-8Pe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

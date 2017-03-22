@@ -92,7 +92,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     
 }
 
-//MARK: Filter Delegate Code
+//MARK: Filter Delegate 
 extension StoresTableViewController {
     
     func didDismissFilter(_: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String) {
@@ -107,7 +107,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Welcome Screen Code
+//MARK: Welcome Screen
 extension StoresTableViewController: WelcomeScreenDelegate {
     
     func goToWelcomeScreen() {
@@ -123,7 +123,7 @@ extension StoresTableViewController: WelcomeScreenDelegate {
     
 }
 
-//MARK: Table View Code
+//MARK: Table View
 extension StoresTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -187,8 +187,6 @@ extension StoresTableViewController {
             return UITableViewCell()
             
         }
-        
-        //tableView.rowHeight = storeCell.frame.height
         
         let row = indexPath.row
         
@@ -280,7 +278,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Mail Code
+//MARK: Send E-Mail
 extension StoresTableViewController: MFMailComposeViewControllerDelegate {
     
     fileprivate func sendEmail() {
@@ -345,7 +343,7 @@ extension StoresTableViewController: MFMailComposeViewControllerDelegate {
     
 }
 
-//MARK: Refresh Code
+//MARK: Refresh/Load Stores
 extension StoresTableViewController {
     
     func setupRefreshControl() {
@@ -428,7 +426,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Navigation Code
+//MARK: Driving Navigation
 extension StoresTableViewController {
     
     internal func navigateWithDrivingDirections(toStore store: Store) {
@@ -445,7 +443,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Segue Code
+//MARK: Segues
 extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -496,7 +494,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Aroma Messages Code
+//MARK: Aroma Messages
 fileprivate extension StoresTableViewController {
     
     

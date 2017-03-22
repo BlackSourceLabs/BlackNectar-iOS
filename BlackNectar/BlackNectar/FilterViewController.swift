@@ -152,7 +152,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     }
     
     
-    //MARK: Cancel Button Code
+    //MARK: Cancel Button
     @IBAction func didTapDismissButton(_ sender: UIBarButtonItem) {
         
         guard useZipCode || useMyLocation else {
@@ -185,7 +185,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         
     }
     
-    //MARK: Map Button Code
+    //MARK: Map Button
     @IBAction func findMeButton(_ sender: UIButton) {
         
         if useMyLocation {
@@ -200,7 +200,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
         }
     }
     
-    //MARK: Filter Buttons Code
+    //MARK: Filter Buttons
     @IBAction func onFarmersMarkets(_ sender: UIButton) {
         
         showFarmersMarkets = !showFarmersMarkets
@@ -300,7 +300,7 @@ class FilterViewController: UITableViewController, MKMapViewDelegate, CLLocation
     
 }
 
-//MARK: Map View Code
+//MARK: Map View
 extension FilterViewController {
     
     fileprivate func loadStores() {
@@ -469,7 +469,7 @@ extension FilterViewController {
     
 }
 
-//MARK: Map View Delegate Code
+//MARK: Map View Delegate
 extension FilterViewController {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -497,7 +497,7 @@ extension FilterViewController {
     
 }
 
-//MARK: Gets Driving Directions Code
+//MARK: Gets Driving Directions
 extension FilterViewController {
     
     
@@ -532,7 +532,7 @@ extension FilterViewController {
     
 }
 
-//MARK: GPS Access Code
+//MARK: GPS Access
 extension FilterViewController {
     
     func requestGPSAccess() {
@@ -557,7 +557,7 @@ extension FilterViewController {
     
 }
 
-//MARK: Style Menu Code
+//MARK: Style Menu 
 extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {

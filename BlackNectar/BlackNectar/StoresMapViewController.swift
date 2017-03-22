@@ -99,11 +99,7 @@ class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             }
             
         }
-        else {
-            //Let the user explore the map on their own
-        }
-        
-        
+        //Let the user explore the map on their own
     }
     
 }
@@ -116,7 +112,7 @@ internal extension StoresMapViewController {
         if useMyLocation {
             
             UserLocation.instance.requestLocation(callback: self.loadStoresAtCoordinate)
-       
+            
         }
         else if useZipCode, zipCode.notEmpty {
             
@@ -266,7 +262,7 @@ extension StoresMapViewController {
     private func findStore(withName name: String, andLocation location: CLLocationCoordinate2D) -> Store? {
         
         return stores.filter() { $0.storeName == name && $0.location == location }
-                     .first
+            .first
     }
     
 }

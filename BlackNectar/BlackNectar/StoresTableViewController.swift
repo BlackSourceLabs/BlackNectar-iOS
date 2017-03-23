@@ -12,6 +12,7 @@ import CoreLocation
 import Foundation
 import Kingfisher
 import MapKit
+import MessageUI
 import UIKit
 
 class StoresTableViewController: UITableViewController, FilterDelegate, UIGestureRecognizerDelegate {
@@ -67,6 +68,8 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
         setupRefreshControl()
         
+        //tableView.rowHeight = UITableViewAutomaticDimension
+        
         if isFirstTimeUser {
             goToWelcomeScreen()
         }
@@ -74,11 +77,12 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
             UserLocation.instance.initialize()
             reloadStoreData()
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,7 +92,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     
 }
 
-//MARK: Filter Delegate Code
+//MARK: Filter Delegate 
 extension StoresTableViewController {
     
     func didDismissFilter(_: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String) {
@@ -103,7 +107,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Welcome Screen Code
+//MARK: Welcome Screen
 extension StoresTableViewController: WelcomeScreenDelegate {
     
     func goToWelcomeScreen() {
@@ -116,9 +120,10 @@ extension StoresTableViewController: WelcomeScreenDelegate {
         isFirstTimeUser = false
         self.reloadStoreData()
     }
+    
 }
 
-//MARK: Table View Code
+//MARK: Table View
 extension StoresTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -128,40 +133,19 @@ extension StoresTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return stores.count
+        return stores.notEmpty ? stores.count : 1
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+        if stores.isEmpty {
             
-            LOG.error("Failed to dequeue StoresTableViewCell")
-            return UITableViewCell()
+            return createNoResultsCell(with: tableView, at: indexPath)
             
         }
         
-        let row = indexPath.row
-        
-        guard stores.isInBounds(index: row) else {
-            LOG.warn("Received Out of Bounds Index: \(row)")
-            return cell
-        }
-        
-        let store = stores[row]
-        
-        insertDistance(toStore: store, into: cell)
-        goLoadImage(into: cell, withStore: store.storeImage)
-        insertAddress(into: cell, withStore: store)
-        
-        cell.storeName.text = store.storeName
-        cell.onGoButtonPressed = { cell in
-            
-            self.navigateWithDrivingDirections(toStore: store)
-            self.makeNoteThatUserTapped(on: store)
-        }
-        
-        return cell
+        return createStoreCell(with: tableView, at: indexPath)
         
     }
     
@@ -190,6 +174,63 @@ extension StoresTableViewController {
             cell.layer.transform = CATransform3DIdentity
             
         }
+        
+    }
+    
+    fileprivate func createStoreCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        
+        tableView.rowHeight = 200
+        
+        guard let storeCell = tableView.dequeueReusableCell(withIdentifier: "storeCell", for: indexPath) as? StoresTableViewCell else {
+            
+            makeNoteThatCellFailedToDequeue(cell: "StoresTableViewCell")
+            return UITableViewCell()
+            
+        }
+        
+        let row = indexPath.row
+        
+        guard stores.isInBounds(index: row) else {
+            LOG.warn("Received Out of Bounds Index: \(row)")
+            return storeCell
+        }
+        
+        let store = stores[row]
+        
+        insertDistance(toStore: store, into: storeCell)
+        goLoadImage(into: storeCell, withStore: store.storeImage)
+        insertAddress(into: storeCell, withStore: store)
+        
+        storeCell.storeName.text = store.storeName
+        storeCell.onGoButtonPressed = { [weak self] cell in
+            
+            self?.navigateWithDrivingDirections(toStore: store)
+            self?.makeNoteThatUserTapped(on: store)
+        }
+        
+        return storeCell
+        
+    }
+    
+    fileprivate func createNoResultsCell(with tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        
+        tableView.rowHeight = tableView.frame.height
+        
+        guard let noResultsCell = tableView.dequeueReusableCell(withIdentifier: "noResultsCell") as? NoResultsCustomCell else {
+            
+            makeNoteThatCellFailedToDequeue(cell: "NoResultsCustomCell")
+            return UITableViewCell()
+            
+        }
+        
+        checkIfUserHasAnEmail(whenIn: noResultsCell)
+        noResultsCell.onEmailButtonPressed = { [weak self] noResultsCell in
+            
+            self?.sendEmail()
+            
+        }
+        
+        return noResultsCell
         
     }
     
@@ -237,7 +278,72 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Refresh Code
+//MARK: Send E-Mail
+extension StoresTableViewController: MFMailComposeViewControllerDelegate {
+    
+    fileprivate func sendEmail() {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            
+            return
+            
+        }
+        else {
+            
+            self.present(configureMailComposeViewController(), animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+    fileprivate func checkIfUserHasAnEmail(whenIn noResultsCell: NoResultsCustomCell) {
+        
+        if !MFMailComposeViewController.canSendMail() {
+            
+            noResultsCell.knowOfAnyLabel.isHidden = true
+            noResultsCell.letUsKnowButton.isHidden = true
+            
+        }
+        else {
+            
+            noResultsCell.knowOfAnyLabel.isHidden = false
+            noResultsCell.letUsKnowButton.isHidden = false
+            
+        }
+        
+    }
+    
+    func configureMailComposeViewController() -> MFMailComposeViewController {
+        
+        let mailComposeViewController = MFMailComposeViewController()
+        mailComposeViewController.mailComposeDelegate = self
+        
+        mailComposeViewController.setToRecipients(["feedback@blacksource.tech"])
+        mailComposeViewController.setSubject("We love feeback - Place your comment below")
+        mailComposeViewController.setMessageBody("We are open to all feedback. Let us know if there are no stores in your area that accept EBT.", isHTML: false)
+        
+        return mailComposeViewController
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        if let error = error {
+            
+            makeNoteThatSendingEmailFailed(withError: "\(error)")
+            sendEmailErrorAlert()
+            return
+            
+        }
+        
+        makeNoteThatUserFinishedEmail(withResult: "\(result)")
+        controller.dismiss(animated: true, completion: nil)
+        
+    }
+    
+}
+
+//MARK: Refresh/Load Stores
 extension StoresTableViewController {
     
     func setupRefreshControl() {
@@ -320,7 +426,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Navigation Code
+//MARK: Driving Navigation
 extension StoresTableViewController {
     
     internal func navigateWithDrivingDirections(toStore store: Store) {
@@ -337,7 +443,7 @@ extension StoresTableViewController {
     
 }
 
-//MARK: Segue Code
+//MARK: Segues
 extension StoresTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -350,18 +456,17 @@ extension StoresTableViewController {
         }
         
         if let destination = segue.destination as? UINavigationController,
-           let filterViewController = destination.topViewController as? FilterViewController {
+            let filterViewController = destination.topViewController as? FilterViewController {
             
             filterViewController.delegate = self
             
         }
         
         if let destination = segue.destination as? UINavigationController,
-           let welcomeScreen = destination.topViewController as? WelcomeScreenOne {
-           
+            let welcomeScreen = destination.topViewController as? WelcomeScreenOne {
+            
             welcomeScreen.delegate = self
         }
-        
         
     }
     
@@ -386,11 +491,10 @@ extension StoresTableViewController {
         
         performSegue(withIdentifier: "mapViewSegue", sender: nil)
     }
-  
     
 }
 
-//MARK: Aroma Messages Code
+//MARK: Aroma Messages
 fileprivate extension StoresTableViewController {
     
     
@@ -406,15 +510,15 @@ fileprivate extension StoresTableViewController {
     
     func makeNoteThatFilterMenuOpened() {
         
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         LOG.debug("Filter Opened")
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Opened")
         
     }
     
     func makeNoteThatFilterMenuCancelled() {
         
-        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
         LOG.debug("Cancelling Filter")
+        AromaClient.sendLowPriorityMessage(withTitle: "Filter Cancelled")
         
     }
     
@@ -427,8 +531,54 @@ fileprivate extension StoresTableViewController {
             .addBody("User navigated to \(store.storeName)\n\n\(store)")
             .withPriority(.medium)
             .send()
+        
+    }
+    
+    func makeNoteThatCellFailedToDequeue(cell: String) {
+        
+        LOG.error("Failed to dequeue \(cell)")
+        AromaClient.beginMessage(withTitle: "Failed to dequeue \(cell)")
+            .addBody("Failed to dequeue \(cell)")
+            .withPriority(.medium)
+            .send()
+        
+    }
+    
+    func makeNoteThatUserFinishedEmail(withResult result: String) {
+        
+        LOG.info("Email Result is: \(result)")
+        AromaClient.beginMessage(withTitle: "User Finished Email with: \(result)")
+            .addBody("Finished Email: (\(result))")
+            .withPriority(.low)
+            .send()
+        
+    }
+    
+    func makeNoteThatSendingEmailFailed(withError error: String) {
+        
+        LOG.error("There was an error with the email: \(error)")
+        AromaClient.beginMessage(withTitle: "There was an error with the email: \(error)")
+            .addBody("Email Error is: \(error)")
+            .withPriority(.medium)
+            .send()
+        
+    }
+    
+    func makeNoteThatSendingUserToSettingsForMail() {
+        
+        let message = "Sending User to 'Settings' so they can enable Mail Services"
+        AromaClient.sendMediumPriorityMessage(withTitle: "Sending User To Settings", withBody: message)
+        
+    }
+    
+    func makeNoteThatUserHasMailSettingsDisabled() {
+        
+        LOG.error("User has mail settings disabled")
+        AromaClient.beginMessage(withTitle: "User has mail settings disabled")
+            .addBody("User has mail settings disabled or doesn't have an account")
+            .withPriority(.low)
+            .send()
+        
     }
     
 }
-
-

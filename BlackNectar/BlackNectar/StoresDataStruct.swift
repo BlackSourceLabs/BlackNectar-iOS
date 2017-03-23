@@ -39,6 +39,7 @@ extension Store {
             let storeImageString = json["main_image_url"] as? String,
             let storeImageURL = URL(string: storeImageString)
             else {
+                
                 LOG.error("Failed to parse Store: \(json)")
                 return nil
         }
@@ -49,6 +50,7 @@ extension Store {
             let latitude = coordinatesDictionary["latitude"] as? CLLocationDegrees,
             let longitude = coordinatesDictionary["longitude"] as? CLLocationDegrees
             else {
+                
                 LOG.warn("Failed to get Store location information: \(json)")
                 return nil
         }
@@ -111,4 +113,5 @@ extension Address {
     }
     
 }
+
 

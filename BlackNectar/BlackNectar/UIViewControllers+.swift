@@ -26,6 +26,18 @@ extension UIViewController {
         
     }
     
+    func startSpinningNVActivityIndicator() {
+        
+        let activityData = ActivityData()
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        
+    }
+    
+    func stopSpinningNVActivityIndicator() {
+        
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+    }
+    
     func hideNavigationBar() {
         guard let nav = self.navigationController?.navigationBar else { return }
         

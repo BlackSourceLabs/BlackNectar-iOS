@@ -378,6 +378,7 @@ extension StoresTableViewController {
     func loadStores(atZipCode zipCode: String) {
         
         startSpinningIndicator()
+        startSpinningNVActivityIndicator()
         SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
         
     }
@@ -385,6 +386,7 @@ extension StoresTableViewController {
     func loadStores(atCoordinate coordinate: CLLocationCoordinate2D) {
         
         startSpinningIndicator()
+        startSpinningNVActivityIndicator()
         SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
         
     }
@@ -397,7 +399,9 @@ extension StoresTableViewController {
             
             self.reloadSection(0)
             self.stopSpinningIndicator()
+            self.stopSpinningNVActivityIndicator()
             self.refreshControl?.endRefreshing()
+            
         }
         
         if self.stores.isEmpty {

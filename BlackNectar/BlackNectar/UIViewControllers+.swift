@@ -9,6 +9,7 @@
 import Archeota
 import AromaSwiftClient
 import Foundation
+import NVActivityIndicatorView
 import UIKit
 
 extension UIViewController {

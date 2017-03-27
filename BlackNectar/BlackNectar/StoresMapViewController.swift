@@ -124,6 +124,7 @@ internal extension StoresMapViewController {
     func loadStoresAtCoordinate(coordinate: CLLocationCoordinate2D) {
         
         startSpinningIndicator()
+        startSpinningNVActivityIndicator()
         SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
         
     }
@@ -131,7 +132,9 @@ internal extension StoresMapViewController {
     func loadStoresAtZipCode(zipCode: String) {
         
         startSpinningIndicator()
+        startSpinningNVActivityIndicator()
         SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
+        
     }
     
     private func populateStores(stores: [Store]) {
@@ -142,6 +145,7 @@ internal extension StoresMapViewController {
             
             self.populateStoreAnnotations()
             self.stopSpinningIndicator()
+            self.stopSpinningNVActivityIndicator()
             
         }
         

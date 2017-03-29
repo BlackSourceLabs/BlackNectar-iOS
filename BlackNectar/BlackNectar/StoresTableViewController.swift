@@ -68,8 +68,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
         setupRefreshControl()
         
-        //tableView.rowHeight = UITableViewAutomaticDimension
-        
         if isFirstTimeUser {
             goToWelcomeScreen()
         }

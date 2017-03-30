@@ -319,7 +319,6 @@ extension FilterViewController {
     func loadStoresInMapView(at coordinate: CLLocationCoordinate2D) {
         
         startSpinningIndicator()
-        startSpinningNVActivityIndicator()
         
         SearchStores.searchForStoresLocations(near: coordinate) { stores in
             
@@ -329,7 +328,7 @@ extension FilterViewController {
                 
                 self.populateStoreAnnotations()
                 self.stopSpinningIndicator()
-                self.stopSpinningNVActivityIndicator()
+                
                 
             }
             
@@ -443,7 +442,6 @@ extension FilterViewController {
     func loadStoresInZipCode(at zipCode: String) {
         
         startSpinningIndicator()
-        startSpinningNVActivityIndicator()
         
         SearchStores.searchForStoresByZipCode(withZipCode: zipCode) { (stores) in
             
@@ -453,7 +451,6 @@ extension FilterViewController {
             self.main.addOperation {
                 
                 self.stopSpinningIndicator()
-                self.stopSpinningNVActivityIndicator()
                 self.populateStoreAnnotations()
                 
             }

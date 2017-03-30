@@ -9,6 +9,7 @@
 import Archeota
 import AromaSwiftClient
 import Kingfisher
+import NVActivityIndicatorView
 import UIKit
 
 @UIApplicationMain

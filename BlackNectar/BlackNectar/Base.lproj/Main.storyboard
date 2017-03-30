@@ -155,7 +155,7 @@ Address</string>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNA-N4-ZzW" customClass="CustomButtonView" customModule="BlackNectar" customModuleProvider="target">
-                                            <rect key="frame" x="307" y="133" width="35" height="35"/>
+                                            <rect key="frame" x="307" y="132" width="35" height="35"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="1Pg-RQ-lQ9"/>
@@ -182,8 +182,8 @@ Address</string>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="7 miles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pz3-tN-mvZ">
-                                            <rect key="frame" x="281" y="176" width="87" height="15"/>
-                                            <fontDescription key="fontDescription" name="UniSansLight" family="UniSansLight" pointSize="14"/>
+                                            <rect key="frame" x="281" y="175" width="87" height="16"/>
+                                            <fontDescription key="fontDescription" name="UniSansLight" family="UniSansLight" pointSize="15"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

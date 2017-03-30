@@ -431,7 +431,7 @@ extension StoresTableViewController {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         
-        let storePlacemark = MKPlacemark(coordinate: store.location, addressDictionary: ["\(title)" : store.storeName])
+        let storePlacemark = MKPlacemark(coordinate: store.location, addressDictionary: ["\(title ?? "")" : store.storeName])
         let storePin = MKMapItem(placemark: storePlacemark)
         storePin.name = store.storeName
         

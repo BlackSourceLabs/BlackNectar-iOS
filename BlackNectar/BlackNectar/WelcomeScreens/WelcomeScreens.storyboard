@@ -73,7 +73,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-iI-KJl" customClass="CustomLabelView" customModule="BlackNectar" customModuleProvider="target">
-                                <rect key="frame" x="86" y="470" width="205" height="30"/>
+                                <rect key="frame" x="85" y="470" width="205" height="30"/>
                                 <attributedString key="attributedText">
                                     <fragment content="BLACKNECTAR">
                                         <attributes>

@@ -47,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ImageCache.default.maxDiskCacheSize = UInt(150.mb)
         ImageCache.default.maxCachePeriodInSecond = (3.0).days
         
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballClipRotatePulse
+        
         return true
         
     }

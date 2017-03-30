@@ -235,7 +235,7 @@ extension StoresMapViewController {
     
     func getDrivingDirections(to storeCoordinates: CLLocationCoordinate2D, with storeName: String) -> MKMapItem {
         
-        let storePlacemark = MKPlacemark(coordinate: storeCoordinates, addressDictionary: [ "\(title)" : storeName ])
+        let storePlacemark = MKPlacemark(coordinate: storeCoordinates, addressDictionary: [ "\(title ?? "")" : storeName ])
         let storePin = MKMapItem(placemark: storePlacemark)
         storePin.name = storeName
         
@@ -316,10 +316,10 @@ fileprivate extension StoresMapViewController {
     
     func makeNoteThatNoStoresFound(additionalMessage: String = "") {
         
-        LOG.warn("No stores found around the users location: \(currentCoordinates)")
+        LOG.warn("No stores found around the users location: \(currentCoordinates?.shortDescription ?? "")")
         
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation?.description ?? "")\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         

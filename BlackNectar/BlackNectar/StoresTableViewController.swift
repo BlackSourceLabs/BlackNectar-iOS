@@ -348,7 +348,7 @@ extension StoresTableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.black
-        refreshControl?.tintColor = UIColor .init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
+        refreshControl?.tintColor = UIColor.clear
         
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         

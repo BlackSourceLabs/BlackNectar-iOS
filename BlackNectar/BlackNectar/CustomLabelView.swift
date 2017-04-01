@@ -77,6 +77,13 @@ import UIKit
         }
     }
     
+    @IBInspectable var spacing: CGFloat = 0 {
+        
+        didSet {
+            updateView()
+        }
+    }
+    
     func updateView() {
         
         layer.cornerRadius = cornerRadius
@@ -88,7 +95,9 @@ import UIKit
             layer.rasterizationScale = UIScreen.main.scale
         }
         
+        setSpacing(self.spacing)
         setKearning(self.kearning)
+    
     }
     
     override func layoutSubviews() {
@@ -121,5 +130,28 @@ import UIKit
         
         mutableText.addAttribute(NSKernAttributeName, value: kearning, range: NSRange(location: 0, length: mutableText.length - 1))
         self.attributedText = mutableText
+    }
+    
+    private func setSpacing(_ spacing: CGFloat) {
+        
+        var newText: NSMutableAttributedString? = nil
+        
+        
+        if let text = self.attributedText{
+            newText = NSMutableAttributedString(attributedString: text)
+        }
+        else if let text = self.text {
+            newText = NSMutableAttributedString(string: text)
+        }
+        
+        if let newText = newText {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = self.spacing
+            
+            newText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, newText.length))
+            
+        }
+        
+        self.attributedText = newText
     }
 }

@@ -282,3 +282,10 @@ extension CharacterRequirementsForSignUp {
     
 }
 
+struct Features {
+    
+    let accountCreation: String
+    let balance: String
+    let transaction: String
+}
+

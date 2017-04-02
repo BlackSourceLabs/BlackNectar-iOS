@@ -362,3 +362,26 @@ struct CreateAccount {
     
 }
 
+extension CreateAccount {
+    
+    init?(fromJSON createAccountDictionary: NSDictionary) {
+        
+        guard let name = createAccountDictionary["name"] as? String,
+            let value = createAccountDictionary["value"] as? String,
+            let success = createAccountDictionary["success"] as? Bool,
+            let message = createAccountDictionary["message"] as? String
+            else {
+                
+                LOG.error("Failed to Parse Create Account Dictionary: \(createAccountDictionary)")
+                return nil
+        }
+        
+        self.name = name
+        self.value = value
+        self.success = success
+        self.message = message
+        
+    }
+    
+}
+

@@ -229,3 +229,25 @@ struct RequirementsForSignUp {
     
 }
 
+extension RequirementsForSignUp {
+    
+    init?(from requirementsForSignUpDictionary: NSDictionary) {
+        
+        guard let minLength = requirementsForSignUpDictionary["min_length"] as? Int,
+            let maxLength = requirementsForSignUpDictionary["max_length"] as? Int,
+            let characterRequirementsForSignUpJSON = requirementsForSignUpDictionary["character_requirements"] as? NSDictionary
+            else {
+                
+                LOG.error("Failed to Parse Requirements for Sign Up Dictionary: \(requirementsForSignUpDictionary)")
+                return nil
+        }
+        
+        guard let characterRequirementsForSignUp = CharacterRequirementsForSignUp(from: characterRequirementsForSignUpJSON) else { return nil }
+        
+        self.minLength = minLength
+        self.maxLength = maxLength
+        self.characterRequirementsForSignUp = characterRequirementsForSignUp
+        
+    }
+}
+

@@ -24,3 +24,21 @@ struct SupportedStates {
     
 }
 
+extension SupportedStates {
+    
+    init?(json: NSDictionary) {
+        
+        guard let stateID = json["id"] as? String,
+            let stateName = json["name"] as? String
+            else {
+                
+                LOG.error("Failed to parse Supported States: \(json)")
+                return nil
+        }
+        
+        self.stateID = stateID
+        self.stateName = stateName
+        
+    }
+    
+}

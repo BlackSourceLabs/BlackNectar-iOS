@@ -259,3 +259,26 @@ struct CharacterRequirementsForSignUp {
     let requiresSpecialCharacter: Bool
 }
 
+extension CharacterRequirementsForSignUp {
+    
+    init?(from characterRequirementsForSignUpDictionary: NSDictionary ) {
+        
+        guard let requiresLowerCase = characterRequirementsForSignUpDictionary["requires_lower_case"] as? Bool,
+            let requiresUpperCase = characterRequirementsForSignUpDictionary["requires_upper_case"] as? Bool,
+            let requiresNumber = characterRequirementsForSignUpDictionary["requires_number"] as? Bool,
+            let requiresSpecialCharacter = characterRequirementsForSignUpDictionary["requires_special_character"] as? Bool
+            else {
+                
+                LOG.error("Failed to Parase Character Requirements for Sign Up Dictionary: \(characterRequirementsForSignUpDictionary)")
+                return nil
+        }
+        
+        self.requiresLowerCase = requiresLowerCase
+        self.requiresUpperCase = requiresUpperCase
+        self.requiresNumber = requiresNumber
+        self.requiresSpecialCharacter = requiresSpecialCharacter
+        
+    }
+    
+}
+

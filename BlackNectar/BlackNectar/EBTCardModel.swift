@@ -221,3 +221,11 @@ extension SignUpRequirements {
     
 }
 
+struct RequirementsForSignUp {
+    
+    let minLength: Int
+    let maxLength: Int
+    let characterRequirementsForSignUp: CharacterRequirementsForSignUp
+    
+}
+

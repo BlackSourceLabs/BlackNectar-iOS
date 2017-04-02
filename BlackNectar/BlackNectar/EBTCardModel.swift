@@ -423,3 +423,22 @@ extension ViewBalance {
     
 }
 
+//MARK: View Transaction History
+struct ViewTransactionHistory {
+    
+    let name: String
+    let value: String
+    let timestamp: Timestamp
+    let amount: Int
+    let address: String
+    let retailer: String
+    let transactionType: TransactionType
+    let type: String
+    
+    static func getViewTransactionHistory(from viewTransactionDictionary: NSDictionary) -> ViewTransactionHistory? {
+        
+        return ViewTransactionHistory(fromJSON: viewTransactionDictionary)
+    }
+    
+}
+

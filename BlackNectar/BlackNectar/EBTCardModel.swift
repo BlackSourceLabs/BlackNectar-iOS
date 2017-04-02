@@ -348,3 +348,17 @@ extension CheckStateAccountExists {
     
 }
 
+struct CreateAccount {
+    
+    let name: String
+    let value: String
+    let success: Bool
+    let message: String
+    
+    static func goCreateAccount(from createAccountDictionary: NSDictionary) -> CreateAccount? {
+        
+        return CreateAccount(fromJSON: createAccountDictionary)
+    }
+    
+}
+

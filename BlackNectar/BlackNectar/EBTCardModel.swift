@@ -385,3 +385,18 @@ extension CreateAccount {
     
 }
 
+//MARK: View Account Balance
+struct ViewBalance {
+    
+    let name: String
+    let value: String
+    let cashBalance: Int
+    let foodBalance: Int
+    
+    static func goViewBalance(from viewBalanceDictionary: NSDictionary) -> ViewBalance? {
+        
+        return ViewBalance(fromJSON: viewBalanceDictionary)
+    }
+    
+}
+

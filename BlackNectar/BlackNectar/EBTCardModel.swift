@@ -325,3 +325,26 @@ struct CheckStateAccountExists {
     
 }
 
+extension CheckStateAccountExists {
+    
+    init?(fromJSON checkStateAccountExistsDictionary: NSDictionary) {
+        
+        guard let name = checkStateAccountExistsDictionary["name"] as? String,
+            let value = checkStateAccountExistsDictionary["value"] as? String,
+            let exists = checkStateAccountExistsDictionary["exists"] as? Bool,
+            let message = checkStateAccountExistsDictionary["message"] as? String
+            else {
+                
+                LOG.error("Failed to Parse Check State Account Exists: \(checkStateAccountExistsDictionary)")
+                return nil
+        }
+        
+        self.name = name
+        self.value = value
+        self.exists = exists
+        self.message = message
+        
+    }
+    
+}
+

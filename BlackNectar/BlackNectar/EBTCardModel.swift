@@ -476,3 +476,29 @@ extension ViewTransactionHistory {
     
 }
 
+struct Timestamp {
+    
+    let seconds: Int
+    let nano: Int
+    
+}
+
+extension Timestamp {
+    
+    init?(from timeStampDictionary: NSDictionary) {
+        
+        guard let seconds = timeStampDictionary["seconds"] as? Int,
+            let nano = timeStampDictionary["nano"] as? Int
+            else {
+                
+                LOG.error("Failed to Parse Time Stamp Dictionary: \(timeStampDictionary)")
+                return nil
+        }
+        
+        self.seconds = seconds
+        self.nano = nano
+        
+    }
+    
+}
+

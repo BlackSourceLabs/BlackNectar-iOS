@@ -289,3 +289,24 @@ struct Features {
     let transaction: String
 }
 
+extension Features {
+    
+    init?(from featureEnum: NSDictionary) {
+        
+        guard let accountCreation = featureEnum["ACCOUNT_CREATION"] as? String,
+            let balance = featureEnum["BALANCE"] as? String,
+            let transaction = featureEnum["TRANSACTION"] as? String
+            else {
+                
+                LOG.error("Failed to Parse Feature Enum: \(featureEnum)")
+                return nil
+        }
+        
+        self.accountCreation = accountCreation
+        self.balance = balance
+        self.transaction = transaction
+        
+    }
+    
+}
+

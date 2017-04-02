@@ -194,3 +194,30 @@ struct SignUpRequirements {
     
 }
 
+extension SignUpRequirements {
+    
+    init?(from signUpRequirementsDictionary: NSDictionary) {
+        
+        guard let name = signUpRequirementsDictionary["name"] as? String,
+            let type = signUpRequirementsDictionary["type"] as? String,
+            let description = signUpRequirementsDictionary["description"] as? String,
+            let isRequired = signUpRequirementsDictionary["is_required"] as? String,
+            let requirementsForSignUpJSON = signUpRequirementsDictionary["requirements"] as? NSDictionary
+            else {
+                
+                LOG.error("Failed to Parse Sign Up Requirements: \(signUpRequirementsDictionary)")
+                return nil
+        }
+        
+        guard let requirementsForSignUp = RequirementsForSignUp(from: requirementsForSignUpJSON) else { return nil }
+        
+        self.name = name
+        self.type = type
+        self.description = description
+        self.isRequired = isRequired
+        self.requirementsForSignUp = requirementsForSignUp
+        
+    }
+    
+}
+

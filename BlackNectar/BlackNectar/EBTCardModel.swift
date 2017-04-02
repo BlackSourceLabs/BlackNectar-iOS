@@ -151,3 +151,12 @@ extension Requirements {
     
 }
 
+struct CharacterRequirementsForSignIn {
+    
+    let requiresLowerCase: Bool
+    let requiresUpperCase: Bool
+    let requiresNumber: Bool
+    let requiresSpecialCharacter: Bool
+    
+}
+

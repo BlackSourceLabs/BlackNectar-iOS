@@ -183,3 +183,14 @@ extension CharacterRequirementsForSignIn {
     
 }
 
+//MARK: Sign Up Requirements
+struct SignUpRequirements {
+    
+    let name: String
+    let type: String
+    let description: String
+    let isRequired: String
+    let requirementsForSignUp: RequirementsForSignUp
+    
+}
+

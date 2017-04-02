@@ -251,3 +251,11 @@ extension RequirementsForSignUp {
     }
 }
 
+struct CharacterRequirementsForSignUp {
+    
+    let requiresLowerCase: Bool
+    let requiresUpperCase: Bool
+    let requiresNumber: Bool
+    let requiresSpecialCharacter: Bool
+}
+

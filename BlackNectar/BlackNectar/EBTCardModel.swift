@@ -42,3 +42,18 @@ extension SupportedStates {
     }
     
 }
+
+//MARK: Sign In Requirements, Sign Up Requirements, and Features
+struct StateFeaturesAndRequiremets {
+    
+    let signInRequirements: [SignInRequirements]
+    let signUpRequirements: [SignUpRequirements]
+    let features: Features
+    
+    static func getStateFeaturesAndRequirementsJsonData(from statesDictionary: NSDictionary) -> StateFeaturesAndRequiremets? {
+        
+        return StateFeaturesAndRequiremets(json: statesDictionary)
+    }
+ 
+}
+

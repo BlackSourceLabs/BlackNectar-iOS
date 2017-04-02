@@ -93,3 +93,30 @@ struct SignInRequirements {
     
 }
 
+extension SignInRequirements {
+    
+    init?(from signInRequirementsDictionary: NSDictionary) {
+        
+        guard let name = signInRequirementsDictionary["name"] as? String,
+            let type = signInRequirementsDictionary["type"] as? String,
+            let description = signInRequirementsDictionary["description"] as? String,
+            let isRequired = signInRequirementsDictionary["is_required"] as? String,
+            let requirementsJSON = signInRequirementsDictionary["requirements"] as? NSDictionary
+            else {
+                
+                LOG.error("Failed to Parse Sign In Requirements: \(signInRequirementsDictionary)")
+                return nil
+        }
+        
+        guard let requirements = Requirements(from: requirementsJSON) else { return nil }
+        
+        self.name = name
+        self.type = type
+        self.description = description
+        self.isRequired = isRequired
+        self.requirements = requirements
+        
+    }
+    
+}
+

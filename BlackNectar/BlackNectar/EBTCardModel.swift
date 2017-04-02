@@ -502,3 +502,28 @@ extension Timestamp {
     
 }
 
+struct TransactionType {
+    
+    let charge: String
+    let deposit: String
+    
+}
+
+extension TransactionType {
+    
+    init?(from transactionTypeDictionary: NSDictionary) {
+        
+        guard let charge = transactionTypeDictionary["charge"] as? String,
+            let deposit = transactionTypeDictionary["deposit"] as? String
+            else {
+                
+                LOG.error("Failed to Parse Transaction Type: \(transactionTypeDictionary)")
+                return nil
+        }
+        
+        self.charge = charge
+        self.deposit = deposit
+        
+    }
+    
+}

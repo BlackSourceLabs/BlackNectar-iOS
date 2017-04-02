@@ -82,3 +82,14 @@ extension StateFeaturesAndRequiremets {
     
 }
 
+//MARK: Sign In Requirements
+struct SignInRequirements {
+    
+    let name: String
+    let type: String
+    let description: String
+    let isRequired: String
+    let requirements: Requirements
+    
+}
+

@@ -400,3 +400,26 @@ struct ViewBalance {
     
 }
 
+extension ViewBalance {
+    
+    init?(fromJSON viewBalanceDictionary: NSDictionary) {
+        
+        guard let name = viewBalanceDictionary["name"] as? String,
+            let value = viewBalanceDictionary["value"] as? String,
+            let cashBalance = viewBalanceDictionary["cash_balance"] as? Int,
+            let foodBalance = viewBalanceDictionary["view_balance"] as? Int
+            else {
+                
+                LOG.error("Failed to Parse View Balance Dictionary: \(viewBalanceDictionary)")
+                return nil
+        }
+        
+        self.name = name
+        self.value = value
+        self.cashBalance = cashBalance
+        self.foodBalance = foodBalance
+        
+    }
+    
+}
+

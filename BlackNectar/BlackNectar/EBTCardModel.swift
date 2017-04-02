@@ -442,3 +442,37 @@ struct ViewTransactionHistory {
     
 }
 
+extension ViewTransactionHistory {
+    
+    init?(fromJSON viewTransactionHistoryDictionary: NSDictionary) {
+        
+        guard let name = viewTransactionHistoryDictionary["name"] as? String,
+            let value = viewTransactionHistoryDictionary["value"] as? String,
+            let timestampJSON = viewTransactionHistoryDictionary["timestamp"] as? NSDictionary,
+            let amount = viewTransactionHistoryDictionary["amount"] as? Int,
+            let address = viewTransactionHistoryDictionary["address"] as? String,
+            let retailer = viewTransactionHistoryDictionary["retailer"] as? String,
+            let transactionTypeJSON = viewTransactionHistoryDictionary["transaction_type"] as? NSDictionary,
+            let type = viewTransactionHistoryDictionary["type"] as? String
+            else {
+                
+                LOG.error("Failed to Parse View Transaction History Dictionary: \(viewTransactionHistoryDictionary)")
+                return nil
+        }
+        
+        guard let timestamp = Timestamp(from: timestampJSON) else { return nil }
+        guard let transactionType = TransactionType(from: transactionTypeJSON) else { return nil }
+        
+        self.name = name
+        self.value = value
+        self.timestamp = timestamp
+        self.amount = amount
+        self.address = address
+        self.retailer = retailer
+        self.transactionType = transactionType
+        self.type = type
+        
+    }
+    
+}
+

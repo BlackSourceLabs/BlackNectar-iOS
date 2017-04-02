@@ -310,3 +310,18 @@ extension Features {
     
 }
 
+//MARK: Check If State Account Exists
+struct CheckStateAccountExists {
+    
+    let name: String
+    let value: String
+    let exists: Bool
+    let message: String
+    
+    static func goCheckToSeeIfStateAccountExists(from checkStateAccountDictionary: NSDictionary) -> CheckStateAccountExists? {
+        
+        return CheckStateAccountExists(fromJSON: checkStateAccountDictionary)
+    }
+    
+}
+

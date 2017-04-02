@@ -160,3 +160,26 @@ struct CharacterRequirementsForSignIn {
     
 }
 
+extension CharacterRequirementsForSignIn {
+    
+    init?(from characterRequirementsDictionary: NSDictionary) {
+        
+        guard let requiresLowerCase = characterRequirementsDictionary["requires_lower_case"] as? Bool,
+            let requiresUpperCase = characterRequirementsDictionary["requires_upper_case"] as? Bool,
+            let requiresNumber = characterRequirementsDictionary["requires_number"] as? Bool,
+            let requiresSpecialCharacter = characterRequirementsDictionary["requires_special_character"] as? Bool
+            else {
+                
+                LOG.error("Failed to Parse Character Requirements: \(characterRequirementsDictionary)")
+                return nil
+        }
+        
+        self.requiresLowerCase = requiresLowerCase
+        self.requiresUpperCase = requiresUpperCase
+        self.requiresNumber = requiresNumber
+        self.requiresSpecialCharacter = requiresSpecialCharacter
+        
+    }
+    
+}
+

@@ -500,7 +500,7 @@ fileprivate extension StoresTableViewController {
         
         LOG.warn("There are no stores around the users location")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation?.description ?? "")\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         

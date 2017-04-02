@@ -120,3 +120,11 @@ extension SignInRequirements {
     
 }
 
+struct Requirements {
+    
+    let minLength: Int
+    let maxLength: Int
+    let characterRequirementsForSignIn: CharacterRequirementsForSignIn
+    
+}
+

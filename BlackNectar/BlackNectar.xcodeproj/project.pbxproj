@@ -300,7 +300,7 @@
 				321319461DE0F61500FB1774 /* LaunchScreen.storyboard */,
 				321319411DE0F61500FB1774 /* Main.storyboard */,
 				327BAD611DF44B8B000EA25E /* MapView */,
-				327BAD631DF44BEA000EA25E /* Model */,
+				327BAD631DF44BEA000EA25E /* Models */,
 				322BB1451E4913C900867D13 /* Filter */,
 				327BAD5F1DF44B3F000EA25E /* StoresListTableView */,
 				369843871E3166E30048D8B1 /* UserPreferences */,
@@ -406,12 +406,12 @@
 			name = APICall;
 			sourceTree = "<group>";
 		};
-		327BAD631DF44BEA000EA25E /* Model */ = {
+		327BAD631DF44BEA000EA25E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				3213196B1DE105AF00FB1774 /* StoresModel.swift */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		327BAD641DFA2685000EA25E /* Views */ = {

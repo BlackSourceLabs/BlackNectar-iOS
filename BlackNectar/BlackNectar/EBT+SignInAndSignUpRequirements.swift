@@ -1,47 +1,14 @@
 //
-//  EBTCardModel.swift
+//  EBT+SignInAndSignUpRequirements.swift
 //  BlackNectar
 //
-//  Created by Cordero Hernandez on 4/2/17.
+//  Created by Cordero Hernandez on 4/6/17.
 //  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import Archeota
 import Foundation
 import UIKit
-
-//MARK: Supported States
-struct SupportedStates {
-    
-    let stateID: String
-    let stateName: String
-    
-    static func getSupportedStatesJsonData(from supportedStatesDictionary: NSDictionary) -> SupportedStates? {
-        
-        return SupportedStates(json: supportedStatesDictionary)
-        
-    }
-    
-}
-
-extension SupportedStates {
-    
-    init?(json: NSDictionary) {
-        
-        guard let stateID = json["id"] as? String,
-            let stateName = json["name"] as? String
-            else {
-                
-                LOG.error("Failed to parse Supported States: \(json)")
-                return nil
-        }
-        
-        self.stateID = stateID
-        self.stateName = stateName
-        
-    }
-    
-}
 
 //MARK: Sign In Requirements, Sign Up Requirements, and Features
 struct StateFeaturesAndRequiremets {
@@ -54,7 +21,7 @@ struct StateFeaturesAndRequiremets {
         
         return StateFeaturesAndRequiremets(json: statesDictionary)
     }
- 
+    
 }
 
 extension StateFeaturesAndRequiremets {
@@ -305,224 +272,6 @@ extension Features {
         self.accountCreation = accountCreation
         self.balance = balance
         self.transaction = transaction
-        
-    }
-    
-}
-
-//MARK: Check If State Account Exists
-struct CheckStateAccountExists {
-    
-    let name: String
-    let value: String
-    let exists: Bool
-    let message: String
-    
-    static func goCheckToSeeIfStateAccountExists(from checkStateAccountDictionary: NSDictionary) -> CheckStateAccountExists? {
-        
-        return CheckStateAccountExists(fromJSON: checkStateAccountDictionary)
-    }
-    
-}
-
-extension CheckStateAccountExists {
-    
-    init?(fromJSON checkStateAccountExistsDictionary: NSDictionary) {
-        
-        guard let name = checkStateAccountExistsDictionary["name"] as? String,
-            let value = checkStateAccountExistsDictionary["value"] as? String,
-            let exists = checkStateAccountExistsDictionary["exists"] as? Bool,
-            let message = checkStateAccountExistsDictionary["message"] as? String
-            else {
-                
-                LOG.error("Failed to Parse Check State Account Exists: \(checkStateAccountExistsDictionary)")
-                return nil
-        }
-        
-        self.name = name
-        self.value = value
-        self.exists = exists
-        self.message = message
-        
-    }
-    
-}
-
-struct CreateAccount {
-    
-    let name: String
-    let value: String
-    let success: Bool
-    let message: String
-    
-    static func goCreateAccount(from createAccountDictionary: NSDictionary) -> CreateAccount? {
-        
-        return CreateAccount(fromJSON: createAccountDictionary)
-    }
-    
-}
-
-extension CreateAccount {
-    
-    init?(fromJSON createAccountDictionary: NSDictionary) {
-        
-        guard let name = createAccountDictionary["name"] as? String,
-            let value = createAccountDictionary["value"] as? String,
-            let success = createAccountDictionary["success"] as? Bool,
-            let message = createAccountDictionary["message"] as? String
-            else {
-                
-                LOG.error("Failed to Parse Create Account Dictionary: \(createAccountDictionary)")
-                return nil
-        }
-        
-        self.name = name
-        self.value = value
-        self.success = success
-        self.message = message
-        
-    }
-    
-}
-
-//MARK: View Account Balance
-struct ViewBalance {
-    
-    let name: String
-    let value: String
-    let cashBalance: Int
-    let foodBalance: Int
-    
-    static func goViewBalance(from viewBalanceDictionary: NSDictionary) -> ViewBalance? {
-        
-        return ViewBalance(fromJSON: viewBalanceDictionary)
-    }
-    
-}
-
-extension ViewBalance {
-    
-    init?(fromJSON viewBalanceDictionary: NSDictionary) {
-        
-        guard let name = viewBalanceDictionary["name"] as? String,
-            let value = viewBalanceDictionary["value"] as? String,
-            let cashBalance = viewBalanceDictionary["cash_balance"] as? Int,
-            let foodBalance = viewBalanceDictionary["view_balance"] as? Int
-            else {
-                
-                LOG.error("Failed to Parse View Balance Dictionary: \(viewBalanceDictionary)")
-                return nil
-        }
-        
-        self.name = name
-        self.value = value
-        self.cashBalance = cashBalance
-        self.foodBalance = foodBalance
-        
-    }
-    
-}
-
-//MARK: View Transaction History
-struct ViewTransactionHistory {
-    
-    let name: String
-    let value: String
-    let timestamp: Timestamp
-    let amount: Int
-    let address: String
-    let retailer: String
-    let transactionType: TransactionType
-    let type: String
-    
-    static func getViewTransactionHistory(from viewTransactionDictionary: NSDictionary) -> ViewTransactionHistory? {
-        
-        return ViewTransactionHistory(fromJSON: viewTransactionDictionary)
-    }
-    
-}
-
-extension ViewTransactionHistory {
-    
-    init?(fromJSON viewTransactionHistoryDictionary: NSDictionary) {
-        
-        guard let name = viewTransactionHistoryDictionary["name"] as? String,
-            let value = viewTransactionHistoryDictionary["value"] as? String,
-            let timestampJSON = viewTransactionHistoryDictionary["timestamp"] as? NSDictionary,
-            let amount = viewTransactionHistoryDictionary["amount"] as? Int,
-            let address = viewTransactionHistoryDictionary["address"] as? String,
-            let retailer = viewTransactionHistoryDictionary["retailer"] as? String,
-            let transactionTypeJSON = viewTransactionHistoryDictionary["transaction_type"] as? NSDictionary,
-            let type = viewTransactionHistoryDictionary["type"] as? String
-            else {
-                
-                LOG.error("Failed to Parse View Transaction History Dictionary: \(viewTransactionHistoryDictionary)")
-                return nil
-        }
-        
-        guard let timestamp = Timestamp(from: timestampJSON) else { return nil }
-        guard let transactionType = TransactionType(from: transactionTypeJSON) else { return nil }
-        
-        self.name = name
-        self.value = value
-        self.timestamp = timestamp
-        self.amount = amount
-        self.address = address
-        self.retailer = retailer
-        self.transactionType = transactionType
-        self.type = type
-        
-    }
-    
-}
-
-struct Timestamp {
-    
-    let seconds: Int
-    let nano: Int
-    
-}
-
-extension Timestamp {
-    
-    init?(from timeStampDictionary: NSDictionary) {
-        
-        guard let seconds = timeStampDictionary["seconds"] as? Int,
-            let nano = timeStampDictionary["nano"] as? Int
-            else {
-                
-                LOG.error("Failed to Parse Time Stamp Dictionary: \(timeStampDictionary)")
-                return nil
-        }
-        
-        self.seconds = seconds
-        self.nano = nano
-        
-    }
-    
-}
-
-struct TransactionType {
-    
-    let charge: String
-    let deposit: String
-    
-}
-
-extension TransactionType {
-    
-    init?(from transactionTypeDictionary: NSDictionary) {
-        
-        guard let charge = transactionTypeDictionary["charge"] as? String,
-            let deposit = transactionTypeDictionary["deposit"] as? String
-            else {
-                
-                LOG.error("Failed to Parse Transaction Type: \(transactionTypeDictionary)")
-                return nil
-        }
-        
-        self.charge = charge
-        self.deposit = deposit
         
     }
     

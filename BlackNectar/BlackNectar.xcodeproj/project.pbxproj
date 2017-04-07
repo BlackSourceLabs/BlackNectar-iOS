@@ -32,7 +32,6 @@
 		3275805E1E204FB900E2915A /* Archeota.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3275805B1E2040F000E2915A /* Archeota.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		327A75EB1E451C8800FE4619 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327A75EA1E451C8800FE4619 /* Info.plist */; };
 		327BAD661DFA26AE000EA25E /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BAD651DFA26AE000EA25E /* CustomButtonView.swift */; };
-		32873C951E90E5F100BBCD2A /* EBTCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873C941E90E5F100BBCD2A /* EBTCardModel.swift */; };
 		3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297A36B1E39AF090055BC89 /* Arrays+.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
@@ -412,7 +411,6 @@
 			isa = PBXGroup;
 			children = (
 				3213196B1DE105AF00FB1774 /* StoresModel.swift */,
-				32873C941E90E5F100BBCD2A /* EBTCardModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -693,7 +691,6 @@
 				324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */,
 				DE80BFF31E57689D00449144 /* Locations+.swift in Sources */,
 				32D576B01E7C608F00F72F95 /* NoResultsCustomCell.swift in Sources */,
-				32873C951E90E5F100BBCD2A /* EBTCardModel.swift in Sources */,
 				3200E8CC1E80A5060025ABF7 /* Alerts.swift in Sources */,
 				3213ABC11DED0B4D004ECB92 /* GlobalLocationManager.swift in Sources */,
 			);

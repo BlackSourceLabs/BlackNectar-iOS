@@ -34,6 +34,7 @@
 		327BAD661DFA26AE000EA25E /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BAD651DFA26AE000EA25E /* CustomButtonView.swift */; };
 		32873C971E973C0800BBCD2A /* EBT+SupportedStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873C961E973C0800BBCD2A /* EBT+SupportedStates.swift */; };
 		32873C991E973C9900BBCD2A /* EBT+SignInAndSignUpRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873C981E973C9900BBCD2A /* EBT+SignInAndSignUpRequirements.swift */; };
+		32873C9B1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873C9A1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift */; };
 		3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297A36B1E39AF090055BC89 /* Arrays+.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
@@ -154,6 +155,7 @@
 		327BAD651DFA26AE000EA25E /* CustomButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		32873C961E973C0800BBCD2A /* EBT+SupportedStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+SupportedStates.swift"; sourceTree = "<group>"; };
 		32873C981E973C9900BBCD2A /* EBT+SignInAndSignUpRequirements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+SignInAndSignUpRequirements.swift"; sourceTree = "<group>"; };
+		32873C9A1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+CheckIfStateAccountExists.swift"; sourceTree = "<group>"; };
 		3297A36B1E39AF090055BC89 /* Arrays+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Arrays+.swift"; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
 		32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+.swift"; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */,
 				3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */,
 				DEF458DE1E69EB7A0035934F /* WelcomeScreenThree.swift in Sources */,
+				32873C9B1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift in Sources */,
 				36E2FA651E299666001F1FB9 /* CustomAnnotation.swift in Sources */,
 				DE80BFEE1E56926300449144 /* UITableViewControllers+.swift in Sources */,
 				32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */,

@@ -411,6 +411,7 @@
 		327BAD631DF44BEA000EA25E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				32873CA21E973E9900BBCD2A /* EBTModels */,
 				3213196B1DE105AF00FB1774 /* StoresModel.swift */,
 			);
 			name = Models;
@@ -426,6 +427,19 @@
 				DE4AB57B1E68DB8B00F678D4 /* CustomView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		32873CA21E973E9900BBCD2A /* EBTModels */ = {
+			isa = PBXGroup;
+			children = (
+				32873C961E973C0800BBCD2A /* EBT+SupportedStates.swift */,
+				32873C981E973C9900BBCD2A /* EBT+SignInAndSignUpRequirements.swift */,
+				32873C9A1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift */,
+				32873C9C1E973DB600BBCD2A /* EBT+CreateAccount.swift */,
+				32873C9E1E973E3600BBCD2A /* EBT+ViewAccoutBalance.swift */,
+				32873CA01E973E7100BBCD2A /* EBT+ViewTransactionHistory.swift */,
+			);
+			name = EBTModels;
 			sourceTree = "<group>";
 		};
 		32E134171E15DE0D00FD65DC /* Frameworks */ = {

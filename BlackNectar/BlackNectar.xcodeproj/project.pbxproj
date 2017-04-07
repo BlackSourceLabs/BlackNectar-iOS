@@ -37,6 +37,7 @@
 		32873C9B1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873C9A1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift */; };
 		32873C9D1E973DB600BBCD2A /* EBT+CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873C9C1E973DB600BBCD2A /* EBT+CreateAccount.swift */; };
 		32873C9F1E973E3600BBCD2A /* EBT+ViewAccoutBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873C9E1E973E3600BBCD2A /* EBT+ViewAccoutBalance.swift */; };
+		32873CA11E973E7100BBCD2A /* EBT+ViewTransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32873CA01E973E7100BBCD2A /* EBT+ViewTransactionHistory.swift */; };
 		3297A36C1E39AF090055BC89 /* Arrays+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297A36B1E39AF090055BC89 /* Arrays+.swift */; };
 		32B079791DEF8B7A00FACD1B /* StoresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */; };
 		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
@@ -160,6 +161,7 @@
 		32873C9A1E973D4A00BBCD2A /* EBT+CheckIfStateAccountExists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+CheckIfStateAccountExists.swift"; sourceTree = "<group>"; };
 		32873C9C1E973DB600BBCD2A /* EBT+CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+CreateAccount.swift"; sourceTree = "<group>"; };
 		32873C9E1E973E3600BBCD2A /* EBT+ViewAccoutBalance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+ViewAccoutBalance.swift"; sourceTree = "<group>"; };
+		32873CA01E973E7100BBCD2A /* EBT+ViewTransactionHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+ViewTransactionHistory.swift"; sourceTree = "<group>"; };
 		3297A36B1E39AF090055BC89 /* Arrays+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Arrays+.swift"; sourceTree = "<group>"; };
 		32B079781DEF8B7A00FACD1B /* StoresTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewCell.swift; sourceTree = "<group>"; };
 		32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+.swift"; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 				32FE5A4B1E57E1C100B61709 /* CustomThumbView.swift in Sources */,
 				DE4AB57C1E68DB8B00F678D4 /* CustomView.swift in Sources */,
 				324500791E4BFDFC00A3CE63 /* Fonts.swift in Sources */,
+				32873CA11E973E7100BBCD2A /* EBT+ViewTransactionHistory.swift in Sources */,
 				DE80BFF31E57689D00449144 /* Locations+.swift in Sources */,
 				32873C991E973C9900BBCD2A /* EBT+SignInAndSignUpRequirements.swift in Sources */,
 				32D576B01E7C608F00F72F95 /* NoResultsCustomCell.swift in Sources */,

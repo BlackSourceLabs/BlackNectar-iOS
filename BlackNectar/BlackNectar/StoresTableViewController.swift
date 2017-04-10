@@ -236,7 +236,7 @@ extension StoresTableViewController {
         
     }
     
-    private func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
+    private func goLoadImage(into cell: StoresTableViewCell, withStore url: URL?) {
         
         let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
         let scale = KingfisherOptionsInfoItem.scaleFactor(UIScreen.main.scale * 2)

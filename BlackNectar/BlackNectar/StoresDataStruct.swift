@@ -19,10 +19,10 @@ struct Store {
     let location: CLLocationCoordinate2D
     let address: Address
     let storeImage: URL
+    let storeImageURL: URL?
     let isFarmersMarket: Bool
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
-    
     
     static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
         
@@ -35,11 +35,20 @@ extension Store {
     
     init?(json: NSDictionary) {
         
-        guard let storeName = json["store_name"] as? String,
-            let addressJSON = json["address"] as? NSDictionary,
-            let storeImageString = json["main_image_url"] as? String,
-            let storeImageURL = URL(string: storeImageString)
+        let storeImageString = json ["main_image_url"] as? String
+        
+        if storeImageString == nil {
+
+            storeImageURL = URL(string:"https://s3.amazonaws.com/ODNUploads/5404f487678f1532dfdbcc6479placeholder_food_item_2.png")
+        }
+        else {
+            
+            storeImageURL = URL(string: storeImageString ?? "")
+        }
+        
         guard let storeID = json ["store_id"] as? String,
+            let storeName = json ["store_name"] as? String,
+            let addressJSON = json ["address"] as? NSDictionary
             else {
                 
                 LOG.error("Failed to parse Store: \(json)")
@@ -48,9 +57,9 @@ extension Store {
         
         guard let address = Address(from: addressJSON) else { return nil }
         
-        guard let coordinatesDictionary = json["location"] as? NSDictionary,
-            let latitude = coordinatesDictionary["latitude"] as? CLLocationDegrees,
-            let longitude = coordinatesDictionary["longitude"] as? CLLocationDegrees
+        guard let coordinatesDictionary = json ["location"] as? NSDictionary,
+            let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees,
+            let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees
             else {
                 
                 LOG.warn("Failed to get Store location information: \(json)")
@@ -59,14 +68,14 @@ extension Store {
         
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        let isFarmersMarket: Bool = json["is_farmers_market"] as? Bool ?? false
+        let isFarmersMarket: Bool = json ["is_farmers_market"] as? Bool ?? false
         
         self.storeID = storeID
         self.storeName = storeName
         self.address = address
         self.location = coordinatesObject
-        self.storeImage = storeImageURL
         self.isFarmersMarket = isFarmersMarket
+        self.storeImage = storeImageURL!
         
     }
     

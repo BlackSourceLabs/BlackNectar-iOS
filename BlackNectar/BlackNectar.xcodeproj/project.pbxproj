@@ -37,6 +37,8 @@
 		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
 		32D576B01E7C608F00F72F95 /* NoResultsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D576AF1E7C608F00F72F95 /* NoResultsCustomCell.swift */; };
 		32D86DD31E5F87E400C8837D /* WelcomeScreenOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */; };
+		32D8B9F81E9C72E00082327B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D8B9F61E9C72E00082327B /* Fabric.framework */; };
+		32D8B9F91E9C72E00082327B /* Fabric.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32D8B9F61E9C72E00082327B /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		32E134411E15FE6700FD65DC /* AromaSwiftClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */; };
 		32E134431E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
 		32E134441E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
@@ -112,6 +114,7 @@
 				32E1344D1E15FEE600FD65DC /* Kingfisher.framework in Embed Frameworks */,
 				3275805E1E204FB900E2915A /* Archeota.framework in Embed Frameworks */,
 				32E1344E1E15FEE600FD65DC /* SwiftExceptionCatcher.framework in Embed Frameworks */,
+				32D8B9F91E9C72E00082327B /* Fabric.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +158,7 @@
 		32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+.swift"; sourceTree = "<group>"; };
 		32D576AF1E7C608F00F72F95 /* NoResultsCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoResultsCustomCell.swift; sourceTree = "<group>"; };
 		32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenOne.swift; sourceTree = "<group>"; };
+		32D8B9F61E9C72E00082327B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaSwiftClient.framework; path = Carthage/Build/iOS/AromaSwiftClient.framework; sourceTree = "<group>"; };
 		32E1343D1E15FE6700FD65DC /* AromaThrift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaThrift.framework; path = Carthage/Build/iOS/AromaThrift.framework; sourceTree = "<group>"; };
 		32E1343E1E15FE6700FD65DC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				32E134451E15FE6700FD65DC /* Kingfisher.framework in Frameworks */,
 				3275805D1E204FB900E2915A /* Archeota.framework in Frameworks */,
 				32E134411E15FE6700FD65DC /* AromaSwiftClient.framework in Frameworks */,
+				32D8B9F81E9C72E00082327B /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +434,7 @@
 		32E134171E15DE0D00FD65DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32D8B9F61E9C72E00082327B /* Fabric.framework */,
 				3275805B1E2040F000E2915A /* Archeota.framework */,
 				32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */,
 				32E1343D1E15FE6700FD65DC /* AromaThrift.framework */,

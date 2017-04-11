@@ -163,6 +163,8 @@ extension StoresTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+        guard stores.notEmpty else { return }
+        
         let cellAnimation = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)
         cell.alpha = 0
         cell.layer.transform = cellAnimation
@@ -392,8 +394,10 @@ extension StoresTableViewController {
         
         self.main.addOperation {
             
-            self.reloadSection(0)
-            self.stopSpinningNVActivityIndicator()
+            let animation: UITableViewRowAnimation = stores.isEmpty ? .fade : .automatic
+            self.reloadSection(0, animation: animation)
+            
+            self.stopSpinningIndicator()
             self.refreshControl?.endRefreshing()
             
         }

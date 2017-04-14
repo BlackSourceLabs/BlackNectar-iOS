@@ -397,7 +397,7 @@ extension StoresTableViewController {
             let animation: UITableViewRowAnimation = stores.isEmpty ? .fade : .automatic
             self.reloadSection(0, animation: animation)
             
-            self.stopSpinningIndicator()
+            self.stopSpinningNVActivityIndicator()
             self.refreshControl?.endRefreshing()
             
         }

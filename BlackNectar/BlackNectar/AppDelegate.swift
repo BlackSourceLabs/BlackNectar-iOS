@@ -8,6 +8,8 @@
 
 import Archeota
 import AromaSwiftClient
+import Crashlytics
+import Fabric
 import Kingfisher
 import NVActivityIndicatorView
 import UIKit
@@ -22,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        Fabric.with([Crashlytics.self, Answers.self])
+        self.logUser()
+
         LOG.level = .debug
         LOG.enable()
         
@@ -51,6 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
         
+    }
+    
+    func logUser() {
+        
+        Crashlytics.sharedInstance().setUserIdentifier(UIDevice.current.name)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

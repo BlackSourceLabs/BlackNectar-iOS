@@ -1,14 +1,14 @@
 //
-//  EBT+CheckIfStateAccountExistsTests.swift
+//  EBT+SupportedStatesTest.swift
 //  BlackNectar
 //
-//  Created by Cordero Hernandez on 4/15/17.
+//  Created by Cordero Hernandez on 4/6/17.
 //  Copyright © 2017 BlackSource. All rights reserved.
 //
 
 import XCTest
 
-class EBT_CheckIfStateAccountExistsTests: XCTestCase {
+class EBT_SupportedStatesTest: XCTestCase {
     
     override func setUp() {
         super.setUp()

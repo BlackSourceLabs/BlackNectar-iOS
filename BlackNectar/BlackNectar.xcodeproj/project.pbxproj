@@ -131,8 +131,8 @@
 		320820531E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresMapViewControllerTests.swift; sourceTree = "<group>"; };
 		320820561E2DE525009FFCB9 /* GlobalLocationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalLocationManagerTests.swift; sourceTree = "<group>"; };
 		320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceCalculationTests.swift; sourceTree = "<group>"; };
-		3208205D1E2E0FD6009FFCB9 /* SearchStoresTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStoresTest.swift; sourceTree = "<group>"; };
-		320820601E2EF38E009FFCB9 /* StoresDataStructTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresDataStructTests.swift; sourceTree = "<group>"; };
+		3208205D1E2E0FD6009FFCB9 /* SearchStoresTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStoresTests.swift; sourceTree = "<group>"; };
+		320820601E2EF38E009FFCB9 /* StoresModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresModelTests.swift; sourceTree = "<group>"; };
 		3213193A1DE0F61500FB1774 /* BlackNectar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackNectar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3213193D1DE0F61500FB1774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresMapViewController.swift; sourceTree = "<group>"; };

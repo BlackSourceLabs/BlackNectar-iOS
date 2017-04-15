@@ -34,15 +34,13 @@ extension Store {
     
     init?(json: NSDictionary) {
         
-        let storeImageString = json ["main_image_url"] as? String
-        
-        if storeImageString == nil {
-
-            storeImageURL = URL(string:"https://s3.amazonaws.com/ODNUploads/5404f487678f1532dfdbcc6479placeholder_food_item_2.png")
+        if let storeImageString = json["main_image_url"] as? String  {
+            
+            storeImage = URL(string: storeImageString)
         }
         else {
             
-            storeImageURL = URL(string: storeImageString ?? "")
+            self.storeImage = nil
         }
         
         guard let storeID = json ["store_id"] as? String,

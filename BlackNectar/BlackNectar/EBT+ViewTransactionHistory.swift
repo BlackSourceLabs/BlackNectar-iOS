@@ -16,7 +16,7 @@ struct ViewTransactionHistory {
     let name: String
     let value: String
     let timestamp: Timestamp
-    let amount: Int
+    let amount: Double
     let address: String
     let retailer: String
     let transactionType: TransactionType
@@ -36,7 +36,7 @@ extension ViewTransactionHistory {
         guard let name = viewTransactionHistoryDictionary["name"] as? String,
             let value = viewTransactionHistoryDictionary["value"] as? String,
             let timestampJSON = viewTransactionHistoryDictionary["timestamp"] as? NSDictionary,
-            let amount = viewTransactionHistoryDictionary["amount"] as? Int,
+            let amount = viewTransactionHistoryDictionary["amount"] as? Double,
             let address = viewTransactionHistoryDictionary["address"] as? String,
             let retailer = viewTransactionHistoryDictionary["retailer"] as? String,
             let transactionTypeJSON = viewTransactionHistoryDictionary["transaction_type"] as? NSDictionary,

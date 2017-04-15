@@ -92,7 +92,7 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
     
 }
 
-//MARK: Filter Delegate 
+//MARK: Filter Delegate
 extension StoresTableViewController {
     
     func didDismissFilter(_: FilterViewController, farmersMarkets: Bool, groceryStores: Bool, zipCode: String) {
@@ -199,8 +199,16 @@ extension StoresTableViewController {
         
         let store = stores[row]
         
+        if let url = store.storeImage {
+            
+            goLoadImage(into: storeCell, withStore: url)
+        }
+        else {
+            
+            storeCell.storeImage.image = #imageLiteral(resourceName: "No Stores Found ")
+        }
+        
         insertDistance(toStore: store, into: storeCell)
-        goLoadImage(into: storeCell, withStore: store.storeImage)
         insertAddress(into: storeCell, withStore: store)
         
         storeCell.storeName.text = store.storeName

@@ -18,8 +18,7 @@ struct Store {
     let storeName: String
     let location: CLLocationCoordinate2D
     let address: Address
-    let storeImage: URL
-    let storeImageURL: URL?
+    let storeImage: URL?
     let isFarmersMarket: Bool
     
     var notFarmersMarket: Bool { return !isFarmersMarket }

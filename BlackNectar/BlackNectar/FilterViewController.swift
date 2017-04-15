@@ -329,6 +329,7 @@ extension FilterViewController {
                 self.populateStoreAnnotations()
                 self.stopSpinningIndicator()
                 
+                
             }
             
         }
@@ -451,6 +452,7 @@ extension FilterViewController {
                 
                 self.stopSpinningIndicator()
                 self.populateStoreAnnotations()
+                
             }
             
         }

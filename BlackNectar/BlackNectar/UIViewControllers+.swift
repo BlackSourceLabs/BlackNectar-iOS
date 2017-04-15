@@ -9,6 +9,7 @@
 import Archeota
 import AromaSwiftClient
 import Foundation
+import NVActivityIndicatorView
 import UIKit
 
 extension UIViewController {
@@ -23,6 +24,18 @@ extension UIViewController {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
+    }
+    
+    func startSpinningNVActivityIndicator() {
+        
+        let activityData = ActivityData()
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+        
+    }
+    
+    func stopSpinningNVActivityIndicator() {
+        
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
     }
     
     func hideNavigationBar() {

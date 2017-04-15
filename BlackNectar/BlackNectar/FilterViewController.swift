@@ -329,6 +329,7 @@ extension FilterViewController {
                 self.populateStoreAnnotations()
                 self.stopSpinningIndicator()
                 
+                
             }
             
         }
@@ -451,6 +452,7 @@ extension FilterViewController {
                 
                 self.stopSpinningIndicator()
                 self.populateStoreAnnotations()
+                
             }
             
         }
@@ -557,7 +559,8 @@ extension FilterViewController {
     
 }
 
-//MARK: Style Menu 
+//MARK: Style Menu
+
 extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {

@@ -11,6 +11,7 @@ import AromaSwiftClient
 import Crashlytics
 import Fabric
 import Kingfisher
+import NVActivityIndicatorView
 import UIKit
 
 @UIApplicationMain
@@ -50,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ImageCache.default.maxDiskCacheSize = UInt(150.mb)
         ImageCache.default.maxCachePeriodInSecond = (3.0).days
+        
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballClipRotatePulse
         
         return true
         

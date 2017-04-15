@@ -2,3 +2,4 @@ github "SirWellington/SWRevealViewController" "master"
 github "onevcat/Kingfisher" ~> 3.0
 github "RedRoma/AromaSwiftClient" "develop"
 github "RedRoma/Archeota"
+github "ninjaprox/NVActivityIndicatorView" ~> 3.0

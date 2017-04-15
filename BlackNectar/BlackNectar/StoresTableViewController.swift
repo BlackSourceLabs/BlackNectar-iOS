@@ -68,8 +68,6 @@ class StoresTableViewController: UITableViewController, FilterDelegate, UIGestur
         
         setupRefreshControl()
         
-        //tableView.rowHeight = UITableViewAutomaticDimension
-        
         if isFirstTimeUser {
             goToWelcomeScreen()
         }
@@ -352,12 +350,11 @@ extension StoresTableViewController {
         
         refreshControl = UIRefreshControl()
         refreshControl?.backgroundColor = UIColor.black
-        refreshControl?.tintColor = UIColor .init(red: 0.902, green: 0.73, blue: 0.25, alpha: 1)
+        refreshControl?.tintColor = UIColor.clear
         
         refreshControl?.addTarget(self, action: #selector(self.reloadStoreData), for: .valueChanged)
         
     }
-    
     
     func reloadStoreData() {
         
@@ -379,14 +376,14 @@ extension StoresTableViewController {
     
     func loadStores(atZipCode zipCode: String) {
         
-        startSpinningIndicator()
+        startSpinningNVActivityIndicator()
         SearchStores.searchForStoresByZipCode(withZipCode: zipCode, callback: self.populateStores)
         
     }
     
     func loadStores(atCoordinate coordinate: CLLocationCoordinate2D) {
         
-        startSpinningIndicator()
+        startSpinningNVActivityIndicator()
         SearchStores.searchForStoresLocations(near: coordinate, callback: self.populateStores)
         
     }
@@ -400,8 +397,9 @@ extension StoresTableViewController {
             let animation: UITableViewRowAnimation = stores.isEmpty ? .fade : .automatic
             self.reloadSection(0, animation: animation)
             
-            self.stopSpinningIndicator()
+            self.stopSpinningNVActivityIndicator()
             self.refreshControl?.endRefreshing()
+            
         }
         
         if self.stores.isEmpty {
@@ -437,7 +435,7 @@ extension StoresTableViewController {
         
         let appleMapsLaunchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeKey]
         
-        let storePlacemark = MKPlacemark(coordinate: store.location, addressDictionary: ["\(title)" : store.storeName])
+        let storePlacemark = MKPlacemark(coordinate: store.location, addressDictionary: ["\(title ?? "")" : store.storeName])
         let storePin = MKMapItem(placemark: storePlacemark)
         storePin.name = store.storeName
         
@@ -506,7 +504,7 @@ fileprivate extension StoresTableViewController {
         
         LOG.warn("There are no stores around the users location")
         AromaClient.beginMessage(withTitle: "No stores loading result is 0")
-            .addBody("Users location is: \(UserLocation.instance.currentLocation)\n (Stores loading result is 0 : \(additionalMessage)")
+            .addBody("Users location is: \(UserLocation.instance.currentLocation?.description ?? "")\n (Stores loading result is 0 : \(additionalMessage)")
             .withPriority(.high)
             .send()
         

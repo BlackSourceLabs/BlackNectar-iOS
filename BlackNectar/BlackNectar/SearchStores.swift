@@ -114,7 +114,7 @@ class SearchStores {
             }
             
             guard let store = Store.getStoreJsonData(from: object) else {
-
+                
                 makeNoteThatStoreCouldNotBeParsed(json: object)
                 continue
             }

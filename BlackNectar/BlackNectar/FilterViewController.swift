@@ -557,7 +557,7 @@ extension FilterViewController {
     
 }
 
-//MARK: Style Menu 
+//MARK: Style Menu
 extension FilterViewController {
     
     func styleButtonOn(button: UIButton) {

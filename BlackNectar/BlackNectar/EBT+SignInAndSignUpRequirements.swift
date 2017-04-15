@@ -11,20 +11,20 @@ import Foundation
 import UIKit
 
 //MARK: Sign In Requirements, Sign Up Requirements, and Features
-struct StateFeaturesAndRequiremets {
+struct StateFeaturesAndRequirements {
     
     let signInRequirements: [SignInRequirements]
     let signUpRequirements: [SignUpRequirements]
     let features: Features
     
-    static func getStateFeaturesAndRequirementsJsonData(from statesDictionary: NSDictionary) -> StateFeaturesAndRequiremets? {
+    static func getStateFeaturesAndRequirementsJsonData(from statesDictionary: NSDictionary) -> StateFeaturesAndRequirements? {
         
-        return StateFeaturesAndRequiremets(json: statesDictionary)
+        return StateFeaturesAndRequirements(json: statesDictionary)
     }
     
 }
 
-extension StateFeaturesAndRequiremets {
+extension StateFeaturesAndRequirements {
     
     init?(json: NSDictionary) {
         
@@ -55,8 +55,8 @@ struct SignInRequirements {
     let name: String
     let type: String
     let description: String
-    let isRequired: String
-    let requirements: Requirements
+    let isRequired: Bool
+    let requirements: RequirementsForSignIn
     
 }
 
@@ -67,7 +67,7 @@ extension SignInRequirements {
         guard let name = signInRequirementsDictionary["name"] as? String,
             let type = signInRequirementsDictionary["type"] as? String,
             let description = signInRequirementsDictionary["description"] as? String,
-            let isRequired = signInRequirementsDictionary["is_required"] as? String,
+            let isRequired = signInRequirementsDictionary["is_required"] as? Bool,
             let requirementsJSON = signInRequirementsDictionary["requirements"] as? NSDictionary
             else {
                 
@@ -75,7 +75,7 @@ extension SignInRequirements {
                 return nil
         }
         
-        guard let requirements = Requirements(from: requirementsJSON) else { return nil }
+        guard let requirements = RequirementsForSignIn(from: requirementsJSON) else { return nil }
         
         self.name = name
         self.type = type
@@ -87,7 +87,7 @@ extension SignInRequirements {
     
 }
 
-struct Requirements {
+struct RequirementsForSignIn {
     
     let minLength: Int
     let maxLength: Int
@@ -95,7 +95,7 @@ struct Requirements {
     
 }
 
-extension Requirements {
+extension RequirementsForSignIn {
     
     init?(from requirementsDictionary: NSDictionary) {
         
@@ -156,7 +156,7 @@ struct SignUpRequirements {
     let name: String
     let type: String
     let description: String
-    let isRequired: String
+    let isRequired: Bool
     let requirementsForSignUp: RequirementsForSignUp
     
 }
@@ -168,7 +168,7 @@ extension SignUpRequirements {
         guard let name = signUpRequirementsDictionary["name"] as? String,
             let type = signUpRequirementsDictionary["type"] as? String,
             let description = signUpRequirementsDictionary["description"] as? String,
-            let isRequired = signUpRequirementsDictionary["is_required"] as? String,
+            let isRequired = signUpRequirementsDictionary["is_required"] as? Bool,
             let requirementsForSignUpJSON = signUpRequirementsDictionary["requirements"] as? NSDictionary
             else {
                 

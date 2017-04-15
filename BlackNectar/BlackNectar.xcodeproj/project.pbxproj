@@ -14,8 +14,8 @@
 		320820541E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820531E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift */; };
 		320820571E2DE525009FFCB9 /* GlobalLocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820561E2DE525009FFCB9 /* GlobalLocationManagerTests.swift */; };
 		320820591E2DF038009FFCB9 /* DistanceCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820581E2DF038009FFCB9 /* DistanceCalculationTests.swift */; };
-		3208205E1E2E0FD6009FFCB9 /* SearchStoresTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3208205D1E2E0FD6009FFCB9 /* SearchStoresTest.swift */; };
-		320820611E2EF38E009FFCB9 /* StoresDataStructTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820601E2EF38E009FFCB9 /* StoresDataStructTests.swift */; };
+		3208205E1E2E0FD6009FFCB9 /* SearchStoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3208205D1E2E0FD6009FFCB9 /* SearchStoresTests.swift */; };
+		320820611E2EF38E009FFCB9 /* StoresModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320820601E2EF38E009FFCB9 /* StoresModelTests.swift */; };
 		3213193E1DE0F61500FB1774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213193D1DE0F61500FB1774 /* AppDelegate.swift */; };
 		321319401DE0F61500FB1774 /* StoresMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213193F1DE0F61500FB1774 /* StoresMapViewController.swift */; };
 		321319431DE0F61500FB1774 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321319411DE0F61500FB1774 /* Main.storyboard */; };

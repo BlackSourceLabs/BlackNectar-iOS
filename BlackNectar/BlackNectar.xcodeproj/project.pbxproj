@@ -43,6 +43,12 @@
 		32C1DB731E494EE900DCF842 /* UIViewControllers+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */; };
 		32D576B01E7C608F00F72F95 /* NoResultsCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D576AF1E7C608F00F72F95 /* NoResultsCustomCell.swift */; };
 		32D86DD31E5F87E400C8837D /* WelcomeScreenOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */; };
+		32D8BA001EA1CB1C0082327B /* EBT+SupportedStatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8B9FF1EA1CB1C0082327B /* EBT+SupportedStatesTests.swift */; };
+		32D8BA021EA1CD300082327B /* EBT+SignInAndSignUpRequirementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8BA011EA1CD300082327B /* EBT+SignInAndSignUpRequirementsTests.swift */; };
+		32D8BA041EA2B2FE0082327B /* EBT+CheckIfStateAccountExistsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8BA031EA2B2FE0082327B /* EBT+CheckIfStateAccountExistsTests.swift */; };
+		32D8BA061EA2B8450082327B /* EBT+CreateAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8BA051EA2B8450082327B /* EBT+CreateAccountTests.swift */; };
+		32D8BA081EA2B9A30082327B /* EBT+ViewAccountBalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8BA071EA2B9A30082327B /* EBT+ViewAccountBalanceTests.swift */; };
+		32D8BA0A1EA2BC970082327B /* EBT+ViewTransactionHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D8BA091EA2BC970082327B /* EBT+ViewTransactionHistoryTests.swift */; };
 		32E134411E15FE6700FD65DC /* AromaSwiftClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */; };
 		32E134431E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
 		32E134441E15FE6700FD65DC /* AromaThrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E1343D1E15FE6700FD65DC /* AromaThrift.framework */; };
@@ -167,6 +173,12 @@
 		32C1DB721E494EE900DCF842 /* UIViewControllers+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+.swift"; sourceTree = "<group>"; };
 		32D576AF1E7C608F00F72F95 /* NoResultsCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoResultsCustomCell.swift; sourceTree = "<group>"; };
 		32D86DD21E5F87E400C8837D /* WelcomeScreenOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenOne.swift; sourceTree = "<group>"; };
+		32D8B9FF1EA1CB1C0082327B /* EBT+SupportedStatesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+SupportedStatesTests.swift"; sourceTree = "<group>"; };
+		32D8BA011EA1CD300082327B /* EBT+SignInAndSignUpRequirementsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+SignInAndSignUpRequirementsTests.swift"; sourceTree = "<group>"; };
+		32D8BA031EA2B2FE0082327B /* EBT+CheckIfStateAccountExistsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+CheckIfStateAccountExistsTests.swift"; sourceTree = "<group>"; };
+		32D8BA051EA2B8450082327B /* EBT+CreateAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+CreateAccountTests.swift"; sourceTree = "<group>"; };
+		32D8BA071EA2B9A30082327B /* EBT+ViewAccountBalanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+ViewAccountBalanceTests.swift"; sourceTree = "<group>"; };
+		32D8BA091EA2BC970082327B /* EBT+ViewTransactionHistoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBT+ViewTransactionHistoryTests.swift"; sourceTree = "<group>"; };
 		32E1343C1E15FE6700FD65DC /* AromaSwiftClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaSwiftClient.framework; path = Carthage/Build/iOS/AromaSwiftClient.framework; sourceTree = "<group>"; };
 		32E1343D1E15FE6700FD65DC /* AromaThrift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AromaThrift.framework; path = Carthage/Build/iOS/AromaThrift.framework; sourceTree = "<group>"; };
 		32E1343E1E15FE6700FD65DC /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
@@ -267,7 +279,6 @@
 				32D8B9FD1EA1C9500082327B /* StoresModelTests */,
 				32D8B9FE1EA1CA2D0082327B /* EBTModelTests */,
 			);
-			name = APIDataStructTests;
 			name = ModelTests;
 			sourceTree = "<group>";
 		};
@@ -452,6 +463,35 @@
 				32873CA01E973E7100BBCD2A /* EBT+ViewTransactionHistory.swift */,
 			);
 			name = EBTModels;
+			sourceTree = "<group>";
+		};
+		32D8B9FC1EA1C93B0082327B /* StoresModel */ = {
+			isa = PBXGroup;
+			children = (
+				3213196B1DE105AF00FB1774 /* StoresModel.swift */,
+			);
+			name = StoresModel;
+			sourceTree = "<group>";
+		};
+		32D8B9FD1EA1C9500082327B /* StoresModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				320820601E2EF38E009FFCB9 /* StoresModelTests.swift */,
+			);
+			name = StoresModelTests;
+			sourceTree = "<group>";
+		};
+		32D8B9FE1EA1CA2D0082327B /* EBTModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				32D8B9FF1EA1CB1C0082327B /* EBT+SupportedStatesTests.swift */,
+				32D8BA011EA1CD300082327B /* EBT+SignInAndSignUpRequirementsTests.swift */,
+				32D8BA031EA2B2FE0082327B /* EBT+CheckIfStateAccountExistsTests.swift */,
+				32D8BA051EA2B8450082327B /* EBT+CreateAccountTests.swift */,
+				32D8BA071EA2B9A30082327B /* EBT+ViewAccountBalanceTests.swift */,
+				32D8BA091EA2BC970082327B /* EBT+ViewTransactionHistoryTests.swift */,
+			);
+			name = EBTModelTests;
 			sourceTree = "<group>";
 		};
 		32E134171E15DE0D00FD65DC /* Frameworks */ = {
@@ -736,8 +776,14 @@
 				32E134561E160EAF00FD65DC /* TimeIntervals+.swift in Sources */,
 				320820541E2DDED3009FFCB9 /* StoresMapViewControllerTests.swift in Sources */,
 				DE80BFF11E5693A800449144 /* FilterViewControllerTests.swift in Sources */,
-				320820611E2EF38E009FFCB9 /* StoresDataStructTests.swift in Sources */,
+				32D8BA061EA2B8450082327B /* EBT+CreateAccountTests.swift in Sources */,
+				320820611E2EF38E009FFCB9 /* StoresModelTests.swift in Sources */,
+				32D8BA021EA1CD300082327B /* EBT+SignInAndSignUpRequirementsTests.swift in Sources */,
+				32D8BA001EA1CB1C0082327B /* EBT+SupportedStatesTests.swift in Sources */,
+				32D8BA0A1EA2BC970082327B /* EBT+ViewTransactionHistoryTests.swift in Sources */,
 				DEE6F17F1E79C83000A9E8F0 /* FontsTest.swift in Sources */,
+				32D8BA041EA2B2FE0082327B /* EBT+CheckIfStateAccountExistsTests.swift in Sources */,
+				32D8BA081EA2B9A30082327B /* EBT+ViewAccountBalanceTests.swift in Sources */,
 				320820591E2DF038009FFCB9 /* DistanceCalculationTests.swift in Sources */,
 				320820571E2DE525009FFCB9 /* GlobalLocationManagerTests.swift in Sources */,
 				320820511E2DC278009FFCB9 /* StoresTableViewControllerTests.swift in Sources */,

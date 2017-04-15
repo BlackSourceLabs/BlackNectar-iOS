@@ -43,9 +43,9 @@ extension Store {
             self.storeImage = nil
         }
         
-        guard let storeID = json ["store_id"] as? String,
-            let storeName = json ["store_name"] as? String,
-            let addressJSON = json ["address"] as? NSDictionary
+        guard let storeID = json["store_id"] as? String,
+            let storeName = json["store_name"] as? String,
+            let addressJSON = json["address"] as? NSDictionary
             else {
                 
                 LOG.error("Failed to parse Store: \(json)")
@@ -54,9 +54,9 @@ extension Store {
         
         guard let address = Address(from: addressJSON) else { return nil }
         
-        guard let coordinatesDictionary = json ["location"] as? NSDictionary,
-            let latitude = coordinatesDictionary ["latitude"] as? CLLocationDegrees,
-            let longitude = coordinatesDictionary ["longitude"] as? CLLocationDegrees
+        guard let coordinatesDictionary = json["location"] as? NSDictionary,
+            let latitude = coordinatesDictionary["latitude"] as? CLLocationDegrees,
+            let longitude = coordinatesDictionary["longitude"] as? CLLocationDegrees
             else {
                 
                 LOG.warn("Failed to get Store location information: \(json)")
@@ -65,14 +65,13 @@ extension Store {
         
         let coordinatesObject = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        let isFarmersMarket: Bool = json ["is_farmers_market"] as? Bool ?? false
+        let isFarmersMarket: Bool = json["is_farmers_market"] as? Bool ?? false
         
         self.storeID = storeID
         self.storeName = storeName
         self.address = address
         self.location = coordinatesObject
         self.isFarmersMarket = isFarmersMarket
-        self.storeImage = storeImageURL!
         
     }
     
@@ -102,15 +101,15 @@ extension Address {
     
     init?(from storeDictionary: NSDictionary) {
         
-        guard let addressLineOne = storeDictionary ["address_line_1"] as? String else { return nil }
-        let addressLineTwo = storeDictionary ["address_line_2"] as? String
+        guard let addressLineOne = storeDictionary["address_line_1"] as? String else { return nil }
+        let addressLineTwo = storeDictionary["address_line_2"] as? String
         
-        guard let city = storeDictionary ["city"] as? String else { return nil }
-        guard let state = storeDictionary ["state"] as? String else { return nil }
-        guard let county = storeDictionary ["county"] as? String else { return nil }
-        guard let zipCode = storeDictionary ["zip_code"] as? String else { return nil }
+        guard let city = storeDictionary["city"] as? String else { return nil }
+        guard let state = storeDictionary["state"] as? String else { return nil }
+        guard let county = storeDictionary["county"] as? String else { return nil }
+        guard let zipCode = storeDictionary["zip_code"] as? String else { return nil }
         
-        let localZipCode = storeDictionary ["local_zip_code"] as? String
+        let localZipCode = storeDictionary["local_zip_code"] as? String
         
         self.addressLineOne = addressLineOne
         self.addressLineTwo = addressLineTwo

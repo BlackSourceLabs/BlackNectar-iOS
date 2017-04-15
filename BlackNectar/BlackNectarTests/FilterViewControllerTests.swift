@@ -14,12 +14,10 @@ import MapKit
 
 class FilterViewControllerTests: XCTest {
     
-    
     var instance: FilterViewController!
     var showFarmersMarket: Bool!
     var showStores: Bool!
     var location: CLLocationCoordinate2D!
-    
     
     override func setUp() {
         instance = FilterViewController()
@@ -34,11 +32,9 @@ class FilterViewControllerTests: XCTest {
     }
     
     func testFarmersMarket() {
-        
         let expected = UserPreferences.instance.showFarmersMarkets
         let result = instance.showFarmersMarkets
         XCTAssertTrue(result == expected)
-        
     }
     
     func testStores() {
@@ -48,7 +44,6 @@ class FilterViewControllerTests: XCTest {
     }
     
     func testOnGroceryStores() {
-        
         let expected = !showStores
         instance.onGroceryStores(UIButton())
         

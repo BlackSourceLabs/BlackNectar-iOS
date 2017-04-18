@@ -10,15 +10,16 @@ Designed and Developed by **BlackSource**.
 
 ## Why
 Our mission is to help the underserved by using technology. 
-People on the Calfresh EBT program are oftentimes neglected and looked down upon in society.
+People on the Food Stamps program are often times neglected and looked down upon in society.
 We decided to make a difference in our community and take action.
-Our goal is to help people that are on EBT by helping them find stores, restaurants and farmer's markets that are nearby and accept EBT. 
+Our goal is to help people that are on EBT by helping them find stores, restaurants, and farmers' markets that accept EBT.
 
 
 ## What is BlackNectar?
-BlackNectar provides mobile technologies to EBT users in order to assist and encourage them to fully and conveniently utilize their supplemental nutrition assistance benefits and to explore healthier eating options.
+BlackNectar is an App for EBT users that helps them best utilize their supplemental nutrition assistance benefits and to explore healthier eating options.
 
-    
+---
+
 ## Features
 
 ### Filter Options 
@@ -34,6 +35,7 @@ gives you information about each ebt location
 ### Get Driving, Walking and Bus Directions 
 implements Apple Maps 
 
+---
 
 ## Design 
 Sleek & Stylish 
@@ -42,4 +44,6 @@ Quality Design
 
 ![blacknectar sneak peak](https://cloud.githubusercontent.com/assets/20737269/21948639/3ffd67c0-d9a1-11e6-9496-72c1d029c456.gif)
 
-## [Download](https://itunes.apple.com/us/app/blacknectar/id1188829547?mt=8)
+---
+
+## [Download (iOS)](https://itunes.apple.com/us/app/blacknectar/id1188829547?mt=8)

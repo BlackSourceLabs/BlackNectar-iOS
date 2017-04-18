@@ -37,10 +37,10 @@ implements Apple Maps
 
 ---
 
-## Design 
-Sleek & Stylish 
-Luxurious & Smooth
-Quality Design
+## Design Principles
++ Simple
++ Intuitive 
++ Luxurious
 
 ![blacknectar sneak peak](https://cloud.githubusercontent.com/assets/20737269/21948639/3ffd67c0-d9a1-11e6-9496-72c1d029c456.gif)
 

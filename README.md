@@ -19,23 +19,23 @@ Our goal is to help people that are on EBT by helping them find stores, restaura
 BlackNectar provides mobile technologies to EBT users in order to assist and encourage them to fully and conveniently utilize their supplemental nutrition assistance benefits and to explore healthier eating options.
 
     
-##Features
+## Features
 
-###Filter Options 
+### Filter Options 
 filter by distance(miles), stores, restaurants and farmer markets 
 only see stores that are currently open 
 
-###Map View
+### Map View
 see all the ebt locations from a map view 
 
-###List of Stores, Farmer Markets and Restaurants
+### List of Stores, Farmer Markets and Restaurants
 gives you information about each ebt location
 
-###Get Driving, Walking and Bus Directions 
+### Get Driving, Walking and Bus Directions 
 implements Apple Maps 
 
 
-##Design 
+## Design 
 Sleek & Stylish 
 Luxurious & Smooth
 Quality Design

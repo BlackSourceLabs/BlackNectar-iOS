@@ -198,11 +198,9 @@ extension StoresTableViewController {
         let store = stores[row]
         
         if let url = store.storeImage {
-            
             goLoadImage(into: storeCell, withStore: url)
         }
         else {
-            
             storeCell.storeImage.image = #imageLiteral(resourceName: "No Stores Found ")
         }
         
@@ -242,7 +240,7 @@ extension StoresTableViewController {
         
     }
     
-    private func goLoadImage(into cell: StoresTableViewCell, withStore url: URL?) {
+    private func goLoadImage(into cell: StoresTableViewCell, withStore url: URL) {
         
         let fade = KingfisherOptionsInfoItem.transition(.fade(0.5))
         let scale = KingfisherOptionsInfoItem.scaleFactor(UIScreen.main.scale * 2)

@@ -89,23 +89,21 @@ class SearchStores {
                 
                 noteThatLoadingStoreTookLongerThan3Seconds(time: time)
             }
-
+            
         }
         
         task.resume()
         
     }
     
-    
     private static func parseStores(from data: Data) -> [Store] {
         
         var storesArray: [Store] = []
         
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []),
-              let jsonArray = json as? NSArray else {
+            let jsonArray = json as? NSArray else {
                 
-              return storesArray
-                
+                return storesArray
         }
         
         for element in jsonArray {
@@ -113,7 +111,6 @@ class SearchStores {
             guard let object = element as? NSDictionary else {
                 
                 continue
-                
             }
             
             guard let store = Store.getStoreJsonData(from: object) else {
@@ -123,11 +120,9 @@ class SearchStores {
             }
             
             storesArray.append(store)
-            
         }
         
         return storesArray
-        
     }
     
 }

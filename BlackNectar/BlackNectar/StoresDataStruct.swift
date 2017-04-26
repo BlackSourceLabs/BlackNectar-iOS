@@ -14,14 +14,14 @@ import UIKit
 // Creates data structure for JSON Request
 struct Store {
     
+    let storeID: String
     let storeName: String
     let location: CLLocationCoordinate2D
     let address: Address
-    let storeImage: URL
+    let storeImage: URL?
     let isFarmersMarket: Bool
     
     var notFarmersMarket: Bool { return !isFarmersMarket }
-    
     
     static func getStoreJsonData(from storeDictionary: NSDictionary) -> Store? {
         
@@ -34,10 +34,18 @@ extension Store {
     
     init?(json: NSDictionary) {
         
-        guard let storeName = json["store_name"] as? String,
-            let addressJSON = json["address"] as? NSDictionary,
-            let storeImageString = json["main_image_url"] as? String,
-            let storeImageURL = URL(string: storeImageString)
+        if let storeImageString = json["main_image_url"] as? String  {
+            
+            storeImage = URL(string: storeImageString)
+        }
+        else {
+            
+            self.storeImage = nil
+        }
+        
+        guard let storeID = json["store_id"] as? String,
+            let storeName = json["store_name"] as? String,
+            let addressJSON = json["address"] as? NSDictionary
             else {
                 
                 LOG.error("Failed to parse Store: \(json)")
@@ -59,13 +67,14 @@ extension Store {
         
         let isFarmersMarket: Bool = json["is_farmers_market"] as? Bool ?? false
         
+        self.storeID = storeID
         self.storeName = storeName
         self.address = address
         self.location = coordinatesObject
-        self.storeImage = storeImageURL
         self.isFarmersMarket = isFarmersMarket
         
     }
+    
 }
 
 extension Store : CustomStringConvertible {
@@ -73,6 +82,7 @@ extension Store : CustomStringConvertible {
     var description: String {
         return "{storeName: \(storeName), address: \(address), location: \(location), isFarmersMarket: \(isFarmersMarket)}"
     }
+    
 }
 
 struct Address {
@@ -91,16 +101,15 @@ extension Address {
     
     init?(from storeDictionary: NSDictionary) {
         
-        guard let addressLineOne = storeDictionary ["address_line_1"] as? String else { return nil }
+        guard let addressLineOne = storeDictionary["address_line_1"] as? String else { return nil }
+        let addressLineTwo = storeDictionary["address_line_2"] as? String
         
-        let addressLineTwo = storeDictionary ["address_line_2"] as? String
+        guard let city = storeDictionary["city"] as? String else { return nil }
+        guard let state = storeDictionary["state"] as? String else { return nil }
+        guard let county = storeDictionary["county"] as? String else { return nil }
+        guard let zipCode = storeDictionary["zip_code"] as? String else { return nil }
         
-        guard let city = storeDictionary ["city"] as? String else { return nil }
-        guard let state = storeDictionary ["state"] as? String else { return nil }
-        guard let county = storeDictionary ["county"] as? String else { return nil }
-        guard let zipCode = storeDictionary ["zip_code"] as? String else { return nil }
-        
-        let localZipCode = storeDictionary ["local_zip_code"] as? String
+        let localZipCode = storeDictionary["local_zip_code"] as? String
         
         self.addressLineOne = addressLineOne
         self.addressLineTwo = addressLineTwo
@@ -110,8 +119,7 @@ extension Address {
         self.county = county
         self.zipCode = zipCode
         self.localZipCode = localZipCode
+        
     }
     
 }
-
-

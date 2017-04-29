@@ -45,7 +45,7 @@ extension Store {
         
         guard let storeID = json[Keys.storeID] as? String,
             let storeName = json[Keys.storeName] as? String,
-            let addressJSON = json[Keys.storeName] as? NSDictionary
+            let addressJSON = json[Keys.address] as? NSDictionary
             else {
                 
                 LOG.error("Failed to parse Store: \(json)")
